@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,100&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com"> 
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap" rel="stylesheet">
+    <title>addhw</title>
+</head>
+<body>
+    <p align="center" style="font-family:'Comfortaa', cursive;">Устаревший тег Font.</p>
+    <div style="border-color: green;border-style: double;">
+    <p style="font-family: 'Roboto', sans-serif;font" >
+   <font color="#BruceWillis">BRUCE</font><br>
+   <font color="#CANDY">CANDY</font><br>
+   <font color="#Chucknorris">CHUCK</font><br>
+   <font color="#Chucknorri">CHUCK</font><br>
+   <font color="#Chucknorr">CHUCK</font><br>
+   <font color="#GangnamStyle">GANGNAM</font></p>
+   </p></div>
+<p style="font-family: 'Comfortaa', cursive;">
+<a target=_blank title=Подбробнее href="https://habr.com/ru/post/173727/">Здесь</a> можно почитать подбробнее.<br>
+<ol style="font-family: 'Comfortaa', cursive;">НО краткую суть можно отобразить так:
+    <li>Заменяем все неправильные шестнадцатеричные символы нулями 0, <strong>chucknorris</strong> превращается в <strong>00c0000000c</strong></li>
+    <li>“Добиваем” число нулями до количества знаков, делимого на 3 (11 -> 12), получаем 
+        <strong>c00c 0000 0000</strong></li>
+    <li>Разбиваем на три группы, каждая из которых отвечает за одну компоненту RGB: 
+        <strong>RGB (c00c, 0000, 0000)</strong></li>
+    <li>Обрезаем каждый из аргументов справа, оставляя 2 символа, и получаем наш результат 
+        <strong>RGB (c0, 00, 00) = #C00000 или он же RGB(192, 0, 0).</strong></li>
+</ol>
+<p style="font-family: 'Comfortaa', cursive; color: red;">Поэтому и получился КРАСНЫЙ.</p>
+</p>
+<hr>
+<p align="center" style="font-family:'Comfortaa', cursive;">Безопасная палитра.</p>
+<div style="border-color: green;border-style: double; font-size:large;">
+    <p style="font-family: 'Comfortaa', cursive;">
+<a target=_blank title=Подбробнее href="https://colorscheme.ru/web-safe-colors.html">Здесь </a>как всегда подробнее.</p></div>
+<p style="font-family: 'Comfortaa', cursive;"> Но суть в том, что безопасные цвета были выведены математически. И поэтому "безопасные" цвета всегда неизменны 
+при переходе от одного браузера к другому, от одного монитора к другому, 
+или от одной платформы к другой, с их различными разрешениями и возможностями цветопередачи.
+</p>
+</body>
+</html>
