@@ -1,0 +1,11 @@
+.tefal {
+    width: 500px;
+    height: 600px;
+    background-image:
+     url(1.png),
+     url(2.png),
+     url(3.png);
+    background-position: bottom,center 270px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
