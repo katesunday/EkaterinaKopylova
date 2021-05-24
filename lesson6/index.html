@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>links</title>
+    <style>
+     .link{
+         color: green;
+     }
+     .span{    display: inline-block;
+    background: red;
+    width: 2px;
+    height: 23px;
+    margin-bottom: -8px;}
+     .secondlink a{
+        color: green;
+     }
+     .thirdlink a[href$='.com/']{
+         color: green;
+     }
+    </style>
+</head>
+<body>
+    <div>
+        <a class="link" href="https://www.google.com/">первая ссылка</a>
+        <span class="span"></span>
+        <a class="link" href="https://www.google.com/">вторая ссылка</a>
+        <span class="span"></span>
+        <a class="link" href="https://www.google.com/">третья ссылка</a>
+        <span class="span"></span>
+        <a class="link" href="https://www.google.com/">четвертая ссылка</a>
+        <span class="span"></span>
+        <a class="link" href="https://www.google.com/">пятая ссылка</a>
+    </div>
+    
+    <div class="secondlink" style="margin-top: 10px;">
+        <a href="https://www.google.com/">первая ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">вторая ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">третья ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">четвертая ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">пятая ссылка</a>
+    </div>
+    <div class="thirdlink" style="margin-top: 10px;">
+        <a href="https://www.google.com/">первая ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">вторая ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">третья ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">четвертая ссылка</a>
+        <span class="span"></span>
+        <a href="https://www.google.com/">пятая ссылка</a>
+    </div>
+    
+</body>
+</html>
