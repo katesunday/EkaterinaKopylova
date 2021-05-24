@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>links</title>
     <style>
+    a:hover {
+  color:hotpink;
+    }
      .link{
          color: green;
      }
@@ -16,10 +19,38 @@
     margin-bottom: -8px;}
      .secondlink a{
         color: green;
+        
      }
+     a:hover {
+  color:hotpink;
+    }
      .thirdlink a[href$='.com/']{
          color: green;
      }
+     a:hover {
+  color:hotpink;
+    }
+     .forth a{
+         color: green;
+     }
+     a:hover {
+  color:hotpink;
+    }
+    .forth li{
+        list-style: none;
+        display: inline;
+    }
+     .forth li::after{
+         content: ""; 
+     display: inline-block;
+    background: red;
+    width: 2px;
+    height: 23px;
+    margin-bottom: -8px;
+    margin-left: 4px;}
+
+    .forth li:last-child::after{display: none;
+    }
     </style>
 </head>
 <body>
@@ -57,6 +88,15 @@
         <span class="span"></span>
         <a href="https://www.google.com/">пятая ссылка</a>
     </div>
-    
+    <div class="forth" style="margin-top: -5px;">
+        <ul></ul>
+        <li><a href="https://www.google.com/">первая ссылка</a></li>
+        <li><a href="https://www.google.com/">вторая ссылка</a></li>
+        <li><a href="https://www.google.com/">третья ссылка</a></li>
+        <li><a href="https://www.google.com/">четвертая ссылка</a></li>
+        <li><a href="https://www.google.com/">пятая ссылка</a></li>
+        
+
+    </div>
 </body>
 </html>
