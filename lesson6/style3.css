@@ -1,0 +1,11 @@
+.main{font-weight: 600;font-size: 27px;}
+.green{color: green;}
+.red{color: red;font-weight:600;}
+.blue{font-style: italic;color: blue;}
+.info{
+    background-image: url(extref.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 12px;
+    
+}
