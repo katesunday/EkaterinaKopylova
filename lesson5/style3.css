@@ -46,7 +46,7 @@ body{
 }
 .bgadd{
     background-image:url(ball3.png),url(ball3.png),url(line2.png),url(ball3.png),url(ball3.png),url(ball3.png),url(ball3.png);
-    background-position: right 100px bottom, right bottom, right top, right 200px bottom, left 22% bottom, left bottom,left 14% bottom ;
+    background-position: right 100px bottom, right bottom, right top, right 200px bottom, left 22% bottom, left bottom,left 12% bottom ;
     background-repeat: no-repeat,no-repeat,repeat-y,no-repeat,no-repeat,no-repeat,no-repeat, no-repeat;
 }
 .center p{
