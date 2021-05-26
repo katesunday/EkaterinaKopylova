@@ -41,11 +41,11 @@ table.CHESS td
 }
 .two td:first-child{
     background-color: seagreen;
-    width: 40px;
-    height: 15px;
+    width: 15px;
+    height: 40px;
 }
 .two td:last-child{
     background-color:seagreen;
-    width: 40px;
-    height: 15px;
+    width: 15px;
+    height: 40px;
 }
