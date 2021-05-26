@@ -1,0 +1,63 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    background-color: lightblue;
+    height: 40px;
+    color: blue;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 9px;
+}
+.footer{
+    background-color: lightblue;
+    height: 40px;
+    color: blue;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 9px;
+}
+.clear{
+    clear: both;
+}
+.background{
+  background-image: url(line3.png);
+  background-repeat: repeat-y;
+  background-position: 20% top;
+  padding: 1px;
+ 
+}
+.left{
+    width: 20%;
+    background-image: url(ball3.png),url(ball3.png),url(ball3.png);
+    background-position: left top,right top,right bottom;
+    background-repeat: no-repeat,no-repeat;
+    float: left;
+}
+.right{
+    width: 200px;
+    background-image: url(ball3.png),url(ball3.png);
+    background-position: left top,right top;
+    background-repeat: no-repeat,no-repeat;
+    float: right;
+    
+}
+.bgadd{
+    background-image:url(ball3.png),url(ball3.png),url(line2.png),url(ball3.png),url(ball3.png),url(ball3.png);
+    background-position: right 100px bottom, right bottom, right top, right 200px bottom, left 22% bottom, left bottom;
+    background-repeat: no-repeat,no-repeat,repeat-y,no-repeat,no-repeat,no-repeat,no-repeat;
+}
+.center p{
+    text-align: center;font-size: 15px;font-weight: 600;
+    padding-top: 18px;padding-bottom: 10px;
+}
+.center{
+    background-image: url(ball3.png),url(ball3.png);
+    background-repeat: no-repeat,no-repeat;
+    background-position: left top,right top;
+    margin-right: 200px;
+    margin-left: 20%;
+    margin-top: -16px;
+}
