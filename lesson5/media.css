@@ -1,0 +1,48 @@
+@import "stylediv.css";
+@media all and (max-width:928px){
+    .left{
+        height: 350px;
+    }
+    .header, .footer{
+        font-size: 23px;
+        padding: 8px;
+    }
+}
+@media all and (max-width:796px){
+    .left{
+        height: 370px;
+    }
+    .header, .footer{
+        font-size: 20px;
+        padding: 5px;
+    }
+}
+@media all and (max-width:738px){
+    .left{
+        height: 400px;
+    }
+}
+@media all and (max-width:570px){
+    .content img{
+        float: none;
+    }
+    .left{
+        width: 160px;
+    }
+}
+@media all and (max-width:432px){
+    .left{
+        width: 128px;
+    }
+    .left ul{
+        padding:18px
+    }
+    @media all and (max-width:360px){
+        .left ul{
+            padding-top: 0px;
+            margin: 0px;
+        }
+        .content img{
+            width: 155px;
+        }
+    }
