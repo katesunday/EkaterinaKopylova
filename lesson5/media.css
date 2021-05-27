@@ -10,7 +10,7 @@
 }
 @media all and (max-width:796px){
     .left{
-        height: 370px;
+        height: 400px;
     }
     .header, .footer{
         font-size: 20px;
