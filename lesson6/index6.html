@@ -7,9 +7,12 @@
     <title>picture</title>
 </head>
 <body>
+    <p>В зависимости от ширины экрана, браузер будет открывать картинку нужного размера.</p>
     <picture>
-       <source media=""
-       srcset="img/berries.jpg,">
+        <source srcset="img/berries-supersmall.jpg" media="(max-width:400px),">
+        <source srcset="img/berries-small.jpg" media="(max-width:700px)">
+        <img src="img/berries-medium.jpg" alt="berries">
     </picture>
+    
 </body>
 </html>
