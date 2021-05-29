@@ -6,18 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>stars</title>
     <style>
-        .hover:active{
+        .star:hover{
             content: url(star1.png);
+        }
+        .star:hover ~ .star{
+            content: url(star1.png);
+        }
+        .star{
+            float: right;
+        }
+        .left{
+            float: left;
         }
     </style> 
 </head>
 <body>
-    <div>
-    <img class="hover" src="star0.png" alt="star">
-    <img src="star0.png" alt="star">
-    <img src="star0.png" alt="star">
-    <img src="star0.png" alt="star">
-    <img src="star0.png" alt="star">
+    <div class="left">
+    <div class="star"><img src="star0.png" alt="star"></div>
+    <div class="star"><img src="star0.png" alt="star"></div>
+    <div class="star"><img src="star0.png" alt="star"></div>
+    <div class="star"><img src="star0.png" alt="star"></div>
+    <div class="star"><img src="star0.png" alt="star"></div>
     </div>
 </body>
 </html>
