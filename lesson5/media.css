@@ -1,48 +1,27 @@
 @import "stylediv.css";
-@media all and (max-width:928px){
-    .left{
-        height: 350px;
-    }
-    .header, .footer{
-        font-size: 23px;
-        padding: 8px;
-    }
+@media all and (max-width:600px){
+.left{
+    float: none;
+    width: 400px;
+    margin-left: 30%;
 }
-@media all and (max-width:796px){
-    .left{
-        height: 420px;
-    }
-    .header, .footer{
-        font-size: 20px;
-        padding: 5px;
-    }
+.bg{
+    background-image: none;
+    background-color: azure;
 }
-@media all and (max-width:738px){
-    .left{
-        height: 430px;
-    }
+.content{
+    margin-left: 0px;
 }
-@media all and (max-width:570px){
-    .content img{
-        float: none;
-    }
-    .left{
-        width: 160px;
-    }
 }
-@media all and (max-width:432px){
-    .left{
-        width: 128px;
-    }
-    .left ul{
-        padding:18px
-    }
-    @media all and (max-width:360px){
-        .left ul{
-            padding-top: 0px;
-            margin: 0px;
-        }
-        .content img{
-            width: 155px;
-        }
-    }
+@media all and (max-width:400px){
+ .content img{
+     float: none;
+     width: 80%;
+    }   
+  .left{
+    margin-left: 0px;
+  }
+  .bg{
+      background-color: rgb(221, 158, 158);
+  }
+}
