@@ -112,12 +112,12 @@ background-size: 30px;
     padding-bottom: 20px;
 }
 .catalog-item{
-Width :145px;
-height: 40px;
-background-color: rgba(7, 114, 191, 1);
-border-radius: 4px;
-float: left;
-margin-right: 42px;
+  Width :145px;
+  height: 40px;
+  background-color: rgba(7, 114, 191, 1);
+  border-radius: 4px;
+  float: left;
+  margin-right: 42px;
 }
 .catalog-item span{
 font-weight: 600;
@@ -203,6 +203,8 @@ font-weight: 400;
     padding-top: 74px;
     font-size: 16px;
     font-weight: 400;
+    float: left;
+    margin-right: 40px;
 }
 .choose-items .leftchoose li{
     color:rgba(191, 190, 190, 1);
@@ -213,4 +215,72 @@ font-weight: 400;
     padding-top: 15px;
     padding-bottom: 9px;
     float: left; 
+}
+.choose-items .items{
+    Width :272px;
+    Height:1206px;
+    float: left;
+    margin-top: 20px;
+}
+.choose-items .item{
+    padding-left: 30px;
+    padding-bottom: 41px;
+}
+.choose-items .item img[src^='img/item']{
+    padding-bottom: 25px;
+    padding-left: 72px;
+}
+.items .item .details{
+    color: rgba(191, 190, 190, 1);
+    padding-bottom: 12px;
+    font-size: 14px;
+}
+.items .item .brand{
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+}
+.items .item .price{
+    font-size: 16px;
+    color: black;
+
+}
+.items .item .discount{
+    color: rgba(191, 190, 190, 1);
+    padding-right: 19px;
+    font-size: 14px;
+}
+.items .item .price-nd{
+    font-size: 16px;
+    color: black;
+    padding-right: 80px;
+}
+.item .advert{
+    border: solid 1px rgba(191, 190, 190, 1);
+    width: 275px;
+    height: 400px;
+}
+.item .advert img{
+    width: 272px;
+    height: 232px;
+}
+.item .advert h1{
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 15px;
+}
+.item .advert h4{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    padding-left: 5px;
+    padding-bottom: 19px;
+}
+.item .advert a{
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    padding-left: 80px;
+    
 }
