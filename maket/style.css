@@ -16,7 +16,7 @@ a{
 .clear{
     clear: both;
 }
-.container{
+.container3{
     width: 1296px;
     margin: 0 auto;
     background-color: #E5E5E5
@@ -27,7 +27,7 @@ a{
     background-color: #141414;
     height: 40px;
 }
-.container3{
+.container{
     width: 1140px;
     margin: 0 auto;
 }
@@ -53,7 +53,6 @@ a{
 }
 .header-bottom{
     height: 72px;
-   ;
 }
 .logo{
     font-weight: 700;
@@ -164,6 +163,9 @@ font-weight: 400;
     margin-top: 40px;
     border-radius: 50px;
 }
+.item-search{
+    background-color: white;
+}
 .item-search .item-category{
     float: left;
     padding-top: 61px;
@@ -192,4 +194,24 @@ font-weight: 400;
     font-size: 16px;
     font-weight: 400;
     padding-top:107px;
+}
+.choose-items{
+    background-color: white;
+}
+.choose-items .leftchoose{
+    width: 256px;
+    padding-top: 74px;
+    font-size: 16px;
+    font-weight: 400;
+}
+.choose-items .leftchoose li{
+    color:rgba(191, 190, 190, 1);
+    list-style: url(img/liststylesquare.svg);
+    padding-bottom: 10px;
+}
+.choose-items .leftchoose ul{
+    padding-top: 15px;
+    padding-bottom: 9px;
+    float: left;
+    
 }
