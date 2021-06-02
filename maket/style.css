@@ -85,7 +85,7 @@ font-size: 14px;
 }
 .personal-cabinet img{
     height: 19px;
-    mix-blend-mode: multiply;
+    mix-blend-mode: darken;
 }
 .personal-cabinet span{
     margin-left: 15px;
