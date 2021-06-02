@@ -19,7 +19,6 @@ a{
 .container3{
     width: 1296px;
     margin: 0 auto;
-    background-color: #E5E5E5
 }
 .container2{
     width: 1296px;
@@ -30,11 +29,6 @@ a{
 .container{
     width: 1140px;
     margin: 0 auto;
-}
-.container4{
-    width: 1296px;
-    margin: 0 auto;
-    background-color: white;
 }
 .mainheader{
     text-align: center;
@@ -59,10 +53,14 @@ a{
 .header-bottom{
     height: 72px;
 }
+.logo-personalcabinet{
+    background-color: #E5E5E5;
+}
 .logo{
     font-weight: 700;
     font-size: 18px;
     float: left;
+    
 } 
 .logo img{
     mix-blend-mode: multiply;
@@ -200,6 +198,31 @@ font-weight: 400;
     font-weight: 400;
     padding-top:107px;
 }
+.item-search .sorting .found{
+    padding-right: 285px;
+}
+.item-search .sorting .button-view{
+    border: 1px solid rgba(191, 190, 190, 1);
+    padding: 11px 12px 10px 35px;
+    margin-right: 77px;
+    border-radius: 5px;
+    color: rgba(191, 190, 190, 1);
+}
+.item-search .sorting .button-pagenumber{
+    color: black;padding-left:10px;
+}
+.item-search .sorting .sortby{
+    border: 1px solid rgba(191, 190, 190, 1);
+    padding: 5px;
+    height: 22px;
+    width: 59px; 
+    color:rgba(191, 190, 190, 1);
+}
+.item-search .sorting .mostpopular{
+    color: black;
+    padding-left: 14px;
+    padding-right: 15px;
+}
 .choose-items{
     background-color: white;
 }
@@ -298,7 +321,7 @@ font-weight: 400;
 }
 .undercatalog .page{
     float: right;
-    margin-right: 310px;
+    margin-right: 365px;
     margin-top: -26px;
     margin-bottom:27px;
 }
@@ -353,12 +376,21 @@ font-weight: 400;
     float: right;
     
 }
-.contacts p,a{
+.contacts p{
     font-size: 16px;
     font-weight: 700;
     text-align: center;
     padding-top: 31px;
     padding-bottom: 13px;
+}
+.contacts a{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 31px;
+    padding-bottom: 13px;
+    margin-left: 190px;
+
 }
 .contacts span{
     font-size: 16px;
@@ -386,5 +418,90 @@ font-weight: 400;
     font-weight: 700;
     text-align: center;
     padding-top: 6px;
+}
+.footer .footer-catalog{
+    height: 40px;
+    background-color: rgba(7, 114, 191, 1);
+    margin-top: 33px;
+}
+.footer .footer-catalog ul{
+    margin-left: 163px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+
+}
+.footer .footer-catalog li{
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    float: left;
+    margin-right: 65px;
+}
+.footer-details .details ul{
+    font-size: 12px;
+    font-weight: 700;
+    padding-bottom: 15px;
+    padding-top: 35px;
+
+}
+.footer-details .details li{
+    font-size: 12px;
+    font-weight: 400;
+    padding-bottom: 7px;
+}
+
+.footer-details .details .footer-list1{
+    margin-right: 170px;
+    float: left;
+}
+.footer-details .details .footer-list2{
+    float: left;
+    margin-right: 116px;
+}
+.footer-details .details .footer-list3{
+    float: left;
+    margin-right: 170px;
+}
+.footer-details .social-media img[src$='.svg']{
+    padding-right: 16px;
+    padding-top: 41px;
+
+}
+.footer-details .social-media img[src^='img/youtube']{
+    width: 26px; 
+    height: 25px;
+    margin-right: 16px;
+
+}
+.footer-details .social-media img[src^='img/insta']{
+    width: 28px; 
+    height: 25px;
+}
+.footer-details .social-media img[src^='img/googleplay']{
+    width: 121px;
+    height: 40px;
+    margin-right: 14px;
+}
+.footer-details .social-media img[src^='img/applestore']{
+    width: 122px;
+    height: 40px;
+}
+.footer-details .social-media p{
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 31px;
+    margin-bottom: 14px;
+}
+.footer-bottom .copyright{
+    margin-top: 20px;
+    text-align: center;
+}
+.footer-bottom .copyright span{
+ font-size: 12px;
+ font-weight: 400;
+}
+.footer-bottom .copyright img{
+    height: 35px;
+    width: 65px;
     
 }
