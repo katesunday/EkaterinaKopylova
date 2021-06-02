@@ -107,6 +107,13 @@ background-image: url(img/search.png);
 background-repeat: no-repeat;
 background-size: 30px;
 }
+.header-bottom .personal-cabinet .sup{
+    float: right;
+    padding-left: 6px;
+    color: red;
+    margin-left: -7px;
+    font-size: 12px;
+}
 
 .catalog{
     background-color: white;
