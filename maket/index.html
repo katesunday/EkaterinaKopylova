@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
     <title>maket1</title>
 </head>
 <body>
@@ -97,9 +98,9 @@
         <div class="sorting">
             <span class="found">170 Matches found</span>
             <span class="button-view">View 
-            <span class="button-pagenumber">9</span> </span>
-            <img src="img/Vectordown11px.svg"></span>
-            <span class="sortby">Sort by 
+                <span class="button-pagenumber">9</span> 
+                <img src="img/Vectordown11px.svg"></span>
+                <span class="sortby">Sort by 
             <span class="mostpopular">Most popular</span>
              <img src="img/Vectordown11px.svg"></span>
         </div>
@@ -147,14 +148,20 @@
             <li>$200.00 to $499.99 (52)</li>
             <span>View more...</span>
             <img src="img/underline.svg">
-            <span style="margin-right: 97px;">Snowboard Profile</span> <img src="img/Vectordown11px.svg">
+            <span style="margin-right: 97px;">Snowboard Profile</span> 
+            <img src="img/Vectordown11px.svg">
+            <div class="flex">
+                <img src="img/underline.svg">
+                <p>Flex
+                <img src="img/Vectordown11px.svg"></p></div>
+            
 
         </div>
         <div class="items">
             <div class="item">
                 <img src="img/item1.svg">
                 <p class="details"><b class="brand">Niche:</b> Nightshade Snowboard - Women's - 2019/2020</p>
-                <span class="price" >$ 398.93</span> <span class="discount" ><del>$ 499.00</del></span>
+                <span class="price" >$ 398.93</span><br> <span class="discount" ><del>$ 499.00</del></span>
                 <span><img src="img/Star.svg">
                     <img src="img/Star.svg">
                     <img src="img/Star.svg">
@@ -268,35 +275,26 @@
 </div>
 <div class="undercatalog">
     <div class="container">
-        <div class="flex">
-            <img src="img/underline.svg">
-            <p>Flex</p>
-            <img style="float: right;
-            margin-right: 889px;
-            margin-top: -10px;" src="img/Vectordown11px.svg">
-        
             <div class="page">
             <span style="float: left;" >Page:</span>
-            <div style="border: solid 1px rgba(191, 190, 190, 1);
-            padding: 5px 15px;margin-left: 5px;
-    margin-right: 5px;
-            float: left;"> 3
+            <div class="framepage"> 3
                 <img src="img/Vectordown11px.svg">
             </div>
             <span>of 25 </span>
             </div>
             <img src="img/underlinelong.svg">
-            <div class="clear"></div>
+            
         </div>
         </div>
-
+        
     </div>
 </div>
+<div class="clear"></div>
 <div class="bestsellers">
     <div class="container3">
         <p>Best Sellers </p>
-        <img style="float: left;" src="img/arrowleft.png">
-        <div class="bestseller"  style="margin-left: 66px;">
+        <img src="img/arrowleft.png">
+        <div class="bestseller" >
            <img src="img/item8.svg">
            <span class="description">POC<br>Obex Spin Helmet</span><br>
            <span class="price">$ 279.95  </span>
@@ -323,24 +321,19 @@
 </div>
 <div class="contacts">
     <div class="container">
-        <img style="    margin-top: 64px;
-        margin-left: 5px;" src="img/underlinelong.svg">
+        <img src="img/underlinelong.svg">
         <div class="needhelp">
             <p>Need Help?</p>
             <span>Talk to our Gearheads 24/7 about your needs</span><br>
-            <div class="button" style="margin-left: 210px;margin-bottom: 13px;">Chat Now</div>
+            <div class="button" >Chat Now</div>
             <a href="tel:+1-800-409-4502">Or Call: 1-800-409-4502</a>
         </div>
         <div class="subscribe">
             <p>Stay in the know</p>
             <span>Be the first to see sales & new gear!</span>
-            <p style="font-size: 12px;
-            font-weight: 400;
-            padding-bottom: 0;
-            padding-top: 7px;
-            margin-left: -235px;">Email Address</p>
+            <p class="email">Email Address</p>
             <input class="input2" type="text" placeholder="">
-            <div class="button" style="float: left;">Submit</div>
+            <div class="button2">Submit</div>
             
         </div>
         <div class="clear"></div>
@@ -351,7 +344,7 @@
     <div class="container3">
         <div class="footer-catalog">
             <ul>
-            <li><a href="#">Cattegories</a></li>
+            <li><a href="#">Categories</a></li>
             <li><a href="#">Ski boots</a></li>
             <li><a href="#">Ski accessories</a></li>
             <li><a href="#">Apparel</a></li>
