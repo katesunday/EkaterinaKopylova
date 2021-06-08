@@ -3,6 +3,16 @@
     
     box-sizing: border-box;
 }
+.fixed{
+    background-color: lightgreen;
+    position: absolute;
+    width: 81px;
+    height: 50px;
+    right: 15px;
+    top: 15px;
+    padding: 5px;
+    text-align: center;
+}
 .header{
     padding: 10px;
     color: blue;
