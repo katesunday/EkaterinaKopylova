@@ -7,38 +7,103 @@
     <title>form</title>
     <style>
         *{
-            margin: 2px;
+            margin: 3px;
             padding: 0;
-            
+           
         }
-        div{
+        .border{
             border: double red 3px;
             padding-left: 10px;
         }
-       
+        .articlename{
+            padding-right: 10px;
+            margin-left: 170px;
+            margin-top: -17px;
+        }
+        [name="articlename"]{
+            width: 100%;
+        }
+        .onsite, .magazine, .both{
+                display: inline;
+            }
+        [name='heading']{
+            margin-left: 105px;
+        }
+        [name="onsite"]{
+            margin-left: 75px;
+        }
+        [value="comp-technology"]{   
+         margin-left: 100px;
+         }
+        textarea{
+            width: 100%;
+        }
+        .mytext{
+            padding-right: 10px;
+        }
+        @media all and (max-width: 700px){
+            .articlename{
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+            [name='heading'] {
+             margin-left: 0px;
+             display: block;
+              width: 98%;
+              margin-bottom: -5px;
+            }
+            .onsite, .magazine, .both{
+                display: block;
+            }
+            [name="onsite"]{
+            margin-left: 3px;
+        }
+        }
     </style>
+    
 </head>
 <body>
-    <div>
+    <div class="border">
         <form action="fe.it-academy.by/TestForm.php"></form>
-         <p>Для публикации вашей статьи заполните, пожалуйста, следующую форму:</p><br>
-         Название статьи:
-          <input style="margin-left: 40px; margin-right: 5px; width:100vw;" type="text" name="article-name" autofocus><br>
-          Рубрика:
-          <select name="heading">
-              <option value="comp-technology">компьютерная техника</option>
-              <option value="grafics-design">графика и дизайн</option>
-              <option value="programming" selected>программирование</option>
-          </select>
-          <br>
-          Публикация:
-          <input type="radio" name="publications" value="site">на сайте
-          <input type="radio" name="magazine" value="magazine">в журнале
-          <input type="radio" name="both" value="на сайте и в журнале">на сайте и в журнале<br>
-          Разрешить комментарии:
-          <input type="checkbox" name="comments" value="yes"><br>
-          <p>Текст статьи:</p>
-          <textarea style="width: 99%;" name="mytext"></textarea><br>
+         <p>Для публикации вашей статьи заполните, пожалуйста, следующую форму:</p>
+         <label for="articlename">Название статьи:</label>
+         <div class="articlename">
+            <input type="text" name="articlename" id="articlename" autofocus>
+         </div>
+        <label>
+            Рубрика:
+            <select name="heading">
+                <option value="comp-technology">компьютерная техника</option>
+                <option value="grafics-design">графика и дизайн</option>
+                <option value="programming" selected>программирование</option>
+            </select>
+        </label>
+        <br>
+          <span>Публикация:</span>
+          <div class="onsite">
+            <input id="onsite" type="radio" name="onsite" value="site">
+            <label for="onsite">на сайте</label>
+          </div>
+          <div class="magazine">
+            <input id="magazine" type="radio" name="magazine" value="magazine">
+            <label for="magazine">в журнале</label>
+          </div>
+          <div class="both">
+            <input id="both" type="radio" name="both" value="на сайте и в журнале">
+            <label for="both">на сайте и в журнале</label><br>
+          </div>
+           <label for="comments">
+            Разрешить комментарии: 
+            <input type="checkbox" name="comments" value="yes" checked>
+           </label>
+        <br>
+          <label for="mytext">
+            Текст статьи:
+          </label>
+          <div class="mytext" >
+            <textarea name="mytext" id="mytext"></textarea>
+          </div>
+          
           <input type="submit" value="Опубликовать">
 
        </form>
