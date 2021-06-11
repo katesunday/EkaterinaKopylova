@@ -381,13 +381,16 @@ font-weight: 400;
     padding-top: 15px;
 }
 .bestsellers img[src^='img/arrowleft']{
-    float: left;
-    margin-right: 60px;
-}
-.bestsellers img[src^='img/arrow']{
     width: 17px;
     height: 24px;
-    margin-top:136px;
+    float: left;
+    margin-right: 60px;
+    margin-top: 125px;
+}
+.bestsellers img[src^='img/arrowright']{
+    width: 17px;
+    height: 24px;
+    margin-top: -135px;
 }
 .bestsellers img[src^='img/item']{
     padding-top: 16px;
