@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+.header{
+    height: 40px;
+    background-color: lightblue;
+    text-align: center;
+    padding-top: 10px;
+    font-size: larger;
+    color: blue;
+    grid-column: 1/5;
+}
+.footer{
+    height: 40px;
+    background-color: lightblue;
+    text-align: center;
+    padding-top: 10px;
+    font-size: larger;
+    color: blue;
+    grid-column: 1/5;
+}
+
+.catalog{
+    background-color: cornsilk;
+    list-style: disc;
+    min-width: 200px;
+    padding-left: 25px;
+    padding-top: 15px;
+}
+.info{
+    background-image: url(img/ball.png);
+    background-repeat: repeat-y;
+    background-position: right;
+    margin-left: 20px;
+}
+.info img{
+    float: left;
+    margin: 0px 20px 13px 0px;
+}
+.heading{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin: 15px;
+}
+
+@media all and (max-width:450px){
+.header {
+    display: none;
+}
+.footer{
+    display: none;
+}
+
+.info{
+    background-image: none;
+}
+.info img{
+    float: none;
+    width: 90vw;
+}
+.catalog{
+    background-color: white;
+    grid-row: 2;
+}
+.catalog li{
+    display: inline;
+}
+}
