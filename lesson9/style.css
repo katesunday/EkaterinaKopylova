@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    height: 40px;
+    background-color: lightblue;
+    text-align: center;
+    padding-top: 10px;
+    font-size: larger;
+    color: blue;
+}
+.footer{
+    height: 40px;
+    background-color: lightblue;
+    text-align: center;
+    padding-top: 10px;
+    font-size: larger;
+    color: blue;
+}
+.content{
+    display: flex;
+}
+.catalog{
+    background-color: cornsilk;
+    list-style: disc;
+    min-width: 200px;
+    padding-left: 25px;
+    padding-top: 15px;
+}
+.info{
+    background-image: url(img/ball.png);
+    background-repeat: repeat-y;
+    background-position: right;
+    margin-left: 20px;
+}
+.info img{
+    float: left;
+    margin: 0px 20px 13px 0px;
+}
+.heading{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    margin: 15px;
+}
+@media all and (max-width:450px){
+    .header {
+        display: none;
+    }
+    .footer{
+        display: none;
+    }
+    .content{
+        flex-direction: column-reverse;
+    }
+    .info{
+        background-image: none;
+    }
+    .info img{
+        float: none;
+        width: 90vw;
+    }
+    .catalog{
+        background-color: white;
+    }
+    .catalog li{
+        display: inline;
+    }
+}
