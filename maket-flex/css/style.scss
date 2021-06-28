@@ -137,7 +137,264 @@ header{
 }
 .slider{
     margin-top: 30px;
-}
     .camera{
-     background: url();
+     background: url(img/camera1.png);
+     width: 1120px;
+     height: 360px;
+     background-repeat: no-repeat;
+     border-radius: 8px;
+     margin-bottom: 20px;
      }
+    
+        h2{
+         font-size: $big-text;
+         font-weight: 700;
+         color:$white;
+         margin-left: 84px;
+         padding-top: 48px;
+         padding-bottom: 22px;
+         }
+
+     p{
+         font-size: $basic-text;
+         font-weight: 400;
+         color: $grey;
+         opacity: 0.6;
+         margin-left: 84px;
+         margin-bottom: 42px;
+     }
+
+     span{
+         font-size: $basic-text;
+         font-weight: 500;
+         color: $yellow;
+         border: 2px solid;
+         box-sizing: border-box;
+         border-radius: 28px;
+         padding: 14px 53px 14px 53px;
+         margin-left:84px;
+     }
+
+    
+   .turn{
+    margin: 0 0 0 50%;
+    }
+}
+.slider-bottom{
+    .three{
+        display: flex;
+    }
+    .item{
+        width: 352px;
+       height: 280px;
+       background-color: $grey;
+       border-radius: 20px;
+       margin-right: 32px;
+       margin-top: 42px;
+       position: relative;
+    }
+       p{
+           font-size: $basic-text;
+           font-weight: 400;
+           padding-top: 10px;
+           padding-left: 24px;
+
+           span{
+               font-size: $medium-text;
+               font-weight: 700;
+               position: absolute;
+               right: 15px;
+               top: 35px;
+           }
+       }
+       img[src^='css/img/camera']{
+           position: absolute;
+           right: 25%;
+       }
+       img[src^='css/img/circle']{
+           position: absolute;
+           bottom: 16px;
+           right: 41px;
+       }
+       h6{
+           font-size: $basic-text;
+           font-weight: 500;
+           color: $black;
+           position: absolute;
+           transform: rotate(340deg);
+           bottom: 32px;
+           right: 70px;       
+           text-align: center;
+       }
+       h4{
+        font-size: $medium-text;
+        font-weight: 500;
+        color: $black;
+        position: absolute;
+        transform: rotate(340deg);
+        bottom: 10px;
+        right: 60px;
+        text-align: center;
+    }
+}
+.hit{
+    h3{
+        font-size: $big-text;
+        font-weight: 500;
+        display: block;
+    }
+    .hits{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: baseline;
+        .hititem{
+            width: 200px;
+            height: 230px;
+        }
+        h4{
+            font-size: $basic-text +2;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        del{
+            font-size: $small-text;
+            font-weight: 700;
+            color: $greydark;
+        }
+        span{
+            font-size: $small-text;
+            font-weight: 400;
+            color: $greydark;
+        }
+        img[src^='css/img/hit']{
+            margin-left: 15px;
+        }
+    }
+    .more{
+        p{
+            font-size: $basic-text;
+            font-weight: 500;
+            text-align: center;
+            background:$grey;
+            border-radius: 28px;
+            width: 220px;
+            margin: 0 auto;
+            padding: 13px 0px 13px 0px;
+            margin-top: 50px;
+        }
+    }
+}
+.brands{
+    margin: 80px 0 0 70px;
+    position: relative;
+
+    img[src^='css/img/brand4']{
+        position: absolute;
+        left: 591px
+    }
+    img[src^='css/img/brand']{
+        margin-left: 27px;
+    }
+    img[src^='css/img/brand5']{
+        margin-left: 50px;
+    }
+
+}
+.toread{
+    height: 420px;
+    h3{
+        font-size:$big-text;
+        font-weight: 500;
+    }
+    .overview{
+        display:flex;
+        .item-review{
+            width: 348px;
+           height: 245px;
+           margin-right: 38px;
+           position: relative;
+            
+           img[src^='css/img/review']{
+               margin-bottom: 15px;
+           }
+
+           a{
+               text-decoration: none;
+               color:$black;
+               font-size: $basic-text;
+               font-weight: 400;
+           }
+        }
+    }
+}
+.insta{
+    margin-bottom: 80px;
+    h3{
+        font-size: $medium-text;
+        font-weight: 500;
+        margin-bottom: 40px;
+        margin-top: 75px;
+    }
+    .insta-search{
+        display: flex;
+        position: relative;
+        .insta-photo{
+            width: 202px;
+            height: 202px;       
+            margin-right: 30px;
+        }
+        a{
+            text-decoration: none;
+        }
+        :nth-child(3) a{
+            position: absolute;
+            right: 537px;
+            top: 83px;
+            color: white;
+            font-size: $small-text;
+        }
+    
+    }
+}
+.footer{
+    background-color: $black;
+    .bottom{
+        display: flex;
+        :nth-child(3){
+            margin-right: 10px;
+        }
+    }
+    .footer-details{
+        width: 255px;
+        margin-right: 90px;
+        li{
+            color: $white;
+            font-size: $basic-text;
+            font-weight: 400;
+            padding-bottom: 25px;
+        }
+    }
+    .contacts{
+        margin-top: 48px;
+        span{
+            font-size: $basic-text;
+            font-weight: 700;
+            color: $white;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        a{
+            color: $white;
+        }
+        p{
+            color: $white;
+        }
+    }
+    .pay{
+        margin-top: 50px;
+        p{
+            font-weight: 700;
+        }
+    }
+}
