@@ -1,0 +1,143 @@
+@import "variables";
+
+body{
+    font-family: $font-fam;
+    font-size: $basic-text;
+    margin: 0;
+    padding: 0;
+    
+}
+.container{
+    width: 1160px;
+    margin: 0 auto;
+}
+li{
+    list-style-type: none;
+}
+header{
+    
+    background-color: $black;
+    color: $white;
+    padding-bottom: 15px;
+    
+
+    .container{
+        padding-top: 18px;
+
+    }
+   .topheader{
+       display: flex;
+   }
+    button{
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 31px;
+        width: 73px;
+        height: 24px;
+        border: none;
+        color: $white;
+        font-size:$small-text ;
+    }
+
+    a{
+        color: $white;
+        font-size: $small-text;
+        text-decoration: none;
+        margin-left: 18px;
+    }
+    li{
+       color: rgba(153, 147, 138, 1);
+       font-size: $small-text;
+       text-decoration: underline;
+       margin-left: 10px;
+       margin-right: 26px;
+       display: inline-block;
+    }
+
+}
+.header-bottom{
+    height: 70px;
+    background-color: $black;
+    color: $white;
+    position: relative;
+    
+    .container{
+        display: flex;
+    }
+    .topdetails{
+        width: 85%;
+    display: flex;
+    justify-content: space-between;
+    }
+    button{
+        background-color: $yellow;
+        border-radius: 8px;
+        border: none;
+        width: 148px;
+        height: 42px;
+        position: absolute;
+        font-family: $font-fam;
+        font-weight: 500;
+        font-size: $basic-text + 2;
+        padding-left: 25px;
+
+        :first-child{
+            position: absolute;
+            width: 16px;
+            left: 20px;
+            top: 15px;
+        }
+        :nth-child(2){
+            position: absolute;
+            width: 16px;
+            left: 20px;
+            top: 25px;
+            
+        }
+        :last-child{
+            position: absolute;
+            width: 16px;
+            left: 20px;
+            top: 20px;
+        }
+        
+    }
+    .logo{
+        font-family: $font-fam;
+        font-weight: 500;
+        font-size: $medium-text +2;
+        margin-left: 170px;
+        margin-top: 7px;
+    }
+    .search{
+        position: relative;
+        top: -7px;
+    }
+    .search svg{
+        position: relative;
+    }
+    .search input{
+        width: 459px;
+        height: 56px;
+        left: 510px;
+        top: -10px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 60px;
+        border: none;
+        padding-left: 25px;
+    }
+    .user{
+        display: flex;
+    
+    }
+    li{
+        font-size: $small-text;
+        font-weight: 400;
+        margin-right: 45px;
+    }
+}
+.slider{
+    margin-top: 30px;
+}
+    .camera{
+     background: url();
+     }
