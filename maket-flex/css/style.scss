@@ -27,6 +27,7 @@ header{
     }
    .topheader{
        display: flex;
+       background-color: $black;
    }
     button{
         background: rgba(255, 255, 255, 0.2);
@@ -64,7 +65,7 @@ header{
         display: flex;
     }
     .topdetails{
-        width: 85%;
+        background-color: $black;
     display: flex;
     justify-content: space-between;
     }
@@ -287,17 +288,12 @@ header{
 }
 .brands{
     margin: 80px 0 0 70px;
-    position: relative;
+    .container{
+        width: 1400px;
+    }
 
-    img[src^='css/img/brand4']{
-        position: absolute;
-        left: 591px
-    }
     img[src^='css/img/brand']{
-        margin-left: 27px;
-    }
-    img[src^='css/img/brand5']{
-        margin-left: 50px;
+        margin-right: 27px;
     }
 
 }
@@ -361,6 +357,7 @@ header{
     background-color: $black;
     .bottom{
         display: flex;
+        background-color: $black;
         :nth-child(3){
             margin-right: 10px;
         }

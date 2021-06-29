@@ -20,7 +20,8 @@ header {
   header .topheader {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    background-color: black; }
   header button {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 31px;
@@ -52,7 +53,7 @@ header {
     display: -ms-flexbox;
     display: flex; }
   .header-bottom .topdetails {
-    width: 85%;
+    background-color: black;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -246,15 +247,11 @@ header {
   margin-top: 50px; }
 
 .brands {
-  margin: 80px 0 0 70px;
-  position: relative; }
-  .brands img[src^='css/img/brand4'] {
-    position: absolute;
-    left: 591px; }
+  margin: 80px 0 0 70px; }
+  .brands .container {
+    width: 1400px; }
   .brands img[src^='css/img/brand'] {
-    margin-left: 27px; }
-  .brands img[src^='css/img/brand5'] {
-    margin-left: 50px; }
+    margin-right: 27px; }
 
 .toread {
   height: 420px; }
@@ -308,7 +305,8 @@ header {
   .footer .bottom {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    background-color: black; }
     .footer .bottom :nth-child(3) {
       margin-right: 10px; }
   .footer .footer-details {
