@@ -192,7 +192,7 @@ li {
   position: absolute;
   -webkit-transform: rotate(340deg);
           transform: rotate(340deg);
-  bottom: 32px;
+  bottom: 60px;
   right: 70px;
   text-align: center; }
 .slider-bottom h4 {
@@ -202,7 +202,7 @@ li {
   position: absolute;
   -webkit-transform: rotate(340deg);
           transform: rotate(340deg);
-  bottom: 10px;
+  bottom: 35px;
   right: 60px;
   text-align: center; }
 
