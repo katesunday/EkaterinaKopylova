@@ -1,9 +1,12 @@
-body {
-  width: 1296px;
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
+* {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px; }
 
 .container {
   width: 1160px;
@@ -12,18 +15,18 @@ body {
 li {
   list-style-type: none; }
 
-header {
+.header {
   background-color: black;
   color: white;
   padding-bottom: 15px; }
-  header .container {
+  .header .container {
     padding-top: 18px; }
-  header .topheader {
+  .header .topheader {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     background-color: black; }
-  header button {
+  .header button {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 31px;
     width: 73px;
@@ -31,12 +34,12 @@ header {
     border: none;
     color: white;
     font-size: 14px; }
-  header a {
+  .header a {
     color: white;
     font-size: 14px;
     text-decoration: none;
     margin-left: 18px; }
-  header li {
+  .header li {
     color: #99938a;
     font-size: 14px;
     text-decoration: underline;
@@ -248,10 +251,18 @@ header {
   margin-top: 50px; }
 
 .brands {
-  margin: 80px 0 0 15px; }
+  margin: 80px 0 0 0px; }
+  .brands div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly; }
   .brands img[src^='css/img/brand'] {
-    margin-right: 27px;
-    width: 215px; }
+    width: 215px;
+    height: 42px;
+    margin-bottom: 17px; }
 
 .toread {
   height: 420px; }
