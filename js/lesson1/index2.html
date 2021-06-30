@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anketa_oper</title>
+</head>
+<body>
+    <script>
+        var name=prompt('What is your name?', 'Ekaterina');
+        ((name=="") && (isFinite(parseFloat(name)))) ? name=prompt('input letters')  : '';
+
+        var surname=prompt('What is your surname?','Kopylova');
+        ((surname=="") && (isFinite(parseFloat(surname))))  ? surname=prompt('input letters') : '';
+        
+        var middlename=prompt('What is your middle name?','Anatolyevna');
+        ((middlename=="") && (isFinite(parseFloat(middlename)))) ? middlename=prompt('input letters') : '';
+
+        var age=parseInt(prompt('How old are you?', '28'));
+        (isNaN(age))?age=prompt('input number') :'';
+
+        var gender=confirm('Are you man? Press cancel if not.');
+        gender ? gender='male' : gender='female';
+
+        var retired;
+        (((gender='male') && (age>=62)) || ((gender='female') && (age>=58))) ? retired='yes' : retired='no';
+
+        alert('Your full name:' + surname +' '+ name+ ' '+ middlename +'\nYour age in years:'+ age
+        + '\nYour age in days:' +(age*365 ) + '\nIn five years you will turn:' +(age+5) +'\nYour gender:'
+         + gender + '\nAre you retired?'+ retired)
+
+
+    </script>
+</body>
+</html>
