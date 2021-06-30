@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anketa_if</title>
+</head>
+<body>
+    <script>
+        var surname=prompt('What is your surname?','Kopylova');
+        while (true){
+            if (!surname=="" && !isFinite(parseFloat(surname))) {
+                break;
+            }
+            surname=prompt('incorrect');
+        }
+        var name=prompt('What is your name?','Ekaterina');
+        while (true){
+            if (!surname=="" && !isFinite(parseFloat(surname))) {
+                break;
+            }
+            surname=prompt('incorrect');
+        }
+        var middlename=prompt('What is your middle name?','Anatolyevna');
+        while (true){
+            if (!surname=="" && !isFinite(parseFloat(surname))) {
+                break;
+            }
+            surname=prompt('incorrect');
+        }
+        var age=parseInt(prompt('How old are you?', '28'));
+        while(true){
+            if (!isNaN(age)){
+                break;
+            }
+            age=prompt('input number')
+        }
+        var gender=confirm('Are you man? Press cancel if not.');
+        if (gender){
+            gender='male';
+        }
+        else{
+            gender='female';
+        }
+        var retired;
+        if((gender=='male') && (age>=62)){
+            retired='you are retired';
+        }
+        else if((gender=='female')&& (age>=58)){
+            retired='yes';
+        }
+        else{
+            retired='no';
+        }
+        alert('Your full name:' + surname +' '+ name+ ' '+ middlename +'\nYour age in years:'+ age
+        + '\nYour age in days:' +(age*365 ) + '\nIn five years you will turn:' +(age+5) +'\nYour gender:' + gender + '\nAre you retired?'+ retired)
+    </script>
+</body>
+</html>
