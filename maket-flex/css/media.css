@@ -1,0 +1,9 @@
+@media all and (max-width: 1200px) {
+  .container {
+    width: 850px;
+    margin: 0 auto; }
+
+  .header-bottom .search input {
+    width: 150px; } }
+
+/*# sourceMappingURL=media.css.map */

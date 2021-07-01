@@ -6,7 +6,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  font-size: 16px; }
+  font-size: 16px;
+  overflow-x: hidden; }
 
 .container {
   width: 1160px;
@@ -24,8 +25,7 @@ li {
   .header .topheader {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    background-color: black; }
+    display: flex; }
   .header button {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 31px;
@@ -113,17 +113,39 @@ li {
   .header-bottom .user {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: 40px; }
   .header-bottom li {
     font-size: 14px;
     font-weight: 400;
-    margin-right: 45px; }
+    margin-right: 45px;
+    position: relative;
+    margin-bottom: -20px; }
+    .header-bottom li img {
+      position: absolute;
+      top: -31px;
+      right: 7px; }
+    .header-bottom li img[src^='css/img/location2'] {
+      top: -22px;
+      right: 15px; }
+    .header-bottom li img[src^='css/img/personhead'] {
+      right: 12px;
+      top: -27px; }
+    .header-bottom li img[src^='css/img/personbottom'] {
+      top: -11px; }
+    .header-bottom li img[src^='css/img/shopwheel'] {
+      top: -5px;
+      right: 9px; }
+    .header-bottom li img[src^='css/img/shopwheel2'] {
+      right: 25px; }
 
 .slider {
   margin-top: 30px; }
   .slider .camera {
     background: url(img/camera1.png);
-    width: 1120px;
     height: 360px;
     background-repeat: no-repeat;
     border-radius: 8px;

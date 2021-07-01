@@ -8,6 +8,7 @@ body{
    
     font-family: $font-fam;
     font-size: $basic-text;
+    overflow-x: hidden;
  
 }
 .container{
@@ -30,7 +31,7 @@ li{
     }
    .topheader{
        display: flex;
-       background-color: $black;
+       
    }
     button{
         background: rgba(255, 255, 255, 0.2);
@@ -131,19 +132,47 @@ li{
     }
     .user{
         display: flex;
+        align-items: center;
+        margin-left: 40px;
     
     }
     li{
         font-size: $small-text;
         font-weight: 400;
         margin-right: 45px;
+        position: relative;
+        margin-bottom: -20px;
+
+        img{
+            position: absolute;
+            top: -31px;
+            right: 7px;
+        }
+        img[src^='css/img/location2']{
+            top: -22px;
+            right: 15px;
+        }
+        img[src^='css/img/personhead']{
+            right: 12px;
+            top: -27px;
+        }
+        img[src^='css/img/personbottom']{
+            top: -11px;
+        }
+        img[src^='css/img/shopwheel']{
+            top: -5px;
+            right: 9px;
+        }
+        img[src^='css/img/shopwheel2']{
+            right: 25px;
+        }
     }
 }
 .slider{
     margin-top: 30px;
     .camera{
      background: url(img/camera1.png);
-     width: 1120px;
+     
      height: 360px;
      background-repeat: no-repeat;
      border-radius: 8px;
