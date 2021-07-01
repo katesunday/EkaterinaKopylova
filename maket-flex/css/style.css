@@ -48,7 +48,6 @@ li {
     display: inline-block; }
 
 .header-bottom {
-  height: 70px;
   background-color: black;
   color: white;
   position: relative; }
@@ -99,6 +98,11 @@ li {
   .header-bottom .search {
     position: relative;
     top: -7px; }
+    .header-bottom .search :nth-child(1) {
+      left: 462px; }
+    .header-bottom .search :nth-child(2) {
+      left: 454px;
+      top: 5px; }
   .header-bottom .search svg {
     position: relative; }
   .header-bottom .search input {
@@ -323,12 +327,13 @@ li {
     .insta .insta-search .insta-photo {
       width: 202px;
       height: 202px;
-      margin-right: 30px; }
+      margin-right: 30px;
+      position: relative; }
     .insta .insta-search a {
       text-decoration: none; }
     .insta .insta-search :nth-child(3) a {
       position: absolute;
-      right: 537px;
+      right: 43px;
       top: 83px;
       color: white;
       font-size: 14px; }

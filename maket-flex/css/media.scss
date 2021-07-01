@@ -6,4 +6,170 @@
     .header-bottom .search input {
         width: 150px;
     }
+    .header-bottom .search {
+        :nth-child(1){
+            left: 152px;
+        }
+        :nth-child(2){
+            left: 144px;
+        }
+    }
+    .slider-bottom img[src^='css/img/camera'] {
+        height: 140px;
+    }
+    .toread {
+        height: 280px;
+    }    
+    .toread .overview .item-review img[src^='css/img/review'] {
+        width: 240px;
+    }
+    .insta .insta-search{
+        flex-wrap: wrap;
+    }
+    .insta .insta-search .insta-photo {
+        margin-bottom: 10px;
+    }
+    
+}
+@media all and (max-width:900px){
+    .container{
+        width: 550px;
+    }
+    .header .topheader {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .header-bottom .container {
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+    }
+    .header-bottom .user{
+        align-items: center;
+        margin-left: 40px;
+        height: 50px;
+    }
+    .slider .camera {
+        background-position: center;
+    }
+    .slider-bottom{
+        margin-bottom: 20px;
+    }
+    .slider-bottom .item {
+        margin-right: 12px;
+    }
+    .slider-bottom img[src^='css/img/camera'] {
+        height: 100px;
+        width: 110px;
+        margin-top: 42px;
+        right: 20px;
+    }
+    .slider-bottom img[src^='css/img/circle'] {
+        right: 46px;
+        height: 85px;
+    }
+    .slider-bottom p span {
+        top: 63px;
+    }
+    .brands {
+        margin: 55px 0px 15px 0px;
+    }
+    .brands div {
+        justify-content: center;
+    }
+    .brands img[src^='css/img/brand'] {
+        width: 100px;
+        margin-right: 10px;
+    }
+    .toread .overview .item-review img[src^='css/img/review'] {
+        width: 155px;
+    }
+    .insta h3 {
+        margin-top: 10px;
+    }
+    .insta .insta-search {
+        margin-left: 60px;
+    }
+    .insta .insta-search .insta-photo {
+        margin-bottom: 10px;
+    }
+    .footer .footer-details {
+        margin-right: 45px;
+    }
+    .footer .footer-details li{
+        padding-bottom: 8px;
+    }
+}
+@media all and (max-width:600px){
+    .container{
+        width: 320px;
+    }
+    .header .topheader {
+        height: 70px;
+    }
+    .header-bottom .topdetails{
+        flex-wrap: wrap;
+    }
+    .header-bottom .search{
+        height: 70px;
+        top: 15px;
+        left: 42px;
+    }
+    .header-bottom .search input {
+        height: 40px;
+    }
+    .slider .camera {
+        background-position: 64%;
+    }
+    .slider h2 {
+        margin-left: 30px;
+    }
+    .slider p{
+        margin-left: 30px;
+    }
+    .slider span{
+        margin-left: 30px;
+    }
+    .slider .turn {
+        margin: 0 0 0 43%;
+    }
+    .slider-bottom .three {
+        flex-wrap: wrap;
+        img[src^='css/img/camera']{
+            position: absolute;
+            right: 25%;
+            height: 160px;
+            width: 160px;
+        }
+        img[src^='css/img/circle']{
+            position: absolute;
+            bottom: 16px;
+            right: 41px;
+        }
+    }
+    .brands img[src^='css/img/brand'] {
+        width: 50px;
+        height: 20px;
+    }
+    .toread .overview .item-review img[src^='css/img/review'] {
+        width: 100px;
+    }
+    .toread .overview .item-review a {
+        font-size: 12px;
+    }
+    .toread .overview .item-review{
+        margin-right: 10px;
+    }
+    .footer .footer-details li {
+        font-size: 12px;
+    }
+    .footer .bottom {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .footer .footer-details {
+        margin-right: 40px;
+        width: 75px;
+    }
+    
 }
