@@ -25,7 +25,8 @@ li {
   .header .topheader {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    position: relative; }
   .header button {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 31px;
@@ -34,6 +35,28 @@ li {
     border: none;
     color: white;
     font-size: 14px; }
+  .header button:hover {
+    background-color: #fade4b; }
+  .header .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 26px;
+    left: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1; }
+  .header .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; }
+  .header .dropdown a:hover {
+    background-color: #ddd; }
+  .header .show {
+    display: block; }
   .header a {
     color: white;
     font-size: 14px;

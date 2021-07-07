@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/media2.css">
+    <script src="script.js"></script>
+    <title>flex2</title>
+</head>
+<body>
+    <div class='header'>
+        <div class="container">
+            <div class="topheader">
+                <button onclick="myFunction()" class="dropbtn">Минск
+                    <img src="css/img/arrowsmall.png">
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#brest">Брест</a>
+                    <a href="#vitebsk">Витебск</a>
+                    <a href="#gomel">Гомель</a>
+                    <a href="#grodno">Гродно</a>
+                    <a href="#minsk">Минск</a>
+                    <a href="#mogilev">Могилев</a>
+                </div>
+                <a href="tel:+375297072788">+375 (29) 7072788</a>
+                <a href="tel:+375337072788">+375 (33) 7072788</a>
+                <ul></ul>
+                <li>Фотомагазин</li>
+                <li>Доставка и оплата</li>
+                <li>Трейд-ин</li>
+            </div>
+        </div>
+    </div class='header'>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="topdetails">
+                <div class="button">
+                    <button>
+                        <img src="css/img/categoryline.svg" alt="">
+                        <img src="css/img/categoryline.svg" alt="">
+                        <img src="css/img/categoryline.svg" alt="">
+                        Категории
+                    </button>
+                </div>
+                
+                <div class="logo">
+                    <span>Photomarket</span>
+                </div>
+                <div class="search">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.16667 14.8333C11.8486 14.8333 14.8333 11.8486 14.8333 8.16667C14.8333 4.48477 11.8486 1.5 8.16667 1.5C4.48477 1.5 1.5 4.48477 1.5 8.16667C1.5 11.8486 4.48477 14.8333 8.16667 14.8333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 5.5L1.875 1.875" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    <input id="name" type="text" placeholder="Я ищу...">
+                </div>
+            </div>
+            <div class="user">
+                <ul></ul>
+                <li>
+                    <img src="css/img/location.svg" alt="">
+                    <img src="css/img/location2.svg" alt="">
+                    Адрес</li>
+                <li> <img src="css/img/personhead.svg" alt="">
+                    <img src="css/img/personbottom.svg" alt="">
+                    Войти</li>
+                <li><img src="css/img/shop.svg" alt="">
+                    <img src="css/img/shopwheel.svg" alt="">
+                    <img src="css/img/shopwheel2.svg" alt="">
+                    Корзина</li>
+            </div>
+        </div>
+    </div>
+    <div class="branches">
+        <div class="container">
+            <div class="sorting">
+                <ul></ul>
+                <li>Главная / </li>
+                <li>Фотоаппараты / </li>
+                <li>Зеркальные фотоаппараты</li>
+                <h3>Фотоаппараты</h3>
+                <p>36 товаров</p>
+                <div class="sortby">
+                    <ul>Сортировать по:</ul>
+                <li>Популярности</li>
+                <li>Цене</li>
+                <li>Новизне</li>
+                </div>
+                <div class="showby">          
+                     <ul>Показывать по:</ul>
+                    <li>9</li>
+                    <li>18</li>
+                </div>
+     
+            </div>
+
+        </div>
+        
+    </div>
+    <div class="main-choose">
+        <div class="container">
+            <div class="filters">
+                <p>Стоимость, руб</p>
+                <div class="filter-price">
+                    <input id="pricemin" type="number" placeholder="0">
+                    <div class="separator"></div>
+                    <input id="pricemax" type="number" placeholder="99999">
+                </div>
+                <div class="filter-brand">
+                    <p>Бренд</p>
+                    <input id="canon" type="checkbox" checked>
+                    <label for="canon">Canon (14)</label><br>
+                    <input id="nikon" type="checkbox">
+                    <label for="nikon">Nikon (13)</label><br>
+                    <input id="leica" type="checkbox">
+                    <label for="leica">Leica (3)</label>
+                </div>
+                <p>Число эффективных пикселов</p>
+                <div class="pixels">
+                    
+                    <input id="pixelmin" type="number" placeholder="0">
+                    <div class="separator"></div>
+                    <input id="pixelmax" type="number" placeholder="53">
+                </div>
+                <div class="matrix">
+                    <p>Формат матрицы</p>
+                    <input id="minmatrix" type="checkbox">
+                    <label for="minmatrix">30х45 мм (2)</label><br>
+                    <input id="mediummatrix" type="checkbox">
+                    <label for="mediummatrix">35 мм (26)</label><br>
+                    <input id="maxmatrix" type="checkbox">
+                    <label for="maxmatrix">44x33 мм (3)</label>
+                </div>
+                <div class="lens">
+                    <p>Объектив в комплекте</p>
+                    <input id="lensyes" type="radio">
+                    <label for="lensyes">Есть</label>
+                    <input id="lensno" type="radio">
+                    <label for="lensno">Нет</label>
+                </div>
+            </div>
+            <div class="cameras">
+                <div class="camera-item">
+                    <img src="css/img2/camera1.png" alt="">
+                    <h4>4 240 р </h4>
+                    <del>5 400 р</del>
+                    <span>-10%</span>
+                    <p>Canon EOS 5D Mark IV Body</p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>26</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera2.png" alt="">
+                    <h4>8 455 р </h4>
+                    <del> 8 900 р  </del>
+                    <span>-5%</span>
+                    <p>Зеркальный фотоаппарат Canon 
+                        EOS 1D X Mark II Body</p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>21</span>
+                    </div>
+                    <div class="basket">
+                        <button><a href="">В корзину</a></button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera3.png" alt="">
+                    <h4>6 040 р </h4>
+                    <p>Зеркальный фотоаппарат Canon 
+                        EOS 6D Mark II Body                        
+                        </p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>19</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera4.png" alt="">
+                    <h4>1 840 р  </h4>
+                    <p>Зеркальный фотоаппарат Canon EOS
+                        80D Body
+                        </p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>13</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera5.png" alt="">
+                    <h4>9 500 р </h4>
+                    <del>10 000 р</del>
+                    <span>-5%</span>
+                    <p>Зеркальный фотоаппарат Canon 
+                        EOS-1D X Mark III Body</p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>12</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera6.png" alt="">
+                    <h4>4 240 р </h4>
+                    <del>5 400 р</del>
+                    <span>-10%</span>
+                    <p>CCanon EOS 250D Kit EF-S 18-55mm
+                        f/4-5.6 IS STM silver
+                       </p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>11</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="brands">
+        
+        <div>
+        <img src="css/img/brand1.png" alt="">
+        <img src="css/img/brand2.png" alt="">
+        <img src="css/img/brand3.png" alt="">
+        <img src="css/img/brand5.png" alt="">
+        <img src="css/img/brand6.png" alt="">
+        </div>
+    
+    
+    </div>
+    <div class="bottom-choose">
+        <div class="container">
+            <div class="cameras">
+                <div class="camera-item">
+                    <img src="css/img2/camera1.png" alt="">
+                    <h4>4 240 р </h4>
+                    <del>5 400 р</del>
+                    <span>-10%</span>
+                    <p>Canon EOS 5D Mark IV Body</p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>26</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera2.png" alt="">
+                    <h4>8 455 р </h4>
+                    <del> 8 900 р  </del>
+                    <span>-5%</span>
+                    <p>Зеркальный фотоаппарат Canon 
+                        EOS 1D X Mark II Body</p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>21</span>
+                    </div>
+                    <div class="basket">
+                        <button><a href="">В корзину</a></button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+                <div class="camera-item">
+                    <img src="css/img2/camera3.png" alt="">
+                    <h4>6 040 р </h4>
+                    <p>Зеркальный фотоаппарат Canon 
+                        EOS 6D Mark II Body                        
+                        </p>
+                    <div class="rate">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <img src="css/img2/star.png" alt="star">
+                        <span>19</span>
+                    </div>
+                    <div class="basket">
+                        <button>В корзину</button>
+                         <img src="css/img2/heart.png" alt="heart">
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="more">
+        <p>Показать еще</p>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="bottom">
+                <div class="footer-details">
+                    <ul></ul>
+                    <li>фотоаппараты</li>
+                    <li>объективы</li>
+                    <li>студийный свет</li>
+                    <li>аксессуары</li>
+                    <li>вспышки</li>
+                    <li>сумки</li>
+                    <li>печать</li>
+                    <li>гаджеты</li>
+                </div>
+                <div class="footer-details">
+                    <ul></ul>
+                    <li>фотомагазин</li>
+                    <li>фотопрокат</li>
+                    <li>трейд-ин</li>
+                    <li>гарантия и возврат</li>
+                    <li>доставка</li>
+                    <li>как купить?</li>
+                    <li>способы оплаты</li>
+                    <li>сертификаты</li>
+                    <li>скидки</li>
+                </div>
+                <div class="footer-details">
+                    <ul></ul>
+                    <li>о компании</li>
+                    <li>новости</li>
+                    <li>акции</li>
+                    <li>обзоры</li>
+                    <li>контакты</li>
+                    <li>вакансии</li>
+                    <li>партнеры</li>
+                    <li>отзывы</li>
+                    <li>карта сайта</li>
+                </div>
+                <div class="contacts">
+                   <span>контактная информация
+                    </span>
+                    <a href="tel:+375(29)1001010">+375(29)1001010</a>
+                    <p>
+                        г.Минск ул. Победителей д 3 пом 41
+                    </p>
+                    <a href="mailto:fotomagaz@gmail.com">fotomagaz@gmail.com</a>
+                    <div class="pay">
+                        <p>способы оплаты</p>
+                        <img src="css/img/payvisa.png" alt="">
+                        <img src="css/img/paymaster.png" alt="">
+                        <img src="css/img/paybel.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+body {
+  overflow-x: hidden; }
+
+.branches .sorting {
+  padding-top: 36px; }
+  .branches .sorting li {
+    font-size: 14px;
+    font-weight: 400;
+    color: #99938a;
+    display: inline-block; }
+  .branches .sorting h3 {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    margin-top: 20px; }
+  .branches .sorting p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #99938a;
+    margin-bottom: 8px; }
+  .branches .sorting ul {
+    font-size: 14px;
+    font-weight: 500;
+    color: #99938a; }
+.branches .sorting li:hover {
+  color: black; }
+.branches .sortby {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 330px; }
+  .branches .sortby li {
+    border-bottom: 1px dashed #99938a;
+    margin-left: 16px; }
+.branches .showby {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: -15px; }
+  .branches .showby li {
+    margin-left: 8px; }
+
+.main-choose .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+.main-choose .filters {
+  margin-top: 22px; }
+  .main-choose .filters p {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px; }
+  .main-choose .filters input {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 18px; }
+  .main-choose .filters .filter-price, .main-choose .filters .pixels {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 44px; }
+    .main-choose .filters .filter-price :first-child, .main-choose .filters .pixels :first-child {
+      width: 60px;
+      height: 40px;
+      background-color: #E6E6E6;
+      border-radius: 8px;
+      border: none;
+      padding-left: 11px; }
+    .main-choose .filters .filter-price :last-child, .main-choose .filters .pixels :last-child {
+      width: 84px;
+      height: 40px;
+      background-color: #E6E6E6;
+      border-radius: 8px;
+      border: none;
+      padding-left: 11px; }
+    .main-choose .filters .filter-price .separator, .main-choose .filters .pixels .separator {
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+      margin: 20px 8px 0px 8px;
+      background-color: black;
+      width: 12px;
+      height: 2px; }
+  .main-choose .filters .filter-brand, .main-choose .filters .matrix {
+    margin-bottom: 41px; }
+    .main-choose .filters .filter-brand p, .main-choose .filters .matrix p {
+      display: block; }
+  .main-choose .filters .lens :nth-child(3) {
+    margin-right: 30px; }
+
+.cameras {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: 90px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+  .cameras .camera-item:hover {
+    -webkit-box-shadow: 8px 8px 8px 8px #F4F4F4;
+            box-shadow: 8px 8px 8px 8px #F4F4F4;
+    border-radius: 20px; }
+    .cameras .camera-item:hover .basket {
+      display: block; }
+  .cameras .camera-item {
+    width: 270px;
+    height: 450px;
+    margin-top: 85px;
+    margin-left: 20px;
+    padding-left: 30px; }
+    .cameras .camera-item h4 {
+      font-size: 18px;
+      font-weight: 700;
+      display: inline-block;
+      margin-top: 60px; }
+    .cameras .camera-item del {
+      font-size: 14px;
+      font-weight: 700;
+      color: #99938a;
+      margin-right: 12px;
+      margin-left: 5px; }
+    .cameras .camera-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #fb000f; }
+    .cameras .camera-item p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #99938a;
+      margin-bottom: 8px;
+      margin-top: 9px; }
+    .cameras .camera-item .rate span {
+      font-size: 14px;
+      font-weight: 400;
+      color: #99938a; }
+    .cameras .camera-item .basket {
+      position: relative;
+      margin-top: 23px;
+      display: none; }
+      .cameras .camera-item .basket button {
+        width: 120px;
+        height: 36px;
+        background-color: #fb000f;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-right: 22px; }
+        .cameras .camera-item .basket button a {
+          text-decoration: none;
+          color: white;
+          font-size: 14px;
+          font-weight: 500; }
+      .cameras .camera-item .basket img {
+        position: absolute;
+        top: 7px; }
+
+.more {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  background: #efefef;
+  border-radius: 28px;
+  width: 220px;
+  margin: 0 auto;
+  padding: 13px 0px 13px 0px;
+  margin-bottom: 50px; }
+
+/*# sourceMappingURL=style2.css.map */

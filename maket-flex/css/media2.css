@@ -1,0 +1,41 @@
+@media all and (max-width: 900px) {
+  .branches .sortby {
+    margin-left: 10px; }
+
+  .cameras .camera-item {
+    margin-top: 50px; } }
+@media all and (max-width: 600px) {
+  .branches .showby {
+    display: none; }
+
+  .branches .sorting li {
+    font-size: 11px; }
+
+  .main-choose .filters .filter-price :last-child,
+  .main-choose .filters .pixels :last-child {
+    width: 60px; }
+
+  .cameras {
+    margin-left: 20px; }
+
+  .cameras .camera-item {
+    width: 130px;
+    height: 330px;
+    padding-left: 5px; }
+    .cameras .camera-item img[src^='css/img2/camera'] {
+      width: 110px;
+      display: block; }
+
+  .cameras .camera-item .basket button {
+    width: 70px;
+    height: 25px; }
+
+  .cameras .camera-item .basket img {
+    position: absolute;
+    top: 0px; }
+
+  .cameras .camera-item h4 {
+    display: block;
+    margin-top: 15px; } }
+
+/*# sourceMappingURL=media2.css.map */
