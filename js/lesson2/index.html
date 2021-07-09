@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>countries</title>
 </head>
 <body>
-    
+    <button onclick="inputinfo()">ввод информации о стране</button> <br>
+    <button onclick="getinfo()">получение информации о стране</button><br>
+    <button onclick="showinfo()">перечень всех стран</button><br>
+    <button onclick="delinfo()">удаление информации о стран</button>
+
+    <script>
+        var countryH={'Германия':'Берлин', 'Венгрия':'Будапешт','Франция':'Париж' };
+
+        function inputinfo(name, capital){
+            var name = prompt("введите страну", "Беларусь");
+            var capital =prompt("введите столицу этой страны", "Минск");
+            countryH[name]=capital;
+        }
+        function getinfo(name){
+            var name = prompt('назовите страну', 'Беларусь');
+            if (name in countryH)
+            alert ("страна:" + name + "столица:" + countryH[name]);
+            else
+            alert ("нет информации о:" + name);
+        }
+
+        function showinfo(){
+            for (var key in countryH) {
+        console.log('Название страны: ' + key + '  Название столицы: ' + countryH[key]); }
+        }
+        function delinfo(name){
+            var name = prompt("введите страну", "Беларусь");
+            delete countryH[name];
+        }
+  
+    </script>
 </body>
 </html>
