@@ -120,7 +120,8 @@ li {
     position: absolute;
     padding-left: 15px;
     height: 450px;
-    padding-top: 7px; }
+    padding-top: 7px;
+    z-index: 1; }
     .header-bottom .sidemenu li {
       margin-left: 15px;
       margin-bottom: 10px; }

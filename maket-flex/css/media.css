@@ -48,6 +48,19 @@
         -ms-flex-align: center;
             align-items: center; }
 
+  .header-bottom .sidemenu {
+    width: 220px; }
+    .header-bottom .sidemenu li div {
+      width: 170px; }
+
+  .header-bottom .sidemenu .addsidemenu {
+    left: 220px;
+    width: 250px; }
+
+  .header-bottom .sidemenu .addsidemenu .closemenu button {
+    left: 230px;
+    width: 20px; }
+
   .header-bottom .user {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -124,6 +137,31 @@
 
   .header-bottom .search input {
     height: 40px; }
+
+  .header-bottom .sidemenu {
+    height: 310px;
+    width: 150px;
+    padding-left: 0; }
+    .header-bottom .sidemenu li {
+      margin-bottom: 0px; }
+      .header-bottom .sidemenu li div {
+        height: 35px;
+        width: 120px; }
+        .header-bottom .sidemenu li div a {
+          font-size: 14px; }
+        .header-bottom .sidemenu li div img {
+          display: none; }
+    .header-bottom .sidemenu button {
+      height: 35px; }
+    .header-bottom .sidemenu .addsidemenu {
+      left: 150px;
+      width: 170px; }
+      .header-bottom .sidemenu .addsidemenu ul {
+        font-size: 12px; }
+      .header-bottom .sidemenu .addsidemenu li a {
+        font-size: 12px; }
+      .header-bottom .sidemenu .addsidemenu .closemenu button {
+        left: 150px; }
 
   .slider .camera {
     background-position: 64%; }
