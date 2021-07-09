@@ -91,6 +91,7 @@ li{
         display: flex;
     }
     .topdetails{
+        position: relative;
         background-color: $black;
     display: flex;
     justify-content: space-between;
@@ -126,10 +127,85 @@ li{
             left: 20px;
             top: 20px;
         }
-        
+  
     }
-    .sidemenu-content{
+    .sidemenu{
         display: none;
+        border-right: 1px solid grey;
+        background: $white;
+        position: absolute;
+        padding-left: 15px;
+        height: 450px;
+        padding-top: 7px;
+        li{
+            margin-left: 15px;
+            margin-bottom: 10px;
+            div{
+                position: relative;
+                padding-left: 5px;
+                height: 50px;
+                width: 250px;
+                margin-right: -20px;
+
+               a{
+                text-decoration: none;
+                color: $black;     
+                font-size: $basic-text;
+                font-weight: 400;
+                }
+                img{
+                position: inherit;
+                top: 10px;
+                }
+            }
+            div:hover{
+                background-color: $yellow;
+                border-radius: 5px;
+            }
+        }
+        button{
+            padding-left: 0;
+            font-weight: 400;
+            font-size: $small-text;
+        }
+        .addsidemenu{
+            display: none;
+            width: 380px;
+            background: white;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            left: 306px;
+           ul{
+               font-size: $basic-text;
+               color: $black;
+               font-weight: 500;
+               margin-left: 14px;
+               margin-bottom: 9px;
+           }
+           li{
+               a{
+                 font-size: $basic-text;
+                 font-weight: 400;
+                  color: $greydark;
+                  text-decoration: none;
+               }
+           }
+           a:hover{
+               color: $black;
+           }
+           .closemenu{
+               button{
+                background:$yellow;
+                position: absolute;
+                top: 0;
+                left: 335px;
+                width: 45px;
+                border-radius: 0;
+                padding-left: 0;
+                }
+            }
+        }
     }
     .logo{
         font-family: $font-fam;

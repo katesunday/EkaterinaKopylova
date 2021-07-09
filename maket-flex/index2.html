@@ -42,14 +42,50 @@
         <div class="container">
             <div class="topdetails">
                 <div class="button">
-                    <button>
+                    <button id="categories" onclick="openMenu()">
                         <img src="css/img/categoryline.svg" alt="">
                         <img src="css/img/categoryline.svg" alt="">
                         <img src="css/img/categoryline.svg" alt="">
                         Категории
                     </button>
                 </div>
-                
+                <div id="side" class="sidemenu">
+                    <ul></ul>
+                    <li><div id="openaddsidemenu" onclick="openAddSideMenu()"><img src="css/img/logophoto.png" alt="logophoto"><a href="#">Фотоаппараты</a></div></li>
+                    <div id="addsidemenu" class="addsidemenu">
+                        <ul>Зеркальные фотоаппараты</ul>
+                        <li><a href="#" alt="">44х33 мм</a></li>
+                        <li><a href="#" alt="">30х45 мм</a></li>
+                        <li><a href="#" alt="">35 мм (Full frame)</a></li>
+                        <li><a href="#" alt="">APS-C</a></li>
+                        <li><a href="#" alt="">Все категории</a></li>
+                        <ul>Беззеркальные камеры</ul>
+                        <li><a href="#" alt="">23.6х15.7 мм</a></li>
+                        <li><a href="#" alt="">24х36 мм</a></li>
+                        <li><a href="#" alt="">35 мм (Full frame)</a></li>
+                        <li><a href="#" alt="">3/4 мм</a></li>
+                        <li><a href="#" alt="">APS-C</a></li>
+                        <li><a href="#" alt="">Все категории</a></li>
+                        <ul>Компактные фотокамеры</ul>
+                        <li><a href="#" alt="">1/1</a></li>
+                        <li><a href="#" alt="">1/1.7</a></li>
+                        <li><a href="#" alt="">1/2.3</a></li>
+                        <li><a href="#" alt="">35 мм (Full frame)</a></li>
+                        <li><a href="#" alt="">4/3</a></li>
+                        <li><a href="#" alt="">APS-C</a></li>
+                        <li><a href="#" alt="">MOS</a></li>
+                        <li><a href="#" alt="">Все категории</a></li>
+                        <div id="closeaddsidemenu" onclick="closeAddSideMenu()" class="closemenu"><button>X</button></div>
+                    </div>
+                    <li><div><img src="css/img/logolens.png" alt="logolens"><a href="#">Объективы</a></div></li>
+                    <li><div><img src="css/img/logoflash.png" alt="logoflash"><a href="#">Вспышки</a></div></li>
+                    <li><div><img src="css/img/logostudio.png" alt="logostudio"><a href="#">Фотостудия</a></div></li>
+                    <li><div><img src="css/img/logoaccessoires.png" alt="logoaccessoires"><a href="#">Аксессуары</a></div></li>
+                    <li><div><img src="css/img/logoprint.png" alt="logoprint"><a href="#">Всё для печать</a></div></li>
+                    <li><div><img src="css/img/logogadgets.png" alt="logogadgets"><a href="#">Гаджеты</a></div></li>
+                    <button id="rollup" onclick="hideMenu()" >Свернуть</button>
+                    
+                </div>
                 <div class="logo">
                     <span>Photomarket</span>
                 </div>
