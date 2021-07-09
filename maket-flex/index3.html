@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style3.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/media2.css">
+    <link rel="stylesheet" href="css/media3.css">
+    <script src="script.js"></script>
+    <title>flex3</title>
+</head>
+<body>
+    <div class='header'>
+        <div class="container">
+            <div class="topheader">
+                <button onclick="myFunction()" class="dropbtn">Минск
+                    <img src="css/img/arrowsmall.png">
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#brest">Брест</a>
+                    <a href="#vitebsk">Витебск</a>
+                    <a href="#gomel">Гомель</a>
+                    <a href="#grodno">Гродно</a>
+                    <a href="#minsk">Минск</a>
+                    <a href="#mogilev">Могилев</a>
+                </div>
+                <a href="tel:+375297072788">+375 (29) 7072788</a>
+                <a href="tel:+375337072788">+375 (33) 7072788</a>
+                <ul></ul>
+                <li>Фотомагазин</li>
+                <li>Доставка и оплата</li>
+                <li>Трейд-ин</li>
+            </div>
+        </div>
+    </div class='header'>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="topdetails">
+                <div class="button">
+                    <button id="categories" onclick="openMenu()">
+                        <img src="css/img/categoryline.svg" alt="">
+                        <img src="css/img/categoryline.svg" alt="">
+                        <img src="css/img/categoryline.svg" alt="">
+                        Категории
+                    </button>
+                </div>
+                <div id="side" class="sidemenu">
+                    <ul></ul>
+                    <li><div id="openaddsidemenu" onclick="openAddSideMenu()"><img src="css/img/logophoto.png" alt="logophoto"><a href="#">Фотоаппараты</a></div></li>
+                    <div id="addsidemenu" class="addsidemenu">
+                        <ul>Зеркальные фотоаппараты</ul>
+                        <li><a href="#" alt="">44х33 мм</a></li>
+                        <li><a href="#" alt="">30х45 мм</a></li>
+                        <li><a href="index2.html" alt="">35 мм (Full frame)</a></li>
+                        <li><a href="#" alt="">APS-C</a></li>
+                        <li><a href="#" alt="">Все категории</a></li>
+                        <ul>Беззеркальные камеры</ul>
+                        <li><a href="#" alt="">23.6х15.7 мм</a></li>
+                        <li><a href="#" alt="">24х36 мм</a></li>
+                        <li><a href="#" alt="">35 мм (Full frame)</a></li>
+                        <li><a href="#" alt="">3/4 мм</a></li>
+                        <li><a href="#" alt="">APS-C</a></li>
+                        <li><a href="#" alt="">Все категории</a></li>
+                        <ul>Компактные фотокамеры</ul>
+                        <li><a href="#" alt="">1/1</a></li>
+                        <li><a href="#" alt="">1/1.7</a></li>
+                        <li><a href="#" alt="">1/2.3</a></li>
+                        <li><a href="#" alt="">35 мм (Full frame)</a></li>
+                        <li><a href="#" alt="">4/3</a></li>
+                        <li><a href="#" alt="">APS-C</a></li>
+                        <li><a href="#" alt="">MOS</a></li>
+                        <li><a href="#" alt="">Все категории</a></li>
+                        <div id="closeaddsidemenu" onclick="closeAddSideMenu()" class="closemenu"><button>X</button></div>
+                    </div>
+                    <li><div><img src="css/img/logolens.png" alt="logolens"><a href="#">Объективы</a></div></li>
+                    <li><div><img src="css/img/logoflash.png" alt="logoflash"><a href="#">Вспышки</a></div></li>
+                    <li><div><img src="css/img/logostudio.png" alt="logostudio"><a href="#">Фотостудия</a></div></li>
+                    <li><div><img src="css/img/logoaccessoires.png" alt="logoaccessoires"><a href="#">Аксессуары</a></div></li>
+                    <li><div><img src="css/img/logoprint.png" alt="logoprint"><a href="#">Всё для печать</a></div></li>
+                    <li><div><img src="css/img/logogadgets.png" alt="logogadgets"><a href="#">Гаджеты</a></div></li>
+                    <button id="rollup" onclick="hideMenu()" >Свернуть</button>
+                    
+                </div>
+                <div class="logo">
+                    <span>Photomarket</span>
+                </div>
+                <div class="search">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.16667 14.8333C11.8486 14.8333 14.8333 11.8486 14.8333 8.16667C14.8333 4.48477 11.8486 1.5 8.16667 1.5C4.48477 1.5 1.5 4.48477 1.5 8.16667C1.5 11.8486 4.48477 14.8333 8.16667 14.8333Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <svg width="7" height="7" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 5.5L1.875 1.875" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    <input id="name" type="text" placeholder="Я ищу...">
+                </div>
+            </div>
+            <div class="user">
+                <ul></ul>
+                <li>
+                    <img src="css/img/location.svg" alt="">
+                    <img src="css/img/location2.svg" alt="">
+                    Адрес</li>
+                <li> <img src="css/img/personhead.svg" alt="">
+                    <img src="css/img/personbottom.svg" alt="">
+                    Войти</li>
+                <li><img src="css/img/shop.svg" alt="">
+                    <img src="css/img/shopwheel.svg" alt="">
+                    <img src="css/img/shopwheel2.svg" alt="">
+                    Корзина</li>
+            </div>
+        </div>
+    </div>
+    <div class="branches">
+        <div class="container">
+            <div class="sorting">
+                <ul></ul>
+                <li>Главная / </li>
+                <li>Фотоаппараты / </li>
+                <li>Зеркальные фотоаппараты /</li>
+                <li>Зеркальный фотоаппарат Canon EOS 5D Mark IV Body</li>
+                <h3>Canon EOS 5D Mark IV Body</h3>
+                <span>Артикул: 12345678 </span>
+                <img src="css/img3/starempty.png" alt="star">
+                <img src="css/img3/starempty.png" alt="star">
+                <img src="css/img3/starempty.png" alt="star">
+                <img src="css/img3/starempty.png" alt="star">
+                <img src="css/img3/starempty.png" alt="star">
+                <span>57 отзывов</span>
+            </div>
+        </div>
+    </div>
+    <div class="item-details">
+        <div class="container">
+            <div class="details-tobuy">
+                <div class="small-images">
+                    <img src="css/img3/smallcamera1.png" alt="smallcamera1">
+                    <img src="css/img3/smallcamera2.png" alt="smallcamera2">
+                    <img src="css/img3/smallcamera3.png" alt="smallcamera3">
+                    <img src="css/img3/smallcamera4.png" alt="smallcamera4">
+                </div>
+                <div class="big-images">
+                    <img src="css/img3/bigcamera.png" alt="bigcamera">
+                </div>
+                <div class="addtobasket">
+                    <h2>4 240 р </h2>
+                    <del>5 400 р</del>
+                    <span>-10%</span><br>
+                    <h5>Гарантия:</h5>
+                    <h6> от производителя 2 года</h6>
+                    <button>добавить в корзину</button>
+                    <img src="css/img3/heart.png" alt="heart">
+                    <h5>Доставка:</h5>
+                    <h6> ориентировочно два дня </h6>
+                    <img src="css/img3/logocanon.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

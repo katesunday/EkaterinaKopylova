@@ -1,0 +1,91 @@
+@import "variables";
+.branches{
+    margin-bottom: 56px;
+    .sorting{
+        h3{
+            margin-bottom: 25px;
+        }
+        span{
+            font-size: $small-text;
+            font-weight: 400;
+            color: $greydark;
+            margin-right: 17px;
+        }
+        :last-child{
+            margin-left: 17px;
+        }
+        img{
+            margin-right: 5px;
+        }
+    }
+}
+.item-details{
+    .details-tobuy{
+        display: flex;
+        .small-images{
+            display: flex;
+            width: 100px;
+            flex-direction: column;
+        }
+        .small-images img:hover{
+            border: 1px solid $black;
+        }
+        .big-images{
+            margin-left: 70px;
+            margin-right: 150px;
+        }
+        .addtobasket{
+            position: relative;
+            h2{
+                font-size: $big-text;
+                font-weight: 500;
+                display: block;
+                display: inline;
+                margin-bottom: 18px;
+            }
+            del{
+                font-weight: 500;
+                font-size: $basic-text + 2;
+                color: $greydark;
+                margin-right: 12px;
+                margin-left: 8px;
+            }
+            span{
+                font-weight: 500;
+                font-size: $basic-text + 2;
+                color: $red;
+            }
+            h5{
+                font-size: $small-text;
+                font-weight: 400;
+                color: $greydark;
+                margin-top: 18px;
+            }
+            h6{
+                font-size: $small-text;
+                font-weight: 400;
+                color: $black;
+            }
+            button{
+                width: 255px;
+                height: 41px;
+                border-radius: 8px;
+                color: $white;
+                font-size: $basic-text;
+                font-weight: 500;
+                background-color: $red;
+                border: none;
+                margin-bottom: 5px;
+                margin-top: 18px;
+                margin-right: 18px;
+            }
+            img{
+                position: absolute;
+                top: 115px;
+            }
+            img[src^='css/img3/logocanon']{
+                top: 230px;
+            }
+        }
+    }
+}
