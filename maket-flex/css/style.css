@@ -266,6 +266,8 @@ li {
     margin-left: 84px; }
   .slider .turn {
     margin: 0 0 0 50%; }
+  .slider .carousel-item {
+    background: url(img/camera1.png); }
 
 .slider-bottom .three {
   display: -webkit-box;

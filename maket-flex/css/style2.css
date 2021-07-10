@@ -133,6 +133,12 @@ body {
       color: #99938a;
       margin-bottom: 8px;
       margin-top: 9px; }
+    .cameras .camera-item a {
+      font-size: 14px;
+      font-weight: 400;
+      color: #99938a;
+      margin-bottom: 8px;
+      margin-top: 9px; }
     .cameras .camera-item .rate span {
       font-size: 14px;
       font-weight: 400;
