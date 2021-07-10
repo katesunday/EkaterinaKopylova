@@ -70,14 +70,18 @@
                 width: 255px;
                 height: 41px;
                 border-radius: 8px;
-                color: $white;
-                font-size: $basic-text;
-                font-weight: 500;
+                
                 background-color: $red;
                 border: none;
                 margin-bottom: 5px;
                 margin-top: 18px;
                 margin-right: 18px;
+                a{
+                    color: $white;
+                    font-size: $basic-text;
+                    font-weight: 500;
+                    text-decoration: none;
+                }
             }
             img{
                 position: absolute;
@@ -86,6 +90,109 @@
             img[src^='css/img3/logocanon']{
                 top: 230px;
             }
+        }
+    }
+}
+.description{
+    margin-top: 50px;
+    
+    .description-buttons{
+        margin-bottom: 38px;
+        h3{
+            font-size: $big-text +4;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+        button{
+            width: 220px;
+            height: 40px;
+            background-color: $white;
+            border: none;
+            border-radius: 4px;
+            color: $greydark;
+            font-weight: 500;
+            font-size: $basic-text;
+            margin-right: 48px;
+            margin-left: 0px;
+        }
+        button:hover{
+            background-color: $greylight;
+            color: $black;
+
+        }
+    }
+    .main-characteristics{
+        margin-left: 48px;
+        p{
+            font-weight: 500;
+            font-size: $basic-text;
+        }
+        table{
+            text-align: left;
+            margin-bottom: 30px;
+            th{
+            font-weight: 400;
+            font-size: $basic-text;
+            height: 40px;
+            width: 455px;
+            }
+
+        }
+        span{
+            color: $yellow;
+            font-weight: 500;
+            font-size: $basic-text;
+            margin-bottom: 21px;
+            display: block;
+            img{
+                margin-left: 15px;
+            }
+        }
+        h5{
+            color: $greydark;
+            font-weight: 400;
+            font-size: $basic-text;
+            margin-top: 10px;
+        }
+    }
+}
+.slider-recomend{
+    h3{
+        font-weight: 500;
+        font-size: $big-text +4;
+        margin-top: 50px;
+        margin-bottom: 37px;
+    }
+    .recomendations{
+        display: flex;
+      
+        .recomend-item{
+            width: 200px;
+            margin-right: 50px;
+            img{
+                width: 150px;
+                height: 150px;
+                margin-bottom: 20px;
+            }
+            p{
+                font-size: $basic-text+2;
+                font-weight: 700;
+                display: inline-block;
+            }
+            del{
+                font-size: $small-text;
+                font-weight: 700;
+                color: $greydark;
+            }
+            span{
+                font-size: $small-text;
+                font-weight: 400;
+                color: $greydark;
+                display: block;
+                margin-top: 15px;
+                margin-bottom: 60px;
+            }
+
         }
     }
 }
