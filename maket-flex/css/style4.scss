@@ -1,0 +1,249 @@
+@import "variables";
+.branches .sorting :last-child {
+    margin-left: 5px;
+}
+.inbasket{
+    .container{
+        display: flex;
+        justify-content: space-evenly;
+    .basket-details{
+        position: relative;
+        width: 780px;
+        img[src^='css/img4/close']{
+            position: absolute;
+            right: 40px;
+            top: 10px;
+        }
+        img[src^='css/img4/camera']{
+            margin-top: 28px;
+            margin-right: 17px;
+            margin-bottom: -17px;
+        }
+        h3{
+            font-size: $big-text+4;
+            font-weight: 700;
+          
+        }
+        span{
+            font-weight: 500;
+            font-size: $basic-text+2;
+            display: inline-block;
+            margin-right: 30px;
+            
+        }
+        div{
+            position: absolute;
+            right: 250px;
+            top: 75px;
+            button{
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                background-color: white;
+             border: 1px solid $greylight;
+             font-size: $basic-text;
+             color: $black;
+             margin-right: 0;
+            }
+            h6{
+                font-size: $basic-text +2;
+                display: inline-block;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+       
+        h4{
+            font-size: $medium-text +4;
+            font-weight: 500;
+            display: inline-block;
+            position: absolute;
+            right: 40px;
+            top: 90px;
+        }
+        p{
+            font-weight: 400;
+            font-size: $small-text;
+            color: $greydark;
+            text-align: center;
+            margin-left: 150px;
+        }
+        del{
+            font-weight: 400;
+            font-size: $small-text;
+            color: $greydark;
+            position: absolute;
+            right: 44px;
+            bottom: 156px;
+        }
+    }
+    .toorder{
+        width: 345px;
+        background-color: $greylight;
+        border-radius: 8px;
+        position: relative;
+        padding: 25px 20px;
+        div:nth-child(2){
+            position: absolute;
+            right: 20px;
+            top: 25px;
+            text-align: end;
+            }
+        }
+        h4{
+            font-size: $medium-text;
+            font-weight: 500;
+        }
+        p{
+            color: $greydark;
+            font-weight: 400;
+            font-size: $basic-text;
+            margin-top: 12px;
+        }
+        span{
+            margin-top: 28px;
+            display: block;
+            font-size: $basic-text;
+            font-weight: 500;
+            h6{
+                color: $red;
+                display: contents;
+                font-size: $basic-text;
+            }
+        }
+        button{
+            width: 305px;
+           height: 41px;
+          border-radius: 8px;
+          background-color: #fb000f;
+          border: none;
+          margin-bottom: 5px;
+          margin-top: 18px;
+          margin-right: 18px;
+          color: $white;
+        }
+        button:hover{
+            box-shadow: 10px 5px 5px $black;
+            font-weight: 600;
+        }
+        a{
+            text-decoration: none;
+            color: $black;
+        }
+    }
+}
+.pay-shipment{
+    .shipment{
+        margin-bottom: 88px;
+        h3{
+            font-size: $medium-text+3;
+            font-weight: 700;
+            margin-bottom: 21px;
+        }
+        button{
+            width: 370px;
+            height: 50px;
+            border: none;
+            background-color: $greylight;
+            border-radius: 8px;
+            color: $greydark;
+            font-weight: 500;
+            font-size: $basic-text;
+            margin-right: 21px;
+            margin-bottom: 20px;
+        }
+        button:hover{
+            border: 1px solid $black;
+            background-color: $white;
+            color: $black;
+        }
+        p{
+            font-weight: 400;
+            font-size: $basic-text;
+        }
+    }
+    .payment{
+        h3{
+            font-size: $medium-text+3;
+            font-weight: 700;
+            margin-bottom: 21px;
+        }
+        button{
+            width: 370px;
+            height: 50px;
+            border: none;
+            background-color: $greylight;
+            border-radius: 8px;
+            color: $greydark;
+            font-weight: 500;
+            font-size: $basic-text;
+            margin-right: 21px;
+            margin-bottom: 80px;
+        }
+        button:hover{
+            border: 1px solid $black;
+            background-color: $white;
+            color: $black;
+        }
+    }
+    .mydata{
+        position: relative;
+        margin-bottom: 200px;
+        h3{
+            font-size: $medium-text+3;
+            font-weight: 700;
+            margin-bottom: 21px;
+        }
+        p{
+            font-weight: 400;
+            font-size: $basic-text;
+            color: $greydark;
+            margin-bottom: 24px;
+        }
+        button{
+            background-color: $white;
+            font-weight: 700;
+            font-size: $small-text;
+            border-radius: 5px;
+            width: 90px;
+            height: 40px;
+            border: 2px solid;
+            position: absolute;
+            right: 394px;
+            top: 50px;
+        }
+        button:hover{
+            background-color: $greylight;
+        }
+        form{
+            display: flex;
+            flex-wrap: wrap;
+            label{
+                color: $greydark;
+                font-size: $small-text;
+                font-weight: 400;
+                margin-bottom: 12px;
+            }
+            input{
+                width: 370px;
+                height: 50px;
+                border: 1px solid $greydark;
+                border-radius: 3px;
+                padding-left: 5px;
+                display: block;
+                margin-right: 24px;
+                margin-bottom: 24px;
+                margin-top: 12px;
+            }
+            #news{
+                width: 15px;
+                height: 15px;
+                display: inline;
+                margin-right: 0;
+            }
+            label input[type=checkbox]{
+                background-color: brown;
+            }
+        }
+    }
+}

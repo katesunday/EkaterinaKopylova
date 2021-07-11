@@ -1,0 +1,211 @@
+.branches .sorting :last-child {
+  margin-left: 5px; }
+
+.inbasket .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly; }
+  .inbasket .container .basket-details {
+    position: relative;
+    width: 780px; }
+    .inbasket .container .basket-details img[src^='css/img4/close'] {
+      position: absolute;
+      right: 40px;
+      top: 10px; }
+    .inbasket .container .basket-details img[src^='css/img4/camera'] {
+      margin-top: 28px;
+      margin-right: 17px;
+      margin-bottom: -17px; }
+    .inbasket .container .basket-details h3 {
+      font-size: 36px;
+      font-weight: 700; }
+    .inbasket .container .basket-details span {
+      font-weight: 500;
+      font-size: 18px;
+      display: inline-block;
+      margin-right: 30px; }
+    .inbasket .container .basket-details div {
+      position: absolute;
+      right: 250px;
+      top: 75px; }
+      .inbasket .container .basket-details div button {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid #E6E6E6;
+        font-size: 16px;
+        color: black;
+        margin-right: 0; }
+      .inbasket .container .basket-details div h6 {
+        font-size: 18px;
+        display: inline-block;
+        margin-left: 15px;
+        margin-right: 15px; }
+    .inbasket .container .basket-details h4 {
+      font-size: 28px;
+      font-weight: 500;
+      display: inline-block;
+      position: absolute;
+      right: 40px;
+      top: 90px; }
+    .inbasket .container .basket-details p {
+      font-weight: 400;
+      font-size: 14px;
+      color: #99938a;
+      text-align: center;
+      margin-left: 150px; }
+    .inbasket .container .basket-details del {
+      font-weight: 400;
+      font-size: 14px;
+      color: #99938a;
+      position: absolute;
+      right: 44px;
+      bottom: 156px; }
+  .inbasket .container .toorder {
+    width: 345px;
+    background-color: #E6E6E6;
+    border-radius: 8px;
+    position: relative;
+    padding: 25px 20px; }
+    .inbasket .container .toorder div:nth-child(2) {
+      position: absolute;
+      right: 20px;
+      top: 25px;
+      text-align: end; }
+  .inbasket .container h4 {
+    font-size: 24px;
+    font-weight: 500; }
+  .inbasket .container p {
+    color: #99938a;
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 12px; }
+  .inbasket .container span {
+    margin-top: 28px;
+    display: block;
+    font-size: 16px;
+    font-weight: 500; }
+    .inbasket .container span h6 {
+      color: #fb000f;
+      display: contents;
+      font-size: 16px; }
+  .inbasket .container button {
+    width: 305px;
+    height: 41px;
+    border-radius: 8px;
+    background-color: #fb000f;
+    border: none;
+    margin-bottom: 5px;
+    margin-top: 18px;
+    margin-right: 18px;
+    color: white; }
+  .inbasket .container button:hover {
+    -webkit-box-shadow: 10px 5px 5px black;
+            box-shadow: 10px 5px 5px black;
+    font-weight: 600; }
+  .inbasket .container a {
+    text-decoration: none;
+    color: black; }
+
+.pay-shipment .shipment {
+  margin-bottom: 88px; }
+  .pay-shipment .shipment h3 {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 21px; }
+  .pay-shipment .shipment button {
+    width: 370px;
+    height: 50px;
+    border: none;
+    background-color: #E6E6E6;
+    border-radius: 8px;
+    color: #99938a;
+    font-weight: 500;
+    font-size: 16px;
+    margin-right: 21px;
+    margin-bottom: 20px; }
+  .pay-shipment .shipment button:hover {
+    border: 1px solid black;
+    background-color: white;
+    color: black; }
+  .pay-shipment .shipment p {
+    font-weight: 400;
+    font-size: 16px; }
+.pay-shipment .payment h3 {
+  font-size: 27px;
+  font-weight: 700;
+  margin-bottom: 21px; }
+.pay-shipment .payment button {
+  width: 370px;
+  height: 50px;
+  border: none;
+  background-color: #E6E6E6;
+  border-radius: 8px;
+  color: #99938a;
+  font-weight: 500;
+  font-size: 16px;
+  margin-right: 21px;
+  margin-bottom: 80px; }
+.pay-shipment .payment button:hover {
+  border: 1px solid black;
+  background-color: white;
+  color: black; }
+.pay-shipment .mydata {
+  position: relative;
+  margin-bottom: 200px; }
+  .pay-shipment .mydata h3 {
+    font-size: 27px;
+    font-weight: 700;
+    margin-bottom: 21px; }
+  .pay-shipment .mydata p {
+    font-weight: 400;
+    font-size: 16px;
+    color: #99938a;
+    margin-bottom: 24px; }
+  .pay-shipment .mydata button {
+    background-color: white;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    width: 90px;
+    height: 40px;
+    border: 2px solid;
+    position: absolute;
+    right: 394px;
+    top: 50px; }
+  .pay-shipment .mydata button:hover {
+    background-color: #E6E6E6; }
+  .pay-shipment .mydata form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+    .pay-shipment .mydata form label {
+      color: #99938a;
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 12px; }
+    .pay-shipment .mydata form input {
+      width: 370px;
+      height: 50px;
+      border: 1px solid #99938a;
+      border-radius: 3px;
+      padding-left: 5px;
+      display: block;
+      margin-right: 24px;
+      margin-bottom: 24px;
+      margin-top: 12px; }
+    .pay-shipment .mydata form #news {
+      width: 15px;
+      height: 15px;
+      display: inline;
+      margin-right: 0; }
+    .pay-shipment .mydata form label input[type=checkbox] {
+      background-color: brown; }
+
+/*# sourceMappingURL=style4.css.map */
