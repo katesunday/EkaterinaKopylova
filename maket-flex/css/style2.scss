@@ -142,6 +142,16 @@ body{
                 font-weight: 500;
                 color: $red;
             }
+            a{
+                font-size: $small-text;
+                font-weight: 400;
+                color: $greydark;
+                margin-bottom: 8px;
+                margin-top: 9px;
+                text-decoration: none;
+                display: block;
+
+            }
             p{
                 font-size: $small-text;
                 font-weight: 400;

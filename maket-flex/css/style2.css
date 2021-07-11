@@ -127,6 +127,14 @@ body {
       font-size: 14px;
       font-weight: 500;
       color: #fb000f; }
+    .cameras .camera-item a {
+      font-size: 14px;
+      font-weight: 400;
+      color: #99938a;
+      margin-bottom: 8px;
+      margin-top: 9px;
+      text-decoration: none;
+      display: block; }
     .cameras .camera-item p {
       font-size: 14px;
       font-weight: 400;

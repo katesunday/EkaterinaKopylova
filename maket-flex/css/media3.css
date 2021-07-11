@@ -1,3 +1,45 @@
+@media all and (max-width: 1200px) {
+  .item-details .details-tobuy .big-images {
+    margin-left: 10px;
+    margin-right: 15px; }
+    .item-details .details-tobuy .big-images img {
+      height: 350px;
+      width: 350px; } }
+.slider-recomend .recomendations {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .slider-recomend .recomendations .recomend-item {
+    width: 160px;
+    margin-right: 50px; }
 
+@media all and (max-width: 900px) {
+  .item-details .details-tobuy .big-images img {
+    height: 240px;
+    width: 240px; }
+
+  .item-details .details-tobuy .addtobasket img {
+    top: 135px; }
+  .item-details .details-tobuy .addtobasket button {
+    width: 155px; } }
+@media all and (max-width: 600px) {
+  .item-details .details-tobuy {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+    .item-details .details-tobuy .small-images {
+      width: 50px; }
+    .item-details .details-tobuy .addtobasket img[src^='css/img3/logocanon'] {
+      display: none; }
+    .item-details .details-tobuy .addtobasket img {
+      top: 115px; }
+
+  .description .description-buttons h3 {
+    margin-bottom: 0;
+    font-size: 24px; }
+
+  .description .description-buttons button {
+    text-align: left; } }
 
 /*# sourceMappingURL=media3.css.map */

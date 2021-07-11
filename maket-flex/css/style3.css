@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden; }
+
 .branches {
   margin-bottom: 56px; }
   .branches .sorting h3 {
