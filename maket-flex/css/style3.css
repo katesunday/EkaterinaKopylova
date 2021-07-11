@@ -74,6 +74,10 @@ body {
         font-size: 16px;
         font-weight: 500;
         text-decoration: none; }
+    .item-details .details-tobuy .addtobasket button:hover {
+      -webkit-box-shadow: 10px 5px 5px black;
+              box-shadow: 10px 5px 5px black;
+      font-weight: 600; }
     .item-details .details-tobuy .addtobasket img {
       position: absolute;
       top: 115px; }

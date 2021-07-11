@@ -1,0 +1,59 @@
+@import "variables";
+@media all and (max-width:1200px){
+    .inbasket .container .basket-details {
+        span{
+            font-size: $basic-text;
+        }
+        h4{
+            font-size: $medium-text;
+        }
+        div{
+        position: unset;
+        }
+    }
+    .pay-shipment .mydata button{
+        position: unset;
+        margin-bottom: 10px;
+    }
+}
+@media all and (max-width:900px){
+    .inbasket .container {
+        button {
+            width: 255px;
+           height: 30px;
+        }
+    
+    .toorder {
+        width: 300px;
+    }
+    .basket-details del{
+        bottom: 200px;
+    }
+    }
+
+}
+@media all and (max-width:600px){
+    .inbasket .container{
+        flex-direction: column;
+        .basket-details{
+            width: 310px;
+        }
+    }
+    .pay-shipment .shipment{
+        margin-bottom: 40px;
+        margin-top: 20px;
+     button {
+        width: 300px;
+    }
+    }
+    .pay-shipment .payment button {
+        width: 300px;
+        margin-bottom: 40px;
+    }
+    .pay-shipment .mydata{
+        margin-bottom: 15px;
+     form input {
+        width: 300px;
+    }
+    }
+}

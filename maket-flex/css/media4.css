@@ -1,3 +1,44 @@
+@media all and (max-width: 1200px) {
+  .inbasket .container .basket-details span {
+    font-size: 16px; }
+  .inbasket .container .basket-details h4 {
+    font-size: 24px; }
+  .inbasket .container .basket-details div {
+    position: unset; }
 
+  .pay-shipment .mydata button {
+    position: unset;
+    margin-bottom: 10px; } }
+@media all and (max-width: 900px) {
+  .inbasket .container button {
+    width: 255px;
+    height: 30px; }
+  .inbasket .container .toorder {
+    width: 300px; }
+  .inbasket .container .basket-details del {
+    bottom: 200px; } }
+@media all and (max-width: 600px) {
+  .inbasket .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    .inbasket .container .basket-details {
+      width: 310px; }
+
+  .pay-shipment .shipment {
+    margin-bottom: 40px;
+    margin-top: 20px; }
+    .pay-shipment .shipment button {
+      width: 300px; }
+
+  .pay-shipment .payment button {
+    width: 300px;
+    margin-bottom: 40px; }
+
+  .pay-shipment .mydata {
+    margin-bottom: 15px; }
+    .pay-shipment .mydata form input {
+      width: 300px; } }
 
 /*# sourceMappingURL=media4.css.map */
