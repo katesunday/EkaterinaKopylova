@@ -329,6 +329,7 @@ li{
     .three{
         display: flex;
     }
+ 
     .item{
         width: 352px;
        height: 280px;
@@ -337,7 +338,8 @@ li{
        margin-right: 32px;
        margin-top: 42px;
        position: relative;
-    }
+       
+       }
        p{
            font-size: $basic-text;
            font-weight: 400;
@@ -361,6 +363,12 @@ li{
            bottom: 16px;
            right: 41px;
        }
+       @keyframes Myanimation{
+        from{color: $black;}
+        to{
+            color: $white;
+        }
+       }
        h6{
            font-size: $basic-text;
            font-weight: 500;
@@ -370,6 +378,7 @@ li{
            bottom: 60px;
            right: 70px;       
            text-align: center;
+           animation: Myanimation 5s infinite;
        }
        h4{
         font-size: $medium-text;
@@ -380,6 +389,10 @@ li{
         bottom: 35px;
         right: 60px;
         text-align: center;
+        animation: Myanimation 3s infinite;
+    }
+    .item:hover{
+        box-shadow:  10px 10px 15px black;
     }
 }
 .hit{

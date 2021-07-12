@@ -299,6 +299,16 @@ li {
   position: absolute;
   bottom: 16px;
   right: 41px; }
+@-webkit-keyframes Myanimation {
+  from {
+    color: black; }
+  to {
+    color: white; } }
+@keyframes Myanimation {
+  from {
+    color: black; }
+  to {
+    color: white; } }
 .slider-bottom h6 {
   font-size: 16px;
   font-weight: 500;
@@ -308,7 +318,9 @@ li {
           transform: rotate(340deg);
   bottom: 60px;
   right: 70px;
-  text-align: center; }
+  text-align: center;
+  -webkit-animation: Myanimation 5s infinite;
+          animation: Myanimation 5s infinite; }
 .slider-bottom h4 {
   font-size: 24px;
   font-weight: 500;
@@ -318,7 +330,12 @@ li {
           transform: rotate(340deg);
   bottom: 35px;
   right: 60px;
-  text-align: center; }
+  text-align: center;
+  -webkit-animation: Myanimation 3s infinite;
+          animation: Myanimation 3s infinite; }
+.slider-bottom .item:hover {
+  -webkit-box-shadow: 10px 10px 15px black;
+          box-shadow: 10px 10px 15px black; }
 
 .hit h3 {
   font-size: 32px;
