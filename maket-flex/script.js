@@ -22,3 +22,6 @@ function closeAddSideMenu(){
     addsidemenu.style.display='none';
     
 }
+function inexthird(){
+    document.location.assign("index3.html")
+}

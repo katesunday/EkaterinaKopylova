@@ -476,5 +476,177 @@ li {
     margin-top: 50px; }
     .footer .pay p {
       font-weight: 700; }
+  .footer .menu {
+    z-index: 999;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    list-style-type: none; }
+    .footer .menu .share i.fa {
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      line-height: 50px;
+      background-color: #fade4b;
+      border-radius: 2px; }
+    .footer .menu .share:hover.bottom .submenu li:nth-child(1) {
+      opacity: 1;
+      top: 50px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      border-top: 1px dashed #cccccc;
+      -webkit-transition-delay: 0.08s;
+              transition-delay: 0.08s; }
+    .footer .menu .share:hover.bottom .submenu li:nth-child(2) {
+      opacity: 1;
+      top: 100px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      border-top: 1px dashed #cccccc;
+      -webkit-transition-delay: 0.16s;
+              transition-delay: 0.16s; }
+    .footer .menu .share:hover.bottom .submenu li:nth-child(3) {
+      opacity: 1;
+      top: 150px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      border-top: 1px dashed #cccccc;
+      -webkit-transition-delay: 0.24s;
+              transition-delay: 0.24s; }
+    .footer .menu .share:hover.bottom .submenu li:nth-child(4) {
+      opacity: 1;
+      top: 200px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      border-top: 1px dashed #cccccc;
+      -webkit-transition-delay: 0.32s;
+              transition-delay: 0.32s; }
+    .footer .menu .share:hover.bottom .submenu li:nth-child(5) {
+      opacity: 1;
+      top: 250px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      border-top: 1px dashed #cccccc;
+      -webkit-transition-delay: 0.4s;
+              transition-delay: 0.4s; }
+    .footer .menu .share:hover.right .submenu li:nth-child(1) {
+      opacity: 1;
+      left: 50px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      -webkit-transition-delay: 0.08s;
+              transition-delay: 0.08s;
+      border-left: 1px dashed #cccccc; }
+    .footer .menu .share:hover.right .submenu li:nth-child(2) {
+      opacity: 1;
+      left: 100px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      -webkit-transition-delay: 0.16s;
+              transition-delay: 0.16s;
+      border-left: 1px dashed #cccccc; }
+    .footer .menu .share:hover.right .submenu li:nth-child(3) {
+      opacity: 1;
+      left: 150px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      -webkit-transition-delay: 0.24s;
+              transition-delay: 0.24s;
+      border-left: 1px dashed #cccccc; }
+    .footer .menu .share:hover.right .submenu li:nth-child(4) {
+      opacity: 1;
+      left: 200px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      -webkit-transition-delay: 0.32s;
+              transition-delay: 0.32s;
+      border-left: 1px dashed #cccccc; }
+    .footer .menu .share:hover.right .submenu li:nth-child(5) {
+      opacity: 1;
+      left: 250px;
+      -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+      -webkit-transition-delay: 0.4s;
+              transition-delay: 0.4s;
+      border-left: 1px dashed #cccccc; }
+    .footer .menu .share:hover.top .submenu li:nth-child(1) {
+      opacity: 1;
+      top: -51px;
+      -webkit-transition-delay: 0.08s;
+              transition-delay: 0.08s;
+      -webkit-transform: rotateY(0deg);
+              transform: rotateY(0deg);
+      border-bottom: 1px dashed #d9d9d9; }
+    .footer .menu .share:hover.top .submenu li:nth-child(2) {
+      opacity: 1;
+      top: -102px;
+      -webkit-transition-delay: 0.16s;
+              transition-delay: 0.16s;
+      -webkit-transform: rotateY(0deg);
+              transform: rotateY(0deg);
+      border-bottom: 1px dashed #d9d9d9; }
+    .footer .menu .share:hover.top .submenu li:nth-child(3) {
+      opacity: 1;
+      top: -153px;
+      -webkit-transition-delay: 0.24s;
+              transition-delay: 0.24s;
+      -webkit-transform: rotateY(0deg);
+              transform: rotateY(0deg);
+      border-bottom: 1px dashed #d9d9d9; }
+    .footer .menu .share:hover.top .submenu li:nth-child(4) {
+      opacity: 1;
+      top: -204px;
+      -webkit-transition-delay: 0.32s;
+              transition-delay: 0.32s;
+      -webkit-transform: rotateY(0deg);
+              transform: rotateY(0deg);
+      border-bottom: 1px dashed #d9d9d9; }
+    .footer .menu .share:hover.top .submenu li:nth-child(5) {
+      opacity: 1;
+      top: -255px;
+      -webkit-transition-delay: 0.4s;
+              transition-delay: 0.4s;
+      -webkit-transform: rotateY(0deg);
+              transform: rotateY(0deg);
+      border-bottom: 1px dashed #d9d9d9; }
+    .footer .menu .submenu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0; }
+      .footer .menu .submenu li {
+        -webkit-transition: all ease-in-out 0.5s;
+        transition: all ease-in-out 0.5s;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0; }
+        .footer .menu .submenu li a {
+          color: #212121; }
+          .footer .menu .submenu li a:hover i.fa {
+            color: #fff; }
+          .footer .menu .submenu li a:hover.facebook i.fa {
+            background-color: #3b5999; }
+          .footer .menu .submenu li a:hover.twitter i.fa {
+            background-color: #55acee; }
+          .footer .menu .submenu li a:hover.googlePlus i.fa {
+            background-color: #dd4b39; }
+          .footer .menu .submenu li a:hover.instagram i.fa {
+            background-color: #e4405f; }
+      .footer .menu .submenu li:nth-child(1) {
+        -webkit-transform: rotateX(45deg);
+                transform: rotateX(45deg); }
+      .footer .menu .submenu li:nth-child(2) {
+        -webkit-transform: rotateX(90deg);
+                transform: rotateX(90deg); }
+      .footer .menu .submenu li:nth-child(3) {
+        -webkit-transform: rotateX(135deg);
+                transform: rotateX(135deg); }
+      .footer .menu .submenu li:nth-child(4) {
+        -webkit-transform: rotateX(180deg);
+                transform: rotateX(180deg); }
+    .footer .menu.bottomRight {
+      bottom: 10px;
+      right: 140px; }
 
 /*# sourceMappingURL=style.css.map */
