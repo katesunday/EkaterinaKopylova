@@ -22,6 +22,6 @@ function closeAddSideMenu(){
     addsidemenu.style.display='none';
     
 }
-function indexthird(){
+function indexThird(){
     document.location.assign("index3.html");
 }
