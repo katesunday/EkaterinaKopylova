@@ -277,54 +277,121 @@ li{
         }
     }
 }
+
 .slider{
-    margin-top: 30px;
-    .camera{
-     background: url(img/camera1.png);
-     
-     height: 360px;
-     background-repeat: no-repeat;
-     border-radius: 8px;
-     margin-bottom: 20px;
-     }
-    
-        h2{
-         font-size: $big-text;
-         font-weight: 700;
-         color:$white;
-         margin-left: 84px;
-         padding-top: 48px;
-         padding-bottom: 22px;
-         }
+    .adaptivny-slayder {
+        position: relative;
+        width: 1080px;
+        margin: 30px 0px 50px 20px;
+        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+        border-radius: 8px;
+      }
+      
+      .adaptivny-slayder input[name="kadoves"] {
+        display: none;
+      }
+      
+      .kadoves {
+        position: absolute;
+        left: 0;
+        bottom: -40px;
+        text-align: center;
+        width: 100%;
+      }
+      
+      .kadoves label {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        cursor: pointer;
+        margin: 0 3px;
+        box-shadow: 0 0 2px 0 rgba(0, 0, 0, .8);
+        border-radius: 50%;
+        border: 5px solid #2f363c;
+        background-color: #738290;
+      }
+      
+      #slaid1:checked~.kadoves label[for="slaid1"] {
+        background-color: white;
+        border: none;
+      }
+      
+      #slaid2:checked~.kadoves label[for="slaid2"] {
+        background-color: white;
+        border: none;
+      }
+      
+      #slaid3:checked~.kadoves label[for="slaid3"] {
+        background-color: white;
+        border: none;
+      }
+      
+      .adaptivny-slayder-lasekun {
+        overflow: hidden;
+        border-radius: 8px;
+         
+      }
+      
+      .abusteku-deagulus {
+          .adv-text{ 
+              position: absolute;
+              z-index: 1;
+              h2{
+            font-size: $big-text;
+            font-weight: 700;
+            color:$white;
+            margin-left: 84px;
+            padding-top: 48px;
+            padding-bottom: 22px;
+            }
+   
+             p{
+            font-size: $basic-text;
+            font-weight: 400;
+            color: $grey;
+            opacity: 0.6;
+            margin-left: 84px;
+            margin-bottom: 42px;
+             }
+   
+             span{
+            font-size: $basic-text;
+            font-weight: 500;
+            color: $yellow;
+            border: 2px solid;
+            box-sizing: border-box;
+            border-radius: 28px;
+            padding: 14px 53px 14px 53px;
+            margin-left:84px;
+             }
+             span:hover{
+                 background-color: $yellow;
+                 color: $black;
+             }
 
-     p{
-         font-size: $basic-text;
-         font-weight: 400;
-         color: $grey;
-         opacity: 0.6;
-         margin-left: 84px;
-         margin-bottom: 42px;
-     }
-
-     span{
-         font-size: $basic-text;
-         font-weight: 500;
-         color: $yellow;
-         border: 2px solid;
-         box-sizing: border-box;
-         border-radius: 28px;
-         padding: 14px 53px 14px 53px;
-         margin-left:84px;
-     }
-
-    
-   .turn{
-    margin: 0 0 0 50%;
-    }
-    .carousel-item{
-        background:url(img/camera1.png);
-    }
-  
+          }
+        display: flex;
+        width: 100%;
+        transition: all 0.5s;
+      }
+      
+      .abusteku-deagulus img {
+        width: 100%;
+        flex-shrink:0;
+        height: 360px;
+      }
+      
+      #slaid1:checked~adaptivny-slayder-lasekun abusteku-deagulus {
+        transform: translate(0);
+      }
+      
+      #slaid2:checked~.adaptivny-slayder-lasekun .abusteku-deagulus {
+        transform: translateX(-100%);
+      }
+      
+      #slaid3:checked~.adaptivny-slayder-lasekun .abusteku-deagulus {
+        transform: translateX(-200%);
+      }
 }
 .slider-bottom{
     .three{
@@ -387,8 +454,8 @@ li{
         color: $black;
         position: absolute;
         transform: rotate(340deg);
-        bottom: 35px;
-        right: 60px;
+        bottom: 30px;
+        right: 58px;
         text-align: center;
         animation: Myanimation 3s infinite;
     }
@@ -429,6 +496,7 @@ li{
         img[src^='css/img/hit']{
             margin-left: 15px;
         }
+       
     }
     .more{
         p{
@@ -508,7 +576,7 @@ li{
         :nth-child(3) a{
             position: absolute;
             right: 43px;
-            top: 83px;
+            top: 81px;
             color: white;
             font-size: $small-text;
         }

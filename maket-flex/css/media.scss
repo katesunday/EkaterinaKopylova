@@ -15,6 +15,10 @@
             left: 144px;
         }
     }
+    .slider .adaptivny-slayder{
+        width: unset;
+        margin-left: 0;
+    }
     .slider-bottom img[src^='css/img/camera'] {
         height: 140px;
     }
@@ -171,20 +175,28 @@
             }
         }
     }
-    .slider .camera {
-        background-position: 64%;
-    }
-    .slider h2 {
-        margin-left: 30px;
-    }
-    .slider p{
-        margin-left: 30px;
-    }
-    .slider span{
-        margin-left: 30px;
-    }
-    .slider .turn {
-        margin: 0 0 0 43%;
+    .slider{
+        height: unset;
+        .abusteku-deagulus{
+        .adv-text {
+            p{
+                display: none;
+            }
+           h2 {
+            font-size: $basic-text;
+            margin-left: 25px;
+            padding-top: unset;
+            }
+            span{
+                font-size: $small-text;
+                padding: 10px 20px 10px 20px;
+            }
+        }
+    
+     img {
+        height: 150px;
+        }
+        }
     }
     .slider-bottom .three {
         flex-wrap: wrap;

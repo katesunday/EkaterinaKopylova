@@ -11,6 +11,10 @@
   .header-bottom .search :nth-child(2) {
     left: 144px; }
 
+  .slider .adaptivny-slayder {
+    width: unset;
+    margin-left: 0; }
+
   .slider-bottom img[src^='css/img/camera'] {
     height: 140px; }
 
@@ -163,20 +167,19 @@
       .header-bottom .sidemenu .addsidemenu .closemenu button {
         left: 150px; }
 
-  .slider .camera {
-    background-position: 64%; }
-
-  .slider h2 {
-    margin-left: 30px; }
-
-  .slider p {
-    margin-left: 30px; }
-
-  .slider span {
-    margin-left: 30px; }
-
-  .slider .turn {
-    margin: 0 0 0 43%; }
+  .slider {
+    height: unset; }
+    .slider .abusteku-deagulus .adv-text p {
+      display: none; }
+    .slider .abusteku-deagulus .adv-text h2 {
+      font-size: 16px;
+      margin-left: 25px;
+      padding-top: unset; }
+    .slider .abusteku-deagulus .adv-text span {
+      font-size: 14px;
+      padding: 10px 20px 10px 20px; }
+    .slider .abusteku-deagulus img {
+      height: 150px; }
 
   .slider-bottom .three {
     -ms-flex-wrap: wrap;
