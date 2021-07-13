@@ -25,3 +25,6 @@ function closeAddSideMenu(){
 function indexThird(){
     document.location.assign("index3.html");
 }
+function indexOne(){
+    document.location.assign("index.html");
+}
