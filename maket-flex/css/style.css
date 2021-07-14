@@ -698,8 +698,7 @@ li {
       .footer .menu .submenu li:nth-child(4) {
         -webkit-transform: rotateX(180deg);
                 transform: rotateX(180deg); }
-    .footer .menu.bottomRight {
-      bottom: 10px;
-      right: 140px; }
+    .footer .menu.bottomLeft {
+      bottom: 10px; }
 
 /*# sourceMappingURL=style.css.map */
