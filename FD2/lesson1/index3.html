@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anketa</title>
+</head>
+<body>
+    <script>
+        let surname = prompt('What is your surname?','Kopylova');
+            while (true){
+                if (!surname=="" && !isFinite(parseFloat(surname))) {
+                break;
+            }
+            surname=prompt('incorrect surname');
+            }
+        let name = prompt('What is your name?','Ekaterina');
+             while (true){
+                if (!name=="" && !isFinite(parseFloat(name))) {
+                break;
+            }
+            surname=prompt('incorrect');
+           }
+        let middlename = prompt('What is your middle name?','Anatolyevna');
+            while (true){
+                if (!middlename=="" && !isFinite(parseFloat(middlename))) {
+                break;
+            }
+            surname=prompt('incorrect');
+        }
+           
+        let age = parseInt(prompt('How old are you?', '28'));
+            while(true){
+                if (!isNaN(age)){
+                break;
+            }
+        } 
+            age=prompt('input number')
+
+            while (age<=0){
+            age = prompt('input correct age');
+            }
+        
+        let retired;
+        let adult;
+            if (age>=60){
+               retired = 'you are retired';
+        }
+            else{
+            retired = 'you are not retired';
+        }
+        if( age>=18){
+            adult = 'You are adult'
+        }
+        else{
+            adult = 'You are not adult'
+        }
+        let gender = confirm('Are you man? Press cancel if not.');
+        if ( gender){
+            gender = 'male';
+        }
+        else{
+            gender = 'female';
+        }
+        alert('Your full name:' + surname +' '+ name+ ' '+ middlename +'\nYour age in years:'+ age
+        + '\nYour age in days:' +(age*365 ) + '\n' + adult +'\nYour gender:' + gender + '\nAre you retired?'+ retired);
+    </script>
+</body>
+</html>

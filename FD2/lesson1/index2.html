@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quadratic</title>
+</head>
+<body>
+    <script>
+      quadraticEquation(1,-8, 72);
+      quadraticEquation(1,12, 36);
+      quadraticEquation(4,-8, 1);
+
+        function quadraticEquation(a,b,c){
+            let disc = b**2 - 4*a*c;
+            if (disc == 0){
+                let x1 = (-b + Math.sqrt(disc)) / (2*a);
+                if (a==1){
+                    a=""
+                }
+                if (b>=0){
+                    b="+ "+b
+                }
+                else{
+                    b='- '+Math.abs(b)
+                }
+                
+                console.log('Уравнение ' + a+'x'+'^2 '+ b + ' + '+c + ' = 0 '+'имеет один корень x = '+ x1);
+            }
+            else if(disc > 0){
+                let x1 = (-b + Math.sqrt(disc)) / (2*a);
+                let x2 = (-b - Math.sqrt(disc)) / (2*a);
+                if (a==1){
+                    a=""
+                }
+                if (b>=0){
+                    b="+ "+b
+                }
+                else{
+                    b='- '+Math.abs(b)
+                }
+              
+                console.log('Уравнение ' + a+'x'+'^2 '+ b + ' + '+c + ' = 0 '+'имеет корни x1 = '+ x1 +' и x2 = '+ x2);
+            }
+            else if(disc < 0){
+                if (a==1){
+                    a=""
+                }
+                if (b>=0){
+                    b="+ "+b
+                }
+                else{
+                    b='- '+Math.abs(b)
+                }
+                console.log('Уравнение ' + a+'x'+'^2 '+ b + ' + '+c + ' = 0'+' не имеет вещественных корней');
+            }
+        }
+        
+        // a = prompt('введите первый коэффициент');
+        //     if (a==0){
+        //     a=prompt('А не должно быть нулем');
+        //     }
+        //  b = prompt('введите второй коэффициент');
+        //  c = prompt('введите третий коээфициент');
+        
+    </script>
+</body>
+</html>
