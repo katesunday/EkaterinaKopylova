@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buttons-counter</title>
+</head>
+<body>
+    <button>Первая кнопка</button>
+    <button>Вторая кнопка</button>
+    <button>Третья кнопка</button>
+
+    <script>
+        let myBts = document.querySelectorAll('button');
+
+        function makeCounter(){
+            let count = 1;
+            return function(){
+                 return count++;
+            };
+        }
+       
+
+        for ( let i = 0; i < myBts.length; i++){
+            let counter = makeCounter();
+            myBts[i].onclick = function(){
+                myBts[i].innerText =  'меня кликнули ' + counter() + ' раз';
+            }
+        }
+
+    </script>
+</body>
+</html>
