@@ -31,17 +31,16 @@
         }
            
         let age = parseInt(prompt('How old are you?', '28'));
-            while(true){
-                if (!isNaN(age)){
-                break;
-            }
-        } 
-            age=prompt('input number')
 
+            while( age>100 || age<=0){
+                age = prompt('Oh, come on! I do not believe you! How old are you?');
+            }
+            while( isNaN(age)){
+                age = prompt('input age in numbers')
+            }
             while (age<=0){
             age = prompt('input correct age');
             }
-        
         let retired;
         let adult;
             if (age>=60){
