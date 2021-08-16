@@ -27,7 +27,7 @@
                 }
                 compString = compString+ letter + count;
             }
-            console.log(compString);
+            console.log(`"${str}" => "${compString}"`);
          
             
         }
@@ -42,14 +42,8 @@
             let uncompString='';
             for ( i=0; i< str.length; i++){
                 let letter = str[i];
-                let number;
-                if(parseInt(str[i]+ str[i+1])==NaN){
-                    number = parseInt(str[i+1]);
-                }
-                else{
-                    number = parseInt(str[i+1]+ str[i+2]);
-                }
-                if( number > 1){
+                let number = parseInt(str.slice(i+1));
+                if( number > 0 && isNaN(letter)){
                     for( j = 1; j < number;j++){
                         uncompString = uncompString + letter;
                     }
@@ -57,11 +51,10 @@
                  if( number = !parseInt(str[i])){
                      uncompString += letter;
                  }
-                
             }
-            console.log(uncompString);
-
+            console.log(`"${str}" => "${uncompString}"`);
         }
+
        
     </script>
 </body>

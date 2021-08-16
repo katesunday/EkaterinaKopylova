@@ -14,39 +14,39 @@
          return function(arg) {
          return function(b){
            return f(a,arg, b);
+          
          };
          };
           };
+          
         }
         function toCount (a, arg, b){
             while( b> 0){
                 if( arg == '+'){
                 
-                return a + b;
+                return console.log( `${a}${arg}${b} = ${a+b}`);
+                
                 }
                  else if ( arg == '-'){
-                    return a - b;
+                    return console.log( ` ${a}${arg}${b} = ${a-b}`);
                 }
                 else if ( arg == '*'){
-                    return a*b;
+                    return console.log(`${a}${arg}${b} = ${a*b}`);
                 }
                 else if ( arg == '/'){
-                    return a/b;
+                    return console.log(`${a}${arg}${b} = ${a/b}`);
                 }
             } 
             if ( b == 0){
-                return 'Ошибка (на ноль делить нельзя)'
+                return console.log(`${a}${arg}${b} = Ошибка (на ноль делить нельзя)`);
             }
+            
         }
         let calculate = curry(toCount);
        
 
-        console.log( 'Результат:\n'+ calculate(a) + calculate(1)('+')(2));
-        console.log(calculate(4)('-')(2));
-        console.log(calculate(3)('*')(7));
-        console.log(calculate(15)('/')(3));
-        console.log(calculate(2)('/')(0));
-        console.log('---------------------')
+      
+        // console.log('---------------------')
 
 
         function curry2(f) { // curry(f) выполняет каррирование
@@ -59,7 +59,7 @@
 
         function exponentiation( a, b){
             if( b == 0){
-                return 1;
+                return console.log( `Результат:\n${a}^${b} = 1`);
             } 
             let minus;
             if (b < 0) minus = true;
@@ -69,15 +69,22 @@
             for (let i = 1; i <= p; i++) {
                 mul *= a;
             }
-            return minus ? 1 / mul : mul;
+            return console.log(`Результат:\n${a}^${b} = ${minus ? 1 / mul : mul}`);
         }
         
         
         let pow = curry2(exponentiation);
-        console.log(pow(-2)(3));
-        console.log(pow(4)(2));
-        console.log(pow(16)(0));
-        console.log(pow(2)(-3));
+        
+    
+        
+        pow(-2)(3);
+        calculate(1)('+')(2);
+        pow(4)(2);
+        calculate(3)('*')(7);
+        pow(16)(0);
+        calculate(15)('/')(3);
+        pow(2)(-3);
+        calculate(2)('/')(0);
 
     </script>
 </body>
