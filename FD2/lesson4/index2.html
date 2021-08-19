@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calendar</title>
+</head>
+<body>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+    
+        td,
+        th {
+          border: 1px solid black;
+          padding: 13px;
+          text-align: center;
+        }
+    
+        th {
+          font-style: italic;
+          background-color: #36bbd0;
+        }
+        td:hover{
+            background-color: #36bbd0;
+        }
+      </style>
+      <div id="calendar"></div>
+      <script>
+          var mymonth = prompt('Введите номер месяца.','12');
+          while( mymonth<=0 || isNaN(mymonth) || mymonth>12){
+              mymonth = prompt('Номер месяца должен быть числом от 1 до 12!')
+          }
+          var myyear = prompt('Введите нужный вам год.', '2021');
+          while( myyear<=0 || isNaN(myyear)){
+              myyear = prompt('Введите корректный год!')
+          }
+
+          createCalendar(myyear,mymonth);
+          
+          function createCalendar(myyear,mymonth){
+          var month = mymonth -1;
+          var askeddate = new Date(myyear,month);
+          let table = '<table><caption>Месяц Год</caption><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
+        
+            for (let i = 0; i < getDay(askeddate); i++) {
+            table += '<td></td>';
+             }
+             while (askeddate.getMonth() == month) {
+             table = table + '<td>' + askeddate.getDate() + '</td>';
+             if (getDay(askeddate) % 7 == 6) { 
+             table += '</tr><tr>';
+             }
+
+            askeddate.setDate(askeddate.getDate() + 1);
+            }
+            if (getDay(askeddate) != 0) {
+             for (let i = getDay(askeddate); i < 7; i++) {
+             table += '<td></td>';
+             }
+             }
+
+             table += '</tr></table>';
+             askeddate.setMonth(month);
+             var monthName = askeddate.toLocaleString('default', { month: 'long' });
+             var monthName = monthName.toUpperCase();
+             
+
+             document.getElementById('calendar').innerHTML = table;
+             document.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
+         }
+
+              function getDay(date) { 
+             let day = date.getDay();
+            if (day == 0) day = 7; 
+           return day - 1;
+         }
+        
+      </script>
+</body>
+</html>

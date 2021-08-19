@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>methods</title>
+</head>
+<body>
+    <script>
+        // задание 1
+
+          var numbers = [2, 3, 5, 7, 11, 13, 17];
+        function currentSums(numbers){
+            var sumsofnumbers = [];
+            var counting = [];
+        
+         numbers.reduce(function(total,amount,i) {
+             if( i===0){
+                  counting[i] = amount;
+                 return sumsofnumbers[i] = total + amount;
+             }
+             else{
+                 counting[i] = counting[i-1] + "+" + amount;
+                return sumsofnumbers[i] = total + amount;
+             }
+
+            
+        },0);
+        
+        console.log(`[${counting}] = [${sumsofnumbers}]`);
+         }
+         currentSums(numbers);
+
+         console.log('-------------------------------')
+
+        // задание 2
+
+         const str = "Каждый охотник желает знать, где сидит фазан."; 
+
+         function firstLettersFromString(){
+             const newArr = [];
+             str.split(' ').map( function(item){
+                 return newArr.push(item[0]);    
+             })
+             console.log(newArr)
+         }
+         const newArr = firstLettersFromString(str);
+
+         console.log('-------------------------------')
+
+        //  задание 3
+
+         const startArray = [-1, 2, 3.5, -12, 4, 1.25, 16]; 
+         
+         function filteredArray(){
+             const newArray =[];
+             startArray.filter( function(item){
+                 if ( item > 0 && Number.isInteger(item)){
+                     return newArray.push(item)
+                 }
+             })
+             console.log(newArray);  
+         }
+
+         const newArray = filteredArray(startArray);
+         
+         console.log('-------------------------------')
+
+        //  задание 4
+
+         const array1 = [false, 1, 0, NaN, 2, 0, null, 3, 4, 0, 5];
+         const array2 = [0, 2, 0, 4, 0, 6];
+         const array3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+     
+
+         function moveZeros(a,b){
+            
+            if(b===0 && a!==0)
+            return -1;
+           
+            // if(a==0 && b!=0)
+            //  return 1;
+            // else if(b==0 && a!=0)
+            // return -1;
+            // else if( a!==0 && b!==0)
+            // return 1;
+  
+         }
+         console.log( array1.sort(moveZeros))
+         console.log( array2.sort(moveZeros))
+         console.log( array3.sort(moveZeros))
+
+         console.log('-------------------------------')
+
+        //  задание 5
+
+        function changeArray(arr){
+            if( arr.length % 2 ==0){
+                const firsthalf= arr.slice(0, Math.floor(arr.length / 2));
+                const lasthalf = arr.slice(Math.floor(arr.length / 2));
+                var changed = `${lasthalf}${firsthalf}`;
+                console.log( `changed = ${lasthalf},${firsthalf}`)
+            }
+            else{
+                const firsthalf= arr.slice(0, Math.floor(arr.length / 2));
+                const lasthalf = arr.slice(Math.floor(arr.length / 2));
+                const middle = lasthalf.splice( 0,1);
+                var changed = `${lasthalf}${middle}${firsthalf}`;
+                console.log( `changed = ${lasthalf},${middle},${firsthalf}`)
+
+            }
+        }
+
+        changeArray([ 1, 2, 3, 4, 5 ]); //[ 4, 5, 3, 1, 2 ]
+        changeArray([ 1, 2]); //[ 2, 1 ] 
+        changeArray([ 1, 2, 3, 4, 5, 6, 7, 8]); //[ 5, 6, 7, 8, 1, 2, 3, 4 ]
+        changeArray(['a','b','c','d','e']);
+        changeArray([1,2,1,2,'x',3,4,3,4]);
+
+
+    </script>
+</body>
+</html>
