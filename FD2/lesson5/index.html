@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>method-counter</title>
+</head>
+<body>
+    <script>
+         var counter = getCounter(5);
+         counter.log() // 5
+         .count(4)
+         .log() // 9
+         .count(3)
+         .log() // 12
+         .reset()
+         .log() // 0
+         .count(8)
+         .log(); // 8
+
+        function getCounter(a=0){
+            return{
+             sum: 0,
+             log: function(){
+              sum = a + this.sum;
+              console.log( sum)
+               return this;
+             },
+             count: function(arg){
+                 this.sum = this.sum+ arg;
+                 return this;
+             },
+             reset: function(){
+                 a =0;
+                 this.sum = 0;
+                 return this;
+             },
+            };
+            
+        }
+    </script>
+</body>
+</html>
