@@ -21,19 +21,17 @@
 
         function getCounter(a=0){
             return{
-             sum: 0,
+             
              log: function(){
-              sum = a + this.sum;
-              console.log( sum)
+              console.log( a)
                return this;
              },
              count: function(arg){
-                 this.sum = this.sum+ arg;
+                 a = a+ arg;
                  return this;
              },
              reset: function(){
                  a =0;
-                 this.sum = 0;
                  return this;
              },
             };
