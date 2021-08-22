@@ -11,6 +11,8 @@
       quadraticEquation(1,-8, 72);
       quadraticEquation(1,12, 36);
       quadraticEquation(4,-8, -1);
+      quadraticEquation(-1,-1, -1);
+
 
         function quadraticEquation(a,b,c){
             let disc = b**2 - 4*a*c;
@@ -21,8 +23,21 @@
                 if (a==1){
                     a=""
                 }
+                if (a==-1){
+                    a='-'
+                }
+                if (a<-1){
+                    a = '- '+Math.abs(a)
+                }
+                if ( b==1 ){
+                    b=""
+                }
+             
                 if (b>=0){
                     b="+ "+b
+                }
+                else if (b==-1){
+                    b = '- '
                 }
                 else{
                     b='- '+Math.abs(b)
@@ -35,7 +50,7 @@
                 }
               
                 
-                console.log('Уравнение ' + a+'x'+'^2 '+ b +' ' + c + ' = 0 '+'имеет один корень x = '+ x1);
+                console.log('Уравнение ' + a+'x'+'^2 '+ b+'x' +' ' + c + ' = 0 '+'имеет один корень x = '+ x1);
             }
             else if(disc > 0){
                 let x1 = (-b + Math.sqrt(disc)) / (2*a);
@@ -43,8 +58,21 @@
                 if (a==1){
                     a=""
                 }
+                if (a==-1){
+                    a='-'
+                }
+                if (a<-1){
+                    a = '- '+Math.abs(a)
+                }
+                if ( b==1 ){
+                    b=""
+                }
+             
                 if (b>=0){
                     b="+ "+b
+                }
+                else if (b==-1){
+                    b = '- '
                 }
                 else{
                     b='- '+Math.abs(b)
@@ -55,15 +83,27 @@
                 else{
                     c = "+ " + c
                 }
-              
-                console.log('Уравнение ' + a+'x'+'^2 '+ b +' ' + c + ' = 0 '+'имеет корни x1 = '+ x1 +' и x2 = '+ x2);
+                console.log('Уравнение ' + a+'x'+'^2 '+ b+'x' +' ' + c + ' = 0 '+'имеет корни x1 = '+ x1 +' и x2 = '+ x2);
             }
             else if(disc < 0){
                 if (a==1){
                     a=""
                 }
+                if (a==-1){
+                    a='-'
+                }
+                if (a<-1){
+                    a = '- '+Math.abs(a)
+                }
+                if ( b==1 ){
+                    b=""
+                }
+             
                 if (b>=0){
                     b="+ "+b
+                }
+                else if (b==-1){
+                    b = '- '
                 }
                 else{
                     b='- '+Math.abs(b)
@@ -74,7 +114,7 @@
                 else{
                     c = "+ " + c
                 }
-                console.log('Уравнение ' + a+'x'+'^2 '+ b +' ' + c + ' = 0'+' не имеет вещественных корней');
+                console.log('Уравнение ' + a+'x'+'^2 '+ b+'x' +' ' + c + ' = 0'+' не имеет вещественных корней');
             }
         }
         
