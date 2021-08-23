@@ -7,6 +7,7 @@ class HashStorage{
         
     }
     getValue(key){
+        
         console.log(this.storage_[key])
       
         return this.storage_[key];
@@ -24,7 +25,7 @@ class HashStorage{
         }
     }
     getKeys(){
-        console.log(Object.keys(this.storage_));
+        console.log(Object.keys(this.storage_).join("\n"));
         return Object.keys(this.storage_);
         
     }
@@ -61,7 +62,7 @@ function showCoctail(){
     coctailsStorage.getValue(name);
     
 }
-function allRecipies(){
+function listOfCoctails(){
     coctailsStorage.getKeys();
     
 }
