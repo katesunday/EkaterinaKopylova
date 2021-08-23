@@ -59,6 +59,7 @@ function addRecipe(){
 }
 function showCoctail(){
     var name = prompt('Какой напиток хотите найти?', "Маргарита");
+   console.log(`Коктейль: ${name}`)
     coctailsStorage.getValue(name);
     
 }
