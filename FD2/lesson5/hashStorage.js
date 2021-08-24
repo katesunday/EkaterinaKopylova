@@ -57,7 +57,7 @@ function showCoctail(){
  
     console.log(`Рецепт: ${coctailsStorage.storage_[name].recipe}`);
 
-    // document.getElementById('ing').innerHTML ="Необходимые ингридиенты:<br>" + coctailsStorage.storage_[name].ingridients;
+    document.getElementById('ing').innerHTML ="Необходимые ингридиенты:<br>" + coctailsStorage.storage_[name].ingridients;
     document.getElementById('recipe').innerHTML = "Рецепт:<br>"+ coctailsStorage.storage_[name].recipe;
     
 }
