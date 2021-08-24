@@ -41,6 +41,9 @@ function showCoctail(){
     var name = prompt('Какой напиток хотите найти?', "Маргарита");
    
     coctailsStorage.getValue(name);
+    if( !(name in coctailsStorage.storage_)){
+        alert('Нет такого напитка!')
+       }
     
     if( coctailsStorage.storage_[name].isalcohol == true){
         document.getElementById('coctailname').innerHTML=(`Коктейль: "${name}" (алкогольный:да)`)
