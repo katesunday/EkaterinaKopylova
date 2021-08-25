@@ -8,6 +8,15 @@
     <title>coctails</title>
 </head>
 <body>
+    <style>
+        ul{
+            margin-left: 0;
+            padding-left: 0;
+        }
+        li{
+            list-style-type: none;
+        }
+    </style>
     <button onclick="addRecipe()">Ввод рецепта</button>
     <button onclick="showCoctail()">Рецепт напитка</button>
     <button onclick="delCoctail()">Удаление рецепта</button>
@@ -15,7 +24,9 @@
 
     <h2 id = 'coctailname'></h2>
     <p id = 'list'></p>
-    <div id = 'ing'></div>
+    <ul id = 'ing'></ul>
+    <li></li>
+    <li></li>
     <div id = 'recipe'></div>
 
 </body>
