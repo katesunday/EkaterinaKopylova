@@ -16,9 +16,42 @@
                console.log(`Модель: ${this.name}.`)}
            setYear(year){ this.year = year;}
            showYear(){console.log(`Год выпуска: ${this.year}.`)}
-           showInfo(){console.log(`${this.showName()}. ${this.showYear}.`)}
+           showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}.`)}
         }
- 
+    
+      var firstcar = new Vehicle;
+      
+      firstcar.setYear(1912);
+      firstcar.setName('автомобиль на пару');
+      firstcar.showInfo();
+
+      class Car extends Vehicle{
+          constructor(){
+              super();
+              this.maxSpeed = 160;
+              this.wheels = 4;
+              this.sunroof= ifSunRoof;
+              function hassunroof(){
+                return(this.sunroof ? "В машине есть люк" : "В машине люка нет");
+              }
+          
+        }
+        showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}.
+        Колес: ${this.wheels}. Максимальная скорость: ${this.maxSpeed} км/час. ${this.sunroof}.`)}
+
+      }
+      const audi = new Car;
+    audi.sunroof( ifSunRoof= true);
+    audi.setName("Audi A8");
+    audi.setYear(2018);
+    audi.showInfo();
+    const bmw = new Car;
+    bmw.setName("BMW X6");
+    bmw.setYear(2021);
+    
+    bmw.showInfo();
+    // (, 2021);
+    // bmw.
     </script>
 </body>
 </html>

@@ -90,7 +90,7 @@ function addRecipe(){
     var recipe = prompt('Напишите рецепт приготовления.')
 
     coctailsStorage.addValue(name,{isalcohol,
-    ingridients,
+    ingridients:[ingridients],
     recipe,});
     alert(`Напиток "${name}" добавлен!`);
 }
