@@ -30,28 +30,48 @@
               super();
               this.maxSpeed = 160;
               this.wheels = 4;
-              this.sunroof= ifSunRoof;
-              function hassunroof(){
+              this.sunroof= function (){
                 return(this.sunroof ? "В машине есть люк" : "В машине люка нет");
               }
           
         }
         showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}.
-        Колес: ${this.wheels}. Максимальная скорость: ${this.maxSpeed} км/час. ${this.sunroof}.`)}
+        Колес: ${this.wheels}. Максимальная скорость: ${this.maxSpeed} км/час. ${this.sunroof()}.`)}
 
       }
       const audi = new Car;
-    audi.sunroof( ifSunRoof= true);
+    audi.sunroof( true);
     audi.setName("Audi A8");
     audi.setYear(2018);
     audi.showInfo();
     const bmw = new Car;
     bmw.setName("BMW X6");
     bmw.setYear(2021);
-    
     bmw.showInfo();
-    // (, 2021);
-    // bmw.
+
+    class Moto extends Vehicle{
+        constructor(){
+            super();
+            this.wheels = 2;
+        }
+    }
+    const yamaha = new Moto;
+    yamaha.setName("Yamaha R250");
+    yamaha.setYear(2020);
+    yamaha.showInfo();
+
+    class Driver{
+        constructor(){}
+            setName(name){
+               this.name = name;}
+            setAge(age){
+                this.age = age;
+            }
+            displayInfo(){
+                console.log(`Водитель: ${this.name} работает на ${}`)
+            }
+    }
+   
     </script>
 </body>
 </html>

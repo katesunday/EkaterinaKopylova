@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>editable-list</title>
+</head>
+<body>
+    <div id="list">
+
+    </div>
+    
+    <script>
+         var elements = ['Первый элемент', 'Второй элемент', 'Третий элемент', 'Четвертый элемент'];
+         var listItems = document.getElementById("list").getElementsByTagName("li");
+         var allELements = document.getElementsByTagName('li');
+        
+         function createList(){
+        var ol = document.createElement('ol');
+        for( var i=0; i < elements.length; i++){
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(elements[i]));
+            ol.appendChild(li);
+        }
+        
+
+    let inputA = document.createElement('input');
+    list.append(inputA);  
+    let btnAdd = document.createElement('button');
+    btnAdd.innerHTML = 'Add';
+    list.append(btnAdd);
+    btnAdd.onclick = function(){
+        elements.push(inputA.value);
+        var li = document.createElement('li');
+        if( inputA.value != '') {
+            li.appendChild(document.createTextNode(inputA.value));
+         ol.appendChild(li);
+        }
+       
+    }
+    let btnRemove = document.createElement('button');
+    btnRemove.innerHTML = 'Remove';
+    list.append(btnRemove);
+    btnRemove.onclick = function(){
+        elements.pop();
+        if(listItems.length === 1) btnRemove.setAttribute('disabled', true); 
+        var last = listItems[listItems.length - 1];
+    last.parentNode.removeChild(last);
+    }
+    document.querySelectorAll('li').onclick = function(){
+        allELements.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
+    }
+ 
+    return ol;
+}
+
+list.append( createList(elements));
+    
+// allELements.addEventListener('click',function(event){
+//         let target = event.target;
+//         if(target.tagName != 'li'){
+//             return;
+//         }
+//         changeValueLi(target);
+//     });
+//     function changeValueLi(li){
+//         let valueLi = li.innerHTML;
+//     }
+    // inputA.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
+  
+    
+
+    </script>
+
+</body>
+</html>
