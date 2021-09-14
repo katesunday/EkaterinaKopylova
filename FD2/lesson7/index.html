@@ -7,6 +7,14 @@
     <title>editable-list</title>
 </head>
 <body>
+    <style>
+        .button{
+            background-color: cyan;
+            width: 70px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+    </style>
     <div id="list">
 
     </div>
@@ -16,21 +24,22 @@
          var listItems = document.getElementById("list").getElementsByTagName("li");
          
         
-         function createList(){
+    function createList(){
         var ol = document.createElement('ol');
         for( var i=0; i < elements.length; i++){
             var li = document.createElement('li');
-            li.appendChild(document.createTextNode(elements[i]));
-            ol.appendChild(li);
+            li.prepend(document.createTextNode(elements[i]));
+            ol.prepend(li);
         }
         
 
-    let inputA = document.createElement('input');
-    list.append(inputA);  
-    let btnAdd = document.createElement('button');
-    btnAdd.innerHTML = 'Add';
-    list.append(btnAdd);
-    btnAdd.onclick = function(){
+     let inputA = document.createElement('input');
+     list.append(inputA);  
+     let btnAdd = document.createElement('button');
+     btnAdd.className = 'button';
+     btnAdd.innerHTML = 'Add';
+     list.append(btnAdd);
+     btnAdd.onclick = function(){
         elements.push(inputA.value);
         var li = document.createElement('li');
         if( inputA.value != '') {
@@ -38,45 +47,46 @@
          ol.appendChild(li);
         }
        
-    }
-    let btnRemove = document.createElement('button');
-    btnRemove.innerHTML = 'Remove';
-    list.append(btnRemove);
-    btnRemove.onclick = function(){
+     }
+     let btnRemove = document.createElement('button');
+     btnRemove.innerHTML = 'Remove';
+     btnRemove.className = 'button';
+     list.append(btnRemove);
+     btnRemove.onclick = function(){
         elements.pop();
         if(listItems.length === 1) btnRemove.setAttribute('disabled', true); 
         var last = listItems[listItems.length - 1];
-    last.parentNode.removeChild(last);
+      last.parentNode.removeChild(last);
     }
-    // document.querySelectorAll('li').onclick = function(){
-    //     allELements.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
-    // }
- 
     return ol;
-}
+     }
 
-list.append( createList(elements));
-var allELements = document.querySelector('ol');
-allELements.addEventListener('click',function(event){
+     list.prepend( createList(elements));
+
+     var allELements = document.querySelector('ol');
+     allELements.addEventListener('click',function(event){
         let target = event.target;
         if(target.tagName !== 'LI'){
             return;
         }
         changeValueLi(target);
-    });
+         });
     function changeValueLi(li){
         let valueLi = li.innerHTML;
-        li.innerHTML = `<input value=${valueLi} id='newInput'>`;
+        li.innerHTML = `<input value="${valueLi}" id='newInput'>`;
         console.log(valueLi)
         let newInput = document.getElementById('newInput');
         newInput.focus();
         newInput.addEventListener('blur',NewLi);
         function NewLi(){
             li.innerHTML =  newInput.value;
+            if (newInput.value === ""){
+                li.innerHTML = valueLi;
+            }
            
         }
     }
-    // inputA.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
+
   
     
 
