@@ -14,7 +14,7 @@
     <script>
          var elements = ['Первый элемент', 'Второй элемент', 'Третий элемент', 'Четвертый элемент'];
          var listItems = document.getElementById("list").getElementsByTagName("li");
-         var allELements = document.getElementsByTagName('li');
+         
         
          function createList(){
         var ol = document.createElement('ol');
@@ -48,25 +48,34 @@
         var last = listItems[listItems.length - 1];
     last.parentNode.removeChild(last);
     }
-    document.querySelectorAll('li').onclick = function(){
-        allELements.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
-    }
+    // document.querySelectorAll('li').onclick = function(){
+    //     allELements.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
+    // }
  
     return ol;
 }
 
 list.append( createList(elements));
-    
-// allELements.addEventListener('click',function(event){
-//         let target = event.target;
-//         if(target.tagName != 'li'){
-//             return;
-//         }
-//         changeValueLi(target);
-//     });
-//     function changeValueLi(li){
-//         let valueLi = li.innerHTML;
-//     }
+var allELements = document.querySelector('ol');
+allELements.addEventListener('click',function(event){
+        let target = event.target;
+        if(target.tagName !== 'LI'){
+            return;
+        }
+        changeValueLi(target);
+    });
+    function changeValueLi(li){
+        let valueLi = li.innerHTML;
+        li.innerHTML = `<input value=${valueLi} id='newInput'>`;
+        console.log(valueLi)
+        let newInput = document.getElementById('newInput');
+        newInput.focus();
+        newInput.addEventListener('blur',NewLi);
+        function NewLi(){
+            li.innerHTML =  newInput.value;
+           
+        }
+    }
     // inputA.innerHTML = `<input type='text' value='${inputA.textContent}'>`;
   
     
