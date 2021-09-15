@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>events</title>
+</head>
+<body>
+    <style>
+        a:hover{
+            color: red;
+        }
+        p{
+            border: 1px solid;
+            padding: 10px;
+            width: 70px;
+            padding-left: 60px;
+        }
+        p:hover{
+            background-color: salmon;
+        }
+        #checkdata input{
+            border: 3px solid gray;
+        }
+    </style>
+    <h5>1 задание.</h5>
+    <a href="https://www.google.com/" title="Google" target="_blank">Ссылка на Гугл</a><br>
+    <a href="https://www.facebook.com" title="Facebook" target="_blank">Ссылка на Фейсбук</a><br>
+    <a href="https://www.it-academy.by" title="It-academy" target="_blank">Ссылка на It-academy</a><br>
+    <a href="https://www.yandex.ru" title="Yandex" target="_blank">Ссылка на Яндекс</a><br>
+    <a href="https://www.github.com" title="Github" target="_blank">Ссылка на Гит</a><br>
+
+    <h5>2 задание.</h5>
+    <div id = 'task2'>
+        <input type="text" readonly value="Хочу">
+        <input type="text" readonly value="много">
+        <input type="text" readonly value="чего">
+        <input type="text" readonly value="знать">
+    </div>
+   
+
+    <h5>3 задание</h5>
+   
+        <p>2</p>
+        <p>4</p>
+        <p>3</p>
+        <p>10</p>
+    
+    <h5>4 задание</h5>
+    <div id = 'checkdata'>
+        <input type="text" data-length = 1 placeholder="Введите 1 символ">
+        <input type="text" data-length = 2 placeholder="Введите 2 символа">
+        <input type="text" data-length = 3 placeholder="Введите 3 символа">
+        <input type="text" data-length = 5 placeholder="Введите 5 символов">
+    </div>
+
+    <script>
+   
+    // 1 task
+        let links = document.getElementsByTagName('a');
+        let linkName = [];
+        for( i = 0; i < links.length; i++){
+            linkName.push(links[i].innerHTML);
+            links[i].addEventListener('mouseover',showTitle);
+            links[i].addEventListener('mouseout',returnHref);
+        }
+       function showTitle(){
+        this.innerHTML = `${this.title} (${this.href})`;
+        // this.innerHTML = `<span style = 'color:red'>${this.title} (${this.href})</span>`; -  почему-то дергается ссылка.
+       }
+       function returnHref(){
+           for( i = 0; i< links.length; i++){
+             links[i].innerHTML = linkName[i];
+           }
+       }
+
+    // 2 task
+        let div2 = document.getElementById('task2');
+        let inputs = task2.getElementsByTagName('input');
+        // let inputValue = [];
+        for( i = 0; i< inputs.length; i++){
+            // inputValue.push(inputs[i].value);
+            inputs[i].addEventListener('click',function(){
+                console.log(inputs[i].value);
+            },{once:true});
+        }
+
+
+    // 3 task
+        let paragraf = document.getElementsByTagName('p');
+        for( i = 0; i < paragraf.length; i++){
+            paragraf[i].addEventListener('click',function(){
+                let num = this.innerHTML;
+                this.innerHTML = num*num;
+           },{once:true});
+        }
+
+     //4 task
+     let checkdiv = document.getElementById('checkdata');
+        let checkingInput = checkdiv.getElementsByTagName('input');
+        for( i = 0; i < checkingInput.length; i++){
+            checkingInput[i].addEventListener('blur',function(){
+                let length = this.getAttribute('data-length');
+                if( this.value.length == length){
+                    this.style.cssText = 'border: 3px solid green;';
+                }
+                else{
+                    this.style.cssText = 'border: 3px solid red;';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
