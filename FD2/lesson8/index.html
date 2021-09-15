@@ -60,7 +60,7 @@
     // 1 task
         let links = document.getElementsByTagName('a');
         let linkName = [];
-        for( i = 0; i < links.length; i++){
+        for( let i = 0; i < links.length; i++){
             linkName.push(links[i].innerHTML);
             links[i].addEventListener('mouseover',showTitle);
             links[i].addEventListener('mouseout',returnHref);
@@ -70,7 +70,7 @@
         // this.innerHTML = `<span style = 'color:red'>${this.title} (${this.href})</span>`; -  почему-то дергается ссылка.
        }
        function returnHref(){
-           for( i = 0; i< links.length; i++){
+           for( let i = 0; i< links.length; i++){
              links[i].innerHTML = linkName[i];
            }
        }
@@ -79,7 +79,7 @@
         let div2 = document.getElementById('task2');
         let inputs = task2.getElementsByTagName('input');
         // let inputValue = [];
-        for( i = 0; i< inputs.length; i++){
+        for(  let i = 0; i< inputs.length; i++){
             // inputValue.push(inputs[i].value);
             inputs[i].addEventListener('click',function(){
                 console.log(inputs[i].value);
@@ -89,7 +89,7 @@
 
     // 3 task
         let paragraf = document.getElementsByTagName('p');
-        for( i = 0; i < paragraf.length; i++){
+        for( let i = 0; i < paragraf.length; i++){
             paragraf[i].addEventListener('click',function(){
                 let num = this.innerHTML;
                 this.innerHTML = num*num;
@@ -99,7 +99,7 @@
      //4 task
      let checkdiv = document.getElementById('checkdata');
         let checkingInput = checkdiv.getElementsByTagName('input');
-        for( i = 0; i < checkingInput.length; i++){
+        for( let i = 0; i < checkingInput.length; i++){
             checkingInput[i].addEventListener('blur',function(){
                 let length = this.getAttribute('data-length');
                 if( this.value.length == length){
