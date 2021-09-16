@@ -78,14 +78,11 @@
               function goToPreviousMonth(){
               mymonth = mymonth - 1;
               console.log(mymonth);
-              if( mymonth !=-1){
-                createCalendar(myyear,mymonth);
-              }
-              else{
-                // previousMonth.setAttribute('disabled', true); 
+              if( mymonth == -1){
                 myyear = myyear-1;
-                mymonth = 12;
+                mymonth = 11;      
               }
+              createCalendar(myyear,mymonth);
              }
              let nextYear =document.getElementById('nextYear');
              nextYear.addEventListener('click',goTonextYear);
@@ -98,13 +95,12 @@
               function goTonextMonth(){
               mymonth= mymonth + 1;
               console.log(mymonth);
-              if( mymonth <=11){
-                createCalendar(myyear,mymonth);
-              }
-              else{
+              if( mymonth >11){
                 myyear = myyear+1;
-                mymonth = -1;
+                mymonth = 0;    
               }
+              createCalendar(myyear,mymonth);
+              
              }
              
          }
