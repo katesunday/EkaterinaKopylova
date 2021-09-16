@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calendar3</title>
+</head>
+<body>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+    
+        td,
+        th {
+          border: 1px solid black;
+          padding: 15px;
+          text-align: center;
+        }
+    
+        th {
+          font-style: italic;
+          background-color: #36bbd0;
+        }
+        td:hover{
+            background-color: #36bbd0;
+        }
+        .blue{
+            background-color: #36bbd0;
+        }
+      </style>
+        <h3>Создай календарь!</h3>
+        <div id = 'header'></div>
+        <div id="calendar"></div>
+    <script>
+        var header = document.getElementById('header');
+        var myCalendar = document.getElementById('calendar');
+        var months = ["Выбрать месяц","Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+        var startYear = new Date().getFullYear();
+        var years = ['Выбрать год'];
+        while(startYear >= 1980){
+            years.push(startYear--);
+        }
+        console.log(years);
+//buttons
+        var selectYear = document.createElement('select');
+            header.append(selectYear);
+        var selectMonth = document.createElement('select')
+            header.append(selectMonth);
+        var createMyCalendar = document.createElement('button');
+            createMyCalendar.textContent = 'Создать';
+            header.append(createMyCalendar);
+        var deleteCalendar = document.createElement('button');
+            deleteCalendar.textContent = 'Удалить';
+            header.append(deleteCalendar);
+
+        // var selectYearDefault = document.createElement('option');
+        //     selectYearDefault.textContent = 'Выбрать год';   
+            // selectYear.append(selectYearDefault);
+        for(i = 0; i< years.length; i++){
+           var allYears = years[i];
+          var elY = document.createElement('option');
+          elY.textContent = allYears;
+          elY.value = allYears;
+          selectYear.append(elY);
+      
+        }
+     
+        for( i = 0; i < months.length; i++){
+            var allMonths = months[i];
+            var elM = document.createElement('option');
+            elM.textContent = allMonths;
+            elM.value = allMonths;
+            selectMonth.append(elM);
+        }
+        selectYear.addEventListener('change',function(){
+              console.log(selectYear.value);
+          });
+        selectMonth.addEventListener('change',function(){
+            console.log(selectMonth.value);
+        });
+        // if( selectYear.value === 'Выбрать год' || selectMonth.value === 'Выбрать месяц'){
+        //         createMyCalendar.disabled = true;
+        //     }
+        //     else{
+        //         createMyCalendar.disabled = false;
+        //     }
+     
+        createMyCalendar.addEventListener('click',function(){
+            myyear = selectYear.value;
+           switch(selectMonth.value){
+               case 'Январь':
+                   mymonth = 0;
+                   break;
+                   case 'Февраль':
+                   mymonth = 1;
+                   break;
+                   case 'Март':
+                   mymonth = 2;
+                   break;
+                   case 'Апрель':
+                   mymonth = 3;
+                   break;
+                   case 'Май':
+                   mymonth = 4;
+                   break;
+                   case 'Июнь':
+                   mymonth = 5;
+                   break;
+                   case 'Июль':
+                   mymonth = 6;
+                   break;
+                   case 'Август':
+                   mymonth = 7;
+                   break;
+                   case 'Сентябрь':
+                   mymonth = 8;
+                   break;
+                   case 'Октябрь':
+                   mymonth = 9;
+                   break;
+                   case 'Ноябрь':
+                   mymonth = 10;
+                   break;
+                   case 'Декабрь':
+                   mymonth = 11;
+                   break;     
+           }
+           createCalendar(myyear,mymonth);
+          
+        })
+
+
+         var mymonth = new Date().getMonth();
+          var myyear = new Date().getFullYear();
+        
+   
+        //   createCalendar(myyear,mymonth);
+          
+          function createCalendar(myyear,mymonth){
+          var month = mymonth;
+          var askeddate = new Date(myyear,month);
+          var table = '<table><caption>Месяц Год</caption><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
+            
+        
+            for (let i = 0; i < getDay(askeddate); i++) {
+            table += '<td></td>';
+             }
+             while (askeddate.getMonth() == month) {
+             table = table + '<td>' + askeddate.getDate() + '</td>';
+             if (getDay(askeddate) % 7 == 6) { 
+             table += '</tr><tr>';
+             }
+
+            askeddate.setDate(askeddate.getDate() + 1);
+            }
+            if (getDay(askeddate) != 0) {
+             for (let i = getDay(askeddate); i < 7; i++) {
+             table += '<td></td>';
+             }
+             }
+
+             table += '</tr></table>';
+             askeddate.setMonth(month);
+             var monthName = askeddate.toLocaleString('default', { month: 'long' });
+             var monthName = monthName.toUpperCase();
+             
+
+            myCalendar.innerHTML = table;
+             document.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
+             let tds = document.querySelectorAll('td');
+             
+             tds.forEach(function(item){
+                item.onclick = function(){
+                    this.classList.toggle('blue')
+                };
+             });
+
+             
+         }
+        
+
+              function getDay(date) { 
+             let day = date.getDay();
+            if (day == 0) day = 7; 
+           return day - 1;
+         }
+
+    </script>
+</body>
+</html>
