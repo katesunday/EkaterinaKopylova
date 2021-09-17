@@ -74,18 +74,24 @@
             elM.value = allMonths;
             selectMonth.append(elM);
         }
+        checkAddButton();
         selectYear.addEventListener('change',function(){
               console.log(selectYear.value);
+              checkAddButton();
           });
         selectMonth.addEventListener('change',function(){
             console.log(selectMonth.value);
+            checkAddButton();
         });
-        // if( selectYear.value === 'Выбрать год' || selectMonth.value === 'Выбрать месяц'){
-        //         createMyCalendar.disabled = true;
-        //     }
-        //     else{
-        //         createMyCalendar.disabled = false;
-        //     }
+        function checkAddButton(){  
+            if( selectYear.value === 'Выбрать год' || selectMonth.value === 'Выбрать месяц'){
+                createMyCalendar.disabled = true;
+            }
+            else{
+                createMyCalendar.disabled = false;
+            }
+        }
+      
      
         createMyCalendar.addEventListener('click',function(){
             myyear = selectYear.value;
@@ -127,21 +133,21 @@
                    mymonth = 11;
                    break;     
            }
-           createCalendar(myyear,mymonth);
+           const newEle = document.createElement(createCalendar(myyear,mymonth));
+           myCalendar.append(newEle);
+           
           
         })
 
 
-         var mymonth = new Date().getMonth();
-          var myyear = new Date().getFullYear();
-        
-   
+        //  var mymonth = new Date().getMonth();
+        //   var myyear = new Date().getFullYear();
         //   createCalendar(myyear,mymonth);
           
           function createCalendar(myyear,mymonth){
           var month = mymonth;
           var askeddate = new Date(myyear,month);
-          var table = '<table><caption>Месяц Год</caption><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
+          var table = '<table id = "table"><tr><td><button id = "prevYear"><<</button></td><td><button id = "prevMonth"><</button></td><td td colspan = "3"></td><td><button id = "nextMonth">></button></td><td><button id = "nextYear">>></button></td><caption>Месяц Год</caption><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
             
         
             for (let i = 0; i < getDay(askeddate); i++) {
@@ -169,23 +175,71 @@
 
             myCalendar.innerHTML = table;
              document.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
-             let tds = document.querySelectorAll('td');
-             
-             tds.forEach(function(item){
-                item.onclick = function(){
-                    this.classList.toggle('blue')
-                };
-             });
 
-             
-         }
-        
+             let previousYear =document.getElementById('prevYear');
+              previousYear.addEventListener('click',goToPreviousYear);
+              function goToPreviousYear(){
+              myyear = myyear - 1;
+              createCalendar(myyear,mymonth);
+                }
+             let previousMonth =document.getElementById('prevMonth');
+              previousMonth.addEventListener('click',goToPreviousMonth);
+              function goToPreviousMonth(){
+              mymonth = mymonth - 1;
+              console.log(mymonth);
+              if( mymonth == -1){
+                myyear = myyear-1;
+                mymonth = 11;      
+                 }
+              createCalendar(myyear,mymonth);
+             }
+             let nextYear =document.getElementById('nextYear');
+             nextYear.addEventListener('click',goTonextYear);
+              function goTonextYear(){
+              myyear = myyear + 1;
+              createCalendar(myyear,mymonth);
+             }
+             let nextMonth =document.getElementById('nextMonth');
+             nextMonth.addEventListener('click',goTonextMonth);
+              function goTonextMonth(){
+              mymonth= mymonth + 1;
+              console.log(mymonth);
+              if( mymonth >11){
+                myyear = myyear+1;
+                mymonth = 0;    
+              }
+              createCalendar(myyear,mymonth);
+             }
 
+     // подсветить ячейку
+             let selectedTd;
+             let tableblue = document.getElementById('table')
+                 tableblue.onclick = function(event) {
+                 let target = event.target;
+
+                 while (target != this) {
+                 if (target.tagName == 'TD') {
+                 highlight(target);
+                  return;
+                 }
+                 target = target.parentNode;
+                 }
+                 }
+
+                 function highlight(node) {
+                 if (selectedTd) {
+                 selectedTd.classList.remove('blue');
+                }
+                  selectedTd = node;
+                 selectedTd.classList.add('blue');
+                 }
+    }
+                      
               function getDay(date) { 
              let day = date.getDay();
             if (day == 0) day = 7; 
            return day - 1;
-         }
+            }
 
     </script>
 </body>
