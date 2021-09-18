@@ -95,6 +95,7 @@
      
         createMyCalendar.addEventListener('click',function(){
             myyear = selectYear.value;
+            
            switch(selectMonth.value){
                case 'Январь':
                    mymonth = 0;
@@ -133,13 +134,9 @@
                    mymonth = 11;
                    break;     
            }
-           const newEle = document.createElement(createCalendar(myyear,mymonth));
-           myCalendar.append(newEle);
-           
-          
+           createCalendar(myyear,mymonth);
         })
-
-
+       
         //  var mymonth = new Date().getMonth();
         //   var myyear = new Date().getFullYear();
         //   createCalendar(myyear,mymonth);
@@ -173,16 +170,22 @@
              var monthName = monthName.toUpperCase();
              
 
-            myCalendar.innerHTML = table;
-             document.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
+             
+            const newEle = document.createElement('div');
 
-             let previousYear =document.getElementById('prevYear');
+            myCalendar.append(newEle);
+            newEle.innerHTML = table;
+       
+             newEle.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
+
+//перелистывание
+             let previousYear =newEle.querySelector('#prevYear');
               previousYear.addEventListener('click',goToPreviousYear);
               function goToPreviousYear(){
               myyear = myyear - 1;
               createCalendar(myyear,mymonth);
                 }
-             let previousMonth =document.getElementById('prevMonth');
+             let previousMonth =newEle.querySelector('#prevMonth');
               previousMonth.addEventListener('click',goToPreviousMonth);
               function goToPreviousMonth(){
               mymonth = mymonth - 1;
@@ -193,13 +196,13 @@
                  }
               createCalendar(myyear,mymonth);
              }
-             let nextYear =document.getElementById('nextYear');
+             let nextYear =newEle.querySelector('#nextYear');
              nextYear.addEventListener('click',goTonextYear);
               function goTonextYear(){
               myyear = myyear + 1;
               createCalendar(myyear,mymonth);
              }
-             let nextMonth =document.getElementById('nextMonth');
+             let nextMonth =newEle.querySelector('#nextMonth');
              nextMonth.addEventListener('click',goTonextMonth);
               function goTonextMonth(){
               mymonth= mymonth + 1;
@@ -213,7 +216,7 @@
 
      // подсветить ячейку
              let selectedTd;
-             let tableblue = document.getElementById('table')
+             let tableblue = newEle.querySelector('table')
                  tableblue.onclick = function(event) {
                  let target = event.target;
 
