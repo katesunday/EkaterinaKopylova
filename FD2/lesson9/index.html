@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock1</title>
+</head>
+<body>
+    <style>
+     #mainboard{
+         width: 500px;
+         height: 500px;
+         border-radius: 50%;
+         background-color: goldenrod;
+         position: relative;
+     }
+     #bgTime{
+         width: 70px;
+         height: 70px;
+         border-radius: 50%;
+         background-color: forestgreen;
+         text-align: center;
+         font-size: 58px;
+     }
+     #hourArrow{
+         height: 140px;
+         width: 15px;
+         background-color: black;
+         border-radius: 8px;
+         /* transform: rotate(180deg); */
+         transform-origin:50% 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         }
+     #minArrow{
+        height: 180px;
+         width: 8px;
+         background-color: black;
+         border-radius: 8px;
+         /* transform: rotate(90deg); */
+         transform-origin:50% 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         z-index: 1;
+     }
+     #secArrow{
+        height: 230px;
+         width: 4px;
+         background-color: black;
+         border-radius: 8px;
+         /* transform: rotate(270deg); */
+         transform-origin:50% 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         z-index: 1;
+		
+     }
+    </style>
+    <script>
+        // фон часов
+        let mainboard = document.createElement('div');
+        mainboard.id = 'mainboard';
+        document.body.append(mainboard);
+        //стрелки
+        let hourArrow = document.createElement('div');
+        hourArrow.id = 'hourArrow';
+        mainboard.append(hourArrow);
+        let minArrow = document.createElement('div');
+        minArrow.id = 'minArrow';
+        mainboard.append(minArrow);
+        let secArrow = document.createElement('div');
+        secArrow.id = 'secArrow';
+        mainboard.append(secArrow);
+// функция создания часов
+        clockCreate();
+        function clockCreate(){
+            let delta = Math.PI * 2 / 12;
+            var x = 250, y = 250, angle = 0;
+            var hour = 2;
+            for( let i = 0; i<12; i++){
+                 hour++;
+                 if(hour>12){
+                     hour = 1;
+                 }
+                 let bgTime = document.createElement('div'); // фон цифр
+                 bgTime.id = 'bgTime';
+                 mainboard.append(bgTime);
+                 let bgX = 35;
+                 let bgY = 35;
+                 bgTime.style.position = 'absolute';
+                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';
+                 bgTime.style.top = y - bgY + 200* Math.sin(angle) + 'px';
+                 bgTime.innerHTML = hour;
+                 angle += delta; 
+            }
+        }
+    //обновление часов
+       function upDate(){
+           let date = new Date();
+           let sec = date.getSeconds();
+           let min = date.getMinutes() + sec/60;
+           let hr = date.getHours()-12;
+           secArrow.style.transform = `rotate(${sec * 6}deg)`;
+           minArrow.style.transform = `rotate(${min * 6}deg)`;
+           hourArrow.style.transform = `rotate(${hr * 30}deg)`;
+       }
+       setInterval(upDate,1000);
+    // повороты стрелок
+    // secRotate();
+    //     function secRotate(){
+    //         let second = sec;
+            
+    //     }
+    </script>
+</body>
+</html>
