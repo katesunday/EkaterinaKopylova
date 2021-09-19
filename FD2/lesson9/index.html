@@ -103,18 +103,13 @@
            let date = new Date();
            let sec = date.getSeconds();
            let min = date.getMinutes() + sec/60;
-           let hr = date.getHours()-12;
+           let hr = (date.getHours()-12) + min/60;
            secArrow.style.transform = `rotate(${sec * 6}deg)`;
            minArrow.style.transform = `rotate(${min * 6}deg)`;
            hourArrow.style.transform = `rotate(${hr * 30}deg)`;
        }
        setInterval(upDate,1000);
-    // повороты стрелок
-    // secRotate();
-    //     function secRotate(){
-    //         let second = sec;
-            
-    //     }
+  
     </script>
 </body>
 </html>
