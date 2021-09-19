@@ -134,13 +134,18 @@
                    mymonth = 11;
                    break;     
            }
-           createCalendar(myyear,mymonth);
-        })
-       
-        //  var mymonth = new Date().getMonth();
-        //   var myyear = new Date().getFullYear();
-        //   createCalendar(myyear,mymonth);
-          
+           myCalendar.append(createCalendar(myyear,mymonth)) ;
+        });
+//удаление календаря
+
+       deleteCalendar.addEventListener('click', function(){
+        myCalendar.removeChild(myCalendar.childNodes[0])
+        if( !(myCalendar.childNodes[0])){
+            deleteCalendar.disabled = true;
+        }
+        });
+    
+// функция создания календаря          
           function createCalendar(myyear,mymonth){
           var month = mymonth;
           var askeddate = new Date(myyear,month);
@@ -177,46 +182,15 @@
             newEle.innerHTML = table;
        
              newEle.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
+            
 
 //перелистывание
-             let previousYear =newEle.querySelector('#prevYear');
-              previousYear.addEventListener('click',goToPreviousYear);
-              function goToPreviousYear(){
-              myyear = myyear - 1;
-              createCalendar(myyear,mymonth);
-                }
-             let previousMonth =newEle.querySelector('#prevMonth');
-              previousMonth.addEventListener('click',goToPreviousMonth);
-              function goToPreviousMonth(){
-              mymonth = mymonth - 1;
-              console.log(mymonth);
-              if( mymonth == -1){
-                myyear = myyear-1;
-                mymonth = 11;      
-                 }
-              createCalendar(myyear,mymonth);
-             }
-             let nextYear =newEle.querySelector('#nextYear');
-             nextYear.addEventListener('click',goTonextYear);
-              function goTonextYear(){
-              myyear = myyear + 1;
-              createCalendar(myyear,mymonth);
-             }
-             let nextMonth =newEle.querySelector('#nextMonth');
-             nextMonth.addEventListener('click',goTonextMonth);
-              function goTonextMonth(){
-              mymonth= mymonth + 1;
-              console.log(mymonth);
-              if( mymonth >11){
-                myyear = myyear+1;
-                mymonth = 0;    
-              }
-              createCalendar(myyear,mymonth);
-             }
+
+ 
 
      // подсветить ячейку
              let selectedTd;
-             let tableblue = newEle.querySelector('table')
+             let tableblue = newEle.querySelector('table');
                  tableblue.onclick = function(event) {
                  let target = event.target;
 
@@ -225,6 +199,11 @@
                  highlight(target);
                   return;
                  }
+                //  if(event.target.id == 'prevYear'){
+                //     myyear = myyear - 1;
+                //     event.childNodes = createCalendar(myyear,mymonth);
+                //     return;
+                //  }
                  target = target.parentNode;
                  }
                  }
@@ -236,6 +215,7 @@
                   selectedTd = node;
                  selectedTd.classList.add('blue');
                  }
+            return newEle;
     }
                       
               function getDay(date) { 
@@ -244,6 +224,40 @@
            return day - 1;
             }
 
+             //  let previousYear =newEle.querySelector('#prevYear');
+            //   previousYear.addEventListener('click',goToPreviousYear);
+            //   function goToPreviousYear(){
+            //   myyear = myyear - 1;
+            //   createCalendar(myyear,mymonth);
+            //     }
+            //  let previousMonth =newEle.querySelector('#prevMonth');
+            //   previousMonth.addEventListener('click',goToPreviousMonth);
+            //   function goToPreviousMonth(){
+            //   mymonth = mymonth - 1;
+            //   console.log(mymonth);
+            //   if( mymonth == -1){
+            //     myyear = myyear-1;
+            //     mymonth = 11;      
+            //      }
+            //   createCalendar(myyear,mymonth);
+            //  }
+            //  let nextYear =newEle.querySelector('#nextYear');
+            //  nextYear.addEventListener('click',goTonextYear);
+            //   function goTonextYear(){
+            //   myyear = myyear + 1;
+            //   createCalendar(myyear,mymonth);
+            //  }
+            //  let nextMonth =newEle.querySelector('#nextMonth');
+            //  nextMonth.addEventListener('click',goTonextMonth);
+            //   function goTonextMonth(){
+            //   mymonth= mymonth + 1;
+            //   console.log(mymonth);
+            //   if( mymonth >11){
+            //     myyear = myyear+1;
+            //     mymonth = 0;    
+            //   }
+            //   createCalendar(myyear,mymonth);
+            //  }
     </script>
 </body>
 </html>
