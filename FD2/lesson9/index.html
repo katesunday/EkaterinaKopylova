@@ -28,8 +28,8 @@
          width: 15px;
          background-color: black;
          border-radius: 8px;
-         /* transform: rotate(180deg); */
-         transform-origin:50% 0;
+         /* transform: rotate(180deg); */ 
+         transform-origin:0 50%; 
          position: absolute;
          top: 50%;
          left: 50%;
@@ -40,7 +40,7 @@
          background-color: black;
          border-radius: 8px;
          /* transform: rotate(90deg); */
-         transform-origin:50% 0;
+         transform-origin:0 50%;
          position: absolute;
          top: 50%;
          left: 50%;
@@ -52,7 +52,7 @@
          background-color: black;
          border-radius: 8px;
          /* transform: rotate(270deg); */
-         transform-origin:50% 0;
+         transform-origin:0 50%;
          position: absolute;
          top: 50%;
          left: 50%;
@@ -62,53 +62,57 @@
     </style>
     <script>
         // фон часов
-        let mainboard = document.createElement('div');
-        mainboard.id = 'mainboard';
-        document.body.append(mainboard);
+        let mainboard = document.createElement('div'); // создала див главной доски
+        mainboard.id = 'mainboard'; // дала айдишник, по айди описала стиль
+        document.body.append(mainboard);// добавила на страницу
         //стрелки
-        let hourArrow = document.createElement('div');
+        let hourArrow = document.createElement('div');// тоже самое с часовой стрелкой
         hourArrow.id = 'hourArrow';
         mainboard.append(hourArrow);
-        let minArrow = document.createElement('div');
+        let minArrow = document.createElement('div');// минутной стрелкой
         minArrow.id = 'minArrow';
         mainboard.append(minArrow);
-        let secArrow = document.createElement('div');
+        let secArrow = document.createElement('div');// секундной стрелкой
         secArrow.id = 'secArrow';
         mainboard.append(secArrow);
 // функция создания часов
         clockCreate();
         function clockCreate(){
-            let delta = Math.PI * 2 / 12;
-            var x = 250, y = 250, angle = 0;
-            var hour = 2;
-            for( let i = 0; i<12; i++){
-                 hour++;
-                 if(hour>12){
+            let delta = Math.PI * 2 / 12;// это угол поворота угла( нашла формулу в интернете)
+            var x = 250, y = 250, angle = 0;// ширина 500 и высота тоже, поэтому x и y по 250, а сам угол пока 0
+            var hour = 2; // начала от двойки потому что отсчет шел от 3ки, иначе у меня вылетали числа 13 и 14 
+            for( let i = 0; i<12; i++){ // цикл часов
+                 hour++;// увеличиваем час
+                 if(hour>12){// если больше 12 то начать считать от 1 
                      hour = 1;
                  }
                  let bgTime = document.createElement('div'); // фон цифр
                  bgTime.id = 'bgTime';
                  mainboard.append(bgTime);
-                 let bgX = 35;
+                 let bgX = 35;// потому что ширина и высота у меня 70
                  let bgY = 35;
                  bgTime.style.position = 'absolute';
-                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';
+                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';// честно нагугленная формула 
                  bgTime.style.top = y - bgY + 200* Math.sin(angle) + 'px';
-                 bgTime.innerHTML = hour;
-                 angle += delta; 
+                 bgTime.innerHTML = hour;// написать цифру
+                 angle += delta; // создать поворот
             }
         }
     //обновление часов
        function upDate(){
-           let date = new Date();
-           let sec = date.getSeconds();
-           let min = date.getMinutes() + sec/60;
-           let hr = (date.getHours()-12) + min/60;
-           secArrow.style.transform = `rotate(${sec * 6}deg)`;
-           minArrow.style.transform = `rotate(${min * 6}deg)`;
-           hourArrow.style.transform = `rotate(${hr * 30}deg)`;
+           let date = new Date();// получили дату
+           let sec = date.getSeconds();// получила секунды
+           let min = date.getMinutes() + sec/60;// секунды разделить на 60, чтобы получить точную минуту
+           let hr = (date.getHours()-12) + min/60;// тоже самое с часами, -12 чтобы получить час не в 24часовом формате
+           secArrow.style.transform = `rotate(${sec * 6}deg)`;// секунды также как и минуты
+           minArrow.style.transform = `rotate(${min * 6}deg)`; // 360//60 минут = 6 градусов на каждую минуту
+           hourArrow.style.transform = `rotate(${hr * 30}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
        }
        setInterval(upDate,1000);
+
+       // я так понимаю проблема в transform origin, потому что часы показывают правильное время, просто стрелка 
+       //крепится не тем концом
+       //она правым концом крепится к центур и правым же концом указывает на время, а надо чтобы крепилась левым
   
     </script>
 </body>
