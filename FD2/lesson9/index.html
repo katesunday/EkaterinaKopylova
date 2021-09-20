@@ -15,6 +15,7 @@
          background-color: goldenrod;
          position: relative;
      }
+   
      #bgTime{
          width: 70px;
          height: 70px;
@@ -28,19 +29,19 @@
          width: 15px;
          background-color: black;
          border-radius: 8px;
-         /* transform: rotate(180deg); */ 
-         transform-origin:0 50%; 
+         
+         transform-origin:0 0%; 
          position: absolute;
          top: 50%;
-         left: 50%;
+         left: 262px;
          }
      #minArrow{
         height: 180px;
          width: 8px;
          background-color: black;
          border-radius: 8px;
-         /* transform: rotate(90deg); */
-         transform-origin:0 50%;
+        
+         transform-origin:0 0%;
          position: absolute;
          top: 50%;
          left: 50%;
@@ -51,8 +52,8 @@
          width: 4px;
          background-color: black;
          border-radius: 8px;
-         /* transform: rotate(270deg); */
-         transform-origin:0 50%;
+         
+         transform-origin:0 0%;
          position: absolute;
          top: 50%;
          left: 50%;
@@ -65,6 +66,7 @@
         let mainboard = document.createElement('div'); // создала див главной доски
         mainboard.id = 'mainboard'; // дала айдишник, по айди описала стиль
         document.body.append(mainboard);// добавила на страницу
+       
         //стрелки
         let hourArrow = document.createElement('div');// тоже самое с часовой стрелкой
         hourArrow.id = 'hourArrow';
@@ -92,7 +94,7 @@
                  let bgX = 35;// потому что ширина и высота у меня 70
                  let bgY = 35;
                  bgTime.style.position = 'absolute';
-                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';// честно нагугленная формула 
+                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';// честно нагугленная формула // 250 это радиус всего круга, поэтому 200 чтобы цифры были внутри
                  bgTime.style.top = y - bgY + 200* Math.sin(angle) + 'px';
                  bgTime.innerHTML = hour;// написать цифру
                  angle += delta; // создать поворот
@@ -104,11 +106,11 @@
            let sec = date.getSeconds();// получила секунды
            let min = date.getMinutes() + sec/60;// секунды разделить на 60, чтобы получить точную минуту
            let hr = (date.getHours()-12) + min/60;// тоже самое с часами, -12 чтобы получить час не в 24часовом формате
-           secArrow.style.transform = `rotate(${sec * 6}deg)`;// секунды также как и минуты
-           minArrow.style.transform = `rotate(${min * 6}deg)`; // 360//60 минут = 6 градусов на каждую минуту
-           hourArrow.style.transform = `rotate(${hr * 30}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
+           secArrow.style.transform = `rotate(${(sec * 6)+180}deg)`;// секунды также как и минуты
+           minArrow.style.transform = `rotate(${(min * 6)+180}deg)`; // 360//60 минут = 6 градусов на каждую минуту
+           hourArrow.style.transform = `rotate(${(hr * 30)+180}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
        }
-    //    setInterval(upDate,1000);
+       setInterval(upDate,1000);
 
        // я так понимаю проблема в transform origin, потому что часы показывают правильное время, просто стрелка 
        //крепится не тем концом
