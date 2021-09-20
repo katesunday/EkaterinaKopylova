@@ -159,7 +159,7 @@
                 let thisMonthName = container.querySelector("caption .month").textContent;
                 let thisMonth = months.indexOf(thisMonthName) - 1;// из массива месяцев взять индекс выбранного месяца -1
                 console.log(target);
-                switch (target.className) {
+                switch (target.className) { // если имя таргета( места клика), то вызываем след функции
                     case "prevYear": goToPreviousYear(); break;
                     case "nextYear": goTonextYear(); break;
                     case "prevMonth": goToPreviousMonth();break;
@@ -168,17 +168,20 @@
                 }
                 function goToPreviousYear() {
                     thisYear--;
+                    container.innerHTML = createCalendar(thisYear, thisMonth);
                 }
                 function goTonextYear() {
                     thisYear++;
+                    container.innerHTML = createCalendar(thisYear, thisMonth);
                 }
                 function goToPreviousMonth(){
                     thisMonth --;
                    console.log(thisMonth);
-                  if( thisMonth == -1){
+                  if( thisMonth == -1){ // если месяц = -1, то сделать месяц 11ым
                     thisYear--;
                     thisMonth = 11;      
                     }
+                    container.innerHTML = createCalendar(thisYear, thisMonth);
                 }
                 function goToNextMonth(){
                  thisMonth++;
@@ -187,24 +190,25 @@
                  thisYear++;
                  thisMonth = 0;    
                   }
+                  container.innerHTML = createCalendar(thisYear, thisMonth);
                 }
-                container.innerHTML = createCalendar(thisYear, thisMonth);
-
-          //подсветить ячейку
-                let selectedTd;
                 
-                if(target.tagName != 'TD'){
+
+          //подсветить ячейку     
+               if(target.tagName != 'TD'){ // если таргет не тд, то ничего
                     return;
                 } 
-                 highlight(target);
+                 highlight(target); // иначе вызвать подсветку
 
-                 function highlight() {
-                 if (selectedTd) {
-                 selectedTd.classList.remove('blue');
-                }
-                  selectedTd = target;
-                 selectedTd.classList.add('blue');
-                 }
+               function highlight(){
+                var tds = container.querySelectorAll('td'); // массив всех тд-шек
+               for ( let i = 0; i< tds.length; i++){ // проходя по массиву убрать класс блу, если есть
+                   tds[i].classList.remove('blue');
+               } 
+               target.classList.add('blue'); // на таргет добавить класс
+               }
+          
+        
             }
         
     </script>
