@@ -43,37 +43,38 @@
             years.push(startYear--);
         }
         console.log(years);
-//buttons
+// ВЫпадающий список
         var selectYear = document.createElement('select');
             header.append(selectYear);
         var selectMonth = document.createElement('select')
             header.append(selectMonth);
+
+//кнопки удалить/создать календарь
         var createMyCalendar = document.createElement('button');
             createMyCalendar.textContent = 'Создать';
             header.append(createMyCalendar);
         var deleteCalendar = document.createElement('button');
             deleteCalendar.textContent = 'Удалить';
             header.append(deleteCalendar);
-
-        // var selectYearDefault = document.createElement('option');
-        //     selectYearDefault.textContent = 'Выбрать год';   
-            // selectYear.append(selectYearDefault);
+// СОЗДАНИЕ элементов ВЫПАДАЮЩЕГО СПИСКА option
+// для года
         for(i = 0; i< years.length; i++){
-           var allYears = years[i];
-          var elY = document.createElement('option');
-          elY.textContent = allYears;
-          elY.value = allYears;
+           var allYears = years[i]; // все года = массиву от years
+          var elY = document.createElement('option'); // создаем выборку
+          elY.textContent = allYears;// каждый выбор = элементу из массива
+          elY.value = allYears; // валью элемента = названию элемента из массива
           selectYear.append(elY);
       
         }
-     
+     // для месяца
         for( i = 0; i < months.length; i++){
-            var allMonths = months[i];
-            var elM = document.createElement('option');
-            elM.textContent = allMonths;
-            elM.value = allMonths;
+            var allMonths = months[i]; // все месяцы = массив из months
+            var elM = document.createElement('option');// создаем выборку
+            elM.textContent = allMonths;// каждый выбор = название элемента из массива
+            elM.value = i; // А ВЭЛЬЮ = ИНДЕКСУ! 
             selectMonth.append(elM);
         }
+    // проверка выбора 
         checkAddButton();
         selectYear.addEventListener('change',function(){
               console.log(selectYear.value);
@@ -92,64 +93,33 @@
             }
         }
       
-     
+     //  КНОПКА СОЗДАТЬ = ЧТО ДЕЛАЕТ
         createMyCalendar.addEventListener('click',function(){
-            myyear = selectYear.value;
-            
-           switch(selectMonth.value){
-               case 'Январь':
-                   mymonth = 0;
-                   break;
-                   case 'Февраль':
-                   mymonth = 1;
-                   break;
-                   case 'Март':
-                   mymonth = 2;
-                   break;
-                   case 'Апрель':
-                   mymonth = 3;
-                   break;
-                   case 'Май':
-                   mymonth = 4;
-                   break;
-                   case 'Июнь':
-                   mymonth = 5;
-                   break;
-                   case 'Июль':
-                   mymonth = 6;
-                   break;
-                   case 'Август':
-                   mymonth = 7;
-                   break;
-                   case 'Сентябрь':
-                   mymonth = 8;
-                   break;
-                   case 'Октябрь':
-                   mymonth = 9;
-                   break;
-                   case 'Ноябрь':
-                   mymonth = 10;
-                   break;
-                   case 'Декабрь':
-                   mymonth = 11;
-                   break;     
-           }
-           myCalendar.append(createCalendar(myyear,mymonth)) ;
+             let myyear = selectYear.value;
+            let mymonth = selectMonth.value - 1; // потому что 0 индекс это "выбрать месяц"
+            const newCalendar = document.createElement('div'); // создаем див для нового календаря
+            newCalendar.innerHTML = createCalendar(myyear,mymonth);// внутри него  - функция
+            newCalendar.addEventListener("click", calendarClickHandler); // по клику на ДИВ включаем слушатель
+            myCalendar.append(newCalendar);//  добавляем в див который уже есть в верстке
+        
         });
+  
+        
 //удаление календаря
 
        deleteCalendar.addEventListener('click', function(){
-        myCalendar.removeChild(myCalendar.childNodes[0])
+        myCalendar.removeChild(myCalendar.childNodes[0]) // взять из дива все дочерние узлы и удалить самый первый[0]
         if( !(myCalendar.childNodes[0])){
             deleteCalendar.disabled = true;
         }
         });
     
-// функция создания календаря          
+// функция СОЗДАНИЯ календаря          
           function createCalendar(myyear,mymonth){
-          var month = mymonth;
+          var month = mymonth;// равен индексу выбранного элемента -1
           var askeddate = new Date(myyear,month);
-          var table = '<table id = "table"><tr><td><button id = "prevYear"><<</button></td><td><button id = "prevMonth"><</button></td><td td colspan = "3"></td><td><button id = "nextMonth">></button></td><td><button id = "nextYear">>></button></td><caption>Месяц Год</caption><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
+          var monthName = months[month+1];// получаем имя месяца: берем массив месяцев с ИНДЕКСОМ номера месяца +1
+          var table = `<table class="table"><caption><span class="month">${monthName}</span> <span class="year">${myyear}</span> года</caption><tr><td><button class="prevYear"><<</button></td><td><button class="prevMonth"><</button></td><td colspan="3"></td><td><button class="nextMonth">></button></td><td><button class="nextYear">>></button></td><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>`;
             
         
             for (let i = 0; i < getDay(askeddate); i++) {
@@ -170,52 +140,8 @@
              }
 
              table += '</tr></table>';
-             askeddate.setMonth(month);
-             var monthName = askeddate.toLocaleString('default', { month: 'long' });
-             var monthName = monthName.toUpperCase();
-             
-
-             
-            const newEle = document.createElement('div');
-
-            myCalendar.append(newEle);
-            newEle.innerHTML = table;
-       
-             newEle.querySelector('caption').innerText = `${monthName} ${myyear} ГОДА`;
-            
-
-//перелистывание
-
- 
-
-     // подсветить ячейку
-             let selectedTd;
-             let tableblue = newEle.querySelector('table');
-                 tableblue.onclick = function(event) {
-                 let target = event.target;
-
-                 while (target != this) {
-                 if (target.tagName == 'TD') {
-                 highlight(target);
-                  return;
-                 }
-                //  if(event.target.id == 'prevYear'){
-                //     myyear = myyear - 1;
-                //     event.childNodes = createCalendar(myyear,mymonth);
-                //     return;
-                //  }
-                 target = target.parentNode;
-                 }
-                 }
-
-                 function highlight(node) {
-                 if (selectedTd) {
-                 selectedTd.classList.remove('blue');
-                }
-                  selectedTd = node;
-                 selectedTd.classList.add('blue');
-                 }
-            return newEle;
+    
+            return table;
     }
                       
               function getDay(date) { 
@@ -224,40 +150,63 @@
            return day - 1;
             }
 
-             //  let previousYear =newEle.querySelector('#prevYear');
-            //   previousYear.addEventListener('click',goToPreviousYear);
-            //   function goToPreviousYear(){
-            //   myyear = myyear - 1;
-            //   createCalendar(myyear,mymonth);
-            //     }
-            //  let previousMonth =newEle.querySelector('#prevMonth');
-            //   previousMonth.addEventListener('click',goToPreviousMonth);
-            //   function goToPreviousMonth(){
-            //   mymonth = mymonth - 1;
-            //   console.log(mymonth);
-            //   if( mymonth == -1){
-            //     myyear = myyear-1;
-            //     mymonth = 11;      
-            //      }
-            //   createCalendar(myyear,mymonth);
-            //  }
-            //  let nextYear =newEle.querySelector('#nextYear');
-            //  nextYear.addEventListener('click',goTonextYear);
-            //   function goTonextYear(){
-            //   myyear = myyear + 1;
-            //   createCalendar(myyear,mymonth);
-            //  }
-            //  let nextMonth =newEle.querySelector('#nextMonth');
-            //  nextMonth.addEventListener('click',goTonextMonth);
-            //   function goTonextMonth(){
-            //   mymonth= mymonth + 1;
-            //   console.log(mymonth);
-            //   if( mymonth >11){
-            //     myyear = myyear+1;
-            //     mymonth = 0;    
-            //   }
-            //   createCalendar(myyear,mymonth);
-            //  }
+    // функция клика на календарь
+            function calendarClickHandler(e) { 
+                e.preventDefault();
+                const target = e.target; // смотрим где клик
+                let container = e.currentTarget; // или this // контейнер это тот див, где кликнули
+                let thisYear = container.querySelector("caption .year").textContent;
+                let thisMonthName = container.querySelector("caption .month").textContent;
+                let thisMonth = months.indexOf(thisMonthName) - 1;// из массива месяцев взять индекс выбранного месяца -1
+                console.log(target);
+                switch (target.className) {
+                    case "prevYear": goToPreviousYear(); break;
+                    case "nextYear": goTonextYear(); break;
+                    case "prevMonth": goToPreviousMonth();break;
+                    case "nextMonth": goToNextMonth();break;
+                    default: break;
+                }
+                function goToPreviousYear() {
+                    thisYear--;
+                }
+                function goTonextYear() {
+                    thisYear++;
+                }
+                function goToPreviousMonth(){
+                    thisMonth --;
+                   console.log(thisMonth);
+                  if( thisMonth == -1){
+                    thisYear--;
+                    thisMonth = 11;      
+                    }
+                }
+                function goToNextMonth(){
+                 thisMonth++;
+                 console.log(thisMonth);
+                 if( thisMonth >11){
+                 thisYear++;
+                 thisMonth = 0;    
+                  }
+                }
+                container.innerHTML = createCalendar(thisYear, thisMonth);
+
+          //подсветить ячейку
+                let selectedTd;
+                
+                if(target.tagName != 'TD'){
+                    return;
+                } 
+                 highlight(target);
+
+                 function highlight() {
+                 if (selectedTd) {
+                 selectedTd.classList.remove('blue');
+                }
+                  selectedTd = target;
+                 selectedTd.classList.add('blue');
+                 }
+            }
+        
     </script>
 </body>
 </html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calendar3</title>
+</head>
+<body>
+    <style>
+        table {
+          border-collapse: collapse;
+        }
+
+        td,
+        th {
+          border: 1px solid black;
+          padding: 15px;
+          text-align: center;
+        }
+
+        th {
+          font-style: italic;
+          background-color: #36bbd0;
+        }
+        td:hover{
+            background-color: #36bbd0;
+        }
+        .blue{
+            background-color: #36bbd0;
+        }
+      </style>
+        <h3>Создай календарь!</h3>
+        <div id="header"></div>
+        <div id="calendar"></div>
+    <script>
+        var header = document.getElementById('header');
+        var myCalendar = document.getElementById('calendar');
+        var months = ["Выбрать месяц", "Январь", "Февраль", "Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+        var startYear = new Date().getFullYear();
+        var years = ['Выбрать год'];
+        while(startYear >= 1980){
+            years.push(startYear--);
+        }
+        console.log(years);
+//buttons
+        var selectYear = document.createElement('select');
+            header.append(selectYear);
+        var selectMonth = document.createElement('select')
+            header.append(selectMonth);
+        var createMyCalendar = document.createElement('button');
+            createMyCalendar.textContent = 'Создать';
+            header.append(createMyCalendar);
+        var deleteCalendar = document.createElement('button');
+            deleteCalendar.textContent = 'Удалить';
+            header.append(deleteCalendar);
+
+        // var selectYearDefault = document.createElement('option');
+        //     selectYearDefault.textContent = 'Выбрать год';
+            // selectYear.append(selectYearDefault);
+        for(i = 0; i< years.length; i++){
+           var allYears = years[i];
+          var elY = document.createElement('option');
+          elY.textContent = allYears;
+          elY.value = allYears;
+          selectYear.append(elY);
+
+        }
+
+        for( i = 0; i < months.length; i++){
+            var allMonths = months[i];
+            var elM = document.createElement('option');
+            elM.textContent = allMonths;
+            elM.value = i;
+            selectMonth.append(elM);
+        }
+        checkAddButton();
+        selectYear.addEventListener('change',function(){
+              console.log(selectYear.value);
+              checkAddButton();
+          });
+        selectMonth.addEventListener('change',function(){
+            console.log(months[selectMonth.value]);
+            checkAddButton();
+        });
+        function checkAddButton(){
+            if( selectYear.value === 'Выбрать год' || selectMonth.value === 'Выбрать месяц'){
+                createMyCalendar.disabled = true;
+            }
+            else{
+                createMyCalendar.disabled = false;
+            }
+        }
+
+        createMyCalendar.addEventListener('click', function(){
+            let myyear = selectYear.value;
+            let mymonth = selectMonth.value - 1;
+
+            const newCalendar = document.createElement('div');
+            newCalendar.innerHTML = createCalendar(myyear,mymonth);
+            newCalendar.addEventListener("click", calendarClickHandler);
+            myCalendar.append(newCalendar);
+        });
+//удаление календаря
+
+       deleteCalendar.addEventListener('click', function(){
+        myCalendar.removeChild(myCalendar.childNodes[0])
+        if( !(myCalendar.childNodes[0])){
+            deleteCalendar.disabled = true;
+        }
+        });
+
+// функция создания календаря
+          function createCalendar(myyear, mymonth){
+          var month = mymonth;
+          var askeddate = new Date(myyear,mymonth);
+          var monthName = months[month+1];
+
+          var table = `<table class="table"><caption><span class="month">${monthName}</span> <span class="year">${myyear}</span> ГОДА</caption><tr><td><button class="prevYear"><<</button></td><td><button class="prevMonth"><</button></td><td colspan="3"></td><td><button class="nextMonth">></button></td><td><button class="nextYear">>></button></td><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>`;
+
+
+            for (let i = 0; i < getDay(askeddate); i++) {
+            table += '<td></td>';
+             }
+             while (askeddate.getMonth() == month) {
+             table = table + '<td>' + askeddate.getDate() + '</td>';
+             if (getDay(askeddate) % 7 == 6) {
+             table += '</tr><tr>';
+             }
+
+            askeddate.setDate(askeddate.getDate() + 1);
+            }
+            if (getDay(askeddate) != 0) {
+             for (let i = getDay(askeddate); i < 7; i++) {
+             table += '<td></td>';
+             }
+             }
+
+             table += '</tr></table>';
+
+
+//перелистывание
+
+
+
+     // подсветить ячейку
+             /*let selectedTd;
+             let tableblue = newEle.querySelector('table');
+                 tableblue.onclick = function(event) {
+                 let target = event.target;
+
+                 while (target != this) {
+                 if (target.tagName == 'TD') {
+                 highlight(target);
+                  return;
+                 }
+                 target = target.parentNode;
+                 }
+                 }
+
+                 function highlight(node) {
+                     if (selectedTd) {
+                         selectedTd.classList.remove('blue');
+                     }
+                     selectedTd = node;
+                     selectedTd.classList.add('blue');
+                 }*/
+            return table;
+    }
+
+              function getDay(date) {
+             let day = date.getDay();
+            if (day == 0) day = 7;
+           return day - 1;
+            }
+
+            function calendarClickHandler(e) {
+                e.preventDefault();
+                const target = e.target;
+                let container = e.currentTarget; // или this
+                let thisYear = container.querySelector("caption .year").textContent;
+                let thisMonthName = container.querySelector("caption .month").textContent;
+                let thisMonth = months.indexOf(thisMonthName) - 1;
+
+                console.log(target);
+
+                switch (target.className) {
+                    case "prevYear": goToPreviousYear(); break;
+                    case "nextYear": goTonextYear(); break;
+                    default: break;
+                }
+
+                function goToPreviousYear() {
+                    thisYear--;
+                }
+
+                function goTonextYear() {
+                    thisYear++;
+                }
+
+                container.innerHTML = createCalendar(thisYear, thisMonth);
+            }
+
+             //  let previousYear =newEle.querySelector('#prevYear');
+            //   previousYear.addEventListener('click',goToPreviousYear);
+            //   function goToPreviousYear(){
+            //   myyear = myyear - 1;
+            //   createCalendar(myyear,mymonth);
+            //     }
+            //  let previousMonth =newEle.querySelector('#prevMonth');
+            //   previousMonth.addEventListener('click',goToPreviousMonth);
+            //   function goToPreviousMonth(){
+            //   mymonth = mymonth - 1;
+            //   console.log(mymonth);
+            //   if( mymonth == -1){
+            //     myyear = myyear-1;
+            //     mymonth = 11;
+            //      }
+            //   createCalendar(myyear,mymonth);
+            //  }
+            //  let nextYear =newEle.querySelector('#nextYear');
+            //  nextYear.addEventListener('click',goTonextYear);
+            //   function goTonextYear(){
+            //   myyear = myyear + 1;
+            //   createCalendar(myyear,mymonth);
+            //  }
+            //  let nextMonth =newEle.querySelector('#nextMonth');
+            //  nextMonth.addEventListener('click',goTonextMonth);
+            //   function goTonextMonth(){
+            //   mymonth= mymonth + 1;
+            //   console.log(mymonth);
+            //   if( mymonth >11){
+            //     myyear = myyear+1;
+            //     mymonth = 0;
+            //   }
+            //   createCalendar(myyear,mymonth);
+            //  }
+    </script>
+</body>
+</html>

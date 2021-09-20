@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock-svg</title>
+</head>
+<body>
+    <svg id = 'svg' height = '500' width = '500'>
+    </svg>
+    <style>
+      
+    </style>
+    <script>
+        const svgNs = 'http://www.w3.org/2000/svg';
+        drawClock();
+        function drawClock(){
+         const svg = document.getElementById('svg');
+         const w = parseFloat(svg.getAttributeNS(null,'width'));
+         const h = parseFloat(svg.getAttributeNS(null,'height'));
+
+         let mainboard = document.createElementNS(svgNs,'circle');
+         mainboard.setAttributeNS(null,'cx',w/2);
+         mainboard.setAttributeNS(null,'cy',h/2);
+         mainboard.setAttributeNS(null,'r',w/2);
+         mainboard.setAttributeNS(null,'fill','goldenrod');
+         mainboard.setAttributeNS(null,'stroke','none');
+         svg.append(mainboard);
+
+         let delta = Math.PI * 2 / 12;
+            var x = 250, y = 250, angle = 0;
+            var hour = 2;
+            for( let i = 0; i<12; i++){
+                 hour++;
+                 if(hour>12){
+                     hour = 1;
+                 }
+                 let bgTime = document.createElementNS(svgNs,'circle'); // фон цифр
+                 bgTime.id = 'bgTime';
+                 bgTime.setAttributeNS(null,'cx',35);
+                 bgTime.setAttributeNS(null,'cy',35);
+                 bgTime.setAttributeNS(null,'r',35);
+                 bgTime.setAttributeNS(null,'fill','forestgreen');
+                 bgTime.setAttributeNS(null,'stroke','none');
+                 svg.append(bgTime);
+                 let bgX = 35;
+                 let bgY = 35;
+                 bgTime.style.position = 'absolute';
+                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';
+                 bgTime.style.top = y - bgY + 200* Math.sin(angle) + 'px';
+                 bgTime.innerHTML = hour;
+                 angle += delta; 
+            }
+        }
+    </script>
+</body>
+</html>
