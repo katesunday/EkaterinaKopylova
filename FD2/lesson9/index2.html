@@ -66,6 +66,26 @@
                  secline.setAttributeNS(null,'stroke','black');
                  secline.setAttributeNS(null,'stroke-width','4');
                  svg.append(secline);
+        //цифровые часы
+                function UpdateDigital(){ //функция возвращает строковую дату
+                    return new Date().toTimeString().replace(/ .*/, '');
+                }
+                 let digitaltime = document.createElementNS(svgNs,'text'); // создаем текст
+                 digitaltime.id = 'digitaltime';
+                 digitaltime.setAttribute('class', 'digitaltime');
+                 digitaltime.setAttributeNS(null,'font-size','36px');
+                 let digW = digitaltime.getBBox().width;
+                 digitaltime.setAttributeNS(null,'x',185);
+                 digitaltime.setAttributeNS(null,'y',160);
+
+                 var currTime =  UpdateDigital();
+                 svg.append(digitaltime);
+                  
+                 setInterval(() => {
+                    digitaltime.textContent  = UpdateDigital() // текст равен функции, которая возвращает строку
+                 }, 1000);
+                
+
 
             // проходя циклом от 1 до 12 создаем цифры     
             for( let i = 0; i<12; i++){
@@ -87,7 +107,7 @@
                  text.setAttributeNS(null,'y',(y+10)  + 200* Math.sin(angle));
                  text.setAttributeNS(null,'fill','black');
                  text.setAttributeNS(null,'font-size','36px');
-                 text.innerHTML = hour;
+                 text.textContent = hour;
                  if(hour>9){
                     text.setAttributeNS(null,'x',(x-20) + 200* Math.cos(angle)); // двухзначным цифрам нужно больше места
                  text.setAttributeNS(null,'y',(y+10)  + 200* Math.sin(angle));
@@ -109,6 +129,8 @@
            secArrow.style.transform = `rotate(${(sec * 6)}deg)`;// секунды также как и минуты
            minArrow.style.transform = `rotate(${(min * 6)}deg)`; // 360//60 минут = 6 градусов на каждую минуту
            hourArrow.style.transform = `rotate(${(hr * 30)}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
+
+           let digclock = document.getElementById('digitaltime');
        }
        setInterval(upDate,1000);
 
