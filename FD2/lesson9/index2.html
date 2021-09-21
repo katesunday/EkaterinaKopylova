@@ -10,17 +10,21 @@
     <svg id = 'svg' height = '500' width = '500'>
     </svg>
     <style>
-      
+      #secline, #minline, #hourline{
+          transform-origin: 50%;
+      }
     </style>
     <script>
-        const svgNs = 'http://www.w3.org/2000/svg';
-        drawClock();
+        const svgNs = 'http://www.w3.org/2000/svg'; // документация
+
+        drawClock(); //функция рисующая часы
+
         function drawClock(){
          const svg = document.getElementById('svg');
          const w = parseFloat(svg.getAttributeNS(null,'width'));
          const h = parseFloat(svg.getAttributeNS(null,'height'));
 
-         let mainboard = document.createElementNS(svgNs,'circle');
+         let mainboard = document.createElementNS(svgNs,'circle');// фон часов
          mainboard.setAttributeNS(null,'cx',w/2);
          mainboard.setAttributeNS(null,'cy',h/2);
          mainboard.setAttributeNS(null,'r',w/2);
@@ -28,9 +32,42 @@
          mainboard.setAttributeNS(null,'stroke','none');
          svg.append(mainboard);
 
-         let delta = Math.PI * 2 / 12;
+         let delta = Math.PI * 2 / 12; // 
             var x = 250, y = 250, angle = 0;
             var hour = 2;
+        // стрелка часовая
+                let hourline = document.createElementNS(svgNs,'line');
+                 hourline.id = 'hourline';
+                 hourline.setAttributeNS(null,'x1',250)
+                 hourline.setAttributeNS(null,'x2',250)
+                 hourline.setAttributeNS(null,'y1',250)
+                 hourline.setAttributeNS(null,'y2',110)
+                 hourline.setAttributeNS(null,'stroke','black');
+                 hourline.setAttributeNS(null,'stroke-width','15');
+                 svg.append(hourline);
+
+        // стрелка минутная
+                 let minline = document.createElementNS(svgNs,'line');
+                 minline.id = 'minline';
+                 minline.setAttributeNS(null,'x1',250)
+                 minline.setAttributeNS(null,'x2',250)
+                 minline.setAttributeNS(null,'y1',250)
+                 minline.setAttributeNS(null,'y2',95)
+                 minline.setAttributeNS(null,'stroke','black');
+                 minline.setAttributeNS(null,'stroke-width','8');
+                 svg.append(minline);
+        // стрелка секундная
+                 let secline = document.createElementNS(svgNs,'line');
+                 secline.id = 'secline';
+                 secline.setAttributeNS(null,'x1',250)
+                 secline.setAttributeNS(null,'x2',250)
+                 secline.setAttributeNS(null,'y1',250)
+                 secline.setAttributeNS(null,'y2',85)
+                 secline.setAttributeNS(null,'stroke','black');
+                 secline.setAttributeNS(null,'stroke-width','4');
+                 svg.append(secline);
+
+            // проходя циклом от 1 до 12 создаем цифры     
             for( let i = 0; i<12; i++){
                  hour++;
                  if(hour>12){
@@ -38,21 +75,44 @@
                  }
                  let bgTime = document.createElementNS(svgNs,'circle'); // фон цифр
                  bgTime.id = 'bgTime';
-                 bgTime.setAttributeNS(null,'cx',35);
-                 bgTime.setAttributeNS(null,'cy',35);
-                 bgTime.setAttributeNS(null,'r',35);
+                 bgTime.setAttributeNS(null,'cx',x  + 200* Math.cos(angle));
+                 bgTime.setAttributeNS(null,'cy',y  + 200* Math.sin(angle));
+                 bgTime.setAttributeNS(null,'r',33);
                  bgTime.setAttributeNS(null,'fill','forestgreen');
                  bgTime.setAttributeNS(null,'stroke','none');
                  svg.append(bgTime);
-                 let bgX = 35;
-                 let bgY = 35;
-                 bgTime.style.position = 'absolute';
-                 bgTime.style.left = x - bgX + 200* Math.cos(angle) + 'px';
-                 bgTime.style.top = y - bgY + 200* Math.sin(angle) + 'px';
-                 bgTime.innerHTML = hour;
+
+                 let text = document.createElementNS(svgNs,'text'); // сами цифры
+                 text.setAttributeNS(null,'x',(x-10) + 200* Math.cos(angle)); // чтобы размесить по центру от радиуса 200
+                 text.setAttributeNS(null,'y',(y+10)  + 200* Math.sin(angle));
+                 text.setAttributeNS(null,'fill','black');
+                 text.setAttributeNS(null,'font-size','36px');
+                 text.innerHTML = hour;
+                 if(hour>9){
+                    text.setAttributeNS(null,'x',(x-20) + 200* Math.cos(angle)); // двухзначным цифрам нужно больше места
+                 text.setAttributeNS(null,'y',(y+10)  + 200* Math.sin(angle));
+                 }
+                 svg.append(text)
+
                  angle += delta; 
             }
         }
-    </script>
+        
+        function upDate(){
+           let date = new Date();// получили дату
+           let sec = date.getSeconds();// получила секунды
+           let min = date.getMinutes() + sec/60;// секунды разделить на 60, чтобы получить точную минуту
+           let hr = (date.getHours()-12) + min/60;// тоже самое с часами, -12 чтобы получить час не в 24часовом формате
+           let secArrow = document.getElementById('secline');
+           let minArrow = document.getElementById('minline');
+           let hourArrow = document.getElementById('hourline');
+           secArrow.style.transform = `rotate(${(sec * 6)}deg)`;// секунды также как и минуты
+           minArrow.style.transform = `rotate(${(min * 6)}deg)`; // 360//60 минут = 6 градусов на каждую минуту
+           hourArrow.style.transform = `rotate(${(hr * 30)}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
+       }
+       setInterval(upDate,1000);
+
+
+   </script>
 </body>
 </html>
