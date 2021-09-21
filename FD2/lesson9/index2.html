@@ -67,26 +67,22 @@
                  secline.setAttributeNS(null,'stroke-width','4');
                  svg.append(secline);
         //цифровые часы
-                function UpdateDigital(){ //функция возвращает строковую дату
-                    return new Date().toTimeString().replace(/ .*/, '');
-                }
+               
                  let digitaltime = document.createElementNS(svgNs,'text'); // создаем текст
                  digitaltime.id = 'digitaltime';
                  digitaltime.setAttribute('class', 'digitaltime');
                  digitaltime.setAttributeNS(null,'font-size','36px');
-                 let digW = digitaltime.getBBox().width;
                  digitaltime.setAttributeNS(null,'x','50%'); 
                  digitaltime.setAttributeNS(null,'y','35%');
                  digitaltime.setAttributeNS(null,'text-anchor','middle');
-
-
-
-                 var currTime =  UpdateDigital();
                  svg.append(digitaltime);
-                  
+
                  setInterval(() => {
                     digitaltime.textContent  = UpdateDigital() // текст равен функции, которая возвращает строку
                  }, 1000);
+                 function UpdateDigital(){ //функция возвращает строковую дату
+                    return new Date().toTimeString().replace(/ .*/, '');
+                }
                 
 
 
