@@ -75,9 +75,11 @@
                  digitaltime.setAttribute('class', 'digitaltime');
                  digitaltime.setAttributeNS(null,'font-size','36px');
                  let digW = digitaltime.getBBox().width;
-                 digitaltime.setAttributeNS(null,'x',185); 
-                //  digitaltime.setAttributeNS(null,'x',(w/2)-digW/2); -  вот это возвращает 250
-                 digitaltime.setAttributeNS(null,'y',160);
+                 digitaltime.setAttributeNS(null,'x','50%'); 
+                 digitaltime.setAttributeNS(null,'y','35%');
+                 digitaltime.setAttributeNS(null,'text-anchor','middle');
+
+
 
                  var currTime =  UpdateDigital();
                  svg.append(digitaltime);
