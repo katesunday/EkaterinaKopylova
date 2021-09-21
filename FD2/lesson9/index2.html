@@ -75,7 +75,8 @@
                  digitaltime.setAttribute('class', 'digitaltime');
                  digitaltime.setAttributeNS(null,'font-size','36px');
                  let digW = digitaltime.getBBox().width;
-                 digitaltime.setAttributeNS(null,'x',185);
+                 digitaltime.setAttributeNS(null,'x',185); 
+                //  digitaltime.setAttributeNS(null,'x',(w/2)-digW/2); -  вот это возвращает 250
                  digitaltime.setAttributeNS(null,'y',160);
 
                  var currTime =  UpdateDigital();
