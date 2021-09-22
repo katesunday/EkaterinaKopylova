@@ -72,6 +72,7 @@
             let widthLineH = 15;
             let widthLineM = 10;
             let widthLineS = 5;
+            let textFont = '35px Arial';
             
        
             if(clock && clock.getContext('2d')){
@@ -115,6 +116,14 @@
                 ctx.lineTo(rMax,85);
                 ctx.stroke();
                 ctx.resetTransform();
+
+                //цифровые часы
+                const UpdateDigital = function(){ //функция возвращает строковую дату
+                    return new Date().toTimeString().replace(/ .*/, '');
+                }
+
+                ctx.font = textFont;
+                ctx.fillText(UpdateDigital(),rMax -ctx.measureText(UpdateDigital()).width/2 ,rMax/2);
 
                 requestAnimationFrame(drawArrows);
             }
