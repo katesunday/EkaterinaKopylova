@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock-canvas</title>
+</head>
+<body>
+    <div>
+        <canvas id="clock" width="500" height="500"></canvas>
+    </div>
+    <script>
+        const drawClock = function(){
+            const clock = document.getElementById('clock');
+            if(clock && clock.getContext('2d')){
+                let ctx = clock.getContext('2d');
+               
+                //рисуем фон
+                ctx.fillStyle = 'goldenrod';
+                ctx.beginPath();
+                ctx.arc(250,250,250,0,2*Math.PI);
+                ctx.fill();
+
+                //фоны цифр
+                let delta = 360/ 12; // поворот для 12 частей по кругу
+                let x = 250;
+                let y = 250;
+                let angle = 0; // x и у = центр круга, угол изначально ноль
+                let hour = 5;
+                let rMax = 250;
+                let rMin = 35;
+                let angleRadian = (Math.PI/180)* parseFloat(angle); // формула получения радиана + parseFloat разбирает строковый аргумент и возвращает число с плавающей запятой.
+          
+                for( let i = 1; i<=12; i++){
+                    hour++;
+                 if(hour>12){
+                     hour = 1;
+                    }
+                    ctx.fillStyle = 'forestgreen';
+                    ctx.beginPath();
+                    ctx.arc((x-45) * Math.sin(angleRadian) + rMax,(y-45) * Math.cos(angleRadian)+ rMax,rMin,0,2*Math.PI); // 
+                    ctx.fill();
+                    //цифры часов  
+                    ctx.fillStyle = 'black';
+                    ctx.font = '28px Arial';
+                    let smallCenterX = ((x-45) * Math.sin(angleRadian) + rMax); // 
+                    let smallCenterY = ((y-45) * Math.cos(angleRadian)+ rMax);
+                    ctx.fillText(hour,smallCenterX - ctx.measureText(hour).width/2,smallCenterY+ parseInt(ctx.font) - 20);
+                    
+                    //ctx.measureText(hour).width/2 = измеряет ширину текста/2
+                    //parseInt(ctx.font) - 20 = размер шрифта - 20
+
+                    angle += delta; 
+                    angleRadian = -(Math.PI/180)* parseFloat(angle);
+                }
+
+            }
+            
+        }
+        const drawArrows = function(){
+
+            const clock = document.getElementById('clock');
+            var date = new Date();
+            var sec = date.getSeconds();
+            var min = date.getMinutes()+ sec/60;
+            var hr = (date.getHours()-12)+ min/60;
+            let hourRadian = Math.PI/180*(hr*30);
+            let minRadian = Math.PI/180*(min*6);
+            let secRadian = Math.PI/180*(sec*6);
+            let rMax = 250;
+            let widthLineH = 15;
+            let widthLineM = 10;
+            let widthLineS = 5;
+            
+       
+            if(clock && clock.getContext('2d')){
+                let ctx = clock.getContext('2d');
+               
+                drawClock();
+                 
+                //стрелки
+                //часовая стрелка     
+                ctx.lineWidth = widthLineH;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.translate(rMax,rMax);
+                ctx.rotate(hourRadian);
+                ctx.translate(-rMax,-rMax);
+                ctx.moveTo(rMax,rMax);
+                ctx.lineTo(rMax,140);
+                ctx.stroke();
+                ctx.resetTransform();
+
+              //минутная стрелка
+                ctx.lineWidth = widthLineM;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.translate(rMax,rMax);
+                ctx.rotate(minRadian);
+                ctx.translate(-rMax,-rMax);
+                ctx.moveTo(rMax,rMax);
+                ctx.lineTo(rMax,100);
+                ctx.stroke();
+                ctx.resetTransform();
+
+               //cекундная стрелка
+                ctx.lineWidth = widthLineS;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.translate(rMax,rMax);
+                ctx.rotate(secRadian);
+                ctx.translate(-rMax,-rMax);
+                ctx.moveTo(rMax,rMax);
+                ctx.lineTo(rMax,85);
+                ctx.stroke();
+                ctx.resetTransform();
+
+                requestAnimationFrame(drawArrows);
+            }
+
+           
+        }
+           
+      
+        drawArrows();
+
+    </script>
+</body>
+</html>
