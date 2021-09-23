@@ -148,15 +148,18 @@
       window.onkeydown = function moveUpR1(){
           switch(event.keyCode){
           case 38:
-            moveUp -= 4;
+            moveUp -= 7;
             racket1.style.top =r1.posY+ moveUp + 'px';
               if(racket1.style.top<=0){
-                racket1.style.top =0;
+                racket1.style.top =0 + 'px';
               }
               break;
             case 40:
                 moveDown += 4;
                 racket1.style.top =r1.posY+ moveDown + 'px';
+                if(racket1.style.top>=gameHeight){
+                    racket1.style.top = gameHeight+'px';
+                }
                 break;
           }
       }
