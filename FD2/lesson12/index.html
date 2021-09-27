@@ -31,6 +31,21 @@
             position: absolute;
 
         }
+        #score{
+            margin-left: 215px;
+            font-size: 45px;
+        }
+        .startBtn{
+            width: 100px;
+            height: 30px;
+            font-size: 20px;
+        }
+        #countdown{
+            font-size: 45px;
+            color: red;
+            margin-left: 200px;
+        }
+
       
     </style>
     <script>
@@ -44,11 +59,19 @@
         startBtn.className = 'startBtn';
         startBtn.textContent = 'Старт!';
         startDiv.append(startBtn);
-        startBtn.addEventListener('click',start);
+        startBtn.addEventListener('click',startGame);
 
         let score = document.createElement('span');//табло
-        score.className = 'score';
+        let leftPlayer = 0;
+        let rightPlayer = 0;
+        score.id = 'score';
+        score.textContent = `${leftPlayer}:${rightPlayer}`;
         startDiv.append(score);
+
+        let countdown = document.createElement('span');// обратный отсчет
+        countdown.id = 'countdown';
+        countdown.textContent = '';
+        startDiv.append(countdown);
 
         let gameDiv = document.createElement('div');//див самой игры
         gameDiv.className = 'gameDiv';
@@ -70,11 +93,11 @@
                                  height:${racketHeight}px;`;
         gameDiv.append(racket1);
         gameDiv.append(racket2);
-//РАКЕТКА 1
+//РАКЕТКА 1 левая
         var r1 = {
         posX : 0,
         posY : gameHeight/2 - racketHeight/2,
-        speedY : 1,
+        speedY : 10,
         update: function(){
             var racketElem1 = document.getElementById('racket1');
             racketElem1.style.left=this.posX+"px";
@@ -82,11 +105,11 @@
         }
         }
         r1.update();
-// РАКЕТКА 2
+// РАКЕТКА 2 правая
         var r2 = {
         posX : gameWidth - racketWidth,
         posY : gameHeight/2 - racketHeight/2,
-        speedY : 1,
+        speedY : 10,
         update: function(){
             var racketElem2 = document.getElementById('racket2');
             racketElem2.style.left=this.posX+"px";
@@ -115,21 +138,57 @@
         }
         }
         ballH.update(); 
-
+        var idAnim;
         function start(){//  запускается по кнопке старт
-            requestAnimationFrame(startGame);
+            idAnim = requestAnimationFrame(startGame);
         }
         function startGame(){
-            ballH.posX += ballH.speedX;
-            if(ballH.posX + ball.offsetWidth>= gameWidth){
+            ballH.posX += ballH.speedX; // мяч летит вправо
+            //удар мяча о правую ракетку ( если мяч по у> ракетки по у, но меньше ракетки по у+ ее ширина И мяч по х+ширина мяча> ширины поля-ширина ракетки)
+            if((ballH.posY>r2.posY) && (ballH.posY<r2.posY+racketHeight) && (ballH.posX + ball.offsetWidth) >= gameWidth-racketWidth){
                 ballH.speedX =- ballH.speedX;
-                ballH.posX = gameWidth - ball.offsetWidth;
+                ballH.posX = gameWidth - ball.offsetWidth - racketWidth;
             } 
-            if(ballH.posX<=0){
-                ballH.posX = 0;
+            //удар о левую ракетку()
+            if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth){
                 ballH.speedX =- ballH.speedX;
+                ballH.posX = racketWidth;
+            } 
+            // если мяч вылетел за правую стену
+            if(ballH.posX + ball.offsetWidth >= gameWidth){
+                
+                cancelAnimationFrame(idAnim);
+          
+                leftPlayer++;
+                score.textContent = `${leftPlayer}:${rightPlayer}`;
+                // if(rightPlayer>=5){
+                //     cancelAnimationFrame(idAnim);
+                //     alert('Игра завершена!')
+                // }
+                
+                var timer = setInterval(function(){
+                handleTimer(count);
+                },1000);
+                
+
+            }
+            // если мяч вылетел за левую стену
+            if(ballH.posX<=0){
+                cancelAnimationFrame(idAnim);
+              
+                rightPlayer++;
+                score.textContent = `${leftPlayer}:${rightPlayer}`;
+                // if(leftPlayer>=5){
+                //     cancelAnimationFrame(idAnim);
+                //     alert('Игра завершена!')
+                // }
+                  var timer = setInterval(function(){
+                handleTimer(count);
+                },1000);
+                
             }
             ballH.posY += ballH.speedY;
+            // если мяч ударился о пол и потолок
             if(ballH.posY + ball.offsetHeight>= gameHeight){
                 ballH.speedY =- ballH.speedY;
                 ballH.posY = gameHeight - ball.offsetHeight;
@@ -139,31 +198,74 @@
                 ballH.speedY =- ballH.speedY;
             }
             ballH.update();
-            requestAnimationFrame(startGame);
+            idAnim = requestAnimationFrame(startGame);
+          
         }
 
 //движение ракеток
-     var moveUp = 0;
-     var moveDown = 0;
-      window.onkeydown = function moveUpR1(){
-          switch(event.keyCode){
-          case 38:
-            moveUp -= 7;
-            racket1.style.top =r1.posY+ moveUp + 'px';
-              if(racket1.style.top<=0){
-                racket1.style.top =0 + 'px';
-              }
-              break;
-            case 40:
-                moveDown += 4;
-                racket1.style.top =r1.posY+ moveDown + 'px';
-                if(racket1.style.top>=gameHeight){
-                    racket1.style.top = gameHeight+'px';
-                }
-                break;
+     document.addEventListener('keydown',function(event){
+        console.log(event.key + " " + event.location);
+         switch(event.key){
+             case 'ArrowUp':
+                 moveUpR2();
+                 break;
+             case 'ArrowDown':
+                 moveDownR2();
+                 break;
+             case 'Shift':
+                 moveUpR1();
+                 break;
+             case 'Control':
+                 moveDownR1();
+                 break;
+         }
+     });
+     function moveUpR2(){
+          r2.posY -= r2.speedY;
+          if(r2.posY <= 0){
+              r2.posY = 0;
           }
-      }
- 
+          r2.update();
+     }
+     function moveDownR2(){
+         r2.posY += r2.speedY;
+         if(racket2.offsetHeight + r2.posY>= gameHeight){
+             r2.posY = gameHeight - racket2.offsetHeight;
+         }
+         r2.update();
+     }
+     function moveUpR1(){
+          r1.posY -= r1.speedY;
+          if(r1.posY <= 0){
+            r1.posY = 0;
+          }
+          r1.update();
+     }
+     function moveDownR1(){
+         r1.posY += r1.speedY;
+         if(racket1.offsetHeight + r1.posY>= gameHeight){
+            r1.posY = gameHeight - racket1.offsetHeight;
+         }
+         r1.update();
+     }
+// перезапуск игры
+    var count = 3; 
+    function handleTimer(){
+        if(count===-1){
+            restart();
+            clearInterval(timer);  
+        }
+        countdown.textContent = count;
+        count--;
+        
+    }
+    function restart(){
+        ballH.posX += ballH.speedX;
+        ballH.update();
+        start();
+     
+    }
+
     </script>
 </body>
 </html>
