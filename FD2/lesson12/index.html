@@ -148,16 +148,19 @@
             if((ballH.posY>r2.posY) && (ballH.posY<r2.posY+racketHeight) && (ballH.posX + ball.offsetWidth) >= gameWidth-racketWidth){
                 ballH.speedX =- ballH.speedX;
                 ballH.posX = gameWidth - ball.offsetWidth - racketWidth;
+              
+          
             } 
             //удар о левую ракетку()
             if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth){
                 ballH.speedX =- ballH.speedX;
                 ballH.posX = racketWidth;
+              
             } 
             // если мяч вылетел за правую стену
             if(ballH.posX + ball.offsetWidth >= gameWidth){
                 
-                cancelAnimationFrame(idAnim);
+                // cancelAnimationFrame(idAnim);
           
                 leftPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
@@ -171,6 +174,10 @@
                 },1000);
                 
 
+            }
+            else{
+                ballH.update();
+                idAnim = requestAnimationFrame(startGame);
             }
             // если мяч вылетел за левую стену
             if(ballH.posX<=0){
@@ -187,18 +194,21 @@
                 },1000);
                 
             }
+       
             ballH.posY += ballH.speedY;
             // если мяч ударился о пол и потолок
             if(ballH.posY + ball.offsetHeight>= gameHeight){
                 ballH.speedY =- ballH.speedY;
                 ballH.posY = gameHeight - ball.offsetHeight;
+              
             }
             if(ballH.posY<=0){
                 ballH.posY = 0;
                 ballH.speedY =- ballH.speedY;
+             
             }
-            ballH.update();
-            idAnim = requestAnimationFrame(startGame);
+            // ballH.update();
+            // idAnim = requestAnimationFrame(startGame);
           
         }
 
@@ -260,9 +270,9 @@
         
     }
     function restart(){
-        ballH.posX += ballH.speedX;
-        ballH.update();
-        start();
+        ballH.posX = gameWidth/2 - ball.offsetWidth/2;
+        ballH.posY = gameHeight/2 - ball.offsetHeight/2;
+        idAnim = requestAnimationFrame(startGame);
      
     }
 
