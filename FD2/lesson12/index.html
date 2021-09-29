@@ -124,7 +124,7 @@
                              height:${gameWidth/15}px;`;
         gameDiv.append(ball);
         
-        var ballH={ //массив значений дл мяча
+        var ballH={ //объект значений для мяча
         posX : gameWidth/2 - ball.offsetWidth/2,
         posY : gameHeight/2 - ball.offsetHeight/2,
         speedX : 3,
@@ -135,13 +135,18 @@
             var ballElem=document.getElementById('ball');
             ballElem.style.left=this.posX+"px";
             ballElem.style.top=this.posY+"px";
+        },
+        random : function(){
+            this.speedX = randomSpeed()*3;
         }
         }
         ballH.update(); 
+        ballH.random();
         var idAnim;
         function start(){//  запускается по кнопке старт
             idAnim = requestAnimationFrame(startGame);
         }
+        let timer;
         function startGame(){
             ballH.posX += ballH.speedX; // мяч летит вправо
             //удар мяча о правую ракетку ( если мяч по у> ракетки по у, но меньше ракетки по у+ ее ширина И мяч по х+ширина мяча> ширины поля-ширина ракетки)
@@ -159,21 +164,18 @@
             } 
             // если мяч вылетел за правую стену
             if(ballH.posX + ball.offsetWidth >= gameWidth){
-                
-                // cancelAnimationFrame(idAnim);
-          
                 leftPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
-                // if(rightPlayer>=5){
-                //     cancelAnimationFrame(idAnim);
-                //     alert('Игра завершена!')
-                // }
-                
-                var timer = setInterval(function(){
+                if(leftPlayer>=5){
+                    cancelAnimationFrame(idAnim);
+                    alert('Игра завершена!')
+                }
+                else{
+                    timer = setInterval(function(){
                 handleTimer(count);
                 },1000);
-                
-
+                }
+    
             }
             else{
                 ballH.update();
@@ -181,18 +183,19 @@
             }
             // если мяч вылетел за левую стену
             if(ballH.posX<=0){
-                cancelAnimationFrame(idAnim);
-              
                 rightPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
-                // if(leftPlayer>=5){
-                //     cancelAnimationFrame(idAnim);
-                //     alert('Игра завершена!')
-                // }
-                  var timer = setInterval(function(){
+                if(rightPlayer>=5){
+                    cancelAnimationFrame(idAnim);
+                    alert('Игра завершена!')
+                }
+                else{
+                    timer = setInterval(function(){
                 handleTimer(count);
                 },1000);
                 
+                }
+           
             }
        
             ballH.posY += ballH.speedY;
@@ -207,8 +210,6 @@
                 ballH.speedY =- ballH.speedY;
              
             }
-            // ballH.update();
-            // idAnim = requestAnimationFrame(startGame);
           
         }
 
@@ -260,14 +261,15 @@
      }
 // перезапуск игры
     var count = 3; 
-    function handleTimer(){
-        if(count===-1){
-            restart();
-            clearInterval(timer);  
-        }
+     function handleTimer(){
         countdown.textContent = count;
-        count--;
-        
+        count--; 
+        if(count===-1){
+            countdown.textContent = '';
+            restart();
+            clearInterval(timer); 
+            count = 3; 
+        } 
     }
     function restart(){
         ballH.posX = gameWidth/2 - ball.offsetWidth/2;
@@ -275,7 +277,12 @@
         idAnim = requestAnimationFrame(startGame);
      
     }
-
+    function randomSpeed() { //рандомный вылет мяча
+        let x = Math.random();
+        if (x < 0.5) x = -1;
+        else x = 1;
+        return x;
+    }
     </script>
 </body>
 </html>

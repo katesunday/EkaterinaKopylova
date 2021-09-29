@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ping-pong SVG</title>
+</head>
+<body>
+    <svg id = 'svg'>
+    </svg>
+    <svg id = 'svg2'>
+    </svg>
+    <style>
+     #svg{
+         display: block;
+         position: relative;
+     }
+     #racket1, #racket2{
+         position: absolute;
+     }
+    </style>
+    <script>
+         const svgNs = 'http://www.w3.org/2000/svg'; // документация
+         const width = 700;
+         const height = 50;
+         const heightGame = 400;
+         let racketWidth = 15;
+         let racketHeight = heightGame/3;
+         let ballWidth = 50;
+         let ballHeight = 50;
+         let leftPlayer = 0;
+         let rightPlayer = 0;
+         const svg = document.getElementById('svg');
+         svg.setAttributeNS(null,'width',width);
+         svg.setAttributeNS(null,'height',height);
+         const svg2 = document.getElementById('svg2');
+         svg2.setAttributeNS(null,'width',width);
+         svg2.setAttributeNS(null,'height',heightGame);
+         drawGame();
+         function drawGame(){
+            let startBtn = document.createElementNS(svgNs,'rect'); // стартовая кнопка
+            startBtn.id = 'startBtn';
+            startBtn.setAttributeNS(null,'width',100);
+            startBtn.setAttributeNS(null,'height',30);
+            startBtn.setAttributeNS(null,'fill','gray');
+            startBtn.setAttributeNS(null,'stroke','none');
+            svg.append(startBtn);
+            
+            let startText = document.createElementNS(svgNs,'text');// текст на кнопке
+            startText.id = 'startText';
+            startText.setAttributeNS(null,'fill','black');
+            startText.setAttributeNS(null,'font-size','25px');
+            startText.setAttributeNS(null,'x','15px'); 
+            startText.setAttributeNS(null,'y','23px');
+            startText.textContent = 'Старт!';
+            svg.append(startText);
+      
+            let score = document.createElementNS(svgNs,'text');// табло
+            score.id = 'score';
+            score.setAttributeNS(null,'fill','black');
+            score.setAttributeNS(null,'font-size','35px');
+            score.setAttributeNS(null,'x','30%'); 
+            score.setAttributeNS(null,'y','30px');
+            score.textContent = `${leftPlayer}:${rightPlayer}`;
+            svg.append(score);
+
+            let CD = document.createElementNS(svgNs,'text');// отсчет
+            CD.id = 'CD';
+            CD.setAttributeNS(null,'fill','red');
+            CD.setAttributeNS(null,'font-size','35px');
+            CD.setAttributeNS(null,'x','60%'); 
+            CD.setAttributeNS(null,'y','30px');
+            CD.textContent = '';
+            svg.append(CD);
+
+            let gamePlace = document.createElementNS(svgNs,'rect'); // игровое поле
+            gamePlace.id = 'gamePlace';
+            gamePlace.setAttributeNS(null,'width',width);
+            gamePlace.setAttributeNS(null,'height',heightGame);
+            gamePlace.setAttributeNS(null,'x','0%'); 
+            gamePlace.setAttributeNS(null,'y','0%');
+            gamePlace.setAttributeNS(null,'fill','lightsteelblue');
+            gamePlace.setAttributeNS(null,'stroke','black');
+            svg2.append(gamePlace);
+
+            let racket1 = document.createElementNS(svgNs,'rect'); // ракетка1
+            racket1.id = 'racket1';
+            racket1.setAttributeNS(null,'width',racketWidth);
+            racket1.setAttributeNS(null,'height',racketHeight);
+            racket1.setAttributeNS(null,'x','0%'); 
+            racket1.setAttributeNS(null,'y',heightGame/2-racketHeight/2);
+            racket1.setAttributeNS(null,'fill','green');
+            racket1.setAttributeNS(null,'stroke','none');
+            svg2.append(racket1);
+
+            let racket2 = document.createElementNS(svgNs,'rect'); // ракетка2
+            racket2.id = 'racket2';
+            racket2.setAttributeNS(null,'width',racketWidth);
+            racket2.setAttributeNS(null,'height',racketHeight);
+            racket2.setAttributeNS(null,'x',width-racketWidth); 
+            racket2.setAttributeNS(null,'y',heightGame/2-racketHeight/2);
+            racket2.setAttributeNS(null,'fill','blue');
+            racket2.setAttributeNS(null,'stroke','none');
+            svg2.append(racket2);
+
+            let ball = document.createElementNS(svgNs,'circle');
+         
+            ball.id = 'ball';
+            // ball.setAttributeNS(null,'width',ballWidth);
+            // ball.setAttributeNS(null,'height',ballHeight);
+            // ball.setAttributeNS(null,'cx',width/2);
+            // ball.setAttributeNS(null,'cy',heightGame/2);
+            ball.setAttributeNS(null,'r',ballWidth/2);
+            ball.setAttributeNS(null,'fill','red');
+            ball.setAttributeNS(null,'stroke','none');
+            svg2.append(ball);
+         }
+         
+         
+         var button = svg.getElementById('startText');
+         var score1 = svg.getElementById('score');
+         var countdown = svg.getElementById('CD');
+         var xR1=0;
+         var yR1=heightGame/2-racketHeight/2;
+         var xR2=0;
+         var yR2=heightGame/2-racketHeight/2;
+         var speed = 10;
+         var ballSpeed = 2;
+
+//РАКЕТКА 1 левая
+        var r1 = {
+        posX : 0,
+        posY : heightGame/2 - racketHeight/2,
+        speedY : 10,
+        update: function(){
+            var racketElem1 = document.getElementById('racket1');
+            racketElem1.setAttributeNS(null,'x',this.posX);
+            racketElem1.setAttributeNS(null,'y',this.posY);
+        }
+        }
+        r1.update();
+// РАКЕТКА 2 правая
+        var r2 = {
+        posX : width - racketWidth,
+        posY : heightGame/2 - racketHeight/2,
+        speedY : 10,
+        update: function(){
+            var racketElem2 = document.getElementById('racket2');
+            racketElem2.setAttributeNS(null,'x',this.posX);
+            racketElem2.setAttributeNS(null,'y',this.posY);
+        }
+        }
+        r2.update();
+//движение ракеток
+        document.addEventListener('keydown',function(event){
+        console.log(event.key + " " + event.location);
+         switch(event.key){
+             case 'ArrowUp':
+                 moveUpR2();
+                 break;
+             case 'ArrowDown':
+                 moveDownR2();
+                 break;
+             case 'Shift':
+                 moveUpR1();
+                 break;
+             case 'Control':
+                 moveDownR1();
+                 break;
+         }
+         });
+         function moveUpR2(){
+          r2.posY -= r2.speedY;
+          if(r2.posY <= 0){
+              r2.posY = 0;
+          }
+          r2.update();
+     }
+     function moveDownR2(){
+         r2.posY += r2.speedY;
+         if(racketHeight + r2.posY>= heightGame){
+             r2.posY = heightGame - racketHeight;
+         }
+         r2.update();
+     }
+     function moveUpR1(){
+          r1.posY -= r1.speedY;
+          if(r1.posY <= 0){
+            r1.posY = 0;
+          }
+          r1.update();
+     }
+     function moveDownR1(){
+         r1.posY += r1.speedY;
+         if(racketHeight + r1.posY>= heightGame){
+            r1.posY = heightGame - racketHeight;
+         }
+         r1.update();
+     }
+ 
+    //объект мяча
+    let ballH = {
+        posX: width/2,
+        posY: heightGame/2,
+        width: ballWidth,
+        height: ballHeight,
+        
+        update: function(){
+            var ballElem=document.getElementById('ball');
+            ballElem.setAttributeNS(null,'cx',this.posX);
+            ballElem.setAttributeNS(null,'cy',this.posY);
+        }
+    }
+    ballH.update();
+    button.addEventListener('click',startGame);//клик на кнопку
+    function startGame(){
+        ballH.posX+=ballSpeed;
+        // ballH.posY+=ballSpeed/2;
+        // удар о правую ракетку
+        if((ballH.posY>r2.posY) && (ballH.posY<r2.posY+racketHeight) && (ballH.posX+ballWidth/2)>=width-racketWidth){
+            ballSpeed=-ballSpeed;
+            ballH.posX = width - ballH.width/2- racketWidth;
+        }
+        //удар о левую ракетку
+        if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX)<=racketWidth+ ballH.width/2){
+            ballSpeed=-ballSpeed;
+            ballH.posX = ballH.width/2 + racketWidth;
+        }
+        // если мяч ударился о пол и потолок
+           if( ballH.posY + ballH.height/2>= heightGame){
+                 ballSpeed=-ballSpeed;
+                 ballH.posY = heightGame - ballH.height;
+              
+            }
+            if(ballH.posY<=+ ballH.height/2){
+                ballH.posY = + ballH.height/2;
+                ballSpeed=-ballSpeed;
+             
+            }
+         // если мяч вылетел за правую стену
+         if(ballH.posX + ballH.width/2 >= width){
+                leftPlayer++;
+                score1.textContent = `${leftPlayer}:${rightPlayer}`;
+                if(leftPlayer>=5){
+                    cancelAnimationFrame(idAnim);
+                    alert('Игра завершена!')
+                }
+                else{
+                    timer = setInterval(function(){
+                handleTimer(count);
+                },1000);
+                }
+    
+            }
+            else{
+                ballH.update();
+                idAnim = requestAnimationFrame(startGame);
+            }
+            // если мяч вылетел за левую стену
+            if(ballH.posX<=ballH.width/2){
+                rightPlayer++;
+                score1.textContent = `${leftPlayer}:${rightPlayer}`;
+                if(rightPlayer>=5){
+                    cancelAnimationFrame(idAnim);
+                    alert('Игра завершена!')
+                }
+                else{
+                    timer = setInterval(function(){
+                handleTimer(count);
+                },1000);
+                
+                }
+           
+            }
+            // ballH.update();
+            // idAnim = requestAnimationFrame(startGame);
+        }
+        // перезапуск игры
+    var count = 3; 
+     function handleTimer(){
+        countdown.textContent = count;
+        count--; 
+        if(count===-1){
+            countdown.textContent = '';
+            restart();
+            clearInterval(timer); 
+            count = 3; 
+        } 
+    }
+    function restart(){
+        ballH.posX = width/2 - ballH.width/2;
+        ballH.posY = heightGame/2 - ballH.height/2;
+        idAnim = requestAnimationFrame(startGame);
+     
+    }
+
+    </script>
+</body>
+</html>
