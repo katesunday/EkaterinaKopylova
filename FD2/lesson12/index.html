@@ -296,7 +296,7 @@
         r1.update();
         r2.update();
         ballH.random();
-        startBtn.onclick = startGame();
+        startBtn.addEventListener('click',startGame);
     }
     function randomSpeed() { //рандомный вылет мяча
         let x = Math.random();
