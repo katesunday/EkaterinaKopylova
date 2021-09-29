@@ -127,7 +127,7 @@
         var ballH={ //объект значений для мяча
         posX : gameWidth/2 - ball.offsetWidth/2,
         posY : gameHeight/2 - ball.offsetHeight/2,
-        speedX : 3,
+        speedX : 4,
         speedY : 1,
 
 
@@ -138,7 +138,7 @@
         },
         random : function(){
             this.speedX = randomSpeed()*3;
-            this.speedY = randomSpeed();
+            this.speedY = randomSpeed()* randomAngle(2,5);
         }
         }
         ballH.update(); 
@@ -149,6 +149,7 @@
         }
         let timer;
         function startGame(){
+            score.textContent = `${leftPlayer}:${rightPlayer}`;
             startBtn.disabled = true;
             ballH.posX += ballH.speedX; // мяч летит вправо
             ballH.posY += ballH.speedY;
@@ -183,7 +184,7 @@
                 if(leftPlayer==5){
                     cancelAnimationFrame(idAnim);
                     score.textContent = `Победил игрок слева!`;
-                    startBtn.disabled = false;
+                    restartAll();
                 }
                 else{
                     timer = setInterval(function(){
@@ -203,6 +204,7 @@
                 if(rightPlayer==5){
                     cancelAnimationFrame(idAnim);
                     score.textContent = `Победил игрок справа!`;
+                    restartAll();
                 }
                 else{
                     timer = setInterval(function(){
@@ -283,11 +285,28 @@
         idAnim = requestAnimationFrame(startGame);
      
     }
+    function restartAll(){
+        startBtn.disabled = false;
+        leftPlayer = 0;
+        rightPlayer = 0;
+        r1.posX = 0;
+        r1.posY = gameHeight/2 - racketHeight/2;
+        r2.posX = gameWidth - racketWidth;
+        r2.posY = gameHeight/2 - racketHeight/2;
+        r1.update();
+        r2.update();
+        ball.update();
+        ballH.random();
+        startBtn.onclick = startGame();
+    }
     function randomSpeed() { //рандомный вылет мяча
         let x = Math.random();
         if (x < 0.5) x = -1;
         else x = 1;
         return x;
+    }
+    function randomAngle(n,m) { // рандомный угол вылета мяча
+        return Math.floor(Math.random() * (m - n + 1)) + n;
     }
     </script>
 </body>
