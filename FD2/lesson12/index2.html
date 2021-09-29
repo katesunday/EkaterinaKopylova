@@ -126,7 +126,7 @@
          var xR2=0;
          var yR2=heightGame/2-racketHeight/2;
          var speed = 10;
-         var ballSpeed = 2;
+        //  var ballSpeed = 2;
 
 //РАКЕТКА 1 левая
         var r1 = {
@@ -205,18 +205,23 @@
         posY: heightGame/2,
         width: ballWidth,
         height: ballHeight,
+        ballSpeed: 2,
         
         update: function(){
             var ballElem=document.getElementById('ball');
             ballElem.setAttributeNS(null,'cx',this.posX);
             ballElem.setAttributeNS(null,'cy',this.posY);
+        },
+        random : function(){
+            this.ballSpeed = randomSpeed()*2;
         }
     }
     ballH.update();
+    ballH.random();
     button.addEventListener('click',startGame);//клик на кнопку
     function startGame(){
-        ballH.posX+=ballSpeed;
-        // ballH.posY+=ballSpeed/2;
+        ballH.posX+=ballH.ballSpeed;
+        ballH.posY+=ballH.ballSpeed/2;
         // удар о правую ракетку
         if((ballH.posY>r2.posY) && (ballH.posY<r2.posY+racketHeight) && (ballH.posX+ballWidth/2)>=width-racketWidth){
             ballSpeed=-ballSpeed;
@@ -294,7 +299,12 @@
         idAnim = requestAnimationFrame(startGame);
      
     }
-
+    function randomSpeed() { //рандомный вылет мяча
+        let x = Math.random();
+        if (x < 0.5) x = -1;
+        else x = 1;
+        return x;
+    }
     </script>
 </body>
 </html>

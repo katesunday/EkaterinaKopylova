@@ -148,27 +148,41 @@
         }
         let timer;
         function startGame(){
+            startBtn.disabled = true;
             ballH.posX += ballH.speedX; // мяч летит вправо
+            ballH.posY += ballH.speedY;
             //удар мяча о правую ракетку ( если мяч по у> ракетки по у, но меньше ракетки по у+ ее ширина И мяч по х+ширина мяча> ширины поля-ширина ракетки)
             if((ballH.posY>r2.posY) && (ballH.posY<r2.posY+racketHeight) && (ballH.posX + ball.offsetWidth) >= gameWidth-racketWidth){
                 ballH.speedX =- ballH.speedX;
                 ballH.posX = gameWidth - ball.offsetWidth - racketWidth;
-              
-          
             } 
             //удар о левую ракетку()
-            if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth){
+             else if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth){
                 ballH.speedX =- ballH.speedX;
                 ballH.posX = racketWidth;
               
             } 
+            // если мяч ударился о пол и потолок
+             if(ballH.posY + ball.offsetHeight>= gameHeight){
+                ballH.speedY =- ballH.speedY;
+                ballH.posY = gameHeight - ball.offsetHeight;
+            }
+             else if(ballH.posY<=0){
+                ballH.posY = 0;
+                ballH.speedY =- ballH.speedY;
+             
+            }
             // если мяч вылетел за правую стену
             if(ballH.posX + ball.offsetWidth >= gameWidth){
+                ballH.posX = gameWidth/2 - ball.offsetWidth/2; //  возврат мяча в центр
+                ballH.posY = gameHeight/2 - ball.offsetHeight/2; 
+                ballH.update();
                 leftPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
-                if(leftPlayer>=5){
+                if(leftPlayer==5){
                     cancelAnimationFrame(idAnim);
-                    alert('Игра завершена!')
+                    score.textContent = `Победил игрок слева!`;
+                    startBtn.disabled = false;
                 }
                 else{
                     timer = setInterval(function(){
@@ -177,17 +191,17 @@
                 }
     
             }
-            else{
-                ballH.update();
-                idAnim = requestAnimationFrame(startGame);
-            }
+      
             // если мяч вылетел за левую стену
-            if(ballH.posX<=0){
+            else if(ballH.posX<0){
+                ballH.posX = gameWidth/2 - ball.offsetWidth/2;
+                ballH.posY = gameHeight/2 - ball.offsetHeight/2;
+                ballH.update();
                 rightPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
-                if(rightPlayer>=5){
+                if(rightPlayer==5){
                     cancelAnimationFrame(idAnim);
-                    alert('Игра завершена!')
+                    score.textContent = `Победил игрок справа!`;
                 }
                 else{
                     timer = setInterval(function(){
@@ -198,17 +212,9 @@
            
             }
        
-            ballH.posY += ballH.speedY;
-            // если мяч ударился о пол и потолок
-            if(ballH.posY + ball.offsetHeight>= gameHeight){
-                ballH.speedY =- ballH.speedY;
-                ballH.posY = gameHeight - ball.offsetHeight;
-              
-            }
-            if(ballH.posY<=0){
-                ballH.posY = 0;
-                ballH.speedY =- ballH.speedY;
-             
+            else{
+                ballH.update();
+                idAnim = requestAnimationFrame(startGame);
             }
           
         }
@@ -272,8 +278,7 @@
         } 
     }
     function restart(){
-        ballH.posX = gameWidth/2 - ball.offsetWidth/2;
-        ballH.posY = gameHeight/2 - ball.offsetHeight/2;
+        ballH.random();
         idAnim = requestAnimationFrame(startGame);
      
     }
