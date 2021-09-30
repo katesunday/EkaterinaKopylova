@@ -117,7 +117,7 @@
              update : function() {// забираем мяч и присваеваем ему значения из массива
              ctx.fillStyle = 'red';
              ctx.beginPath();
-             ctx.arc(gameWidth/2, gameHeight/2,ballRadius,0,2*Math.PI);
+             ctx.arc(this.posX, this.posY,ballRadius,0,2*Math.PI);
              ctx.fill();
              },
              random : function(){
@@ -205,9 +205,9 @@
                 ballH.posX = gameWidth - ballRadius - racketWidth;
             } 
             //удар о левую ракетку()
-             else if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth){
+             else if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth + ballRadius){
                 ballH.speedX =- ballH.speedX;
-                ballH.posX = racketWidth;
+                ballH.posX = racketWidth + ballRadius;
               
             } 
             // если мяч ударился о пол и потолок
@@ -215,8 +215,8 @@
                 ballH.speedY =- ballH.speedY;
                 ballH.posY = gameHeight - ballRadius;
             }
-             else if(ballH.posY<=0){
-                ballH.posY = 0;
+             else if(ballH.posY<= ballRadius){
+                ballH.posY =  ballRadius;
                 ballH.speedY =- ballH.speedY;
              
             }
@@ -224,7 +224,10 @@
             if(ballH.posX + ballRadius >= gameWidth){
                 ballH.posX = gameWidth/2 ; //  возврат мяча в центр
                 ballH.posY = gameHeight/2 ; 
-                ballH.update();
+                drawField();
+                r1.update();
+                r2.update();
+                ballH.update(); 
                 leftPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
                 if(leftPlayer==5){
@@ -241,10 +244,13 @@
             }
       
             // если мяч вылетел за левую стену
-            else if(ballH.posX<0){
+            else if(ballH.posX<ballRadius){
                 ballH.posX = gameWidth/2 ;
                 ballH.posY = gameHeight/2 ;
-                ballH.update();
+                drawField();
+                r1.update();
+                r2.update();
+                ballH.update(); 
                 rightPlayer++;
                 score.textContent = `${leftPlayer}:${rightPlayer}`;
                 if(rightPlayer==5){

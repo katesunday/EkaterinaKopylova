@@ -14,6 +14,11 @@
             border: 1px solid black;
             position: relative;
         }
+        .line{
+            position: absolute;
+            right: 50%;
+            background-color: black;
+        }
         .startDiv{
             margin: 10px;
         }
@@ -80,6 +85,11 @@
         gameDiv.style.width = `${gameWidth}px`;
         gameDiv.style.height = `${gameHeight}px`;
         document.body.append(gameDiv);
+        let line = document.createElement('div');
+        line.className = 'line';
+        line.style.width = `1px`;
+        line.style.height = `${gameHeight}px`;
+        gameDiv.append(line);
 
         var racket1 = document.createElement('div'); //ракетки 
         var racket2 = document.createElement('div');
