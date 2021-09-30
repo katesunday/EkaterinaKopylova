@@ -223,6 +223,8 @@
     ballH.update();
     ballH.random();
     button.addEventListener('click',startGame);//клик на кнопку
+    
+    //функция запуска игры
     function startGame(){
         score1.textContent = `${leftPlayer}:${rightPlayer}`;
         startText.textContent = '';
@@ -294,24 +296,25 @@
                 idAnim = requestAnimationFrame(startGame);
             }
        
-        }
-        // перезапуск игры
-    var count = 3; 
-     function handleTimer(){
-        countdown.textContent = count;
-        count--; 
-        if(count===-1){
+    }
+     // перезапуск игры
+          var count = 3; 
+          function handleTimer(){
+          countdown.textContent = count;
+          count--; 
+          if(count===-1){
             countdown.textContent = '';
             restart();
             clearInterval(timer); 
             count = 3; 
-        } 
-    }
+             } 
+             }
+
     function restart(){ 
         ballH.random();
         idAnim = requestAnimationFrame(startGame);
-     
     }
+
     function restartAll(){
         startText.textContent = 'Старт!';
         leftPlayer = 0;
@@ -325,6 +328,7 @@
         ballH.random();
         startBtn.addEventListener('click',startGame);
     }
+
     function randomSpeed() { //рандомный вылет мяча
         let x = Math.random();
         if (x < 0.5) x = -1;

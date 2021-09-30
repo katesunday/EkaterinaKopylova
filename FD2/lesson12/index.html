@@ -154,11 +154,9 @@
         ballH.update(); 
         ballH.random();
         
-        function start(){//  запускается по кнопке старт
-            idAnim = requestAnimationFrame(startGame);
-        }
-        var idAnim;
-        let timer;
+        // логика игры
+        var idAnim; // айди для остановки анимации
+        let timer; // переменная для обратного отсчета
         function startGame(){
             score.textContent = `${leftPlayer}:${rightPlayer}`;
             startBtn.disabled = true;
