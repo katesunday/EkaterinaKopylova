@@ -83,6 +83,16 @@
             gamePlace.setAttributeNS(null,'fill','lightsteelblue');
             gamePlace.setAttributeNS(null,'stroke','black');
             svg2.append(gamePlace);
+            let line = document.createElementNS(svgNs,'line');
+            line.setAttributeNS(null,'width',1);
+            line.setAttributeNS(null,'width',heightGame);
+            line.setAttributeNS(null,'x1','50%'); 
+            line.setAttributeNS(null,'y1','0%');
+            line.setAttributeNS(null,'x2','50%'); 
+            line.setAttributeNS(null,'y2','100%');
+            line.setAttributeNS(null,'stroke','black');
+            svg2.append(line);
+            
 
             let racket1 = document.createElementNS(svgNs,'rect'); // ракетка1
             racket1.id = 'racket1';
