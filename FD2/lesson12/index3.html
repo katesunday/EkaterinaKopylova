@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ping-pong-Canvas</title>
+</head>
+<body>
+
+    <canvas id = 'game' width="700" height="400"></canvas>
+    <style>
+
+        .startDiv{
+            margin: 10px;
+        }
+        #score{
+            margin-left: 211px;
+            font-size: 45px;
+        }
+        .startBtn{
+            width: 100px;
+            height: 30px;
+            font-size: 20px;
+        }
+        #countdown{
+            font-size: 45px;
+            color: red;
+            margin-left: 200px;
+        }
+    </style>
+    <script>
+        let startDiv = document.createElement('div'); //стартовый див
+        startDiv.className = 'startDiv';
+        document.body.prepend(startDiv);
+
+        let startBtn = document.createElement('button');//кнопка старт
+        startBtn.className = 'startBtn';
+        startBtn.textContent = 'Старт!';
+        startDiv.append(startBtn);
+        startBtn.addEventListener('click',startGame);
+
+        let score = document.createElement('span');//табло
+        let leftPlayer = 0;
+        let rightPlayer = 0;
+        score.id = 'score';
+        score.textContent = `${leftPlayer}:${rightPlayer}`;
+        startDiv.append(score);
+
+        let countdown = document.createElement('span');// обратный отсчет
+        countdown.id = 'countdown';
+        countdown.textContent = '';
+        startDiv.append(countdown);
+
+    // функция фона игры
+        let gameHeight = 400;
+        let gameWidth = 700;
+        const drawField = function(){
+            const game = document.getElementById('game');
+            if(game && game.getContext('2d')){
+                let ctx = game.getContext('2d');
+                
+                //иговое поле
+                ctx.fillStyle = 'lightsteelblue';
+                ctx.fillRect(0,0,gameWidth,gameHeight);
+                ctx.strokeStyle = 'black';
+                ctx.strokeRect(0,0,gameWidth,gameHeight);
+                ctx.save();
+                ctx.setLineDash([2,3]);//  разделительный пунктир
+                ctx.beginPath();
+                ctx.moveTo(gameWidth/2,0);
+                ctx.lineTo(gameWidth/2,gameHeight);
+                ctx.stroke();
+                ctx.restore();
+            }
+        }
+        drawField();
+    // функция отрисовки ракеток
+         let racketWidth = 15;
+         let racketHeight = gameHeight/3;
+         let ballRadius = 25;
+         const game = document.getElementById('game');
+            if(game && game.getContext('2d')){
+                let ctx = game.getContext('2d');
+
+             //РАКЕТКА 1 левая
+             var r1 = {
+             posX : 0,
+             posY : gameHeight/2 - racketHeight/2,
+             speedY : 10,
+                update: function(){
+                ctx.fillStyle = 'green';
+                ctx.fillRect(this.posX,this.posY,racketWidth,racketHeight);
+              }
+              }
+             r1.update();
+              // РАКЕТКА 2 правая
+              var r2 = {
+              posX : gameWidth - racketWidth,
+              posY : gameHeight/2 - racketHeight/2,
+              speedY : 10,
+              update: function(){
+                ctx.fillStyle = 'blue';
+                ctx.fillRect(this.posX,this.posY,racketWidth,racketHeight);
+                }
+              }
+             r2.update();
+
+             //МЯЧ
+        
+             var ballH={ //объект значений для мяча
+             posX : gameWidth/2,
+             posY : gameHeight/2,
+             speedX : 4,
+             speedY : 1,
+
+             update : function() {// забираем мяч и присваеваем ему значения из массива
+             ctx.fillStyle = 'red';
+             ctx.beginPath();
+             ctx.arc(gameWidth/2, gameHeight/2,ballRadius,0,2*Math.PI);
+             ctx.fill();
+             },
+             random : function(){
+             this.speedX = randomSpeed()*3;
+             this.speedY = randomSpeed()* randomAngle(2,5);
+              }
+              }
+             ballH.update(); 
+             ballH.random();
+            }
+
+    //движение ракеток
+    window.addEventListener('keydown',function(event){
+        console.log(event.key + " " + event.location);
+         switch(event.key){
+             case 'ArrowUp':
+                 moveUpR2();
+                 break;
+             case 'ArrowDown':
+                 moveDownR2();
+                 break;
+             case 'Shift':
+                 moveUpR1();
+                 break;
+             case 'Control':
+                 moveDownR1();
+                 break;
+         }
+     });
+     function moveUpR2(){
+          r2.posY -= r2.speedY;
+          if(r2.posY <= 0){
+              r2.posY = 0;
+          }
+          drawField();
+          r1.update();
+          r2.update();
+          ballH.update(); 
+          
+     }
+     function moveDownR2(){
+         r2.posY += r2.speedY;
+         if(racketHeight + r2.posY>= gameHeight){
+             r2.posY = gameHeight - racketHeight;
+         }
+         drawField();
+         r1.update();
+         r2.update();
+         ballH.update(); 
+     }
+     function moveUpR1(){
+          r1.posY -= r1.speedY;
+          if(r1.posY <= 0){
+            r1.posY = 0;
+          }
+          drawField();
+          r2.update();
+          r1.update();
+          ballH.update();
+     }
+     function moveDownR1(){
+         r1.posY += r1.speedY;
+         if(racketHeight + r1.posY>= gameHeight){
+            r1.posY = gameHeight - racketHeight;
+         }
+          drawField();
+          r2.update();
+          r1.update();
+          ballH.update(); 
+     }
+    
+     // локига игры
+     var idAnim;
+        let timer;
+        function startGame(){
+            score.textContent = `${leftPlayer}:${rightPlayer}`;
+            startBtn.disabled = true;
+            ballH.posX += ballH.speedX; // мяч летит вправо
+            ballH.posY += ballH.speedY;
+            
+            
+            //удар мяча о правую ракетку ( если мяч по у> ракетки по у, но меньше ракетки по у+ ее ширина И мяч по х+ширина мяча> ширины поля-ширина ракетки)
+            if((ballH.posY>r2.posY) && (ballH.posY<r2.posY+racketHeight) && (ballH.posX + ballRadius) >= gameWidth-racketWidth){
+                ballH.speedX =- ballH.speedX;
+                ballH.posX = gameWidth - ballRadius - racketWidth;
+            } 
+            //удар о левую ракетку()
+             else if((ballH.posY>r1.posY) && (ballH.posY<r1.posY+racketHeight) && (ballH.posX ) <= racketWidth){
+                ballH.speedX =- ballH.speedX;
+                ballH.posX = racketWidth;
+              
+            } 
+            // если мяч ударился о пол и потолок
+             if(ballH.posY + ballRadius>= gameHeight){
+                ballH.speedY =- ballH.speedY;
+                ballH.posY = gameHeight - ballRadius;
+            }
+             else if(ballH.posY<=0){
+                ballH.posY = 0;
+                ballH.speedY =- ballH.speedY;
+             
+            }
+            // если мяч вылетел за правую стену
+            if(ballH.posX + ballRadius >= gameWidth){
+                ballH.posX = gameWidth/2 ; //  возврат мяча в центр
+                ballH.posY = gameHeight/2 ; 
+                ballH.update();
+                leftPlayer++;
+                score.textContent = `${leftPlayer}:${rightPlayer}`;
+                if(leftPlayer==5){
+                    cancelAnimationFrame(idAnim);
+                    score.textContent = `Победил игрок слева!`;
+                    restartAll();
+                }
+                else{
+                    timer = setInterval(function(){
+                handleTimer(count);
+                },1000);
+                }
+    
+            }
+      
+            // если мяч вылетел за левую стену
+            else if(ballH.posX<0){
+                ballH.posX = gameWidth/2 ;
+                ballH.posY = gameHeight/2 ;
+                ballH.update();
+                rightPlayer++;
+                score.textContent = `${leftPlayer}:${rightPlayer}`;
+                if(rightPlayer==5){
+                    cancelAnimationFrame(idAnim);
+                    score.textContent = `Победил игрок справа!`;
+                    restartAll();
+                }
+                else{
+                    timer = setInterval(function(){
+                handleTimer(count);
+                },1000);
+                
+                }
+           
+            }
+       
+            else{
+                drawField();
+                r2.update();
+                r1.update();
+                ballH.update(); 
+                idAnim = requestAnimationFrame(startGame);
+            }
+          
+        }
+        // перезапуск игры
+    var count = 3; 
+     function handleTimer(){
+        countdown.textContent = count;
+        count--; 
+        if(count===-1){
+            countdown.textContent = '';
+            restart();
+            clearInterval(timer); 
+            count = 3; 
+        } 
+    }
+    function restart(){
+        drawField();
+        r2.update();
+        r1.update();
+        ballH.update(); 
+        ballH.random();
+        idAnim = requestAnimationFrame(startGame);
+     
+    }
+    function restartAll(){
+        startBtn.disabled = false;
+        leftPlayer = 0;
+        rightPlayer = 0;
+        r1.posX = 0;
+        r1.posY = gameHeight/2 - racketHeight/2;
+        r2.posX = gameWidth - racketWidth;
+        r2.posY = gameHeight/2 - racketHeight/2;
+        drawField();
+        r2.update();
+        r1.update();
+        ballH.update(); 
+        ballH.random();
+        startBtn.addEventListener('click',startGame);
+    }
+    function randomSpeed() { //рандомный вылет мяча
+        let x = Math.random();
+        if (x < 0.5) x = -1;
+        else x = 1;
+        return x;
+    }
+    function randomAngle(n,m) { // рандомный угол вылета мяча
+        return Math.floor(Math.random() * (m - n + 1)) + n;
+    }
+
+    </script>
+</body>
+</html>

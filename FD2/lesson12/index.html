@@ -143,10 +143,11 @@
         }
         ballH.update(); 
         ballH.random();
-        var idAnim;
+        
         function start(){//  запускается по кнопке старт
             idAnim = requestAnimationFrame(startGame);
         }
+        var idAnim;
         let timer;
         function startGame(){
             score.textContent = `${leftPlayer}:${rightPlayer}`;
