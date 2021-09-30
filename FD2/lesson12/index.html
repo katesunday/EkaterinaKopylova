@@ -108,7 +108,8 @@
         posX : 0,
         posY : gameHeight/2 - racketHeight/2,
         speedY : 5,
-        isMoving: false,
+        isMovingUp: false,
+        isMovingDown:false,
         update: function(){
             var racketElem1 = document.getElementById('racket1');
             racketElem1.style.left=this.posX+"px";
@@ -121,7 +122,8 @@
         posX : gameWidth - racketWidth,
         posY : gameHeight/2 - racketHeight/2,
         speedY : 5,
-        isMoving: false,
+        isMovingUp: false,
+        isMovingDown:false,
         update: function(){
             var racketElem2 = document.getElementById('racket2');
             racketElem2.style.left=this.posX+"px";
@@ -237,16 +239,16 @@
      document.addEventListener('keyup',function(event){
         switch(event.key){
              case 'ArrowUp':
-                 r2.isMoving = false;
+                 r2.isMovingUp = false;
                  break;
              case 'ArrowDown':
-                 r2.isMoving = false;
+                 r2.isMovingDown = false;
                  break;
              case 'Shift':
-                 r1.isMoving = false;
+                 r1.isMovingUp = false;
                  break;
              case 'Control':
-                r1.isMoving = false;
+                r1.isMovingDown = false;
                 break;
             }      
      })
@@ -256,33 +258,54 @@
         chekingId =  requestAnimationFrame(checking);
          switch(event.key){
              case 'ArrowUp':
-                 r2.isMoving = true;
+                 r2.isMovingUp = true;
                  moveUpR2();
                  break;
              case 'ArrowDown':
-                 r2.isMoving = true;
+                 r2.isMovingDown = true;
                  moveDownR2();
                  break;
              case 'Shift':
-                 r1.isMoving = true;
+                 r1.isMovingUp = true;
                  moveUpR1();
                  break;
              case 'Control':
-                 r1.isMoving = true;
+                 r1.isMovingDown = true;
                  moveDownR1();
                  break;
          }
      });
      function checking(){
-         if(r2.isMoving === true || r1.isMoving === true){
+         if(r1.isMovingUp === true){
              console.log('true')
              r1.update();
-            //  moveUpR1(); - если здесь задавать движение, то плавно ездят ракетки
+             moveUpR1();
             requestAnimationFrame(checking);
          }
+         else if( r1.isMovingDown === true){
+            console.log('true')
+             r1.update();
+             moveDownR1();
+             requestAnimationFrame(checking);
+         }
+         else if( r2.isMovingDown === true){
+            console.log('true')
+             r2.update();
+             moveDownR2();
+             requestAnimationFrame(checking);
+         }
+         else if( r2.isMovingUp === true){
+            console.log('true')
+             r2.update();
+             moveUpR2();
+             requestAnimationFrame(checking);
+         }
+         
          else{
             cancelAnimationFrame(checkingId);
          }
+
+
 
      }
      function moveUpR2(){
