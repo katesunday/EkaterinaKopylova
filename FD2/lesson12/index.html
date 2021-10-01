@@ -252,91 +252,59 @@
                 break;
             }      
      })
-     var checkingId;
+     var checkingId = setInterval(checking, 20);; // запуск постоянной проверки ракеток
      document.addEventListener('keydown',function(event){
         console.log(event.key + " " + event.location);
-        chekingId =  requestAnimationFrame(checking);
          switch(event.key){
              case 'ArrowUp':
                  r2.isMovingUp = true;
-                 moveUpR2();
                  break;
              case 'ArrowDown':
                  r2.isMovingDown = true;
-                 moveDownR2();
                  break;
              case 'Shift':
                  r1.isMovingUp = true;
-                 moveUpR1();
                  break;
              case 'Control':
                  r1.isMovingDown = true;
-                 moveDownR1();
                  break;
          }
      });
      function checking(){
          if(r1.isMovingUp === true){
              console.log('true')
-             r1.update();
-             moveUpR1();
-            requestAnimationFrame(checking);
-         }
-         else if( r1.isMovingDown === true){
-            console.log('true')
-             r1.update();
-             moveDownR1();
-             requestAnimationFrame(checking);
-         }
-         else if( r2.isMovingDown === true){
-            console.log('true')
-             r2.update();
-             moveDownR2();
-             requestAnimationFrame(checking);
-         }
-         else if( r2.isMovingUp === true){
-            console.log('true')
-             r2.update();
-             moveUpR2();
-             requestAnimationFrame(checking);
-         }
-         
-         else{
-            cancelAnimationFrame(checkingId);
-         }
-
-
-
-     }
-     function moveUpR2(){
-          r2.posY -= r2.speedY;
-          if(r2.posY <= 0){
-              r2.posY = 0;
-          }
-          r2.update();
-     }
-     function moveDownR2(){
-         r2.posY += r2.speedY;
-         if(racket2.offsetHeight + r2.posY>= gameHeight){
-             r2.posY = gameHeight - racket2.offsetHeight;
-         }
-         r2.update();
-     }
-     function moveUpR1(){
-          r1.posY -= r1.speedY;
-          if(r1.posY <= 0){
-            r1.posY = 0;
-          }
+             r1.posY -= r1.speedY;
+             if(r1.posY <= 0){
+             r1.posY = 0;
+             }
           r1.update();
-          
-     }
-     function moveDownR1(){
-         r1.posY += r1.speedY;
-         if(racket1.offsetHeight + r1.posY>= gameHeight){
-            r1.posY = gameHeight - racket1.offsetHeight;
          }
+         if( r1.isMovingDown === true){
+            console.log('true')
+            r1.posY += r1.speedY;
+            if(racket1.offsetHeight + r1.posY>= gameHeight){
+            r1.posY = gameHeight - racket1.offsetHeight;
+             }
          r1.update();
-     }
+         }
+         if( r2.isMovingDown === true){
+             console.log('true')
+             r2.posY += r2.speedY;
+             if(racket2.offsetHeight + r2.posY>= gameHeight){
+             r2.posY = gameHeight - racket2.offsetHeight;
+             }
+         r2.update();
+         }
+         if( r2.isMovingUp === true){
+             console.log('true')
+             r2.posY -= r2.speedY;
+             if(r2.posY <= 0){
+              r2.posY = 0;
+             }
+          r2.update();
+         }
+        }
+
 // перезапуск игры
     var count = 3; 
      function handleTimer(){

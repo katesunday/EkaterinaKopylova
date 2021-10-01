@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>birthday</title>
+</head>
+<body>
+    <style>
+        body{
+           margin: 0;
+           padding: 0;
+        }
+        #form{
+            margin-top: 15px;
+            margin-left: 30px;
+            width: 600px;
+            height: 300px;
+            background-color: aliceblue;
+            border: 5px solid;
+            border-color: darkgray;
+        }
+        #question{
+            display: block;
+            
+            font-size: 25px;
+            margin: 10px;
+        }
+        #getName{
+            display: block;
+            margin: 0 0 15px 15px;
+        }
+        #question2{
+            display: block;
+            
+            font-size: 25px;
+            margin: 10px;
+        }
+        #dd,#mm,#year{
+            margin: 0 0 15px 15px;
+        }
+        #dd{
+            width: 40px;
+        }
+        #mm{
+            width: 40px;
+        }
+        #year{
+            width: 80px;
+        }
+        #send{
+            display: block;
+            margin: 50px 0 15px 15px;
+        }
+    </style>
+    <div id = 'form'></div>
+
+    <script>
+        let form = document.getElementById('form');
+        let question = document.createElement('span'); //спросить имя
+        question.id = 'question';
+        question.textContent = 'Как вас зовут?';
+        form.append(question);
+        
+        let getName = document.createElement('input'); // поле ввода имени
+        getName.id = 'getName';
+        getName.placeholder = 'Введите ваше имя';
+        let answer = getName.value;
+        form.append(getName);
+
+        let question2 = document.createElement('span');// спросить дату рождения
+        question2.id = 'question2';
+        question2.textContent = 'Когда вы родились?';
+        form.append(question2);
+
+        let dd = document.createElement('input');// поле ввода дня
+        dd.id = 'dd';
+        dd.placeholder = 'день';
+        dd.maxLength =2;
+        let dayOB = dd.value;
+        form.append(dd);
+
+        let mm = document.createElement('input');// поле ввода месяца
+        mm.id = 'mm';
+        mm.placeholder = 'месяц';
+        mm.maxLength =2;
+        let monthOB = dd.value;
+        form.append(mm);
+
+        let yy = document.createElement('input');// поле ввода года рождения
+        yy.id = 'mm';
+        yy.placeholder = 'год';
+        yy.maxLength =4;
+        let yearOB = yy.value;
+        form.append(yy);
+        
+        let checkingInput = form.getElementsByTagName('input');
+        for( let i = 1; i < checkingInput.length; i++){
+            checkingInput[i].addEventListener('blur',function(){
+                if(!isNaN(this.value)){
+                    this.style.cssText = 'border: 2px solid green;';
+                    send.disabled = false;
+                }
+                else{
+                    this.style.cssText = 'border: 2px solid red;';
+                    send.disabled = true;
+                }
+            });
+        }
+
+        let send = document.createElement('button'); // кнопка подтверждения
+        send.id = 'send';
+        send.textContent = 'Все верно';
+        send.disabled = true;
+        form.append(send);
+
+        send.addEventListener('click',saveInfo);
+        function saveInfo(){
+            
+        }
+    </script>
+</body>
+</html>
