@@ -134,7 +134,9 @@
         var r1 = {
         posX : 0,
         posY : heightGame/2 - racketHeight/2,
-        speedY : 10,
+        speedY : 5,
+        isMovingUp: false,
+        isMovingDown:false,
         update: function(){
             var racketElem1 = document.getElementById('racket1');
             racketElem1.setAttributeNS(null,'x',this.posX);
@@ -146,7 +148,10 @@
         var r2 = {
         posX : width - racketWidth,
         posY : heightGame/2 - racketHeight/2,
-        speedY : 10,
+        speedY : 5,
+        isMovingUp: false,
+        isMovingDown:false,
+        
         update: function(){
             var racketElem2 = document.getElementById('racket2');
             racketElem2.setAttributeNS(null,'x',this.posX);
@@ -155,52 +160,75 @@
         }
         r2.update();
 //движение ракеток
-        document.addEventListener('keydown',function(event){
+document.addEventListener('keyup',function(event){
+        switch(event.key){
+             case 'ArrowUp':
+                 r2.isMovingUp = false;
+                 break;
+             case 'ArrowDown':
+                 r2.isMovingDown = false;
+                 break;
+             case 'Shift':
+                 r1.isMovingUp = false;
+                 break;
+             case 'Control':
+                r1.isMovingDown = false;
+                break;
+            }      
+     })
+     var checkingId = setInterval(checking, 20);;
+     document.addEventListener('keydown',function(event){
         console.log(event.key + " " + event.location);
          switch(event.key){
              case 'ArrowUp':
-                 moveUpR2();
+                 r2.isMovingUp = true;
                  break;
              case 'ArrowDown':
-                 moveDownR2();
+                 r2.isMovingDown = true;
                  break;
              case 'Shift':
-                 moveUpR1();
+                 r1.isMovingUp = true;
                  break;
              case 'Control':
-                 moveDownR1();
+                 r1.isMovingDown = true;
                  break;
          }
-         });
-         function moveUpR2(){
-          r2.posY -= r2.speedY;
-          if(r2.posY <= 0){
-              r2.posY = 0;
-          }
-          r2.update();
-     }
-     function moveDownR2(){
-         r2.posY += r2.speedY;
-         if(racketHeight + r2.posY>= heightGame){
-             r2.posY = heightGame - racketHeight;
-         }
-         r2.update();
-     }
-     function moveUpR1(){
-          r1.posY -= r1.speedY;
-          if(r1.posY <= 0){
-            r1.posY = 0;
-          }
+     });
+     function checking(){
+         if(r1.isMovingUp === true){
+             console.log('true')
+             r1.posY -= r1.speedY;
+             if(r1.posY <= 0){
+             r1.posY = 0;
+             }
           r1.update();
-     }
-     function moveDownR1(){
-         r1.posY += r1.speedY;
-         if(racketHeight + r1.posY>= heightGame){
-            r1.posY = heightGame - racketHeight;
          }
+         if( r1.isMovingDown === true){
+            console.log('true')
+            r1.posY += r1.speedY;
+            if(racketHeight + r1.posY>= heightGame){
+            r1.posY = heightGame - racketHeight;
+             }
          r1.update();
-     }
- 
+         }
+         if( r2.isMovingDown === true){
+             console.log('true')
+             r2.posY += r2.speedY;
+             if(racketHeight + r2.posY>= heightGame){
+             r2.posY = heightGame - racketHeight;
+             }
+         r2.update();
+         }
+         if( r2.isMovingUp === true){
+             console.log('true')
+             r2.posY -= r2.speedY;
+             if(r2.posY <= 0){
+              r2.posY = 0;
+             }
+          r2.update();
+         }
+        }
+         
     //объект мяча
     let ballH = {
         posX: width/2,
