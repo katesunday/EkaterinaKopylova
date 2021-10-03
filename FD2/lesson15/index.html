@@ -21,6 +21,35 @@
             border: 5px solid;
             border-color: darkgray;
         }
+        #formThanks{
+            margin-top: 15px;
+            margin-left: 30px;
+            width: 450px;
+            height: 100px;
+            background-color: aliceblue;
+            border: 5px solid;
+            border-color: darkgray;
+        }
+        #formHello{
+            margin-top: 15px;
+            margin-left: 30px;
+            width: 450px;
+            height: 100px;
+            background-color: aliceblue;
+            border: 5px solid;
+            border-color: darkgray;
+            text-align: center;
+        }
+        #hello, #DOBtimer{
+            text-align: center;
+            font-size: 18px;
+        }
+        #thanks{
+            display: block;
+            text-align: center;
+            font-size: 25px;
+            margin: 30px;
+        }
         #question{
             display: block;
             
@@ -55,9 +84,26 @@
         }
     </style>
     <div id = 'form'></div>
+    <div id = 'formThanks'></div>
+    <div id = 'formHello'></div>
 
     <script>
+
         let form = document.getElementById('form');
+        form.style.display = 'none';
+        let formThanks = document.getElementById('formThanks'); // форма появится после введения данных
+        let formHello = document.getElementById('formHello');// форма появится если есть данные
+        formHello.style.display = 'none';
+        let hello = document.createElement('span'); //спасибо
+        hello.id = 'hello';
+       
+
+        formThanks.style.display = 'none';
+        let thanks = document.createElement('span'); //спасибо
+        thanks.id = 'thanks';
+        thanks.textContent = 'Спасибо!';
+        formThanks.append(thanks);
+        
         let question = document.createElement('span'); //спросить имя
         question.id = 'question';
         question.textContent = 'Как вас зовут?';
@@ -65,8 +111,9 @@
         
         let getName = document.createElement('input'); // поле ввода имени
         getName.id = 'getName';
+        getName.className = 'getName';
         getName.placeholder = 'Введите ваше имя';
-        let answer = getName.value;
+        let answerName = getName.value;
         form.append(getName);
 
         let question2 = document.createElement('span');// спросить дату рождения
@@ -78,6 +125,7 @@
         dd.id = 'dd';
         dd.placeholder = 'день';
         dd.maxLength =2;
+        dd.minLength = 1;
         let dayOB = dd.value;
         form.append(dd);
 
@@ -85,6 +133,7 @@
         mm.id = 'mm';
         mm.placeholder = 'месяц';
         mm.maxLength =2;
+        mm.minLength = 1;
         let monthOB = dd.value;
         form.append(mm);
 
@@ -92,13 +141,27 @@
         yy.id = 'mm';
         yy.placeholder = 'год';
         yy.maxLength =4;
+        yy.minLength = 4;
         let yearOB = yy.value;
         form.append(yy);
         
-        let checkingInput = form.getElementsByTagName('input');
+        let send = document.createElement('button'); // кнопка подтверждения
+        send.id = 'send';
+        send.textContent = 'Все верно';
+        send.disabled = true;
+        form.append(send);
+
+        let checkName = document.getElementById('getName');
+        checkName.addEventListener('blur',function(){
+            if (checkName.value ==0 || checkName.value ==""){
+                checkName.style.cssText = 'border: 2px solid red;';
+            send.disabled = true;
+        }
+        });
+        let checkingInput = form.getElementsByTagName('input');// проверка на число и пустую строку
         for( let i = 1; i < checkingInput.length; i++){
             checkingInput[i].addEventListener('blur',function(){
-                if(!isNaN(this.value)){
+                if(!isNaN(this.value) && this.value != ""){
                     this.style.cssText = 'border: 2px solid green;';
                     send.disabled = false;
                 }
@@ -106,19 +169,67 @@
                     this.style.cssText = 'border: 2px solid red;';
                     send.disabled = true;
                 }
+                if(yy.value.length < 4){
+                yy.style.cssText = 'border: 2px solid red;';
+                send.disabled = true;
+                }
+                if(this.value == 0){
+                    this.style.cssText = 'border: 2px solid red;';
+                    send.disabled = true;
+                }
+                
             });
         }
 
-        let send = document.createElement('button'); // кнопка подтверждения
-        send.id = 'send';
-        send.textContent = 'Все верно';
-        send.disabled = true;
-        form.append(send);
+  
+   
+    
+        
+        var user = {};
 
         send.addEventListener('click',saveInfo);
         function saveInfo(){
-            
+          user.name = `${getName.value}`;
+          user.dateOB = new Date(parseInt(yy.value), parseInt(mm.value)-1,parseInt(dd.value)+1);
+          user.yearOB = parseInt(yy.value);
+          user.monthOB = parseInt(mm.value);
+          user.dayOB = parseInt(dd.value);
+          send.disabled ='true';
+          window.localStorage.setItem("user2", JSON.stringify(user));// использован local storage, так как необходимо сохранить данные после закрытия вкладки 
+          form.style.display = 'none';
+          formThanks.style.display = 'block';
+
         }
+        var savedUser2 = JSON.parse(window.localStorage.getItem("user2"));
+        var timestr;
+
+        if(savedUser2 === null){
+            form.style.display = 'block';
+        }
+        else{
+        
+          formHello.style.display = 'block';
+          hello.textContent = `Привет, ${savedUser2.name}!`;
+          let DOBtimer = document.createElement('p');
+          DOBtimer.id = 'DOBtimer';
+          formHello.append(hello);
+          formHello.append(DOBtimer);
+          time();
+          setInterval(time, 1000);
+         
+        }
+            function time(){
+            var today = new Date();
+            var timeend= new Date(today.getFullYear()+1,savedUser2.monthOB-1,savedUser2.dayOB,0,0);
+            today = Math.floor((timeend-today)/1000);
+	        tsec=today%60; today=Math.floor(today/60); if(tsec<10)tsec='0'+tsec;
+	        tmin=today%60; today=Math.floor(today/60); if(tmin<10)tmin='0'+tmin;
+	        thour=today%24; today=Math.floor(today/24);
+	        timestr=today +" дней "+ thour+" часов "+tmin+" минут "+tsec+" секунд"+"!";
+            DOBtimer.textContent = `До вашего дня рождения осталось: ${timestr}`;
+  
+        }
+        
     </script>
 </body>
 </html>
