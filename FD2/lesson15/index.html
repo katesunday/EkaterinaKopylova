@@ -161,7 +161,7 @@
         let checkingInput = form.getElementsByTagName('input');// проверка на число и пустую строку
         for( let i = 1; i < checkingInput.length; i++){
             checkingInput[i].addEventListener('blur',function(){
-                if(!isNaN(this.value) && this.value != ""){
+                if(!isNaN(this.value) && this.value != "" && this.value != ' '){
                     this.style.cssText = 'border: 2px solid green;';
                     send.disabled = false;
                 }
@@ -173,7 +173,7 @@
                 yy.style.cssText = 'border: 2px solid red;';
                 send.disabled = true;
                 }
-                if(this.value == 0){
+                if( this.value == 0){
                     this.style.cssText = 'border: 2px solid red;';
                     send.disabled = true;
                 }
