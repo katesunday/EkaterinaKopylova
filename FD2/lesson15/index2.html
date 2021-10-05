@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        body {
+    font-size: 21px;
+    text-align: center;
+}
+
+input {
+    min-width: 180px;
+    padding: 8px 12px;
+    border: 1px gray solid;
+    border-radius: 3px;
+    margin: 0 5px;
+}
+
+button {
+    font-size: 18px;
+    line-height: 21px;
+    padding: 10px;
+    border-radius: 5px;
+}
+    </style>
+    <h1>Пример решения задачи "в лоб"</h1>
+
+<h3>пример умножения двух чисел</h3>
+<form>
+    <fieldset>
+        <legend>Магия чисел</legend>
+        <p>
+            <input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
+            <span class="mult-sign"> x </span>
+            <input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
+        </p>
+        <p>
+            <button id="calculate-btn">Вычислить</button>
+        </p>
+        <div id="show-result"></div>
+    </fieldset>
+
+    <script>
+        let inp1 = document.getElementById('input_1');
+        let inp2 = document.getElementById('input_2');
+        let inp = document.getElementsByTagName('input');
+        let button = document.getElementById('calculate-btn');
+        button.disabled = true;
+        inp1.addEventListener('input',checking);
+        inp2.addEventListener('input',checking);
+        function checking(){
+            if(inp1.value && inp2.value){
+                button.disabled = false;
+            }
+        }
+        let result = document.getElementById('show-result');
+        button.addEventListener('click',function(event){
+            event.preventDefault();
+           let c = input_1.value*input_1.value;
+            result.textContent = `Результат вычислений: ${c}.`
+            console.log(c);
+        });
+     
+
+    </script>
+</form>
+</body>
+</html>
