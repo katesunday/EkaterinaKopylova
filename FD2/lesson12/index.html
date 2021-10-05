@@ -252,7 +252,7 @@
                 break;
             }      
      })
-     var checkingId = setInterval(checking, 20);; // запуск постоянной проверки ракеток
+     checking();  // запуск постоянной проверки ракеток
      document.addEventListener('keydown',function(event){
         console.log(event.key + " " + event.location);
          switch(event.key){
@@ -303,6 +303,7 @@
              }
           r2.update();
          }
+         requestAnimationFrame(checking);
         }
 
 // перезапуск игры

@@ -151,7 +151,7 @@ document.addEventListener('keyup',function(event){
                 break;
             }      
      })
-     var checkingId = setInterval(checking, 20);
+     checking();
      document.addEventListener('keydown',function(event){
         console.log(event.key + " " + event.location);
          switch(event.key){
@@ -214,6 +214,7 @@ document.addEventListener('keyup',function(event){
              r2.update();
              ballH.update(); 
          }
+         requestAnimationFrame(checking);
         }
          
      // локига игры

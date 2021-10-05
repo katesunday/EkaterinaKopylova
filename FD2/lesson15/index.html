@@ -152,10 +152,10 @@
         form.append(send);
 
         let checkName = document.getElementById('getName');
-        checkName.addEventListener('blur',function(){
-            if (checkName.value ==0 || checkName.value ==""){
+        checkName.addEventListener('input',function(){
+            if (checkName.value){
                 checkName.style.cssText = 'border: 2px solid red;';
-            send.disabled = true;
+                send.disabled = true;
         }
         });
         let checkingInput = form.getElementsByTagName('input');// проверка на число и пустую строку
