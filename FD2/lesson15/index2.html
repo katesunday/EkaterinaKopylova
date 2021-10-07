@@ -4,71 +4,230 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>team1</title>
 </head>
 <body>
 
     <style>
-        body {
-    font-size: 21px;
-    text-align: center;
+   * {
+   box-sizing: border-box;
 }
-
-input {
-    min-width: 180px;
-    padding: 8px 12px;
-    border: 1px gray solid;
-    border-radius: 3px;
-    margin: 0 5px;
+body {
+   background: #f69a73;
 }
-
-button {
-    font-size: 18px;
-    line-height: 21px;
-    padding: 10px;
-    border-radius: 5px;
+.decor {
+   position: relative;
+   max-width: 400px;
+   margin: 50px auto 0;
+   background: white;
+   border-radius: 30px;
+  border-color: transparent;
 }
+.left-decoration, .right-decoration {
+   content: "";
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   background: #f69a73;
+   border-radius: 20px;
+}
+.left-decoration {
+   bottom: 60px;
+   left: -30px;
+   -webkit-transition: all 1.5s;
+  transition: all 1.5s;
+}
+.right-decoration {
+   top: 60px;
+   right: -30px;
+   -webkit-transition: all 1.5s;
+  transition: all 1.5s;
+}
+.left-decoration:before, .left-decoration:after, .right-decoration:before, .right-decoration:after {
+   content: "";
+   position: absolute;
+   width: 50px;
+   height: 20px;
+   border-radius: 30px;
+   background: white;
+}
+.left-decoration:before {
+   top: -20px;
+}
+.left-decoration:after {
+   top: 20px;
+   left: 10px;
+}
+.right-decoration:before {
+   top: -20px;
+   right: 0;
+}
+.right-decoration:after {
+   top: 20px;
+   right: 10px;
+}
+.circle {
+   position: absolute;
+   bottom: 80px;
+   left: -55px;
+   width: 20px;
+   height: 20px;
+   border-radius: 50%;
+   background: white;
+   -webkit-transition: all 1.5s;
+  transition: all 1.5s;
+}
+.inner {
+   padding: 50px;
+}
+  
+.decor:hover >.left-decoration{
+  transition-duration: 1s;
+  width: 90px;
+}
+.decor:hover >.right-decoration{
+  transition-duration: 1s;
+  width: 90px;
+}
+ .decor:hover>.circle{
+  	transition-duration: 1s;
+    bottom: 190px;
+  }
+.inner input{
+   display: block;
+   width: 100%;
+   padding: 0 20px;
+   margin-bottom: 10px;
+   background: #E9EFF6;
+   line-height: 40px;
+   border-width: 0;
+   border-radius: 20px;
+   font-family: 'Roboto', sans-serif;
+}
+.calculate-btn {
+   margin-top: 8px;
+   background: #f69a73;
+  border-radius: 20px;
+  border-color: transparent;
+   border-bottom: 4px solid #d87d56;
+   color: grey;
+   font-size: 25px;
+  width: 275px;
+}
+.inner h3 {
+   margin-top: 0;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 500;
+   font-size: 24px;
+   color: #707981;
+}
+#select{
+  width: 60px;
+  height: 30px;
+  margin-left: 38%;
+  margin-right: 50%;
+  border-radius: 15px;
+  border-color: transparent;
+  background: #E9EFF6;
+}
+    #ent{
+  height: 8px;
+}
+    
+    #show-result{
+    	margin-top: 0;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 500;
+   font-size: 22px;
+   color: #707981;
+    }
     </style>
-    <h1>Пример решения задачи "в лоб"</h1>
-
-<h3>пример умножения двух чисел</h3>
 <form>
-    <fieldset>
-        <legend>Магия чисел</legend>
-        <p>
-            <input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
-            <span class="mult-sign"> x </span>
-            <input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
-        </p>
-        <p>
-            <button id="calculate-btn">Вычислить</button>
-        </p>
-        <div id="show-result"></div>
-    </fieldset>
+    <fieldset class="decor">
+        <div class="left-decoration"></div>
+        <div class="right-decoration"></div>
+        <div class="circle"></div>
+        <div class="inner">
+      <h3>Магия чисел</h3>
+      <div id = 'calc_form'>
+          <input type="number" placeholder="Введите первое значение" name="input_1" id="input_1">
+          <select id="select">
+              <option value="+">+</option>
+              <option value="-">-</option>
+              <option value="/">/</option>
+              <option value="*">*</option>
+          </select>
+        <div id = "ent"></div>
+          <input type="number" placeholder="Введите второе значение" name="input_2" id="input_2">
+      </div>
+          <button class="calculate-btn" id = "calculate-btn">Вычислить</button>
+          <div id = "ent"></div>
+      <div id="show-result"></div>
+  </fieldset>
 
-    <script>
-        let inp1 = document.getElementById('input_1');
-        let inp2 = document.getElementById('input_2');
-        let inp = document.getElementsByTagName('input');
-        let button = document.getElementById('calculate-btn');
-        button.disabled = true;
-        inp1.addEventListener('input',checking);
-        inp2.addEventListener('input',checking);
-        function checking(){
-            if(inp1.value && inp2.value){
-                button.disabled = false;
-            }
+  <script>
+    //view
+    var View = {
+        result: document.getElementById('show-result'),
+        update: function(c){
+        this.result.textContent = (c==Infinity || c == -Infinity)?`Ошибка(на ноль делить нельзя)`:`Результат вычислений: ${c}`
         }
-        let result = document.getElementById('show-result');
-        button.addEventListener('click',function(event){
-            event.preventDefault();
-           let c = input_1.value*input_1.value;
-            result.textContent = `Результат вычислений: ${c}.`
-            console.log(c);
-        });
-     
-
+        }
+    //model
+    const Model = {
+        n1: 0,
+        n2: 0,
+        op: 0,
+        res: 0,
+        set: function(num1,num2,op){ // сеттер, его можно использовать в контроллере для передачи значений из полей в модель
+        this.n1 = num1;
+        this.n2 = num2;
+        this.op = op;
+        },
+        calc: function(){//собственно кальулятор
+            switch (this.op){
+                case '+': this.res = +this.n1 + +this.n2; break;// + для преобразования к числу
+                case '-': this.res = this.n1 - this.n2; break;
+                case '*': this.res = this.n1 * this.n2; break;                
+                case '/': this.res = this.n1 / this.n2; break;
+            }
+            this.updateView();//передаем реультат во вью
+        },
+        updateView: function(){//метод для передачи результата
+        View.update(this.res);
+        },
+    }
+    //controller
+    var Controller = {
+        form: document.getElementById('calc_form'),
+        a: document.getElementById('input_1'),
+        b: document.getElementById('input_2'),
+        opr: document.getElementById('select'),
+        button: document.getElementById('calculate-btn'),               
+        init: function(){
+            this.button.disabled = true; // по умолчанию кнопка disabled
+            this.form.addEventListener('input',function(event){ // слушатель на Div
+                if(event.target.tagName === 'INPUT' || event.target.tagName ==='SELECT'){ // если нажатие было на инпут или селект
+    // debugger;                        
+                    if(Controller.a.value && Controller.b.value){// если есть данные в инпут
+                        Model.set(Controller.a.value,Controller.b.value,Controller.opr.value);// то добавляем данные в сеттер
+                        Controller.button.disabled = false; // то кнопка незадизейблена
+                        Controller.button.style.color = "white";
+                    }else{
+                        Controller.button.disabled = true;
+                        Controller.button.style.color = "grey";
+                    }
+                }
+            });
+            this.button.addEventListener('click',function(event){ // слушатель на кнопку
+                event.preventDefault();
+                Model.calc(); 
+            });
+        }
+    }
+    Controller.init(); // включить слушатели     
     </script>
+    </body> 
 </form>
 </body>
 </html>
