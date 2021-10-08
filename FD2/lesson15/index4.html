@@ -270,25 +270,24 @@ const Model = {
 
     <script>
 
-        /* ------- begin view -------- */a
+        /* ------- begin view -------- */
           function ModalView() {
-            let myModal = document.getElementById('modal');
-            let myModalOverlay = document.getElementById('modal-overlay');
+            let myModal = null;
+            let myModalOverlay = null
         
-            this.init = function() {
-                // myModal = modal;
-                // // myModalOverlay = modal.querySelector('modal-overlay');
-               
+            this.init = function(container,contOverlay) {
+                myModal = container;
+                myModalOverlay = contOverlay;    
             }
         
             this.show = function () {
-                this.myModal.classList.remove('modal_closed');
-                this.myModalOverlay.classList.remove('modal_closed');
+                myModal.classList.remove('modal_closed');
+                myModalOverlay.classList.remove('modal_closed');
             }
         
             this.hide = function () {
-                this.myModal.classList.add('modal_closed');
-                this.myModalOverlay.classList.add('modal_closed');
+                myModal.classList.add('modal_closed');
+                myModalOverlay.classList.add('modal_closed');
             }
         
             this.printViewData = function () { // вывести данные из хранилища в div.modal-data
@@ -306,20 +305,22 @@ const Model = {
             let myModalView = null;
             let userData = {};
         
-            this.init = function(appModalView,modal) {
-                myModalContainer = modal;
-                myModalView = appModalView;
+            this.init = function(view,container) { // тут нужно объяснить
+                myModalContainer = container;
+                myModalView = view;
             }
         
             this.openModal = function() {
-                ModalView.show(); 
+                myModalView.show(); 
             }
         
             this.closeModal = function() {
-                ModalView.hide();
+                myModalView.hide();
             }
         
-            this.saveModalData = function() { //получить данные из модалки и сохранить
+            this.saveModalData = function(nameValue) { //получить данные из модалки и сохранить
+                this.userData.name = nameValue;
+                myModalView.hide();
             }
         
             this.storeData = function() { // сохранить данные в localStorage, а если не доступно, то в cookies
@@ -345,15 +346,21 @@ const Model = {
             let myModalContainer = null;
             let myModalModel = null;
         
-            this.init = function(appModalModel,modal) { // получаем кнопки и вешаем обработчики
-                myModalContainer = modal;
-                myModalModel = appModalModel;
-                this.openBtn=  document.querySelector(".modal__close");// открыть модалку
-                this.modalClose = document.querySelector('.modal-close'), // закрыть модалку
-                this.modalCancel = document.querySelector('.modal-cancel'), // закрыть модалку
-                this.openBtn.addEventListener('click', this.openModal);
-                // this.modalClose.addEventListener('click', this.hideModal);
-                // this.modalCancel.addEventListener('click', this.hideModal);
+            this.init = function(model,container) { // получаем кнопки и вешаем обработчики
+                myModalContainer = container;
+                myModalModel = model;
+                this.openBtn=  myModalContainer.parentNode.querySelector(".modal-open");// открыть модалку ??????????
+                this.modalClose = myModalContainer.querySelector('.modal__close'); // закрыть модалку
+                this.modalCancel = myModalContainer.querySelector('.modal__cancel'); // закрыть модалку
+                this.modalSave = myModalContainer.querySelector('.modal__save'); // сохранить данные
+                this.openBtn.addEventListener('click', myModalModel.openModal);
+                this.modalClose.addEventListener('click', myModalModel.closeModal);
+                this.modalCancel.addEventListener('click', myModalModel.closeModal);
+                this.modalSave.addEventListener('click',myModalModel.saveModal);
+                this.inpName = myModalContainer.querySelector('.input__default'); // ввод имени
+                this.DODinp = myModalContainer.querySelectorAll('.input__date-birth'); // др
+                this.checking = myModalContainer.querySelectorAll('input');
+
             }
         
             this.openModal = function (e) {
@@ -363,10 +370,13 @@ const Model = {
         
             this.hideModal = function (e) {
                 e.preventDefault(); 
-                ModalModel.hideModal();
+                ModalModel.closeModal();
             }
         
-            this.saveModal = function () {
+            this.saveModal = function (e) {
+                e.preventDefault(); 
+                ModalModel.saveModalData(this.inpName.value,this.DODinp[0].value,this.DODinp[1].value,this.DODinp[2].value);
+                ModalModel.closeModal();
             }
         
             this.clearData = function () {
@@ -378,14 +388,16 @@ const Model = {
           const appModalView = new ModalView();
           const appModalModel = new ModalModel();
           const appModalController = new ModalController();
-          const modal = document.getElementById('modal');
-          appModalView.init();
-          appModalModel.init();
-          appModalController.init();
+          const container = document.getElementById('modal');
+          const contOverlay = document.getElementById('modal-overlay');
+        //вызвать init-методы...
+          appModalView.init(container,contOverlay);
+          appModalModel.init(appModalView,container);
+          appModalController.init(appModalModel,container);
           
         
         
-        //вызвать init-методы...
+  
         // Controller
 // var Controller = {
 //     openBtn: document.getElementById('modal-open'),// открыть модалку
