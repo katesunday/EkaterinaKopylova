@@ -318,8 +318,8 @@ const Model = {
                 myModalView.hide();
             }
         
-            this.saveModalData = function() { //получить данные из модалки и сохранить
-                this.userData.name = nameValue;
+            this.saveModalData = function(nameValue) { //получить данные из модалки и сохранить
+                userData.name = nameValue;
                 myModalView.hide();
             }
         
