@@ -209,6 +209,9 @@
 .hide {
   display: none;
 }
+.modal-data{
+    display: none;
+}
   </style>
 </head>
 
@@ -221,6 +224,10 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam fuga sunt voluptas, ullam, sed consequuntur ab illo veniam ad totam alias voluptatibus sequi officiis, unde autem reiciendis magnam labore voluptatum?</p>
         <p class="btn"><a href="#" id="modal-open" class="modal-open" title="Покажите мне модальное окошко">Открыть окно</a></p>
+        <div id="modal-data" class="modal-data"> 
+            <p class="text"></p>
+            <button id="clear-data" class="clear__data" title="Удалить данные">Удалить данные</button>
+          </div>
     </div>
 
     <div class="modal-overlay modal_closed" id="modal-overlay"></div>
@@ -248,36 +255,29 @@
             <button id="modal-save" class="modal__save" title="Сохранить">Сохранить данные</button>
         </footer>
     </div>
-
-    <!-- <script>
-
-
-//Model
-const Model = {
-    user: {},
-
-    saveInfo: function(name,day,month,year){
-       this.user.name = name;
-       this.user.dayOb = day;
-       this.user.monthOb = month;
-       this.user.yearOb = year;
-       this.saveToStorage();
-    },
-    saveToStorage: function(){
-        window.localStorage.setItem("user", JSON.stringify(this.user));
-    }
-} -->
+    
 
     <script>
 
         /* ------- begin view -------- */
           function ModalView() {
             let myModal = null;
-            let myModalOverlay = null
+            let myModalOverlay = null;
+            let inputs = null;
+            let btnSave = null;
+            let divData = null;
+            let btnDel = null;
+            let text = null;
+           
         
             this.init = function(container,contOverlay) {
                 myModal = container;
-                myModalOverlay = contOverlay;    
+                myModalOverlay = contOverlay; 
+                inputs = myModal.querySelectorAll('input');  
+                btnSave = myModal.querySelector('.modal__save') ;
+                divData = myModal.parentNode.querySelector('.modal-data');
+                btnDel = myModal.parentNode.querySelector('.clear__data');
+                text =  myModal.parentNode.querySelector('.text');
             }
         
             this.show = function () {
@@ -288,12 +288,19 @@ const Model = {
             this.hide = function () {
                 myModal.classList.add('modal_closed');
                 myModalOverlay.classList.add('modal_closed');
+                inputs.forEach(element => {
+                    element.value = '';
+                });
             }
         
-            this.printViewData = function () { // вывести данные из хранилища в div.modal-data
+            this.printViewData = function (savedUser) { // вывести данные из хранилища в div.modal-data
+                  divData.style.display = 'block';
+                  text.textContent = `Привет, ${savedUser.name}!`;
             }
         
             this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
+                 btnDel.style.display = 'none';
+                 divData.textContent = 'Данные удалены.'
             }
         
           };
@@ -318,24 +325,40 @@ const Model = {
                 myModalView.hide();
             }
         
-            this.saveModalData = function(nameValue) { //получить данные из модалки и сохранить
+            this.saveModalData = function(nameValue,day,month,year) { //получить данные из модалки и сохранить
                 userData.name = nameValue;
+                userData.day = day;
+                userData.month = month;
+                userData.year = year;
+                this.storeData();
                 myModalView.hide();
             }
         
             this.storeData = function() { // сохранить данные в localStorage, а если не доступно, то в cookies
+                window.localStorage.setItem("user", JSON.stringify(userData));
+                if(window.localStorage.getItem("user") != null){
+                    this.getData();   
+                }
             }
         
             this.getData = function() { //достать данные из хранилища
+                var savedUser = JSON.parse(window.localStorage.getItem("user"));
+                myModalView.printViewData(savedUser);    
             }
         
             this.updateData = function() {
             }
         
             this.clearData = function() { //очистить данные в хранилище
+                if(window.localStorage.getItem("user") != null){
+                    window.localStorage.removeItem("user");
+                    this.clearForm();
+                }
+                
             }
         
             this.clearForm = function() { //очистить данные в форме
+                myModalView.clearViewData();
             }
         
           }
@@ -353,13 +376,16 @@ const Model = {
                 this.modalClose = myModalContainer.querySelector('.modal__close'); // закрыть модалку
                 this.modalCancel = myModalContainer.querySelector('.modal__cancel'); // закрыть модалку
                 this.modalSave = myModalContainer.querySelector('.modal__save'); // сохранить данные
-                this.openBtn.addEventListener('click', myModalModel.openModal);
-                this.modalClose.addEventListener('click', myModalModel.closeModal);
-                this.modalCancel.addEventListener('click', myModalModel.closeModal);
-                this.modalSave.addEventListener('click',myModalModel.saveModal);
+                this.openBtn.addEventListener('click', this.openModal);
+                this.modalClose.addEventListener('click', this.hideModal);
+                this.modalCancel.addEventListener('click', this.hideModal);
+                this.modalSave.addEventListener('click',this.saveModal);
                 this.inpName = myModalContainer.querySelector('.input__default'); // ввод имени
                 this.DODinp = myModalContainer.querySelectorAll('.input__date-birth'); // др
                 this.checking = myModalContainer.querySelectorAll('input');
+                this.btnDelData = myModalContainer.parentNode.querySelector('.clear__data');
+                this.btnDelData.addEventListener('click',this.clearData);
+
 
             }
         
@@ -375,11 +401,13 @@ const Model = {
         
             this.saveModal = function () {
                 
-                myModalModel.saveModalData(this.inpName.value,this.DODinp[0].value,this.DODinp[1].value,this.DODinp[2].value);
+                myModalModel.saveModalData(appModalController.inpName.value,appModalController.DODinp[0].value,appModalController.DODinp[1].value,appModalController.DODinp[2].value);
                 myModalModel.closeModal();
             }
         
-            this.clearData = function () {
+            this.clearData = function (e) {
+                e.preventDefault();
+                myModalModel.clearData();
             }
           };
         /* ------ end controller ----- */
