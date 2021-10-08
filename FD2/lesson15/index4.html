@@ -365,18 +365,18 @@ const Model = {
         
             this.openModal = function (e) {
                 e.preventDefault(); 
-                ModalModel.openModal(); 
+                myModalModel.openModal(); 
             }
         
             this.hideModal = function (e) {
                 e.preventDefault(); 
-                ModalModel.closeModal();
+                myModalModel.closeModal();
             }
         
             this.saveModal = function () {
                 
-                ModalModel.saveModalData(this.inpName.value,this.DODinp[0].value,this.DODinp[1].value,this.DODinp[2].value);
-                hideModal();
+                myModalModel.saveModalData(this.inpName.value,this.DODinp[0].value,this.DODinp[1].value,this.DODinp[2].value);
+                myModalModel.closeModal();
             }
         
             this.clearData = function () {
