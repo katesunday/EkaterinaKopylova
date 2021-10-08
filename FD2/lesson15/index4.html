@@ -318,7 +318,7 @@ const Model = {
                 myModalView.hide();
             }
         
-            this.saveModalData = function(nameValue) { //получить данные из модалки и сохранить
+            this.saveModalData = function() { //получить данные из модалки и сохранить
                 this.userData.name = nameValue;
                 myModalView.hide();
             }
@@ -373,10 +373,10 @@ const Model = {
                 ModalModel.closeModal();
             }
         
-            this.saveModal = function (e) {
-                e.preventDefault(); 
+            this.saveModal = function () {
+                
                 ModalModel.saveModalData(this.inpName.value,this.DODinp[0].value,this.DODinp[1].value,this.DODinp[2].value);
-                ModalModel.closeModal();
+                hideModal();
             }
         
             this.clearData = function () {
