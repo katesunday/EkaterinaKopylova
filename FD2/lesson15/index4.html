@@ -344,13 +344,13 @@
                 myModalView.hide();
             }
 
-            this.checkData = function(name = false,day = false,month = false,year = false){
+            this.checkData = function(name = false,day = false,month = false,year = false){// по дефолту все фолс
                 let checkName = Boolean(name && isNaN(name));
                 let checkDay = Boolean(day && day > 0 && day <= 31);
                 let checkMonth = Boolean(month && month > 0 && month <=12);
                 let checkYear = Boolean(year>1900);
-                let check = Boolean(checkName && checkDay && checkMonth && checkYear);
-                if(check === true){
+                let check = Boolean(checkName && checkDay && checkMonth && checkYear); // все должно быть тру
+                if(check === true){ // если тру то включаем кнопку
                     this.disableBtn();
                 }
             }
@@ -375,7 +375,32 @@
                 if(window.localStorage.getItem("user") != null){
                     this.getData();   
                 }
+                else{
+                    for (const [key, value] of Object.entries(userData)) {
+                 this.setCookie(key,value,{secure: true, 'max-age': 3600});
+                }
+                }
             }
+            this.setCookie = function(name, value, options = { path: '/' }) {
+
+             if (options.expires instanceof Date) {
+                 options.expires = options.expires.toUTCString();
+             }
+             if (value instanceof Object) {
+                value = JSON.stringify(value);
+              }
+
+             let updatedCookie = name + "=" + value;
+
+             for (let optionKey in options) {
+                updatedCookie += "; " + optionKey;
+                let optionValue = options[optionKey];
+             if (options[optionKey] !== true) {
+                updatedCookie += "=" + options[optionKey];
+             }
+             }
+             document.cookie = updatedCookie;
+             }
         
             this.getData = function() { //достать данные из хранилища
                 var savedUser = JSON.parse(window.localStorage.getItem("user"));
@@ -383,6 +408,10 @@
             }
         
             this.updateData = function() {
+                var savedUser = JSON.parse(window.localStorage.getItem("user"));
+                if(savedUser){
+                    myModalView.printViewData(savedUser); 
+                }
             }
         
             this.clearData = function() { //очистить данные в хранилище
@@ -423,18 +452,19 @@
                 this.modalSave.addEventListener('click',this.saveModal);
                 this.btnDelData.addEventListener('click',this.clearData);
                 myModalContainer.addEventListener('input',this.checkInputs);
+                myModalModel.updateData(); //проверка на наличие юзера в local storage
 
 
             }
-            this.checkInputs = function(){ // проверка ввода данных
-                //  if (e.target.tagName === 'INPUT'){
-                //  e.preventDefault();
+            this.checkInputs = function(e){ // проверка ввода данных
+                 if (e.target.tagName === 'INPUT'){
+                 e.preventDefault();
                  let name = appModalController.inpName.value;
                  let day = appModalController.DODinp[0].value;
                  let month = appModalController.DODinp[1].value;
                  let year = appModalController.DODinp[2].value;
                  myModalModel.checkData(name,day,month,year); // доп функция проверки
-                //  }
+                 }
                  };
 
             this.openModal = function (e) {
@@ -452,7 +482,6 @@
                  let day = appModalController.DODinp[0].value;
                  let month = appModalController.DODinp[1].value;
                  let year = appModalController.DODinp[2].value;
-                // appModalController.inpName.value,appModalController.DODinp[0].value,appModalController.DODinp[1].value,appModalController.DODinp[2].value
                 myModalModel.saveModalData(name,day,month,year);
                 myModalModel.closeModal();
             }
@@ -476,36 +505,6 @@
           appModalController.init(appModalModel,container);
           
         
-        
-  
-        // Controller
-// var Controller = {
-//     openBtn: document.getElementById('modal-open'),// открыть модалку
-//     modalClose: document.getElementById('modal-close'), // закрыть модалку
-//     modalCancel: document.getElementById('modal-cancel'), // закрыть модалку
-//     modalSave: document.getElementById('modal-save'), // сохранить данные
-//     modalContent: document.getElementsByClassName('modal__content'), //див с вводами
-//     inpName: document.getElementById('name'), // ввод имени
-//     DODinp: document.getElementsByClassName('input__date-birth'), // др
-//     checking: document.querySelectorAll('input'),
-//    init: function(){
-
-//     this.modalCancel.addEventListener('click',function(e){
-//         e.preventDefault();
-//         Model.addClass();
-//     });
-//     this.modalSave.addEventListener('click',function(e){
-//         e.preventDefault();
-//         Model.saveInfo(Controller.inpName.value,Controller.DODinp[0].value,Controller.DODinp[1].value,Controller.DODinp[2].value);
-//         Model.addClass(); 
-//         Controller.inpName.value ='';
-//         Controller.DODinp[0].value ='';
-//         Controller.DODinp[1].value ='';
-//         Controller.DODinp[2].value ='';
-//     })
-//    },
-
-// }
 
         </script>
         
