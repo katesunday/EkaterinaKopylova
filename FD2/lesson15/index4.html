@@ -212,6 +212,7 @@
 .modal-data{
     display: none;
 }
+
   </style>
 </head>
 
@@ -292,6 +293,10 @@
                     element.value = '';
                 });
             }
+            this.disableBtn = function(isDisabled){
+                 btnSave.disabled = (isDisabled) ? true : false;
+            }
+
         
             this.printViewData = function (savedUser) { // вывести данные из хранилища в div.modal-data
                   divData.style.display = 'block';
@@ -324,9 +329,24 @@
             this.closeModal = function() {
                 myModalView.hide();
             }
+
+            this.checkData = function(name = false,day = false,month = false,year = false){
+                let checkName = Boolean(name && isNaN(name));
+                let checkDay = Boolean(day && day > 0 && day <= 31);
+                let checkMonth = Boolean(month && month > 0 && month < 12);
+                let checkYear = Boolean(year>0);
+                let check = Boolean(checkName && checkDay && checkMonth && checkYear);
+                this.disableBtn(!check);
+                return check;
+            }
+
+            this.disableBtn = function(isDisabled = true){
+              myModalView.disableBtn(isDisabled);
+               }
+            }
         
-            this.saveModalData = function(nameValue,day,month,year) { //получить данные из модалки и сохранить
-                userData.name = nameValue;
+            this.saveModalData = function(name,day,month,year) { //получить данные из модалки и сохранить
+                userData.name = name;
                 userData.day = day;
                 userData.month = month;
                 userData.year = year;
@@ -361,34 +381,46 @@
                 myModalView.clearViewData();
             }
         
-          }
+          
         /* -------- end model -------- */
         
         /* ----- begin controller ---- */
           function ModalController () {
             let myModalContainer = null;
             let myModalModel = null;
+            let inputs = null;
         
             this.init = function(model,container) { // получаем кнопки и вешаем обработчики
                 myModalContainer = container;
                 myModalModel = model;
-                this.openBtn=  myModalContainer.parentNode.querySelector(".modal-open");// открыть модалку ??????????
+                this.openBtn =  myModalContainer.parentNode.querySelector(".modal-open");// открыть модалку ??????????
                 this.modalClose = myModalContainer.querySelector('.modal__close'); // закрыть модалку
                 this.modalCancel = myModalContainer.querySelector('.modal__cancel'); // закрыть модалку
                 this.modalSave = myModalContainer.querySelector('.modal__save'); // сохранить данные
+                this.inpName = myModalContainer.querySelector('.input__default'); // ввод имени
+                this.DODinp = myModalContainer.querySelectorAll('.input__date-birth'); // др
+                inputs = myModalContainer.querySelectorAll('input');
+                this.btnDelData = myModalContainer.parentNode.querySelector('.clear__data');
                 this.openBtn.addEventListener('click', this.openModal);
                 this.modalClose.addEventListener('click', this.hideModal);
                 this.modalCancel.addEventListener('click', this.hideModal);
                 this.modalSave.addEventListener('click',this.saveModal);
-                this.inpName = myModalContainer.querySelector('.input__default'); // ввод имени
-                this.DODinp = myModalContainer.querySelectorAll('.input__date-birth'); // др
-                this.checking = myModalContainer.querySelectorAll('input');
-                this.btnDelData = myModalContainer.parentNode.querySelector('.clear__data');
                 this.btnDelData.addEventListener('click',this.clearData);
+                myModalContainer.addEventListener('input',this.checkInputs);
 
 
             }
-        
+            this.checkInputs = function(e){ // проверка ввода данных
+                 if (e.target.tagName === 'INPUT'){
+                 e.preventDefault();
+                 let name = appModalController.inpName.value;
+                 let day = appModalController.DODinp[0].value;
+                 let month = appModalController.DODinp[1].value;
+                 let year = appModalController.DODinp[2].value;
+                 myModalModel.checkData(name,day,month,year); // доп функция проверки
+                 }
+                 };
+
             this.openModal = function (e) {
                 e.preventDefault(); 
                 myModalModel.openModal(); 
@@ -400,8 +432,11 @@
             }
         
             this.saveModal = function () {
-                
-                myModalModel.saveModalData(appModalController.inpName.value,appModalController.DODinp[0].value,appModalController.DODinp[1].value,appModalController.DODinp[2].value);
+                 let name = appModalController.inpName.value;
+                 let day = appModalController.DODinp[0].value;
+                 let month = appModalController.DODinp[1].value;
+                 let year = appModalController.DODinp[2].value;
+                myModalModel.saveModalData(name,day,month,year);
                 myModalModel.closeModal();
             }
         
