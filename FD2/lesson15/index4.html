@@ -212,6 +212,18 @@
 .modal-data{
     display: none;
 }
+.clear__data{
+    display: inline-block;
+    color: #fff;
+    border: 1px #007bff solid;
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 16px;
+    font-family: 'Exo 2', sans-serif;
+    background-color: #007bff;
+    text-decoration: none;
+
+}
 
   </style>
 </head>
@@ -276,6 +288,7 @@
                 myModalOverlay = contOverlay; 
                 inputs = myModal.querySelectorAll('input');  
                 btnSave = myModal.querySelector('.modal__save') ;
+                btnSave.disabled = true;
                 divData = myModal.parentNode.querySelector('.modal-data');
                 btnDel = myModal.parentNode.querySelector('.clear__data');
                 text =  myModal.parentNode.querySelector('.text');
@@ -293,8 +306,9 @@
                     element.value = '';
                 });
             }
-            this.disableBtn = function(check){
-                 btnSave.disabled = (!check) ? true : false;
+
+            this.disableBtn = function(){
+                btnSave.disabled = false;
             }
 
         
@@ -333,17 +347,19 @@
             this.checkData = function(name = false,day = false,month = false,year = false){
                 let checkName = Boolean(name && isNaN(name));
                 let checkDay = Boolean(day && day > 0 && day <= 31);
-                let checkMonth = Boolean(month && month > 0 && month < 12);
-                let checkYear = Boolean(year>0);
+                let checkMonth = Boolean(month && month > 0 && month <=12);
+                let checkYear = Boolean(year>1900);
                 let check = Boolean(checkName && checkDay && checkMonth && checkYear);
-                this.disableBtn(check); // то выключение кнопки = верно
-                return check;
+                if(check === true){
+                    this.disableBtn();
+                }
             }
+            
+             this.disableBtn =  function(){
+                 myModalView.disableBtn();
+             }
 
-            this.disableBtn = function(check){
-              myModalView.disableBtn(check); // чтобы включить кнопку значение должно быть фолс
-               }
-            }
+            
         
             this.saveModalData = function(name,day,month,year) { //получить данные из модалки и сохранить
                 userData.name = name;
@@ -379,9 +395,9 @@
         
             this.clearForm = function() { //очистить данные в форме
                 myModalView.clearViewData();
-            }
+            };
         
-          
+        }
         /* -------- end model -------- */
         
         /* ----- begin controller ---- */
