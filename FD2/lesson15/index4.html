@@ -293,8 +293,8 @@
                     element.value = '';
                 });
             }
-            this.disableBtn = function(isDisabled){
-                 btnSave.disabled = (isDisabled) ? true : false;
+            this.disableBtn = function(check){
+                 btnSave.disabled = (!check) ? true : false;
             }
 
         
@@ -336,12 +336,12 @@
                 let checkMonth = Boolean(month && month > 0 && month < 12);
                 let checkYear = Boolean(year>0);
                 let check = Boolean(checkName && checkDay && checkMonth && checkYear);
-                this.disableBtn(!check);
+                this.disableBtn(check); // то выключение кнопки = верно
                 return check;
             }
 
-            this.disableBtn = function(isDisabled = true){
-              myModalView.disableBtn(isDisabled);
+            this.disableBtn = function(check){
+              myModalView.disableBtn(check); // чтобы включить кнопку значение должно быть фолс
                }
             }
         
@@ -410,15 +410,15 @@
 
 
             }
-            this.checkInputs = function(e){ // проверка ввода данных
-                 if (e.target.tagName === 'INPUT'){
-                 e.preventDefault();
+            this.checkInputs = function(){ // проверка ввода данных
+                //  if (e.target.tagName === 'INPUT'){
+                //  e.preventDefault();
                  let name = appModalController.inpName.value;
                  let day = appModalController.DODinp[0].value;
                  let month = appModalController.DODinp[1].value;
                  let year = appModalController.DODinp[2].value;
                  myModalModel.checkData(name,day,month,year); // доп функция проверки
-                 }
+                //  }
                  };
 
             this.openModal = function (e) {
@@ -436,6 +436,7 @@
                  let day = appModalController.DODinp[0].value;
                  let month = appModalController.DODinp[1].value;
                  let year = appModalController.DODinp[2].value;
+                // appModalController.inpName.value,appModalController.DODinp[0].value,appModalController.DODinp[1].value,appModalController.DODinp[2].value
                 myModalModel.saveModalData(name,day,month,year);
                 myModalModel.closeModal();
             }
