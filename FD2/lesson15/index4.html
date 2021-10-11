@@ -323,7 +323,9 @@
         
             this.printViewData = function (savedUser) { // вывести данные из хранилища в div.modal-data
                   divData.style.display = 'block';
-                  text.textContent = `Привет, ${savedUser.name}!`;
+                  let userText = `Привет, ${savedUser.name.toUpperCase() }!<br>`;
+                  userText += `Вы родились: ${savedUser.day}/${savedUser.month}/${savedUser.year}`;
+                  text.innerHTML = userText;
             }
         
             this.clearViewData = function () { // очистить или выдать дефолтное сообщение только для div.modal-data
