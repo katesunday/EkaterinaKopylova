@@ -392,11 +392,8 @@
                 if(window.localStorage.getItem("user") != null){
                     this.getData();   
                     console.log(userData);
-                // }
-                // else{
-                //     for (const [key, value] of Object.entries(userData)) { //возвращает массив, элементами которого являются массивы, соответствующие перечисляемому свойству пары [key, value], найденной прямо в object .
-                //  this.setCookie(key,value,{secure: true, 'max-age': 3600});
-                //     }
+                }
+                else{
                 this.setCookie('data',userData);
                 }
             }
