@@ -313,8 +313,11 @@
                 });
             }
 
-            this.disableBtn = function(){
+            this.enableBtn = function(){
                 btnSave.disabled = false;
+            }
+            this.disableBtn = function(){
+                btnSave.disabled = true;
             }
 
         
@@ -357,11 +360,17 @@
                 let checkYear = Boolean(year>1900);
                 let check = Boolean(checkName && checkDay && checkMonth && checkYear); // все должно быть тру
                 if(check === true){ // если тру то включаем кнопку
+                    this.enableBtn();
+                }
+                else{
                     this.disableBtn();
                 }
             }
             
-             this.disableBtn =  function(){
+             this.enableBtn =  function(){
+                 myModalView.enableBtn();
+             }
+             this.disableBtn = function(){
                  myModalView.disableBtn();
              }
 
@@ -380,33 +389,36 @@
                 window.localStorage.setItem("user", JSON.stringify(userData));
                 if(window.localStorage.getItem("user") != null){
                     this.getData();   
-                }
-                else{
-                    for (const [key, value] of Object.entries(userData)) {
-                 this.setCookie(key,value,{secure: true, 'max-age': 3600});
-                }
+                    console.log(userData);
+                // }
+                // else{
+                //     for (const [key, value] of Object.entries(userData)) { //возвращает массив, элементами которого являются массивы, соответствующие перечисляемому свойству пары [key, value], найденной прямо в object .
+                //  this.setCookie(key,value,{secure: true, 'max-age': 3600});
+                //     }
+                this.setCookie('data',userData);
                 }
             }
             this.setCookie = function(name, value, options = { path: '/' }) {
 
-             if (options.expires instanceof Date) {
-                 options.expires = options.expires.toUTCString();
-             }
-             if (value instanceof Object) {
+                if (options.expires instanceof Date) {
+                    options.expires = options.expires.toUTCString();
+                }
+
+               if (value instanceof Object) {
                 value = JSON.stringify(value);
-              }
+                }
 
-             let updatedCookie = name + "=" + value;
-
-             for (let optionKey in options) {
+                let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+                for (let optionKey in options) {
                 updatedCookie += "; " + optionKey;
-                let optionValue = options[optionKey];
-             if (options[optionKey] !== true) {
+                if (options[optionKey] !== true) {
                 updatedCookie += "=" + options[optionKey];
-             }
-             }
-             document.cookie = updatedCookie;
-             }
+                 }
+                 }
+                document.cookie = updatedCookie;
+
+            }
+            
         
             this.getData = function() { //достать данные из хранилища
                 var savedUser = JSON.parse(window.localStorage.getItem("user"));
@@ -507,8 +519,8 @@
           const contOverlay = document.getElementById('modal-overlay');
         //вызвать init-методы...
           appModalView.init(container,contOverlay);
-          appModalModel.init(appModalView,container);
-          appModalController.init(appModalModel,container);
+          appModalModel.init(appModalView); // работаес с вью
+          appModalController.init(appModalModel,container); // работает с версткой и моделью
           
         
 
