@@ -450,24 +450,25 @@
           function ModalController () {
             let myModalContainer = null;
             let myModalModel = null;
-            let inputs = null;
+            let inpName = null;
+            let DOBinp = null;
         
             this.init = function(model,container) { // получаем кнопки и вешаем обработчики
                 myModalContainer = container;
                 myModalModel = model;
-                this.openBtn =  myModalContainer.parentNode.querySelector(".modal-open");// открыть модалку ??????????
-                this.modalClose = myModalContainer.querySelector('.modal__close'); // закрыть модалку
-                this.modalCancel = myModalContainer.querySelector('.modal__cancel'); // закрыть модалку
-                this.modalSave = myModalContainer.querySelector('.modal__save'); // сохранить данные
-                this.inpName = myModalContainer.querySelector('.input__default'); // ввод имени
-                this.DODinp = myModalContainer.querySelectorAll('.input__date-birth'); // др
-                inputs = myModalContainer.querySelectorAll('input');
-                this.btnDelData = myModalContainer.parentNode.querySelector('.clear__data');
-                this.openBtn.addEventListener('click', this.openModal);
-                this.modalClose.addEventListener('click', this.hideModal);
-                this.modalCancel.addEventListener('click', this.hideModal);
-                this.modalSave.addEventListener('click',this.saveModal);
-                this.btnDelData.addEventListener('click',this.clearData);
+                let openBtn =  myModalContainer.parentNode.querySelector(".modal-open");// открыть модалку ??????????
+                let modalClose = myModalContainer.querySelector('.modal__close'); // закрыть модалку
+                let modalCancel = myModalContainer.querySelector('.modal__cancel'); // закрыть модалку
+                let modalSave = myModalContainer.querySelector('.modal__save'); // сохранить данные
+                inpName = myModalContainer.querySelector('.input__default'); // ввод имени
+                DOBinp = myModalContainer.querySelectorAll('.input__date-birth'); // др
+                
+                let btnDelData = myModalContainer.parentNode.querySelector('.clear__data');
+                openBtn.addEventListener('click', this.openModal);
+                modalClose.addEventListener('click', this.hideModal);
+                modalCancel.addEventListener('click', this.hideModal);
+                modalSave.addEventListener('click',this.saveModal);
+                btnDelData.addEventListener('click',this.clearData);
                 myModalContainer.addEventListener('input',this.checkInputs);
                 myModalModel.updateData(); //проверка на наличие юзера в local storage
 
@@ -476,10 +477,10 @@
             this.checkInputs = function(e){ // проверка ввода данных
                  if (e.target.tagName === 'INPUT'){
                  e.preventDefault();
-                 let name = appModalController.inpName.value;
-                 let day = appModalController.DODinp[0].value;
-                 let month = appModalController.DODinp[1].value;
-                 let year = appModalController.DODinp[2].value;
+                 let name = inpName.value;
+                 let day = DOBinp[0].value;
+                 let month = DOBinp[1].value;
+                 let year = DOBinp[2].value;
                  myModalModel.checkData(name,day,month,year); // доп функция проверки
                  }
                  };
@@ -495,10 +496,10 @@
             }
         
             this.saveModal = function () {
-                 let name = appModalController.inpName.value;
-                 let day = appModalController.DODinp[0].value;
-                 let month = appModalController.DODinp[1].value;
-                 let year = appModalController.DODinp[2].value;
+                 let name = inpName.value;
+                 let day = DOBinp[0].value;
+                 let month = DOBinp[1].value;
+                 let year = DOBinp[2].value;
                 myModalModel.saveModalData(name,day,month,year);
                 myModalModel.closeModal();
             }
