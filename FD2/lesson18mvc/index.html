@@ -163,12 +163,10 @@
   
             }
             this.upDate = function(){
-                console.log(stopClock);
                 stopClock = setInterval(this.getTime,1000); //  айдишник для остановки
                 console.log(stopClock);
             }
             this.stopClock = function(){
-                console.log('я тут')
                 clearInterval(stopClock);
             }
         }
