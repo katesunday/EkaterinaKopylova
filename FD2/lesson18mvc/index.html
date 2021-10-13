@@ -108,6 +108,21 @@
          </div>
    
          <!-- дивы для канвас -->
+         <div class="canvas">
+            <div id="canvas1" class="clocks">
+                <button class="start">Пуск!</button>
+                <button class="stop">Стоп.</button>
+                <span class="timezone">Берлин (GMT+1)</span>
+                <canvas class="canvas-container" height = '300' width = '300'></canvas>
+                
+            </div>
+            <div id="canvas2" class="clocks">
+                <button class="start">Пуск!</button>
+                <button class="stop">Стоп.</button>
+                <span class="timezone">Владивосток (GMT+10)</span>
+                <canvas class="canvas-container" height = '300' width = '300'></canvas>
+            </div>
+         </div>
     <script>
 
          
@@ -177,7 +192,7 @@
             this.init = function(view,myTimezone){
                 myModalView = view;
                 myModelTimezone = myTimezone;
-                this.upDate();
+                // this.upDate();
                 // this.getTime();
         
                 
@@ -239,6 +254,15 @@
         const myTimezone3 = 'Europe/London';
         const myTimezone4 = 'Asia/Tokyo';
 
+        // глобальная инициализация Canvas
+        const canvas1Div = document.getElementById('canvas1');
+        const containerCanvas = canvas1Div.querySelector('.canvas-container');
+        const canvas2Div = document.getElementById('canvas2');
+        const containerCanvas2 = canvas2Div.querySelector('.canvas-container');
+        const myTimezone5 = 'Europe/Berlin';
+        const myTimezone6 = 'Asia/Vladivostok';
+
+
         const appModalView = new ModalView(); //dom
         const appModalModel = new ModalModel();
         const appModalController = new ModalController();
@@ -252,6 +276,13 @@
         const appModalViewSvg2 = new ModalViewSvg(); 
         const appModalModelSvg2 = new ModalModel();
         const appModalControllerSvg2 = new ModalController();
+
+        const appModalViewCanvas = new ModalViewCanvas(); //canvas
+        const appModalModelCanvas= new ModalModel();
+        const appModalControllerCanvas = new ModalController();
+        const appModalViewCanvas2 = new ModalViewCanvas(); 
+        const appModalModelCanvas2 = new ModalModel();
+        const appModalControllerCanvas2 = new ModalController();
 
 
    
@@ -269,6 +300,13 @@
           appModalViewSvg2.init(containerSvg2);
           appModalModelSvg2.init(appModalViewSvg2,myTimezone4);
           appModalControllerSvg2.init(appModalModelSvg2,containerSvg2);
+
+          appModalViewCanvas.init(containerCanvas);
+          appModalModelCanvas.init(appModalViewCanvas,myTimezone5);
+          appModalControllerCanvas.init(appModalModelCanvas,containerCanvas);
+          appModalViewCanvas2.init(containerCanvas2);
+          appModalModelCanvas2.init(appModalViewCanvas2,myTimezone6);
+          appModalControllerCanvas2.init(appModalModelCanvas2,containerCanvas2);
 
          function ModalViewSvg(){
             let secline =  null;
@@ -366,6 +404,133 @@
                 minline.style.transform = `rotate(${(min * 6)}deg)`; // 360//60 минут = 6 градусов на каждую минуту
                 hourline.style.transform = `rotate(${(hr * 30)}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
            }
+        }
+
+        function ModalViewCanvas(){
+            this.init = function(container){
+                const drawClock = function(){
+                const clock = container;
+                if(clock && clock.getContext('2d')){
+                let ctx = clock.getContext('2d');
+               
+                //рисуем фон
+                ctx.fillStyle = 'goldenrod';
+                ctx.beginPath();
+                ctx.arc(150,150,150,0,2*Math.PI);
+                ctx.fill();
+
+                //фоны цифр
+                let delta = 360/ 12; // поворот для 12 частей по кругу
+                let x = 150;
+                let y = 150;
+                let angle = 0; // x и у = центр круга, угол изначально ноль
+                let hour = 5;
+                let rMax = 150;
+                let rMin = 20;
+                let angleRadian = (Math.PI/180)* parseFloat(angle); // формула получения радиана + parseFloat разбирает строковый аргумент и возвращает число с плавающей запятой.
+          
+                for( let i = 1; i<=12; i++){
+                    hour++;
+                 if(hour>12){
+                     hour = 1;
+                    }
+                    ctx.fillStyle = 'forestgreen';
+                    ctx.beginPath();
+                    ctx.arc((x-30) * Math.sin(angleRadian) + rMax,(y-30) * Math.cos(angleRadian)+ rMax,rMin,0,2*Math.PI); // 
+                    ctx.fill();
+                    //цифры часов  
+                    ctx.fillStyle = 'black';
+                    ctx.font = '28px Arial';
+                    let smallCenterX = ((x-30) * Math.sin(angleRadian) + rMax); // 
+                    let smallCenterY = ((y-30) * Math.cos(angleRadian)+ rMax);
+                    ctx.fillText(hour,smallCenterX - ctx.measureText(hour).width/2,smallCenterY+ parseInt(ctx.font) - 20);
+                    
+                    //ctx.measureText(hour).width/2 = измеряет ширину текста/2
+                    //parseInt(ctx.font) - 20 = размер шрифта - 20
+
+                    angle += delta; 
+                    angleRadian = -(Math.PI/180)* parseFloat(angle);
+                }
+
+            }
+            
+        }
+          const drawArrows = function(){
+
+            const clock = container;
+            var date = new Date();
+            var sec = date.getSeconds();
+            var min = date.getMinutes()+ sec/60;
+            var hr = (date.getHours()-12)+ min/60;
+            let hourRadian = Math.PI/180*(hr*30);
+            let minRadian = Math.PI/180*(min*6);
+            let secRadian = Math.PI/180*(sec*6);
+            let rMax = 150;
+            let widthLineH = 15;
+            let widthLineM = 10;
+            let widthLineS = 5;
+            let textFont = '25px Arial';
+            
+       
+            if(clock && clock.getContext('2d')){
+                let ctx = clock.getContext('2d');
+               
+                drawClock();
+                 
+                //стрелки
+                //часовая стрелка     
+                ctx.lineWidth = widthLineH;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.translate(rMax,rMax);
+                ctx.rotate(hourRadian);
+                ctx.translate(-rMax,-rMax);
+                ctx.moveTo(rMax,rMax);
+                ctx.lineTo(rMax,100);
+                ctx.stroke();
+                ctx.resetTransform();
+
+              //минутная стрелка
+                ctx.lineWidth = widthLineM;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.translate(rMax,rMax);
+                ctx.rotate(minRadian);
+                ctx.translate(-rMax,-rMax);
+                ctx.moveTo(rMax,rMax);
+                ctx.lineTo(rMax,80);
+                ctx.stroke();
+                ctx.resetTransform();
+
+               //cекундная стрелка
+                ctx.lineWidth = widthLineS;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.translate(rMax,rMax);
+                ctx.rotate(secRadian);
+                ctx.translate(-rMax,-rMax);
+                ctx.moveTo(rMax,rMax);
+                ctx.lineTo(rMax,65);
+                ctx.stroke();
+                ctx.resetTransform();
+
+                //цифровые часы
+                const UpdateDigital = function(){ //функция возвращает строковую дату
+                    return new Date().toTimeString().replace(/ .*/, '');
+                }
+
+                ctx.font = textFont;
+                ctx.fillText(UpdateDigital(),rMax -ctx.measureText(UpdateDigital()).width/2 ,rMax/2);
+
+                // requestAnimationFrame(drawArrows);
+            }
+
+           
+        }
+           
+      
+        drawArrows();
+            }
         }
          
     </script>
