@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mvc-clock</title>
+</head>
+<body>
+    <style>  
+       #mainboard{
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background-color: goldenrod;
+        position: relative;
+    }
+ 
+  
+    #bgTime{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: forestgreen;
+        text-align: center;
+        font-size: 30px;
+    }
+    #hourArrow{
+        height: 70px;
+        width: 10px;
+        background-color: black;
+        border-radius: 8px;
+        
+        transform-origin:4px 5%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        }
+    #minArrow{
+       height: 90px;
+        width: 8px;
+        background-color: black;
+        border-radius: 8px;
+       
+        transform-origin: 3px 3%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+    }
+    #secArrow{
+       height: 110px;
+        width: 4px;
+        background-color: black;
+        border-radius: 8px;
+        
+        transform-origin: 2px 2%;
+        position: absolute;
+        top: 51%;
+        left: 51%;
+        z-index: 1;
+       
+    }
+    </style>
+    <div id="dom1" class="clocks">
+        <button class="start">Пуск!</button>
+        <button class="stop">Стоп.</button>
+        <span class="timezone">Нью-Йорк (GMT-5)</span>
+        <div class="clock-container"></div>
+    </div>
+    <div id="dom2" class="clocks">
+        <button class="start">Пуск!</button>
+        <button class="stop">Стоп.</button>
+        <span class="timezone">Минск (GMT+3)</span>
+        <div class="clock-container"></div>
+    </div>
+    <script>
+
+         
+        //-------------------begin View
+    function ModalView(){
+            
+            let secArrow =  null;
+            let minArrow = null;
+            let hourArrow = null;
+        this.init = function(container){
+            // фон часов
+            let mainboard = document.createElement('div'); // создала див главной доски
+            mainboard.id = 'mainboard'; // дала айдишник, по айди описала стиль
+            container.append(mainboard);// добавила на страницу
+            //стрелки
+            hourArrow = document.createElement('div');// тоже самое с часовой стрелкой
+            hourArrow.id = 'hourArrow';
+            mainboard.append(hourArrow);
+            minArrow = document.createElement('div');// минутной стрелкой
+            minArrow.id = 'minArrow';
+            mainboard.append(minArrow);
+            secArrow = document.createElement('div');// секундной стрелкой
+            secArrow.id = 'secArrow';
+            mainboard.append(secArrow);
+        // функция создания часов
+        clockCreate();
+        function clockCreate(){
+            let delta = Math.PI * 2 / 12;// это угол поворота угла( нашла формулу в интернете)
+            var x = 150, y = 150, angle = 0;// ширина 500 и высота тоже, поэтому x и y по 250, а сам угол пока 0
+            var hour = 2; // начала от двойки потому что отсчет шел от 3ки, иначе у меня вылетали числа 13 и 14 
+            for( let i = 0; i<12; i++){ // цикл часов
+                 hour++;// увеличиваем час
+                 if(hour>12){// если больше 12 то начать считать от 1 
+                     hour = 1;
+                 }
+                 let bgTime = document.createElement('div'); // фон цифр
+                 bgTime.id = 'bgTime';
+                 mainboard.append(bgTime);
+                 let bgX = 20;// потому что ширина и высота у меня 70
+                 let bgY = 20;
+                 bgTime.style.position = 'absolute';
+                 bgTime.style.left = x - bgX + 120* Math.cos(angle) + 'px';// честно нагугленная формула // 250 это радиус всего круга, поэтому 200 чтобы цифры были внутри
+                 bgTime.style.top = y - bgY + 120* Math.sin(angle) + 'px';
+                 bgTime.innerHTML = hour;// написать цифру
+                 angle += delta; // создать поворот
+            }
+        }
+    
+            }
+
+        this.showTime = function(sec,min,hr){
+           secArrow.style.transform = `rotate(${(sec * 6)+180}deg)`;// секунды также как и минуты
+           minArrow.style.transform = `rotate(${(min * 6)+180}deg)`; // 360//60 минут = 6 градусов на каждую минуту
+           hourArrow.style.transform = `rotate(${(hr * 30)+180}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
+        }
+    }
+        //begin Model
+        function ModalModel(){
+            let myModalView = null;
+            let sec = null;
+            let min = null;
+            let hr = null;
+            let stopClock = null;
+            let date = null;
+            let myModelTimezone = null;
+
+            this.init = function(view,myTimezone){
+                myModalView = view;
+                myModelTimezone = myTimezone;
+        
+                
+            }
+            this.getTime = function(){
+                let newDate = new Date();
+                date =  new Date(newDate.toLocaleString('en-US', { timeZone: myModelTimezone }));
+                sec = date.getSeconds();// получила секунды
+                min = date.getMinutes() + sec/60;// секунды разделить на 60, чтобы получить точную минуту
+                hr = (date.getHours()-12) + min/60;// тоже самое с часами, -12 чтобы получить час не в 24часовом формате
+                myModalView.showTime(sec,min,hr);
+                // stopClock = setInterval(this.getTime,1000);
+                this.upDate();
+                
+                
+            }
+            this.upDate = function(){
+                console.log(stopClock);
+                stopClock = setInterval(this.getTime,1000); //  айдишник для остановки
+                console.log(stopClock);
+            }
+            this.stopClock = function(stopClock){
+                console.log('я тут')
+                clearInterval(this.getTime);
+            }
+        }
+        
+        //begin Controller
+        function ModalController(){
+            let myModalContainer = null;
+            let myModalModel = null;
+            this.init = function(model,container){
+                myModalContainer = container;
+                myModalModel = model;
+                let startBtn = myModalContainer.parentNode.querySelector('.start'); /// наверное надо исправить
+                let stopBtn = myModalContainer.parentNode.querySelector('.stop');
+                startBtn.addEventListener('click',this.startClock);
+                stopBtn.addEventListener('click',this.stopClock);
+            }
+            this.startClock = function(e){
+                e.preventDefault(); 
+                myModalModel.getTime();
+            }
+            this.stopClock = function(e){
+                e.preventDefault();
+                myModalModel.stopClock();
+            }
+
+        }
+    
+        // глобальная инициализация
+        const dom1Div = document.getElementById('dom1');
+        const container = dom1Div.querySelector('.clock-container');
+        const myTimezone1 = 'America/New_York';
+        const myTimezone2 = 'Europe/Minsk';
+        const appModalView = new ModalView();
+        const appModalModel = new ModalModel();
+        const appModalController = new ModalController();
+   
+        //вызвать init-методы...
+          appModalView.init(container);
+          appModalModel.init(appModalView,myTimezone1); // работаес с вью
+          appModalController.init(appModalModel,container); // работает с версткой и моделью
+
+         const dom2Div = document.getElementById('dom2');
+         const container2 = dom2Div.querySelector('.clock-container');
+         
+         const appModalView2 = new ModalView();
+         const appModalModel2 = new ModalModel();
+         const appModalController2 = new ModalController();
+          //вызвать init-методы...
+          appModalView2.init(container2);
+          appModalModel2.init(appModalView2,myTimezone2); // работаес с вью
+          appModalController2.init(appModalModel2,container2); // работает с версткой и моделью
+    </script>
+</body>
+</html>
