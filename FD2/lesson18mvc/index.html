@@ -143,6 +143,8 @@
             this.init = function(view,myTimezone){
                 myModalView = view;
                 myModelTimezone = myTimezone;
+                // this.getTime();
+                this.upDate();
         
                 
             }
@@ -154,7 +156,7 @@
                 hr = (date.getHours()-12) + min/60;// тоже самое с часами, -12 чтобы получить час не в 24часовом формате
                 myModalView.showTime(sec,min,hr);
                 // stopClock = setInterval(this.getTime,1000);
-                this.upDate();
+                // this.upDate();
                 
                 
             }
@@ -165,7 +167,7 @@
             }
             this.stopClock = function(stopClock){
                 console.log('я тут')
-                clearInterval(this.getTime);
+                clearInterval(stopClock);
             }
         }
         
