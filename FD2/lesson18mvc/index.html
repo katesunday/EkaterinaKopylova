@@ -8,11 +8,15 @@
 </head>
 <body>
     <style>  
+     body{
+         display: flex;
+     }
     .clocks{
         margin: 15px;
         width: 300px;
         border: 1px solid;
         padding: 10px;
+        height: 320px;
     }
        #mainboard{
         width: 300px;
@@ -65,26 +69,50 @@
         top: 51%;
         left: 51%;
         z-index: 1;
-       
     }
+    #secline, #minline, #hourline{
+          transform-origin: 50%;
+      }
     </style>
-    <div id="dom1" class="clocks">
-        <button class="start">Пуск!</button>
-        <button class="stop">Стоп.</button>
-        <span class="timezone">Нью-Йорк (GMT-5)</span>
-        <div class="clock-container"></div>
-    </div>
-    <div id="dom2" class="clocks">
-        <button class="start">Пуск!</button>
-        <button class="stop">Стоп.</button>
-        <span class="timezone">Минск (GMT+3)</span>
-        <div class="clock-container"></div>
-    </div>
+            <!-- дивы для Дом -->
+            <div class="dom">
+                <div id="dom1" class="clocks"> 
+                    <button class="start">Пуск!</button>
+                    <button class="stop">Стоп.</button>
+                    <span class="timezone">Нью-Йорк (GMT-5)</span>
+                    <div class="clock-container"></div>
+                </div>
+                <div id="dom2" class="clocks">
+                    <button class="start">Пуск!</button>
+                    <button class="stop">Стоп.</button>
+                    <span class="timezone">Минск (GMT+3)</span>
+                    <div class="clock-container"></div>
+                </div>
+            </div>
+  
+         <!-- дивы для Свг -->
+         <div class="svg">
+            <div id="svg1" class="clocks">
+                <button class="start">Пуск!</button>
+                <button class="stop">Стоп.</button>
+                <span class="timezone">Лондон (GMT)</span>
+                <svg class="svg-container" height = '300' width = '300'></svg>
+                
+            </div>
+            <div id="svg2" class="clocks">
+                <button class="start">Пуск!</button>
+                <button class="stop">Стоп.</button>
+                <span class="timezone">Токио (GMT+9)</span>
+                <svg class="svg-container" height = '300' width = '300'></svg>
+            </div>
+         </div>
+   
+         <!-- дивы для канвас -->
     <script>
 
          
-        //-------------------begin View
-    function ModalView(){
+        //-------------------begin View-------------------//
+    function ModalView(){ 
             
             let secArrow =  null;
             let minArrow = null;
@@ -104,9 +132,9 @@
             secArrow = document.createElement('div');// секундной стрелкой
             secArrow.id = 'secArrow';
             mainboard.append(secArrow);
-        // функция создания часов
-        clockCreate();
-        function clockCreate(){
+            // функция создания часов
+            clockCreate();
+            function clockCreate(){
             let delta = Math.PI * 2 / 12;// это угол поворота угла( нашла формулу в интернете)
             var x = 150, y = 150, angle = 0;// ширина 500 и высота тоже, поэтому x и y по 250, а сам угол пока 0
             var hour = 2; // начала от двойки потому что отсчет шел от 3ки, иначе у меня вылетали числа 13 и 14 
@@ -136,7 +164,7 @@
            hourArrow.style.transform = `rotate(${(hr * 30)+180}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
         }
     }
-        //begin Model
+        //-------------------begin Model-------------------//
         function ModalModel(){
             let myModalView = null;
             let sec = null;
@@ -150,6 +178,7 @@
                 myModalView = view;
                 myModelTimezone = myTimezone;
                 this.upDate();
+                // this.getTime();
         
                 
             }
@@ -171,7 +200,7 @@
             }
         }
         
-        //begin Controller
+        //-------------------begin Controller-------------------//
         function ModalController(){
             let myModalContainer = null;
             let myModalModel = null;
@@ -194,30 +223,151 @@
 
         }
     
-        // глобальная инициализация
+        // глобальная инициализация DOM
         const dom1Div = document.getElementById('dom1');
         const container = dom1Div.querySelector('.clock-container');
+        const dom2Div = document.getElementById('dom2');
+        const container2 = dom2Div.querySelector('.clock-container');
         const myTimezone1 = 'America/New_York';
         const myTimezone2 = 'Europe/Minsk';
-        const appModalView = new ModalView();
+
+        // глобальная инициализация SVG
+        const svg1Div = document.getElementById('svg1');
+        const containerSvg = svg1Div.querySelector('.svg-container');
+        const svg2Div = document.getElementById('svg2');
+        const containerSvg2 = svg2Div.querySelector('.svg-container');
+        const myTimezone3 = 'Europe/London';
+        const myTimezone4 = 'Asia/Tokyo';
+
+        const appModalView = new ModalView(); //dom
         const appModalModel = new ModalModel();
         const appModalController = new ModalController();
+        const appModalView2 = new ModalView();
+        const appModalModel2 = new ModalModel();
+        const appModalController2 = new ModalController();
+
+        const appModalViewSvg = new ModalViewSvg(); // svg
+        const appModalModelSvg = new ModalModel();
+        const appModalControllerSvg = new ModalController();
+        const appModalViewSvg2 = new ModalViewSvg(); 
+        const appModalModelSvg2 = new ModalModel();
+        const appModalControllerSvg2 = new ModalController();
+
+
    
         //вызвать init-методы...
           appModalView.init(container);
           appModalModel.init(appModalView,myTimezone1); // работаес с вью
           appModalController.init(appModalModel,container); // работает с версткой и моделью
-
-         const dom2Div = document.getElementById('dom2');
-         const container2 = dom2Div.querySelector('.clock-container');
-         
-         const appModalView2 = new ModalView();
-         const appModalModel2 = new ModalModel();
-         const appModalController2 = new ModalController();
-          //вызвать init-методы...
           appModalView2.init(container2);
           appModalModel2.init(appModalView2,myTimezone2); // работаес с вью
           appModalController2.init(appModalModel2,container2); // работает с версткой и моделью
+
+          appModalViewSvg.init(containerSvg);
+          appModalModelSvg.init(appModalViewSvg,myTimezone3);
+          appModalControllerSvg.init(appModalModelSvg,containerSvg);
+          appModalViewSvg2.init(containerSvg2);
+          appModalModelSvg2.init(appModalViewSvg2,myTimezone4);
+          appModalControllerSvg2.init(appModalModelSvg2,containerSvg2);
+
+         function ModalViewSvg(){
+            let secline =  null;
+            let minline = null;
+            let hourline = null;
+             this.init = function(container){
+                const svgNs = 'http://www.w3.org/2000/svg'; // документация
+
+                 drawClock(); //функция рисующая часы
+
+                 function drawClock(){
+                 const svg = container;
+                 const w = parseFloat(svg.getAttributeNS(null,'width'));
+                 const h = parseFloat(svg.getAttributeNS(null,'height'));
+
+                 let mainboard = document.createElementNS(svgNs,'circle');// фон часов
+                 mainboard.setAttributeNS(null,'cx',w/2);
+                 mainboard.setAttributeNS(null,'cy',h/2);
+                 mainboard.setAttributeNS(null,'r',w/2);
+                 mainboard.setAttributeNS(null,'fill','goldenrod');
+                 mainboard.setAttributeNS(null,'stroke','none');
+                 svg.append(mainboard);
+
+                 let delta = Math.PI * 2 / 12; // 
+                 var x = 150, y = 150, angle = 0;
+                 var hour = 2;
+                 // стрелка часовая
+                 hourline = document.createElementNS(svgNs,'line');
+                 hourline.id = 'hourline';
+                 hourline.setAttributeNS(null,'x1',x)
+                 hourline.setAttributeNS(null,'x2',x)
+                 hourline.setAttributeNS(null,'y1',x)
+                 hourline.setAttributeNS(null,'y2',x-65)
+                 hourline.setAttributeNS(null,'stroke','black');
+                 hourline.setAttributeNS(null,'stroke-width','12');
+                 svg.append(hourline);
+
+                 // стрелка минутная
+                 minline = document.createElementNS(svgNs,'line');
+                 minline.id = 'minline';
+                 minline.setAttributeNS(null,'x1',x)
+                 minline.setAttributeNS(null,'x2',x)
+                 minline.setAttributeNS(null,'y1',x)
+                 minline.setAttributeNS(null,'y2',x-80)
+                 minline.setAttributeNS(null,'stroke','black');
+                 minline.setAttributeNS(null,'stroke-width','8');
+                 svg.append(minline);
+                 // стрелка секундная
+                 secline = document.createElementNS(svgNs,'line');
+                 secline.id = 'secline';
+                 secline.setAttributeNS(null,'x1',x)
+                 secline.setAttributeNS(null,'x2',x)
+                 secline.setAttributeNS(null,'y1',x)
+                 secline.setAttributeNS(null,'y2',x-100)
+                 secline.setAttributeNS(null,'stroke','black');
+                 secline.setAttributeNS(null,'stroke-width','4');
+                 svg.append(secline);
+
+                  // проходя циклом от 1 до 12 создаем цифры     
+                 for( let i = 0; i<12; i++){
+                 hour++;
+                 if(hour>12){
+                     hour = 1;
+                 }
+                 let bgTime = document.createElementNS(svgNs,'circle'); // фон цифр
+                 bgTime.id = 'bgTime';
+                 bgTime.setAttributeNS(null,'cx',x  + 120* Math.cos(angle));
+                 bgTime.setAttributeNS(null,'cy',y  + 120* Math.sin(angle));
+                 bgTime.setAttributeNS(null,'r',20);
+                 bgTime.setAttributeNS(null,'fill','forestgreen');
+                 bgTime.setAttributeNS(null,'stroke','none');
+                 svg.append(bgTime);
+
+                 let text = document.createElementNS(svgNs,'text'); // сами цифры
+                 text.setAttributeNS(null,'x',(x-5) + 120* Math.cos(angle)); // чтобы размесить по центру от радиуса 200
+                 text.setAttributeNS(null,'y',(y+5)  + 120* Math.sin(angle));
+                 text.setAttributeNS(null,'fill','black');
+                 text.setAttributeNS(null,'font-size','25px');
+                 text.textContent = hour;
+                 if(hour>9){
+                    text.setAttributeNS(null,'x',(x-12) + 120* Math.cos(angle)); // двухзначным цифрам нужно больше места
+                 text.setAttributeNS(null,'y',(y+7)  + 120* Math.sin(angle));
+                 }
+                 svg.append(text)
+
+                 angle += delta; 
+                 }
+
+                }
+            }
+            
+            this.showTime = function(sec,min,hr){
+      
+                secline.style.transform = `rotate(${(sec * 6)}deg)`;// секунды также как и минуты
+                minline.style.transform = `rotate(${(min * 6)}deg)`; // 360//60 минут = 6 градусов на каждую минуту
+                hourline.style.transform = `rotate(${(hr * 30)}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
+           }
+        }
+         
     </script>
 </body>
 </html>
