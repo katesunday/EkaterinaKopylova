@@ -132,7 +132,9 @@
             let secArrow =  null;
             let minArrow = null;
             let hourArrow = null;
+            let startBtn = null;
         this.init = function(container){
+            startBtn = container.parentNode.querySelector('.start');
             // фон часов
             let mainboard = document.createElement('div'); // создала див главной доски
             mainboard.id = 'mainboard'; // дала айдишник, по айди описала стиль
@@ -178,13 +180,22 @@
            minArrow.style.transform = `rotate(${(min * 6)+180}deg)`; // 360//60 минут = 6 градусов на каждую минуту
            hourArrow.style.transform = `rotate(${(hr * 30)+180}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
         }
+        this.enableBtn = function(){
+            startBtn.disabled = false;
+            console.log(startBtn);
+        }
+        this.disableBtn = function(){
+            startBtn.disabled = true;
+        }
     }
     
     function ModalViewSvg(){
             let secline =  null;
             let minline = null;
             let hourline = null;
+            let startBtn = null;
              this.init = function(container){
+                startBtn = container.parentNode.querySelector('.start');
                 const svgNs = 'http://www.w3.org/2000/svg'; // документация
 
                  drawClock(); //функция рисующая часы
@@ -276,10 +287,20 @@
                 minline.style.transform = `rotate(${(min * 6)}deg)`; // 360//60 минут = 6 градусов на каждую минуту
                 hourline.style.transform = `rotate(${(hr * 30)}deg)`;// 360 градусов/12 часов = 30 градусов на каждый час
            }
+           this.enableBtn = function(){
+            startBtn.disabled = false;
+            console.log(startBtn);
+           }
+           this.disableBtn = function(){
+            startBtn.disabled = true;
+           }
         }
 
     function ModalViewCanvas(){
+            let startBtn = null;
             this.init = function(container){
+                startBtn = container.parentNode.querySelector('.start');
+
                 const drawClock = function(){
                 const clock = container;
                 if(clock && clock.getContext('2d')){
@@ -388,6 +409,13 @@
             }
 
             }
+            this.enableBtn = function(){
+            startBtn.disabled = false;
+            console.log(startBtn);
+            }
+            this.disableBtn = function(){
+            startBtn.disabled = true;
+        }
         }
          
 
@@ -416,14 +444,17 @@
                 min = date.getMinutes() + sec/60;// секунды разделить на 60, чтобы получить точную минуту
                 hr = (date.getHours()-12) + min/60;// тоже самое с часами, -12 чтобы получить час не в 24часовом формате
                 myModalView.showTime(sec,min,hr);
+                myModalView.disableBtn(); // отключаем кнопку,так как запущены часы
   
             }
             this.upDate = function(){
                 stopClock = setInterval(this.getTime,1000); //  айдишник для остановки
                 console.log(stopClock);
+               
             }
             this.stopClock = function(){
                 clearInterval(stopClock);
+                myModalView.enableBtn(); // включить кнпоку пуск
             }
         }
         
@@ -442,6 +473,7 @@
             this.startClock = function(e){
                 e.preventDefault(); 
                 myModalModel.upDate();
+
             }
             this.stopClock = function(e){
                 e.preventDefault();
