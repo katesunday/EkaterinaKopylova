@@ -192,7 +192,7 @@
             this.init = function(view,myTimezone){
                 myModalView = view;
                 myModelTimezone = myTimezone;
-                // this.upDate();
+                this.upDate();
                 // this.getTime();
         
                 
@@ -445,91 +445,76 @@
                     let smallCenterY = ((y-30) * Math.cos(angleRadian)+ rMax);
                     ctx.fillText(hour,smallCenterX - ctx.measureText(hour).width/2,smallCenterY+ parseInt(ctx.font) - 20);
                     
-                    //ctx.measureText(hour).width/2 = измеряет ширину текста/2
-                    //parseInt(ctx.font) - 20 = размер шрифта - 20
 
                     angle += delta; 
                     angleRadian = -(Math.PI/180)* parseFloat(angle);
                 }
 
-            }
-            
-        }
-          const drawArrows = function(){
-
-            const clock = container;
-            var date = new Date();
-            var sec = date.getSeconds();
-            var min = date.getMinutes()+ sec/60;
-            var hr = (date.getHours()-12)+ min/60;
-            let hourRadian = Math.PI/180*(hr*30);
-            let minRadian = Math.PI/180*(min*6);
-            let secRadian = Math.PI/180*(sec*6);
-            let rMax = 150;
-            let widthLineH = 15;
-            let widthLineM = 10;
-            let widthLineS = 5;
-            let textFont = '25px Arial';
-            
-       
-            if(clock && clock.getContext('2d')){
-                let ctx = clock.getContext('2d');
-               
-                drawClock();
-                 
-                //стрелки
-                //часовая стрелка     
-                ctx.lineWidth = widthLineH;
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.translate(rMax,rMax);
-                ctx.rotate(hourRadian);
-                ctx.translate(-rMax,-rMax);
-                ctx.moveTo(rMax,rMax);
-                ctx.lineTo(rMax,100);
-                ctx.stroke();
-                ctx.resetTransform();
-
-              //минутная стрелка
-                ctx.lineWidth = widthLineM;
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.translate(rMax,rMax);
-                ctx.rotate(minRadian);
-                ctx.translate(-rMax,-rMax);
-                ctx.moveTo(rMax,rMax);
-                ctx.lineTo(rMax,80);
-                ctx.stroke();
-                ctx.resetTransform();
-
-               //cекундная стрелка
-                ctx.lineWidth = widthLineS;
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.translate(rMax,rMax);
-                ctx.rotate(secRadian);
-                ctx.translate(-rMax,-rMax);
-                ctx.moveTo(rMax,rMax);
-                ctx.lineTo(rMax,65);
-                ctx.stroke();
-                ctx.resetTransform();
-
-                //цифровые часы
-                const UpdateDigital = function(){ //функция возвращает строковую дату
-                    return new Date().toTimeString().replace(/ .*/, '');
                 }
+            
+        }
+                     
+            this.showTime = function(sec,min,hr){
+                const drawArrows = function(){
 
-                ctx.font = textFont;
-                ctx.fillText(UpdateDigital(),rMax -ctx.measureText(UpdateDigital()).width/2 ,rMax/2);
+                const clock = container;
+                let hourRadian = Math.PI/180*(hr*30);
+                let minRadian = Math.PI/180*(min*6);
+                let secRadian = Math.PI/180*(sec*6);
+                let rMax = 150;
+                let widthLineH = 15;
+                let widthLineM = 10;
+                let widthLineS = 5;
+                let textFont = '25px Arial';
 
-                // requestAnimationFrame(drawArrows);
+
+                if(clock && clock.getContext('2d')){
+                    let ctx = clock.getContext('2d');
+   
+                    drawClock();
+     
+                    //стрелки
+                    //часовая стрелка     
+                 ctx.lineWidth = widthLineH;
+                 ctx.lineCap = 'round';
+                 ctx.beginPath();
+                 ctx.translate(rMax,rMax);
+                 ctx.rotate(hourRadian);
+                 ctx.translate(-rMax,-rMax);
+                 ctx.moveTo(rMax,rMax);
+                 ctx.lineTo(rMax,100);
+                 ctx.stroke();
+                 ctx.resetTransform();
+
+                  //минутная стрелка
+                  ctx.lineWidth = widthLineM;
+                  ctx.lineCap = 'round';
+                  ctx.beginPath();
+                  ctx.translate(rMax,rMax);
+                  ctx.rotate(minRadian);
+                  ctx.translate(-rMax,-rMax);
+                  ctx.moveTo(rMax,rMax);
+                  ctx.lineTo(rMax,80);
+                  ctx.stroke();
+                  ctx.resetTransform();
+
+                   //cекундная стрелка
+                   ctx.lineWidth = widthLineS;
+                   ctx.lineCap = 'round';
+                   ctx.beginPath();
+                   ctx.translate(rMax,rMax);
+                   ctx.rotate(secRadian);
+                   ctx.translate(-rMax,-rMax);
+                   ctx.moveTo(rMax,rMax);
+                   ctx.lineTo(rMax,65);
+                   ctx.stroke();
+                   ctx.resetTransform();
+           
+                  }
+                }
+                drawArrows();
             }
 
-           
-        }
-           
-      
-        drawArrows();
             }
         }
          
