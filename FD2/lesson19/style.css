@@ -1,0 +1,67 @@
+#weather{
+    border: 5px solid lightblue;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    position: relative;
+}
+#weather h1{
+    margin: 0px;
+}
+#showWeather{
+    display: none;
+    position: fixed;
+    border: 1px solid gray;
+    background-color: lightblue;
+    border-radius: 5px;
+    width: 35px;
+    height: 25px;
+}
+#showWeather:hover{
+    background-color: lightslategray;
+}
+#hideWeather{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: 1px solid gray;
+    background-color: lightblue;
+    border-radius: 5px;
+    width: 35px;
+    height: 25px;
+}
+#hideWeather:hover{
+    background-color: lightslategray;
+}
+#showForecast{
+    border: 1px solid gray;
+    background-color: lightblue;
+    border-radius: 5px;
+    width: 305px;
+    height: 25px;
+    margin-top: 25px;
+}
+#showForecast:hover{
+    background-color: lightslategray;
+}
+#threeDays{
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    flex-direction: column;
+    display: none;
+}
+#firstDay, #secondDay, #thirdDay{
+   border: 2px solid lightblue;
+}
+#closeForecast{
+    border: 1px solid gray;
+    background-color: lightblue;
+    border-radius: 5px;
+    width: 100px;
+    height: 25px;
+    margin-top: -5px;
+}
+#closeForecast:hover{
+    background-color: lightslategray;
+}
