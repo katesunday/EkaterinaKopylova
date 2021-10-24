@@ -70,6 +70,12 @@
     animation-name: rotate;
     animation-duration:10s;
 }
+#svgIcon2{
+    animation-name: rotate;
+    animation-duration:10s;
+    display: block;
+    margin: 5px auto;
+}
 
 @keyframes rotate {
     0% {
