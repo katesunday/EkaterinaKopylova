@@ -113,7 +113,6 @@ const myPlugin = function(){
                     }
                     
                   
-
                 })
             });
             closeBtns.forEach(button =>{
