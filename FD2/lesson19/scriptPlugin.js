@@ -21,6 +21,7 @@ const myPlugin = function(){
             let backgroundField = document.createElement('div');
                 backgroundField.classList.add('modal-overlay');
                 backgroundField.id = this.id;
+                backgroundField.setAttribute('data-open', 'true');
             let mainField = document.createElement('div');
                 mainField.classList.add('modal', 'overlay-default');
             let header = document.createElement('h2');
@@ -35,11 +36,6 @@ const myPlugin = function(){
             mainField.appendChild(header);
             mainField.appendChild(closeElement);
             mainField.appendChild(fieldContent);
-           closeElement.addEventListener('click',function(){
-            backgroundField.classList.add('modal_closed');
-            // backgroundField.setAttribute('data-open', 'false');
-           });
-    
         }
       };
       /* ------- begin model ------- */
@@ -71,6 +67,7 @@ const myPlugin = function(){
             myModalView.openModalWindow(div);
         };
         this.closeModal = function(openedWindow){
+            openedWindow.setAttribute('data-open', 'false');
             myModalView.closeModalWindow(openedWindow);
         };
         this.createContent = function(id,title,content){
@@ -92,6 +89,7 @@ const myPlugin = function(){
             myModalModel = model;
             openBtns = document.querySelectorAll(['a[data-supermodal]']);
             closeBtns = document.querySelectorAll('.close');
+            console.log(closeBtns);
            this.listeners();
         }
         this.listeners = function(){
@@ -110,6 +108,12 @@ const myPlugin = function(){
                         let content = button.getAttribute('data-supermodal-content');
                         console.log(id,title,content);
                        myModalModel.createContent(id,title,content);
+                       closeBtns = document.querySelectorAll('.close');// обновить коллекцию закрывающих кнопок
+                       console.log(closeBtns);
+                       closeBtns[closeBtns.length-1].addEventListener('click',function(){ // последний элемент  массива
+                        openedWindow = document.querySelector('[data-open = true]');
+                        myModalModel.closeModal(openedWindow);
+                       })
                     }
                     
                   
@@ -119,8 +123,8 @@ const myPlugin = function(){
                 button.addEventListener('click',function(e){
                     e.preventDefault();
                     openedWindow = document.querySelector('[data-open = true]');
-                    openedWindow.setAttribute('data-open', 'false');
                     myModalModel.closeModal(openedWindow);
+                    console.log('lkj')
                 })
             });
         }
