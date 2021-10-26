@@ -38,7 +38,8 @@ const myPlugin = function(){
            closeElement.addEventListener('click',function(){
             backgroundField.classList.remove('modal-overlay', 'modal_closed');
             mainField.classList.remove('modal', 'overlay-default');
-           })
+           });
+           this.openModalWindow(backgroundField);
         }
       };
       /* ------- begin model ------- */
