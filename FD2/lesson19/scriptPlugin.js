@@ -37,7 +37,7 @@ const myPlugin = function(){
             mainField.appendChild(fieldContent);
            closeElement.addEventListener('click',function(){
             backgroundField.classList.add('modal_closed');
-            closeElement.setAttribute('data-open', 'false');
+            // backgroundField.setAttribute('data-open', 'false');
            });
     
         }
