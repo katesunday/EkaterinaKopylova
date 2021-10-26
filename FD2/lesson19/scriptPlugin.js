@@ -19,7 +19,7 @@ const myPlugin = function(){
             this.content = content;
 
             let backgroundField = document.createElement('div');
-                backgroundField.classList.add('modal-overlay', 'modal_closed');
+                backgroundField.classList.add('modal-overlay');
                 backgroundField.id = this.id;
             let mainField = document.createElement('div');
                 mainField.classList.add('modal', 'overlay-default');
@@ -36,11 +36,10 @@ const myPlugin = function(){
             mainField.appendChild(closeElement);
             mainField.appendChild(fieldContent);
            closeElement.addEventListener('click',function(){
-            backgroundField.classList.remove('modal-overlay', 'modal_closed');
+            backgroundField.classList.add('modal_closed');
             closeElement.setAttribute('data-open', 'false');
-            mainField.classList.remove('modal', 'overlay-default');
            });
-           this.openModalWindow(backgroundField);
+    
         }
       };
       /* ------- begin model ------- */
