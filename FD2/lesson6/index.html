@@ -26,6 +26,7 @@
       firstcar.showInfo();
 
       class Car extends Vehicle{
+          
           constructor(){
               super();
               this.maxSpeed = 160;
@@ -61,17 +62,20 @@
     yamaha.showInfo();
 
     class Driver{
-        constructor(){}
-            setName(name){
-               this.name = name;}
-            setAge(age){
-                this.age = age;
-            }
+        constructor (name,age){
+        this.name = name;
+        this.age = age;
+        }   
             displayInfo(){
-                console.log(`Водитель: ${this.name} работает на ${}`)
+                console.log(`Водитель: ${this.name} работает на ${this.name}`)
             }
+            driveCar (car) {console.log(`${this.name} работает на ${car.name} ${car.year} года выпуска`);}
     }
-   
+    const driverVasya = new Driver("Василий", 31);
+    const driverDenis = new Driver("Денис", 48);
+    driverVasya.driveCar(yamaha);
+    driverDenis.driveCar(bmw);
+
     </script>
 </body>
 </html>
