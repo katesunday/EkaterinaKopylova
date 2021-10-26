@@ -9,56 +9,47 @@
 <body>
     <script>
         class Vehicle{
-            constructor(){}
-           setName(name){
-               this.name = name;}
-           showName(){
-               console.log(`Модель: ${this.name}.`)}
-           setYear(year){ this.year = year;}
+            constructor(name,year){
+                this.name = name;
+                this.year = year;
+                this.wheels = 4;
+            }
+           showName(){console.log(`Модель: ${this.name}.`)}
            showYear(){console.log(`Год выпуска: ${this.year}.`)}
-           showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}.`)}
+           showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}. Колес: ${this.wheels}.`)}
         }
     
-      var firstcar = new Vehicle;
-      
-      firstcar.setYear(1912);
-      firstcar.setName('автомобиль на пару');
+      var firstcar = new Vehicle('автомобиль на пару',1912);
       firstcar.showInfo();
 
       class Car extends Vehicle{
           
-          constructor(){
-              super();
+          constructor(name, year, sunroof){
+              super(name,year);
               this.maxSpeed = 160;
-              this.wheels = 4;
-              this.sunroof= function (){
+              
+              this.sunroof= sunroof;
+               }
+              hasSunRoof(){
                 return(this.sunroof ? "В машине есть люк" : "В машине люка нет");
-              }
-          
-        }
-        showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}.
-        Колес: ${this.wheels}. Максимальная скорость: ${this.maxSpeed} км/час. ${this.sunroof()}.`)}
-
+              };
+        
+        showInfo(){console.log(`Модель: ${this.name}. Год выпуска: ${this.year}.Колес: ${this.wheels}.
+        Максимальная скорость: ${this.maxSpeed} км/час. ${this.hasSunRoof()}.`)}
       }
-      const audi = new Car;
-    audi.sunroof( true);
-    audi.setName("Audi A8");
-    audi.setYear(2018);
-    audi.showInfo();
-    const bmw = new Car;
-    bmw.setName("BMW X6");
-    bmw.setYear(2021);
-    bmw.showInfo();
+
+      const audi = new Car('Audi A8', 2018, true);
+      audi.showInfo();
+      const bmw = new Car('BMW X6',2021);
+      bmw.showInfo();
 
     class Moto extends Vehicle{
-        constructor(){
-            super();
+        constructor(name,year){
+            super(name,year);
             this.wheels = 2;
         }
     }
-    const yamaha = new Moto;
-    yamaha.setName("Yamaha R250");
-    yamaha.setYear(2020);
+    const yamaha = new Moto('Yamaha R250',2020);
     yamaha.showInfo();
 
     class Driver{
@@ -66,15 +57,18 @@
         this.name = name;
         this.age = age;
         }   
-            displayInfo(){
-                console.log(`Водитель: ${this.name} работает на ${this.name}`)
+        displayInfo(){
+                console.log(`Водитель: ${this.name}, возраст: ${this.age}.`)
             }
-            driveCar (car) {console.log(`${this.name} работает на ${car.name} ${car.year} года выпуска`);}
+        driveCar (car) {console.log(`${this.name} работает на ${car.name}, ${car.year} года выпуска.`);}
     }
     const driverVasya = new Driver("Василий", 31);
     const driverDenis = new Driver("Денис", 48);
+    driverVasya.displayInfo();
+    driverDenis.displayInfo();
     driverVasya.driveCar(yamaha);
     driverDenis.driveCar(bmw);
+ 
 
     </script>
 </body>
