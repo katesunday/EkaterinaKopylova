@@ -124,7 +124,6 @@ const myPlugin = function(){
                     e.preventDefault();
                     openedWindow = document.querySelector('[data-open = true]');
                     myModalModel.closeModal(openedWindow);
-                    console.log('lkj')
                 })
             });
         }
