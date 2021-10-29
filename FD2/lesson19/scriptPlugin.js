@@ -11,8 +11,25 @@ const myPlugin = function(){
             div.classList.remove('modal_closed');
         };
         this.closeModalWindow = function(openedWindow){
+            openedWindow.setAttribute('data-open', 'false');
             openedWindow.classList.add('modal_closed');
         };
+        this.setContent = function(button,div){
+            let replaceArr = div.querySelectorAll('[data-info]'); // инфа о дата отр
+            console.log(replaceArr);
+            if (replaceArr) {
+                replaceArr.forEach(function(elem) {
+                    let name = elem.getAttribute('data-info');
+                    console.log(name);
+                    if (name == 'title') {
+                      elem.innerHTML = button.getAttribute('data-supermodal-title');
+                    }
+                    if (name == 'content') {
+                      elem.innerHTML = button.getAttribute('data-supermodal-content');
+                    }
+                });
+            }
+        }
         this.createModalWindow =  function(id, title, content) {
             this.id = id;
             this.title = title;
@@ -48,26 +65,14 @@ const myPlugin = function(){
             myModalView = view;
         }
         this.setContent = function(button,div){ 
-            let replaceArr = div.querySelectorAll('[data-info]'); // инфа о дата отр
-            console.log(replaceArr);
-            if (replaceArr) {
-                replaceArr.forEach(function(elem) {
-                    let name = elem.getAttribute('data-info');
-                    console.log(name);
-                    if (name == 'title') {
-                      elem.innerHTML = button.getAttribute('data-supermodal-title');
-                    }
-                    if (name == 'content') {
-                      elem.innerHTML = button.getAttribute('data-supermodal-content');
-                    }
-                });
-            }
+            myModalView.setContent(button,div);
+          
         }
         this.openModal = function(div){
             myModalView.openModalWindow(div);
         };
         this.closeModal = function(openedWindow){
-            openedWindow.setAttribute('data-open', 'false');
+            
             myModalView.closeModalWindow(openedWindow);
         };
         this.createContent = function(id,title,content){
