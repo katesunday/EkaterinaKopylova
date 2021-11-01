@@ -18,6 +18,7 @@ class View {
             </div>
             `
         }
+        
     };
     Levels = {
         render: () =>{

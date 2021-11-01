@@ -8,10 +8,13 @@ class Model {
     const hashPageName = window.location.hash.slice(1).toLowerCase();
 
     this.view.renderContent(hashPageName);
+    if(hashPageName==='play'){
+      drawField();
+    }
     }
   
   goBack() {
     this.view.renderContent('menu');
   }
-  
+
 }
