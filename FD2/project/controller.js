@@ -8,7 +8,8 @@ class Controller{
     
   }
   updateState = ()=>{
-    this.model.updateState();
+    const hashPageName = window.location.hash.slice(1).toLowerCase();
+    this.model.updateState(hashPageName);
     
   }
   listeners = ()=>{

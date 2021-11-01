@@ -4,9 +4,7 @@ class Model {
       window.location.hash = "menu";
     }
 
-  updateState() {     // SPA
-    const hashPageName = window.location.hash.slice(1).toLowerCase();
-
+  updateState(hashPageName) {     // SPA
     this.view.renderContent(hashPageName);
     if(hashPageName==='play'){
       drawField();
