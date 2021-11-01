@@ -4,9 +4,14 @@ class Model {
       window.location.hash = "menu";
     }
 
- updateState() {     // SPA
+  updateState() {     // SPA
     const hashPageName = window.location.hash.slice(1).toLowerCase();
 
     this.view.renderContent(hashPageName);
     }
+  
+  goBack() {
+    this.view.renderContent('menu');
   }
+  
+}
