@@ -4,9 +4,20 @@ class Controller{
     this.container =_container
     window.addEventListener("hashchange", this.updateState);
     this.updateState(); 
+    this.listeners();
+    
   }
-   updateState = function() {
-    console.log(updateState)
+  updateState = ()=>{
     this.model.updateState();
-}
+    
+  }
+  listeners = ()=>{
+    document.addEventListener('click',(e)=>{
+      let target = e.target;
+      let goBackbtn = document.getElementById('goBack');
+       if(target === goBackbtn){ //если таргет равен кнопке назад
+         this.model.goBack();
+       }
+    })
+  }
 }
