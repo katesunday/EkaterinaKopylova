@@ -22,7 +22,7 @@ class Model {
     console.log(newBoxY);
     // Replace previous spot with initial board state (void or empty)
     map[playerCoords.y][playerCoords.x] =
-    isEmpty(map[playerCoords.y][playerCoords.x]) ? bg : bg;
+    isTarget(map[playerCoords.y][playerCoords.x]) ? target : bg;
 
     // Move player
   

@@ -69,7 +69,7 @@ const isBlock = (cell) => [brick].includes(cell);// есть ли кубик в 
 const isPlayer = (cell) => [player].includes(cell);
 const isTraversible = (cell) => [bg].includes(cell);
 const isWall = (cell) => [wall].includes(cell);
-const isEmpty = (cell) => [bg].includes(cell);
+const isTarget = (cell) => [target].includes(cell);
 
 const getX = (x, direction, spaces = 1) => {
   if (direction === 'up' || direction === 'down') {
