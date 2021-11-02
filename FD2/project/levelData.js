@@ -65,7 +65,7 @@ function findPlayerCoords() { //найти координаты игрока
     }
 }
 // функции поиска соседних блоков
-const isBlock = (cell) => [brick].includes(cell);// есть ли кубик в клетке
+const isBrick = (cell) => [brick].includes(cell);// есть ли кубик в клетке
 const isPlayer = (cell) => [player].includes(cell);
 const isTraversible = (cell) => [bg].includes(cell);
 const isWall = (cell) => [wall].includes(cell);
