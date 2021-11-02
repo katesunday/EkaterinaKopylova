@@ -32,7 +32,7 @@ class Model {
       // drawField();
       // return
     }
-    else if(isBlock(map[newBoxY][newBoxX])){
+    else if(isBrick(map[newBoxY][newBoxX])){
       console.log('рядом куб');
       map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
       map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
