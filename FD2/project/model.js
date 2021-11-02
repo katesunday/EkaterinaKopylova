@@ -18,7 +18,6 @@ class Model {
     // console.log(playerCoords);
     const newBoxY = getY(playerCoords.y, direction, 1)
     const newBoxX = getX(playerCoords.x, direction, 1)
-    console.log(newBoxX);
     console.log(newBoxY);
     // Replace previous spot with initial board state (void or empty)
     map[playerCoords.y][playerCoords.x] =
@@ -28,10 +27,12 @@ class Model {
   
     if (isWall(map[newBoxY][newBoxX])) {
       map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
-      map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = brick;
-      // drawField();
+      // map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = brick;
+      drawField();
+      console.log('рядом стена')
       // return
     }
+
     else if(isBrick(map[newBoxY][newBoxX])){
       console.log('рядом куб');
       map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;

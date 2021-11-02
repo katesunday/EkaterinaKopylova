@@ -54,7 +54,6 @@ const drawField = function(){
 function findPlayerCoords() { //найти координаты игрока
     const y = map.findIndex(row => row.includes(player));// если в строке есть игрок дать его индекс
     const x = map[y].indexOf(player); //дать его индекс в строке 
-    console.log(map[y].indexOf(player));
     return {
       x,
       y,
