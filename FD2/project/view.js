@@ -113,7 +113,7 @@ class View {
         if(cell== player){
             ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
             if(direction == 'right'){
-                ctx.drawImage(player, 130, 130, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+                ctx.drawImage(player, 130, 128, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
             }
             else if(direction == 'left'){
                 ctx.drawImage(player, 130, 65, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);

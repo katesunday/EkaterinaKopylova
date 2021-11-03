@@ -28,7 +28,7 @@ class Model {
     //если есть стена, то шаг = 0
     if (isWall(map[newPlayerY][newPlayerX])) {
       map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
-      this.view.drawField();
+      this.view.drawField(direction);
       console.log('рядом стена')
     }
        // если за игроком куб, то
@@ -52,7 +52,7 @@ class Model {
              map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
 		         map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = brick;
 	           }
-             this.view.drawField();
+             this.view.drawField(direction);
        }
        //если за игроком ЗЕЛЕНЫЙ КУБ, то при движении куб сделать обычным
       else if(isSuccess(map[newPlayerY][newPlayerX])){
@@ -65,7 +65,7 @@ class Model {
             map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
           }
     
-          this.view.drawField();
+          this.view.drawField(direction);
       }
     else{
       map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
