@@ -99,7 +99,7 @@ class View {
 
     }
     //ф-я отрисовки карты
-    drawField(){
+    drawField(direction){
         const game = document.getElementById('sokoban');
         if(game && game.getContext('2d')){
         var ctx = game.getContext('2d');
@@ -112,9 +112,25 @@ class View {
         function paintCell(ctx, cell, x, y) {
         if(cell== player){
             ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
+            if(direction == 'right'){
+                ctx.drawImage(player, 130, 130, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+            }
+            else if(direction == 'left'){
+                ctx.drawImage(player, 130, 65, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+            }
+            else if(direction == 'down'){
+                ctx.drawImage(player, 70, 0, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+            }
+            else if(direction == 'up'){
+                ctx.drawImage(player, 130, 190, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+            }
+            else{
             //вырезка спрайта - пример
             // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
             ctx.drawImage(player, 0, 0, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+            }
+            
+            
         }
         else if(cell == target){
             ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);

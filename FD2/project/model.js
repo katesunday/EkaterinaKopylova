@@ -69,7 +69,7 @@ class Model {
       }
     else{
       map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-      this.view.drawField();
+      this.view.drawField(direction);
     }
      
     

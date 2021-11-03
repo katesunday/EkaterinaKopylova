@@ -48,7 +48,7 @@ const map =  deepCopy(level1);
         }
       })
     })
-    console.log(countT);
+    // console.log(countT);
     if(countT.length < 1){
         console.log('все цели достигнуты')
     }
@@ -80,7 +80,7 @@ const getX = (x, direction, spaces = 1) => {
     return x
   }
   if (direction === 'right') {
-      
+
     return x + spaces
   }
   if (direction === 'left') {
