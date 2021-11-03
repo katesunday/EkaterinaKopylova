@@ -16,14 +16,28 @@ target.src = 'img/greentarget.png';
 var success = new Image();
 success.src = 'img/brickSuccess.png';
 
+function deepCopy (arr) {
+    var out = [];
+    for (var i = 0, len = arr.length; i < len; i++) {
+        var item = arr[i];
+        var obj = [];
+        for (var k in item) {
+            obj[k] = item[k];
+        }
+        out.push(obj);
+    }
+    return out;
+}
+
 // карта первого уровня
-const map = [
+const level1 = [
     [wall,wall,wall,wall,wall,wall],
     [wall,player,bg,bg,bg,wall],
     [wall,bg,bg,brick,target,wall],
     [wall,bg,target,brick,bg,wall],
     [wall,wall,wall,wall,wall,wall],
-]
+];
+const map =  deepCopy(level1);
 
 //ф-я отрисовки карты
 const drawField = function(){
@@ -46,6 +60,11 @@ const drawField = function(){
         else if(cell == target){
             ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
             ctx.drawImage(target, 0, 0, cellSize, cellSize,(x*cellSize)+cellSize/2-(target.width/2),(y*cellSize)+cellSize/2-(target.width/2),cellSize,cellSize);
+        }
+        else if(cell == success){
+            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
+            ctx.drawImage(target, 0, 0, cellSize, cellSize,(x*cellSize)+cellSize/2-(target.width/2),(y*cellSize)+cellSize/2-(target.width/2),cellSize,cellSize);
+            ctx.drawImage(success,x*cellSize,y*cellSize,cellSize,cellSize);
         }
         else{
             ctx.drawImage(cell,x*cellSize,y*cellSize,cellSize,cellSize);
@@ -70,6 +89,7 @@ const isPlayer = (cell) => [player].includes(cell);
 const isTraversible = (cell) => [bg].includes(cell);
 const isWall = (cell) => [wall].includes(cell);
 const isTarget = (cell) => [target].includes(cell);
+const isSuccess = (cell) => [success].includes(cell);
 
 const getX = (x, direction, spaces = 1) => {
   if (direction === 'up' || direction === 'down') {
