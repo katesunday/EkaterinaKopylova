@@ -1,7 +1,6 @@
 .menu{
     background-image: url(img/bgstart.png);
     height: 700px;
-    width: 900px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -66,7 +65,6 @@
 .rules{
     background-image: url(img/bglevels.png);
     height: 700px;
-    width: 900px;
     background-repeat:repeat;
     margin: 0 auto;
     background-size: contain;
@@ -82,7 +80,6 @@
 .records{
     background-image: url(img/bglevels.png);
     height: 700px;
-    width: 900px;
     margin: 0 auto;
     background-size: contain;
     padding: 5px;
@@ -90,7 +87,6 @@
 .levels{
     background-image: url(img/bglevels.png);
     height: 700px;
-    width: 900px;
     margin: 0 auto;
     background-color: #faf8ef;
     background-size: contain;
@@ -118,10 +114,10 @@
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
 .canvas{
-    width: 900px;
-    height: 700px;
+    /* width: 700px; */
+    height: 500px;
     margin: 0 auto;
 }
-#sokoban{
+/* #sokoban{
     border: 1px solid;
-}
+} */

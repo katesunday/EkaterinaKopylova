@@ -13,15 +13,16 @@ var brick = new Image();
 brick.src = 'img/brick.png'
 var target = new Image();
 target.src = 'img/greentarget.png';
+var success = new Image();
+success.src = 'img/brickSuccess.png';
 
 // карта первого уровня
 const map = [
     [wall,wall,wall,wall,wall,wall],
     [wall,player,bg,bg,bg,wall],
-    [wall,bg,wall,wall,wall,wall],
-    [wall,brick,wall],
-    [wall,target,wall],
-    [wall,wall,wall],
+    [wall,bg,bg,brick,target,wall],
+    [wall,bg,target,brick,bg,wall],
+    [wall,wall,wall,wall,wall,wall],
 ]
 
 //ф-я отрисовки карты

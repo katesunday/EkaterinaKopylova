@@ -14,7 +14,7 @@ class View {
         render: () =>{
             return  `
             <div class = "canvas">
-            <canvas id="sokoban" width="900px" height="700px"></canvas>
+            <canvas id="sokoban" width="700px" height="500px"></canvas>
             </div>
             `
         }
