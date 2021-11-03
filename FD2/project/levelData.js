@@ -39,38 +39,22 @@ const level1 = [
 ];
 const map =  deepCopy(level1);
 
-//ф-я отрисовки карты
-const drawField = function(){
-    const game = document.getElementById('sokoban');
-    if(game && game.getContext('2d')){
-        var ctx = game.getContext('2d');
-    }
+ const countTargets = ()=>{
+    let countT = [];
     map.forEach((row, y) => { // взять каждую строку по У вниз
-        row.forEach((cell, x) => { // каждую клетку 
-          paintCell(ctx, cell, x, y)
-        })
+      row.forEach((cell, x) => { // каждую клетку 
+        if(cell == target){
+          countT.push(cell);
+        }
       })
-    function paintCell(ctx, cell, x, y) {
-        if(cell== player){
-            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
-            //вырезка спрайта - пример
-            // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-            ctx.drawImage(player, 0, 0, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
-        }
-        else if(cell == target){
-            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
-            ctx.drawImage(target, 0, 0, cellSize, cellSize,(x*cellSize)+cellSize/2-(target.width/2),(y*cellSize)+cellSize/2-(target.width/2),cellSize,cellSize);
-        }
-        else if(cell == success){
-            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
-            ctx.drawImage(target, 0, 0, cellSize, cellSize,(x*cellSize)+cellSize/2-(target.width/2),(y*cellSize)+cellSize/2-(target.width/2),cellSize,cellSize);
-            ctx.drawImage(success,x*cellSize,y*cellSize,cellSize,cellSize);
-        }
-        else{
-            ctx.drawImage(cell,x*cellSize,y*cellSize,cellSize,cellSize);
-        }
-      }
-}
+    })
+    console.log(countT);
+    if(countT.length < 1){
+        console.log('все цели достигнуты')
+    }
+  }
+
+
 function findPlayerCoords() { //найти координаты игрока
     const y = map.findIndex(row => row.includes(player));// если в строке есть игрок дать его индекс
     const x = map[y].indexOf(player); //дать его индекс в строке 
@@ -96,6 +80,7 @@ const getX = (x, direction, spaces = 1) => {
     return x
   }
   if (direction === 'right') {
+      
     return x + spaces
   }
   if (direction === 'left') {

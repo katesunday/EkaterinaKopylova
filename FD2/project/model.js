@@ -7,7 +7,7 @@ class Model {
   updateState(hashPageName) {     // SPA
     this.view.renderContent(hashPageName);
     if(hashPageName==='play'){
-      drawField();
+      this.view.drawField();
     }
     }
   
@@ -16,6 +16,7 @@ class Model {
   }
   movePlayer(playerCoords,direction){
     // console.log(playerCoords);
+    countTargets();
     const newPlayerY = getY(playerCoords.y, direction, 1)
     const newPlayerX = getX(playerCoords.x, direction, 1)
     
@@ -27,7 +28,7 @@ class Model {
     //если есть стена, то шаг = 0
     if (isWall(map[newPlayerY][newPlayerX])) {
       map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
-      drawField();
+      this.view.drawField();
       console.log('рядом стена')
     }
        // если за игроком куб, то
@@ -51,17 +52,24 @@ class Model {
              map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
 		         map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = brick;
 	           }
-	     drawField();
+             this.view.drawField();
        }
        //если за игроком ЗЕЛЕНЫЙ КУБ, то при движении куб сделать обычным
       else if(isSuccess(map[newPlayerY][newPlayerX])){
-        map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-        map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
-        drawField();
+          //если через 2 шага там НЕ стена, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
+          if (map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != wall) {
+            map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
+            map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
+          }
+          else{
+            map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
+          }
+    
+          this.view.drawField();
       }
     else{
       map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-      drawField();
+      this.view.drawField();
     }
      
     
