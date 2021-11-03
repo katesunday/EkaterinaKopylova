@@ -98,6 +98,37 @@ class View {
         location.hash = routeName;
 
     }
+    //ф-я отрисовки карты
+    drawField(){
+        const game = document.getElementById('sokoban');
+        if(game && game.getContext('2d')){
+        var ctx = game.getContext('2d');
+        }
+        map.forEach((row, y) => { // взять каждую строку по У вниз
+        row.forEach((cell, x) => { // каждую клетку 
+          paintCell(ctx, cell, x, y)
+        })
+        })
+        function paintCell(ctx, cell, x, y) {
+        if(cell== player){
+            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
+            //вырезка спрайта - пример
+            // void ctx.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+            ctx.drawImage(player, 0, 0, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
+        }
+        else if(cell == target){
+            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
+            ctx.drawImage(target, 0, 0, cellSize, cellSize,(x*cellSize)+cellSize/2-(target.width/2),(y*cellSize)+cellSize/2-(target.width/2),cellSize,cellSize);
+        }
+        else if(cell == success){
+            ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
+            ctx.drawImage(target, 0, 0, cellSize, cellSize,(x*cellSize)+cellSize/2-(target.width/2),(y*cellSize)+cellSize/2-(target.width/2),cellSize,cellSize);
+            ctx.drawImage(success,x*cellSize,y*cellSize,cellSize,cellSize);
+        }
+        else{
+            ctx.drawImage(cell,x*cellSize,y*cellSize,cellSize,cellSize);
+        }
+        }
+     }
 
-  
 }
