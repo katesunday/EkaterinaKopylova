@@ -18,13 +18,11 @@ class Model {
     // console.log(playerCoords);
     const newPlayerY = getY(playerCoords.y, direction, 1)
     const newPlayerX = getX(playerCoords.x, direction, 1)
-    const newBoxY = getY(playerCoords.y, direction, 2)
-    const newBoxX = getX(playerCoords.x, direction, 2)
-    // Replace previous spot with initial board state (void or empty)
+    
+    // ЛОГИКА ИГРОКА
+    //оставлять за собой фон 
     map[playerCoords.y][playerCoords.x] =
     isTarget(map[playerCoords.y][playerCoords.x]) ? target : bg;
-
-    // ЛОГИКА ИГРОКА
     //если есть стена, то шаг = 0
     if (isWall(map[newPlayerY][newPlayerX])) {
       map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
@@ -32,29 +30,26 @@ class Model {
       console.log('рядом стена')
     }
     // если за игроком куб, то
-    else if(isBrick(map[newPlayerY][newPlayerX])){
-	     console.log('рядом куб');
-       //если через 2 шага там НЕ стена, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
-	     if (map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != wall) {
-        // если через два шага НЕ цель, то двигает игрока и кубик
-        if(map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != target){
-          map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-          map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
-        }
-        else{
-          map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = success;
-          map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-          
-        }
-	     } 
+       else if(isBrick(map[newPlayerY][newPlayerX])){
+	        console.log('рядом куб');
+          //если через 2 шага там НЕ стена, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
+	           if (map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != wall) {
+             // если через два шага НЕ цель, то двигает игрока и кубик
+             if(map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != target){
+             map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
+             map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
+             } 
+             // если там ЦЕЛЬ, то кубик делаем зеленым( т.е успешным)
+             else{
+             map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = success;
+             map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
+             }
+	      } 
        //а если там стена, то игрока не двигать больше
-       else {
-       
+        else {
        map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
 		   map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = brick;
 	     }
-     
-      
 	     drawField();
        }
 
