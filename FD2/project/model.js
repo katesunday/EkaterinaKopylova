@@ -1,7 +1,7 @@
 class Model {
   constructor(_view) {
       this.view = _view;
-      window.location.hash = "menu";
+      // window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
     }
 
   updateState(hashPageName) {     // SPA
