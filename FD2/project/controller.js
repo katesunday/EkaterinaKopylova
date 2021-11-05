@@ -26,17 +26,17 @@ class Controller{
         let level = target.id;
         level = window[level];
         this.model.updateState('play',level);
-        this.listenKeyboard();
+        this.listenKeyboard(level);
       }
       else if(target ==goBackbtn){
           this.model.goBack();
       }
     });
   }
-  listenKeyboard(){
+  listenKeyboard(level){
   if(this.container.querySelector('canvas')){
      document.addEventListener('keydown', (e) =>{
-      const playerCoords = this.model.findPlayerCoords();
+      const playerCoords = this.model.findPlayerCoords(level);
       let direction = null;
       switch (e.key){
         case "ArrowRight":

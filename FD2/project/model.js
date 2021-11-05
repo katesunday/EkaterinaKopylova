@@ -39,13 +39,12 @@ class Model {
   }
   console.log(out);
   this.view.drawField(this.direction,out);
+  this.findPlayerCoords(out);
   // return out;
   };
  
 
   movePlayer(playerCoords,direction){
-    // console.log(playerCoords);
-    
     // countTargets();
     const newPlayerY = this.getY(playerCoords.y, direction, 1)
     const newPlayerX = this.getX(playerCoords.x, direction, 1)
@@ -121,17 +120,17 @@ class Model {
   };
 
 
- findPlayerCoords = ()=> { //найти координаты игрока
-  console.log(this.map);
-   const y = this.map.findIndex(row => row.includes(1));// если в строке есть игрок дать его индекс
-   const x = this.map[y].indexOf(1); //дать его индекс в строке 
+ findPlayerCoords = (map)=> { //найти координаты игрока
+  console.log(map);
+   const y = map.findIndex(row => row.includes(1));// если в строке есть игрок дать его индекс
+   const x = map[y].indexOf(1); //дать его индекс в строке 
     return {
       x,
       y,
-      above: this.map[y - 1][x],
-      below: this.map[y + 1][x],
-      sideLeft: this.map[y][x - 1],
-      sideRight: this.map[y][x + 1],
+      above: map[y - 1][x],
+      below: map[y + 1][x],
+      sideLeft: map[y][x - 1],
+      sideRight: map[y][x + 1],
        }
   };
   // функции поиска соседних блоков
