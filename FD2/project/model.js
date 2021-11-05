@@ -39,7 +39,7 @@ class Model {
  
 
   movePlayer(direction,level){
-    this.countTargets(this.map);// считать цели
+    // this.countTargets(this.map);// считать цели
     const playerCoords = this.findPlayerCoords(this.map);// взять координаты из копии
     const newPlayerY = this.getY(playerCoords.y, direction, 1)
     const newPlayerX = this.getX(playerCoords.x, direction, 1)
@@ -104,7 +104,7 @@ class Model {
     let countT = [];
     map.forEach((row, y) => { // взять каждую строку по У вниз
       row.forEach((cell, x) => { // каждую клетку 
-        if(cell == 4){
+        if(cell == 5){
           countT.push(cell);
         }
       })
