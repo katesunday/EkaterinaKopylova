@@ -131,7 +131,7 @@ class View {
         map.forEach((row, y) => { // взять каждую строку по У вниз
         row.forEach((cell, x) => { // каждую клетку 
           paintCell(ctx, cell, x, y)
-          debugger;
+        //   debugger;
         })
         })
         function paintCell(ctx, cell, x, y) {

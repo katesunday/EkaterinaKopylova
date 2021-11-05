@@ -11,8 +11,11 @@ class Controller{
   }
   updateState = ()=>{
     const hashPageName = window.location.hash.slice(1).toLowerCase();
-    this.model.updateState(hashPageName,this.level);
-    this.listenKeyboard();
+    if(hashPageName != 'play'){
+      this.model.updateState(hashPageName,this.level);
+      this.listenKeyboard();
+    }
+
     
   }
   listeners = ()=>{
@@ -21,7 +24,9 @@ class Controller{
       let goBackbtn = document.getElementById('goBack');
       if(target.hash == '#play'){
         let level = target.id;
+        level = window[level];
         this.model.updateState('play',level);
+        this.listenKeyboard();
       }
       else if(target ==goBackbtn){
           this.model.goBack();
@@ -35,6 +40,7 @@ class Controller{
       let direction = null;
       switch (e.key){
         case "ArrowRight":
+          console.log('right');
           direction = 'right';
           this.model.movePlayer(playerCoords,direction);
         break;

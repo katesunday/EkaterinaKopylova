@@ -9,14 +9,17 @@ class Model {
   }
 
   updateState(hashPageName,level) {     // SPA
-    this.view.renderContent(hashPageName);
+    
     if(hashPageName==='play'){
-      level = window[level];
+      // level = window[level];
       console.log(level);
-      
-      this.view.drawField(this.direction,level);
+      this.view.renderContent(hashPageName);
       this.map = this.deepCopy(level);
     }
+    else{
+      this.view.renderContent(hashPageName);
+    }
+
   }
   
   goBack() { // возврат в меню
@@ -35,7 +38,8 @@ class Model {
       out.push(obj);
   }
   console.log(out);
-  return out;
+  this.view.drawField(this.direction,out);
+  // return out;
   };
  
 
@@ -118,6 +122,7 @@ class Model {
 
 
  findPlayerCoords = ()=> { //найти координаты игрока
+  console.log(this.map);
    const y = this.map.findIndex(row => row.includes(1));// если в строке есть игрок дать его индекс
    const x = this.map[y].indexOf(1); //дать его индекс в строке 
     return {
