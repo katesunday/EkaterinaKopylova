@@ -3,18 +3,15 @@ class Model {
     this.view = _view;
     this.direction = null;
     this.map = null;
-    
     this.level = null;
- window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
+   window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
-  updateState(hashPageName,level) {     // SPA
+  updateState(hashPageName,level) { // SPA
     
     if(hashPageName==='play'){
-      // level = window[level];
-      console.log(level);
       this.view.renderContent(hashPageName);
-      this.map = this.deepCopy(level);
+      this.map = this.deepCopy(level);//создать глубокую копию уровня, чтобы работать только с копией
     }
     else{
       this.view.renderContent(hashPageName);
@@ -25,9 +22,8 @@ class Model {
   goBack() { // возврат в меню
     this.view.renderContent('menu');
   }
-
+ //ф-я глубокого копирования
  deepCopy = (arr) => {
-
   var out = [];
   for (var i = 0, len = arr.length; i < len; i++) {
       var item = arr[i];
@@ -37,22 +33,21 @@ class Model {
       }
       out.push(obj);
   }
-  console.log(out);
   this.view.drawField(this.direction,out);
-  this.findPlayerCoords(out);
-  // return out;
+  return out;
   };
  
 
-  movePlayer(playerCoords,direction){
-    // countTargets();
+  movePlayer(direction,level){
+    this.countTargets(this.map);// считать цели
+    const playerCoords = this.findPlayerCoords(this.map);// взять координаты из копии
     const newPlayerY = this.getY(playerCoords.y, direction, 1)
     const newPlayerX = this.getX(playerCoords.x, direction, 1)
     
     // ЛОГИКА ИГРОКА
-    //оставлять за собой фон и цели исходя из 
+    //оставлять за собой фон и цели исходя из карты уровня (не копии)
     this.map[playerCoords.y][playerCoords.x] =
-   this.isTarget(level[playerCoords.y][playerCoords.x]) ? 4 : 2;
+    this.isTarget(level[playerCoords.y][playerCoords.x]) ? 4 : 2;
     
     //если есть стена, то шаг = 0
     if (this.isWall(this.map[newPlayerY][newPlayerX])) {
@@ -104,24 +99,23 @@ class Model {
     
   };
 
-  countTargets = ()=>{
+  //ф-я подсчета целей
+  countTargets = (map)=>{
     let countT = [];
-    this.map.forEach((row, y) => { // взять каждую строку по У вниз
+    map.forEach((row, y) => { // взять каждую строку по У вниз
       row.forEach((cell, x) => { // каждую клетку 
         if(cell == 4){
           countT.push(cell);
         }
       })
     })
-    // console.log(countT);
     if(countT.length < 1){
-        console.log('все цели достигнуты')
+        console.log('все цели достигнуты');
     }
   };
 
 
  findPlayerCoords = (map)=> { //найти координаты игрока
-  console.log(map);
    const y = map.findIndex(row => row.includes(1));// если в строке есть игрок дать его индекс
    const x = map[y].indexOf(1); //дать его индекс в строке 
     return {

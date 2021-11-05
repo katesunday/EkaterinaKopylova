@@ -113,7 +113,6 @@ class View {
     }
     //ф-я отрисовки карты
     drawField (direction,map){
-        console.log(direction,map);
         const cellSize = 70;// размер клетки
         const gameHeight = 700;
         const gameWidth = 900;
@@ -131,7 +130,6 @@ class View {
         map.forEach((row, y) => { // взять каждую строку по У вниз
         row.forEach((cell, x) => { // каждую клетку 
           paintCell(ctx, cell, x, y)
-        //   debugger;
         })
         })
         function paintCell(ctx, cell, x, y) {

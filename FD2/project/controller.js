@@ -11,24 +11,22 @@ class Controller{
   }
   updateState = ()=>{
     const hashPageName = window.location.hash.slice(1).toLowerCase();
-    if(hashPageName != 'play'){
+    if(hashPageName != 'play'){ //перерисовка плэй отдельно!
       this.model.updateState(hashPageName,this.level);
-      this.listenKeyboard();
     }
-
-    
   }
+
   listeners = ()=>{
     document.addEventListener('click',(e)=>{
       let target = e.target;
       let goBackbtn = document.getElementById('goBack');
-      if(target.hash == '#play'){
+      if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
         this.model.updateState('play',level);
-        this.listenKeyboard(level);
+        this.listenKeyboard(level);// включить слушатели клавиатуры
       }
-      else if(target ==goBackbtn){
+      else if(target == goBackbtn){
           this.model.goBack();
       }
     });
@@ -36,25 +34,23 @@ class Controller{
   listenKeyboard(level){
   if(this.container.querySelector('canvas')){
      document.addEventListener('keydown', (e) =>{
-      const playerCoords = this.model.findPlayerCoords(level);
       let direction = null;
       switch (e.key){
         case "ArrowRight":
-          console.log('right');
           direction = 'right';
-          this.model.movePlayer(playerCoords,direction);
+          this.model.movePlayer(direction,level);// передача направления и уровня
         break;
         case "ArrowLeft":
           direction = 'left';
-          this.model.movePlayer(playerCoords,direction);
+          this.model.movePlayer(direction,level);
         break;
         case "ArrowUp":
           direction = 'up';
-          this.model.movePlayer(playerCoords,direction);
+          this.model.movePlayer(direction,level);
         break;
         case "ArrowDown":
           direction = 'down';
-          this.model.movePlayer(playerCoords,direction);
+          this.model.movePlayer(direction,level);
         break;
         
       }
