@@ -23,16 +23,9 @@ class Controller{
         let level = target.id;
         this.model.updateState('play',level);
       }
-      // switch(target){
-      //   case goBackbtn:
-      //     this.model.goBack();
-      //     break;
-      //   case target.hash == '#play':
-      //     let level = target.id
-      //     debugger;
-      //     this.model.updateState('play',level);
-      //     break;
-      // }
+      else if(target ==goBackbtn){
+          this.model.goBack();
+      }
     });
   }
   listenKeyboard(){
