@@ -2,6 +2,7 @@ class Controller{
   constructor(_model, _container) {
     this.model = _model;
     this.container =_container
+    this.level = null;
     window.addEventListener("hashchange", this.updateState);
     this.updateState(); 
     this.listeners();
@@ -10,7 +11,7 @@ class Controller{
   }
   updateState = ()=>{
     const hashPageName = window.location.hash.slice(1).toLowerCase();
-    this.model.updateState(hashPageName);
+    this.model.updateState(hashPageName,this.level);
     this.listenKeyboard();
     
   }
@@ -18,15 +19,26 @@ class Controller{
     document.addEventListener('click',(e)=>{
       let target = e.target;
       let goBackbtn = document.getElementById('goBack');
-       if(target === goBackbtn){ //если таргет равен кнопке назад
-         this.model.goBack();
-       }
+      if(target.hash == '#play'){
+        let level = target.id;
+        this.model.updateState('play',level);
+      }
+      // switch(target){
+      //   case goBackbtn:
+      //     this.model.goBack();
+      //     break;
+      //   case target.hash == '#play':
+      //     let level = target.id
+      //     debugger;
+      //     this.model.updateState('play',level);
+      //     break;
+      // }
     });
   }
   listenKeyboard(){
   if(this.container.querySelector('canvas')){
      document.addEventListener('keydown', (e) =>{
-      const playerCoords = findPlayerCoords();
+      const playerCoords = this.model.findPlayerCoords();
       let direction = null;
       switch (e.key){
         case "ArrowRight":

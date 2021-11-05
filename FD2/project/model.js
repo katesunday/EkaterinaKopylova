@@ -1,78 +1,165 @@
 class Model {
   constructor(_view) {
-      this.view = _view;
-      // window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
-    }
+    this.view = _view;
+    this.direction = null;
+    this.map = null;
+    
+    this.level = null;
+ window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
+  }
 
-  updateState(hashPageName) {     // SPA
+  updateState(hashPageName,level) {     // SPA
     this.view.renderContent(hashPageName);
     if(hashPageName==='play'){
-      this.view.drawField();
+      level = window[level];
+      console.log(level);
+      
+      this.view.drawField(this.direction,level);
+      this.map = this.deepCopy(level);
     }
-    }
+  }
   
   goBack() { // возврат в меню
     this.view.renderContent('menu');
   }
+
+ deepCopy = (arr) => {
+
+  var out = [];
+  for (var i = 0, len = arr.length; i < len; i++) {
+      var item = arr[i];
+      var obj = [];
+      for (var k in item) {
+          obj[k] = item[k];
+      }
+      out.push(obj);
+  }
+  console.log(out);
+  return out;
+  };
+ 
+
   movePlayer(playerCoords,direction){
     // console.log(playerCoords);
-    countTargets();
-    const newPlayerY = getY(playerCoords.y, direction, 1)
-    const newPlayerX = getX(playerCoords.x, direction, 1)
+    
+    // countTargets();
+    const newPlayerY = this.getY(playerCoords.y, direction, 1)
+    const newPlayerX = this.getX(playerCoords.x, direction, 1)
     
     // ЛОГИКА ИГРОКА
     //оставлять за собой фон и цели исходя из 
-    map[playerCoords.y][playerCoords.x] =
-    isTarget(level1[playerCoords.y][playerCoords.x]) ? target : bg;
+    this.map[playerCoords.y][playerCoords.x] =
+   this.isTarget(level[playerCoords.y][playerCoords.x]) ? 4 : 2;
     
     //если есть стена, то шаг = 0
-    if (isWall(map[newPlayerY][newPlayerX])) {
-      map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
-      this.view.drawField(direction);
+    if (this.isWall(this.map[newPlayerY][newPlayerX])) {
+      this.map[this.getY(playerCoords.y, direction, 0)][this.getX(playerCoords.x, direction, 0)] = 1;
+      this.view.drawField(direction,this.map);
       console.log('рядом стена')
     }
        // если за игроком куб, то
-       else if(isBrick(map[newPlayerY][newPlayerX])){
+       else if(this.isBrick(this.map[newPlayerY][newPlayerX])){
 	        console.log('рядом куб');
           //если через 2 шага там НЕ стена, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
-	           if (map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != wall) {
+	           if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 0) {
                 // если через два шага НЕ цель, то двигает игрока и кубик
-                if(map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != target){
-                map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-                map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
+                if(this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 4){
+                  this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
+                  this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 3;
                 } 
                 // если там ЦЕЛЬ, то кубик делаем зеленым( т.е успешным)
                 else{
-                map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = success;
-                map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
+                  this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 5;
+                  this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
                 }
 	            } 
              //а если там стена, то игрока не двигать больше
              else {
-             map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
-		         map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = brick;
+              this.map[this.getY(playerCoords.y, direction, 0)][this.getX(playerCoords.x, direction, 0)] = 1;
+              this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 3;
 	           }
-             this.view.drawField(direction);
+             this.view.drawField(direction,this.map);
        }
        //если за игроком ЗЕЛЕНЫЙ КУБ, то при движении куб сделать обычным
-      else if(isSuccess(map[newPlayerY][newPlayerX])){
+      else if(this.isSuccess(this.map[newPlayerY][newPlayerX])){
           //если через 2 шага там НЕ стена, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
-          if (map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] != wall) {
-            map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-            map[getY(playerCoords.y, direction, 2)][getX(playerCoords.x, direction, 2)] = brick;
+          if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 0) {
+            this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
+            this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 3;
           }
           else{
-            map[getY(playerCoords.y, direction, 0)][getX(playerCoords.x, direction, 0)] = player;
+            this.map[this.getY(playerCoords.y, direction, 0)][this.getX(playerCoords.x, direction, 0)] = 1;
           }
     
-          this.view.drawField(direction);
+          this.view.drawField(direction,this.map);
       }
     else{
-      map[getY(playerCoords.y, direction, 1)][getX(playerCoords.x, direction, 1)] = player;
-      this.view.drawField(direction);
+      this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
+      this.view.drawField(direction,this.map);
     }
      
     
+  };
+
+  countTargets = ()=>{
+    let countT = [];
+    this.map.forEach((row, y) => { // взять каждую строку по У вниз
+      row.forEach((cell, x) => { // каждую клетку 
+        if(cell == 4){
+          countT.push(cell);
+        }
+      })
+    })
+    // console.log(countT);
+    if(countT.length < 1){
+        console.log('все цели достигнуты')
+    }
+  };
+
+
+ findPlayerCoords = ()=> { //найти координаты игрока
+   const y = this.map.findIndex(row => row.includes(1));// если в строке есть игрок дать его индекс
+   const x = this.map[y].indexOf(1); //дать его индекс в строке 
+    return {
+      x,
+      y,
+      above: this.map[y - 1][x],
+      below: this.map[y + 1][x],
+      sideLeft: this.map[y][x - 1],
+      sideRight: this.map[y][x + 1],
+       }
+  };
+  // функции поиска соседних блоков
+ isBrick = (cell) => [3].includes(cell);// есть ли кубик в клетке
+ isPlayer = (cell) => [1].includes(cell);
+ isTraversible = (cell) => [2].includes(cell);
+ isWall = (cell) => [0].includes(cell);
+ isTarget = (cell) => [4].includes(cell);
+ isSuccess = (cell) => [5].includes(cell);
+
+ getX = (x, direction, spaces = 1) => {
+  if (direction === 'up' || direction === 'down') {
+    return x
   }
+  if (direction === 'right') {
+
+    return x + spaces
+  }
+  if (direction === 'left') {
+    return x - spaces
+  }
+  };
+
+ getY = (y, direction, spaces = 1) => {
+  if (direction === 'left' || direction === 'right') {
+    return y
+  }
+  if (direction === 'down') {
+    return y + spaces
+  }
+  if (direction === 'up') {
+    return y - spaces
+  }
+  };
 
 }
