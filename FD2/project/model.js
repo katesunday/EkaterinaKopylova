@@ -39,7 +39,7 @@ class Model {
  
 
   movePlayer(direction,level){
-    // this.countTargets(this.map);// считать цели
+    this.countTargets(this.map);// считать цели
     const playerCoords = this.findPlayerCoords(this.map);// взять координаты из копии
     const newPlayerY = this.getY(playerCoords.y, direction, 1)
     const newPlayerX = this.getX(playerCoords.x, direction, 1)
@@ -81,10 +81,15 @@ class Model {
        //если за игроком ЗЕЛЕНЫЙ КУБ, то при движении куб сделать обычным
       else if(this.isSuccess(this.map[newPlayerY][newPlayerX])){
           //если через 2 шага там НЕ стена, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
-          if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 0) {
+          if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] == 2) {
             this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
             this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 3;
           }
+          //а если две цели подряд
+          else if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] == 4){
+            this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 5;
+            this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
+          } 
           else{
             this.map[this.getY(playerCoords.y, direction, 0)][this.getX(playerCoords.x, direction, 0)] = 1;
           }
@@ -104,12 +109,12 @@ class Model {
     let countT = [];
     map.forEach((row, y) => { // взять каждую строку по У вниз
       row.forEach((cell, x) => { // каждую клетку 
-        if(cell == 5){
+        if(cell == 3){
           countT.push(cell);
         }
       })
     })
-    if(countT.length < 1){
+    if(countT.length == 0){
         console.log('все цели достигнуты');
     }
   };
