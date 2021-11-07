@@ -105,6 +105,7 @@ class View {
 			this.target.src = 'img/greentarget.png';
 	   this.success = new Image();
 			this.success.src = 'img/brickSuccess.png';
+       
     }
     renderContent(hashPageName,moves) {
         let routeName = "menu";
@@ -151,6 +152,7 @@ class View {
         if(cell== 1){
             ctx.drawImage(bg,x*cellSize,y*cellSize,cellSize,cellSize);
             if(direction == 'right'){
+                
                 ctx.drawImage(player, 130, 128, cellSize, cellSize,x*cellSize,y*cellSize,cellSize,cellSize);
             }
             else if(direction == 'left'){

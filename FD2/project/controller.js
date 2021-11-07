@@ -4,6 +4,9 @@ class Controller{
     this.container =_container
     this.level = null;
     window.addEventListener("hashchange", this.updateState);
+    // window.onload = ()=>{
+    //   audioIntro.play();
+    // }
     this.updateState(); 
     this.listeners();
     this.listenKeyboard();
@@ -13,10 +16,19 @@ class Controller{
     const hashPageName = window.location.hash.slice(1).toLowerCase();
     if(hashPageName != 'play'){ //перерисовка плэй отдельно!
       this.model.updateState(hashPageName,this.level);
+     
     }
+    // else{
+    //   window.onbeforeunload = function() {
+    
+    //     alert( "Есть несохранённые изменения. Всё равно уходим?");
+    //     return false;
+    //   };
+    // }
   }
 
   listeners = ()=>{
+
     document.addEventListener('click',(e)=>{
       let target = e.target;
       let goBackbtn = document.getElementById('goBack');

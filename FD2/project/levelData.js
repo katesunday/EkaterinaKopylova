@@ -82,3 +82,7 @@ level1 = [
     [0,2,2,4,2,2,0],
     [0,0,0,0,0,0,0]
    ];
+   var audioWalking = new Audio('sounds/walking.mp3');
+   var audioWall = new Audio('sounds/wall.mp3');
+   var audioSuccess = new Audio('sounds/success.mp3');
+   var audioIntro = new Audio('sounds/intro.mp3');

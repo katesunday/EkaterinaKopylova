@@ -18,6 +18,7 @@ class Model {
     }
     else{
       this.view.renderContent(hashPageName);
+      
     }
 
   }
@@ -50,11 +51,14 @@ class Model {
     //оставлять за собой фон и цели исходя из карты уровня (не копии)
     this.map[playerCoords.y][playerCoords.x] =
     this.isTarget(level[playerCoords.y][playerCoords.x]) ? 4 : 2;
+    audioWalking.play();
     
     //если есть стена, то шаг = 0
     if (this.isWall(this.map[newPlayerY][newPlayerX])) {
       this.map[this.getY(playerCoords.y, direction, 0)][this.getX(playerCoords.x, direction, 0)] = 1;
       this.view.drawField(direction,this.map);
+      audioWalking.pause();
+      audioWall.play();
       console.log('рядом стена')
     }
        // если за игроком куб, то
@@ -70,6 +74,7 @@ class Model {
                 // если там ЦЕЛЬ, то кубик делаем зеленым( т.е успешным)
                 else{
                   this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 5;
+                  audioSuccess.play();
                   this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
                 }
 	            } 
@@ -109,6 +114,7 @@ class Model {
   //ф-я подсчета целей
   countTargets = (map)=>{
     let countT = [];
+    let countS
     map.forEach((row, y) => { // взять каждую строку по У вниз
       row.forEach((cell, x) => { // каждую клетку 
         if(cell == 3){

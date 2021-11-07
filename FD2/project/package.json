@@ -1,0 +1,27 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "project FD2",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katesunday/EkaterinaKopylova.git#master"
+  },
+  "keywords": [
+    "node.js",
+    "npm",
+    "fd2"
+  ],
+  "author": "Ekaterina Kopylova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katesunday/EkaterinaKopylova/issues"
+  },
+  "homepage": "https://github.com/katesunday/EkaterinaKopylova/tree/master#readme",
+  "dependencies": {
+    "browser-sync": "^2.27.7"
+  }
+}
