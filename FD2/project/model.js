@@ -4,13 +4,16 @@ class Model {
     this.direction = null;
     this.map = null;
     this.level = null;
+    this.countMove = 0;
    window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
-  updateState(hashPageName,level) { // SPA
+  updateState(hashPageName,level,targetLevel) { // SPA
     
     if(hashPageName==='play'){
-      this.view.renderContent(hashPageName);
+      this.view.renderContent(hashPageName,this.countMove);
+      this.view.showMoves(this.countMove);
+      this.view.showLevel(targetLevel);
       this.map = this.deepCopy(level);//создать глубокую копию уровня, чтобы работать только с копией
     }
     else{
@@ -18,7 +21,6 @@ class Model {
     }
 
   }
-  
   goBack() { // возврат в меню
     this.view.renderContent('menu');
   }
@@ -165,4 +167,8 @@ class Model {
   }
   };
 
+  countMoves = () =>{
+    this.countMove++;
+    this.view.showMoves(this.countMove);
+  }
 }

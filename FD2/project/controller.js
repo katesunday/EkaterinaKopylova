@@ -23,7 +23,7 @@ class Controller{
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
-        this.model.updateState('play',level);
+        this.model.updateState('play',level,target);
         this.listenKeyboard(level);// включить слушатели клавиатуры
       }
       else if(target == goBackbtn){
@@ -37,18 +37,22 @@ class Controller{
       let direction = null;
       switch (e.key){
         case "ArrowRight":
+          this.model.countMoves();
           direction = 'right';
           this.model.movePlayer(direction,level);// передача направления и уровня
         break;
         case "ArrowLeft":
+          this.model.countMoves();
           direction = 'left';
           this.model.movePlayer(direction,level);
         break;
         case "ArrowUp":
+          this.model.countMoves();
           direction = 'up';
           this.model.movePlayer(direction,level);
         break;
         case "ArrowDown":
+          this.model.countMoves();
           direction = 'down';
           this.model.movePlayer(direction,level);
         break;

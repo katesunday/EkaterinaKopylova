@@ -11,8 +11,10 @@ class View {
         }
     };
     Play = { // сама игра
-        render: () =>{
+        render: (moves) =>{
             return  `
+            <div class = "infoLevel"></div>
+            <div class = "countMoves">Your moves: ${moves}</div>
             <div class = "canvas">
             <canvas id="sokoban" width="700px" height="500px"></canvas>
             </div>
@@ -83,11 +85,13 @@ class View {
         rules: this.Rules,
         score: this.Score,
         levels: this.Levels,
+        moves: this.moves,
     };
     constructor(field) {
         this.container = field;
         this.container = field;
 		this.direction = null;
+
 		
 	   this.wall = new Image();
 			 this.wall.src = 'img/wall.png';
@@ -102,14 +106,24 @@ class View {
 	   this.success = new Image();
 			this.success.src = 'img/brickSuccess.png';
     }
-    renderContent(hashPageName) {
+    renderContent(hashPageName,moves) {
         let routeName = "menu";
         if (hashPageName.length > 0) {
             routeName = hashPageName in this.router ? hashPageName : "error";
         }
-        this.container.innerHTML = this.router[routeName].render();
+        this.container.innerHTML = this.router[routeName].render(moves);
         location.hash = routeName;
-
+    }
+    showMoves(moves){
+ 
+       let divCountMoves = document.querySelector('.countMoves');
+       console.log(moves);
+       divCountMoves.innerHTML = `Your moves: ${moves}`;
+    }
+    showLevel(targetlevel){
+      let divLevel = document.querySelector('.infoLevel');
+       let levelNumber = targetlevel.innerText;
+       divLevel.innerHTML = `Level: ${levelNumber} `;
     }
     //ф-я отрисовки карты
     drawField (direction,map){

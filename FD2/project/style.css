@@ -119,6 +119,15 @@
     height: 500px;
     margin: 0 auto;
 }
-/* #sokoban{
-    border: 1px solid;
-} */
+.infoLevel{
+    color: #23b363;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: monospace;
+}
+.countMoves{
+    color: #e94a39;
+    font-size: 25px;
+    font-weight: 600;
+    font-family: monospace;
+}
