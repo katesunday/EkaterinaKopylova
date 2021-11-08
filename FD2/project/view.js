@@ -18,6 +18,8 @@ class View {
             <div class = "canvas">
             <canvas id="sokoban" width="700px" height="500px"></canvas>
             </div>
+            <div class = "levelcomplete">
+            </div>
             `
         }
         
@@ -91,6 +93,7 @@ class View {
         this.container = field;
         this.container = field;
 		this.direction = null;
+        this.moves = 0;
 
 		
 	   this.wall = new Image();
@@ -116,10 +119,11 @@ class View {
         location.hash = routeName;
     }
     showMoves(moves){
- 
+       this.moves = moves;
        let divCountMoves = document.querySelector('.countMoves');
        console.log(moves);
        divCountMoves.innerHTML = `Your moves: ${moves}`;
+       return this.moves;
     }
     showLevel(targetlevel){
       let divLevel = document.querySelector('.infoLevel');
@@ -191,5 +195,11 @@ class View {
       
         }
      }
-
+    
+    showModal(){
+        let divLevelComplete = document.querySelector('.levelcomplete');
+       divLevelComplete.style.display = 'block';
+      divLevelComplete.innerHTML = `<p>You have gained ${100-this.moves} points!</p>
+            <button class = "backToLevels">Back to levels</button>`
+    }
 }
