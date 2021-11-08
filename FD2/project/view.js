@@ -6,9 +6,20 @@ class View {
             <button class="playBtn" id="playBtn"><a href="#levels">PLAY</a></button>
             <button class="rulesBtn" id="rulesBtn"><a href="#rules">GAME RULES</a></button>
             <button class="scoreBtn" id="scoreBtn"><a href="#score">SCORE TABLE</a></button>
-            <button class="enter" id="enter">Enter</button>
-            <button class="register" id="register">Register</button>
-             <div class = "data">
+            <button class="enter" id="enter">ENTER</button>
+            <button class="register" id="register">REGISTER</button>
+             <div class = "dataReg">REGISTER
+             <button class = "closeForm">&#10008;</button>
+             <label for="name">Name (2 to 8 characters):</label>
+             <input type="text" id="name" name="name" required
+              minlength="2" maxlength="8" size="10">
+             <label for="name">Password(2 to 8 characters):</label>
+             <input type="text" id="password" name="password" required
+              minlength="2" maxlength="8" size="10">
+              <button class = "submit">Submit</button>
+             </div>
+             <div class = "dataEnt">ENTER
+             <button class = "closeForm2">&#10008;</button>
              <label for="name">Name (2 to 8 characters):</label>
              <input type="text" id="name" name="name" required
               minlength="2" maxlength="8" size="10">
@@ -134,7 +145,7 @@ class View {
        let divCountMoves = document.querySelector('.countMoves');
        console.log(moves);
        divCountMoves.innerHTML = `Your moves: ${moves}`;
-       return this.moves;
+    //    return this.moves;
     }
     showLevel(targetlevel){
       let divLevel = document.querySelector('.infoLevel');
@@ -213,4 +224,16 @@ class View {
       divLevelComplete.innerHTML = `<p>You have gained ${100-this.moves} points!</p>
             <button class = "backToLevels">Back to levels</button>`
     }
+
+    showRegForm(){
+        document.querySelector('.dataReg').style.display = 'flex';
+    };
+    showEntForm(){
+        document.querySelector('.dataEnt').style.display = 'flex';
+    }
+    closeForm(){
+        document.querySelector('.dataEnt').style.display = 'none';
+        document.querySelector('.dataReg').style.display = 'none';
+    }
+
 }

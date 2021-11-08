@@ -191,4 +191,13 @@ class Model {
       console.error("Ошибка добавления пользователя: ", error);
   });
   }
+  showRegForm = () => {
+    this.view.showRegForm();
+  }
+  showEntForm = () => {
+    this.view.showEntForm();
+  }
+  closeForm = () =>{
+    this.view.closeForm();
+  }
 }

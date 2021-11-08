@@ -9,7 +9,7 @@ class Controller{
     // }
     this.updateState(); 
     this.listeners();
-    this.listenKeyboard();
+    // this.listenKeyboard();
     
   }
   updateState = ()=>{
@@ -36,6 +36,10 @@ class Controller{
       let submitBtn = document.querySelector('.submit');
       let userName  = document.querySelector('#name');
       let userPW = document.querySelector('#password');
+      let enterBtn = document.querySelector('.enter');
+      let registerBtn = document.querySelector('.register');
+      let closeFormBtn = document.querySelector('.closeForm');
+      let closeFormBtn2 = document.querySelector('.closeForm2');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
@@ -47,12 +51,23 @@ class Controller{
           this.model.goBack();
         break;
         case btnBackToLevels:
-          this.model.updateState('levels');
+          this.model.updateState('levels',this.level);
         break;
         case submitBtn:
           this.model.addUser(userName.value,userPW.value);
         break;
-        
+        case registerBtn:
+          this.model.showRegForm();
+        break;
+        case enterBtn:
+          this.model.showEntForm();
+        break;
+        case closeFormBtn:
+          this.model.closeForm();
+        break;
+        case closeFormBtn2:
+          this.model.closeForm();
+        break;
       }
  
     });
