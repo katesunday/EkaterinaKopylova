@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/katesunday/EkaterinaKopylova.git#master"
+    "type": ,
+    "url": 
   },
   "keywords": [
     "node.js",
@@ -18,9 +18,9 @@
   "author": "Ekaterina Kopylova",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/katesunday/EkaterinaKopylova/issues"
+    "url": 
   },
-  "homepage": "https://github.com/katesunday/EkaterinaKopylova/tree/master#readme",
+  "homepage": ,
   "dependencies": {
     "browser-sync": "^2.27.7",
     "firebase": "^9.3.0"

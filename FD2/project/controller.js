@@ -52,7 +52,7 @@ class Controller{
         case submitBtn:
           this.model.addUser(userName.value,userPW.value);
         break;
-
+        case 
       }
  
     });
