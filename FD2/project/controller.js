@@ -33,18 +33,28 @@ class Controller{
       let target = e.target;
       let goBackbtn = document.getElementById('goBack');
       let btnBackToLevels =  document.querySelector('.backToLevels');
+      let submitBtn = document.querySelector('.submit');
+      let userName  = document.querySelector('#name');
+      let userPW = document.querySelector('#password');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
         this.model.updateState('play',level,target);
         this.listenKeyboard(level);// включить слушатели клавиатуры
-      }
-      else if(target == goBackbtn){
+      };
+      switch(target){
+        case goBackbtn:
           this.model.goBack();
+        break;
+        case btnBackToLevels:
+          this.model.updateState('levels');
+        break;
+        case submitBtn:
+          this.model.addUser(userName.value,userPW.value);
+        break;
+
       }
-      else if(target == btnBackToLevels){
-        this.model.updateState('levels');
-      }
+ 
     });
   }
   listenKeyboard(level){
