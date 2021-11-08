@@ -131,3 +131,30 @@
     font-weight: 600;
     font-family: monospace;
 }
+.levelcomplete{
+    display: none;
+    background: url(img/levelcomplete.png);
+    background-repeat: round;
+    background-size: contain;
+    position: absolute;
+    top: 130px;
+    left: 40px;
+    height: 200px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 20px 125px rgb(0 0 0 / 94%);
+}
+.levelcomplete p{
+    padding-top: 50px;
+    font-weight: 600;
+}
+.backToLevels{
+    background-color: #23b363;
+    border: 2px solid white;
+    height: 27px;
+    width: 130px;
+    border-radius: 15px;
+}
+.backToLevels:hover{
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}

@@ -5,6 +5,7 @@ class Model {
     this.map = null;
     this.level = null;
     this.countMove = 0;
+    this.countT = null;
    window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
@@ -42,7 +43,6 @@ class Model {
  
 
   movePlayer(direction,level){
-    this.countTargets(this.map);// считать цели
     const playerCoords = this.findPlayerCoords(this.map);// взять координаты из копии
     const newPlayerY = this.getY(playerCoords.y, direction, 1)
     const newPlayerX = this.getX(playerCoords.x, direction, 1)
@@ -107,25 +107,10 @@ class Model {
       this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
       this.view.drawField(direction,this.map);
     }
-     
+    this.countTargets(this.map);// считать цели
     
   };
 
-  //ф-я подсчета целей
-  countTargets = (map)=>{
-    let countT = [];
-    let countS
-    map.forEach((row, y) => { // взять каждую строку по У вниз
-      row.forEach((cell, x) => { // каждую клетку 
-        if(cell == 3){
-          countT.push(cell);
-        }
-      })
-    })
-    if(countT.length == 0){
-        console.log('все цели достигнуты');
-    }
-  };
 
 
  findPlayerCoords = (map)=> { //найти координаты игрока
@@ -171,6 +156,22 @@ class Model {
   if (direction === 'up') {
     return y - spaces
   }
+  };
+
+  //ф-я подсчета целей
+  countTargets = (map)=>{
+    let countT = [];
+    map.forEach((row, y) => { // взять каждую строку по У вниз
+      row.forEach((cell, x) => { // каждую клетку 
+        if(cell == 3){
+          countT.push(cell);
+        }
+      })
+    })
+    if(countT.length == 0){
+        this.view.showModal();
+        
+    }
   };
 
   countMoves = () =>{

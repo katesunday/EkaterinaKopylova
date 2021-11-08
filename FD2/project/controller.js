@@ -32,6 +32,7 @@ class Controller{
     document.addEventListener('click',(e)=>{
       let target = e.target;
       let goBackbtn = document.getElementById('goBack');
+      let btnBackToLevels =  document.querySelector('.backToLevels');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
@@ -40,6 +41,9 @@ class Controller{
       }
       else if(target == goBackbtn){
           this.model.goBack();
+      }
+      else if(target == btnBackToLevels){
+        this.model.updateState('levels');
       }
     });
   }
