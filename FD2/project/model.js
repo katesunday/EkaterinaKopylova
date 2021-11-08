@@ -178,4 +178,17 @@ class Model {
     this.countMove++;
     this.view.showMoves(this.countMove);
   }
+
+  addUser = (user,password) =>{
+    myDB.ref('users/' + `user_${user.replace(/\s/g, "").toLowerCase()}`).set({
+      username: `${user}`,
+      password: `${password}`
+     })
+    .then(function (user) {
+      console.log("Пользователь добавлен в коллецию users");
+   })
+  .catch(function (error) {
+      console.error("Ошибка добавления пользователя: ", error);
+  });
+  }
 }

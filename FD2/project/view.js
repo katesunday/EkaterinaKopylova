@@ -6,6 +6,17 @@ class View {
             <button class="playBtn" id="playBtn"><a href="#levels">PLAY</a></button>
             <button class="rulesBtn" id="rulesBtn"><a href="#rules">GAME RULES</a></button>
             <button class="scoreBtn" id="scoreBtn"><a href="#score">SCORE TABLE</a></button>
+            <button class="enter" id="enter">Enter</button>
+            <button class="register" id="register">Register</button>
+             <div class = "data">
+             <label for="name">Name (2 to 8 characters):</label>
+             <input type="text" id="name" name="name" required
+              minlength="2" maxlength="8" size="10">
+             <label for="name">Password(2 to 8 characters):</label>
+             <input type="text" id="password" name="password" required
+              minlength="2" maxlength="8" size="10">
+              <button class = "submit">Submit</button>
+             </div>
             </div>
             `
         }
