@@ -32,6 +32,9 @@
     background-color: #1a7e44;
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
+.playBtn:disabled{
+    background-color: gray;
+}
 .scoreBtn{
     width: 150px;
     border-radius: 15px;
@@ -236,4 +239,15 @@ input{
     width: 200px;
     background-color: #d1c136;
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}
+#music{
+    background-image: url(img/musicOn.png);
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+#music:disabled{
+    background-image: url(img/musifOff.png);
+    background-size: contain;
 }

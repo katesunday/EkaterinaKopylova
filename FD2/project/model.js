@@ -5,7 +5,7 @@ class Model {
     this.map = null;
     this.level = null;
     this.countMove = 0;
-    this.countT = null;
+    this.countT = 0;
    window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
@@ -186,10 +186,25 @@ class Model {
      })
     .then(function (user) {
       console.log("Пользователь добавлен в коллецию users");
-   })
-  .catch(function (error) {
+     })
+     .catch(function (error) {
       console.error("Ошибка добавления пользователя: ", error);
-  });
+     });
+  }
+
+  loginUser = (user,password) =>{
+    if (user && password) {
+      debugger;
+      firebase.auth().signInWithEmailAndPassword(user, password)
+      .catch(function(error) {
+        console.log("Error: " + error.message);
+      }
+      )
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) 
+        {console.log(`Hi, ${user}!`)}
+      })
+    }
   }
   showRegForm = () => {
     this.view.showRegForm();

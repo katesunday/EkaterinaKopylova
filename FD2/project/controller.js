@@ -15,8 +15,12 @@ class Controller{
   updateState = ()=>{
     const hashPageName = window.location.hash.slice(1).toLowerCase();
     if(hashPageName != 'play'){ //перерисовка плэй отдельно!
-      this.model.updateState(hashPageName,this.level);
-     
+      this.model.updateState(hashPageName,this.level); 
+      if(!this.container.querySelector('canvas')){
+        console.log('here')
+        document.removeEventListener('keydown',this.listenKeyboard(this.level)); 
+      }
+         
     }
     // else{
     //   window.onbeforeunload = function() {
@@ -33,27 +37,32 @@ class Controller{
       let target = e.target;
       let goBackbtn = document.getElementById('goBack');
       let btnBackToLevels =  document.querySelector('.backToLevels');
-      let submitBtn = document.querySelector('.submit');
+      let submitBtnReg = document.querySelector('#submitReg');
+      let submitBtnEnt = document.querySelector('#submitEnt');
       let userName  = document.querySelector('#name');
       let userPW = document.querySelector('#password');
+      let userNameEnt  = document.querySelector('#nameEnt');
+      let userPWEnt = document.querySelector('#passwordEnt');
       let enterBtn = document.querySelector('.enter');
       let registerBtn = document.querySelector('.register');
       let closeFormBtn = document.querySelector('.closeForm');
       let closeFormBtn2 = document.querySelector('.closeForm2');
+      let musicBtn = document.querySelector('#music');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
         this.model.updateState('play',level,target);
-        this.listenKeyboard(level);// включить слушатели клавиатуры
+        document.addEventListener('keydown',this.listenKeyboard(level))
+        // this.listenKeyboard(level);// включить слушатели клавиатуры
       };
       switch(target){
         case goBackbtn:
           this.model.goBack();
         break;
         case btnBackToLevels:
-          this.model.updateState('levels',this.level);
+          this.model.updateState('levels');
         break;
-        case submitBtn:
+        case submitBtnReg:
           this.model.addUser(userName.value,userPW.value);
         break;
         case registerBtn:
@@ -62,6 +71,9 @@ class Controller{
         case enterBtn:
           this.model.showEntForm();
         break;
+        case submitBtnEnt:
+          debugger;
+          this.model.loginUser(userNameEnt.value,userPWEnt.value);
         case closeFormBtn:
           this.model.closeForm();
         break;
@@ -72,12 +84,13 @@ class Controller{
  
     });
   }
-  listenKeyboard(level){
+  listenKeyboard = (level) => {
   if(this.container.querySelector('canvas')){
      document.addEventListener('keydown', (e) =>{
       let direction = null;
       switch (e.key){
         case "ArrowRight":
+          console.log('fuf');
           this.model.countMoves();
           direction = 'right';
           this.model.movePlayer(direction,level);// передача направления и уровня

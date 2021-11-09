@@ -10,23 +10,23 @@ class View {
             <button class="register" id="register">REGISTER</button>
              <div class = "dataReg">REGISTER
              <button class = "closeForm">&#10008;</button>
-             <label for="name">Name (2 to 8 characters):</label>
+             <label for="name">Name ( min 2  characters):</label>
              <input type="text" id="name" name="name" required
-              minlength="2" maxlength="8" size="10">
+              minlength="2" size="10">
              <label for="name">Password(2 to 8 characters):</label>
              <input type="text" id="password" name="password" required
               minlength="2" maxlength="8" size="10">
-              <button class = "submit">Submit</button>
+              <button class = "submit" id = "submitReg" >Submit</button>
              </div>
              <div class = "dataEnt">ENTER
              <button class = "closeForm2">&#10008;</button>
-             <label for="name">Name (2 to 8 characters):</label>
-             <input type="text" id="name" name="name" required
-              minlength="2" maxlength="8" size="10">
+             <label for="name">Name ( min 2 characters):</label>
+             <input type="text" id="nameEnt" name="name" required
+              minlength="2"  size="10">
              <label for="name">Password(2 to 8 characters):</label>
-             <input type="text" id="password" name="password" required
+             <input type="text" id="passwordEnt" name="password" required
               minlength="2" maxlength="8" size="10">
-              <button class = "submit">Submit</button>
+              <button class = "submit" id = "submitEnt">Submit</button>
              </div>
             </div>
             `
@@ -37,6 +37,7 @@ class View {
             return  `
             <div class = "infoLevel"></div>
             <div class = "countMoves">Your moves: ${moves}</div>
+            <button id = 'music'></button>
             <div class = "canvas">
             <canvas id="sokoban" width="700px" height="500px"></canvas>
             </div>
