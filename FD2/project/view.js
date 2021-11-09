@@ -40,9 +40,8 @@ class View {
             return  `
             <div class = "infoLevel"></div>
             <div class = "countMoves">Your moves: ${moves}</div>
-            <button id = 'music'></button>
             <div class = "canvas">
-            <canvas id="sokoban" width="700px" height="500px"></canvas>
+            <canvas id="sokoban" width="600px" height="500px"></canvas>
             </div>
             <div class = "levelcomplete">
             </div>
@@ -148,7 +147,8 @@ class View {
        this.moves = moves;
        let divCountMoves = document.querySelector('.countMoves');
        console.log(moves);
-       divCountMoves.innerHTML = `Your moves: ${moves}`;
+       divCountMoves.innerHTML = `Your moves: ${moves} 
+        <button class = "music" id = 'music'></button>`;
     //    return this.moves;
     }
     showLevel(targetlevel){
@@ -227,6 +227,9 @@ class View {
        divLevelComplete.style.display = 'block';
       divLevelComplete.innerHTML = `<p>You have gained ${100-this.moves} points!</p>
             <button class = "backToLevels">Back to levels</button>`
+    }
+    changeMusicBtn(){
+        document.querySelector('#music').classList.toggle('disabled');
     }
 
     showRegForm(){

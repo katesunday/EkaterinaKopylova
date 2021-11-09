@@ -1,4 +1,7 @@
-.menu{
+#app{
+    background-image: url(img/bglevels.png);
+    background-size: contain;
+}.menu{
     background-image: url(img/bgstart.png);
     height: 700px;
     margin: 0 auto;
@@ -118,7 +121,7 @@
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
 .canvas{
-    /* width: 700px; */
+    width: 600px;
     height: 500px;
     margin: 0 auto;
 }
@@ -127,12 +130,17 @@
     font-size: 30px;
     font-weight: 600;
     font-family: monospace;
+    width: 600px;
+    margin: 0 auto;
 }
 .countMoves{
     color: #e94a39;
     font-size: 25px;
     font-weight: 600;
     font-family: monospace;
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
 }
 .levelcomplete{
     display: none;
@@ -240,14 +248,17 @@ input{
     background-color: #d1c136;
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
-#music{
+.music{
     background-image: url(img/musicOn.png);
     background-size: contain;
-    width: 40px;
-    height: 40px;
-    border: none;
+    width: 45px;
+        height: 45px;
+        border: none;
+        position: absolute;
+        top: -25px;
+        right: 32%;
 }
-#music:disabled{
+.music.disabled{
     background-image: url(img/musifOff.png);
     background-size: contain;
 }

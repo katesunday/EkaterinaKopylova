@@ -9,7 +9,6 @@ class Controller{
     // }
     this.updateState(); 
     this.listeners();
-    // this.listenKeyboard();
     
   }
   updateState = ()=>{
@@ -17,7 +16,6 @@ class Controller{
     if(hashPageName != 'play'){ //перерисовка плэй отдельно!
       this.model.updateState(hashPageName,this.level); 
       if(!this.container.querySelector('canvas')){
-        console.log('here')
         document.removeEventListener('keydown',this.keyHandler); 
       }
          
@@ -48,7 +46,7 @@ class Controller{
       let registerBtn = document.querySelector('.register');
       let closeFormBtn = document.querySelector('.closeForm');
       let closeFormBtn2 = document.querySelector('.closeForm2');
-      let musicBtn = document.querySelector('#music');
+      let musicBtn = document.querySelector('.music');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
@@ -81,6 +79,15 @@ class Controller{
         case closeFormBtn2:
           this.model.closeForm();
         break;
+        case musicBtn:
+          if(musicBtn.className == 'music'){
+            this.model.setAudio(false);
+          }
+          else if(musicBtn.className == 'music disabled'){
+            this.model.setAudio(true);
+          }
+           
+        // break;
       }
  
     });
@@ -113,7 +120,7 @@ class Controller{
           direction = 'down';
           this.model.movePlayer(direction,level);
         break;
-        
+ 
     }
   }
 }
