@@ -97,6 +97,7 @@ class Model {
           //а если две цели подряд
           else if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] == 4){
             this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 5;
+            if (this.isAudio){audioSuccess.play()};
             this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
           } 
           else{
@@ -177,6 +178,7 @@ class Model {
     })
     if(countT.length == 0){
         this.view.showModal();
+        if (this.isAudio){audioSuccess.play()};
         
     }
   };

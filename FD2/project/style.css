@@ -1,6 +1,7 @@
 #app{
     background-image: url(img/bglevels.png);
     background-size: contain;
+    position: relative;
 }.menu{
     background-image: url(img/bgstart.png);
     height: 700px;
@@ -148,8 +149,8 @@
     background-repeat: round;
     background-size: contain;
     position: absolute;
-    top: 130px;
-    left: 40px;
+    top: 20%;
+    left: 30%;
     height: 200px;
     width: 350px;
     text-align: center;
