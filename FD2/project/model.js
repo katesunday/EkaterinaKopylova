@@ -6,6 +6,7 @@ class Model {
     this.level = null;
     this.countMove = 0;
     this.countT = 0;
+    this.isAudio = true;
    window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
@@ -52,14 +53,14 @@ class Model {
     //оставлять за собой фон и цели исходя из карты уровня (не копии)
     this.map[playerCoords.y][playerCoords.x] =
     this.isTarget(level[playerCoords.y][playerCoords.x]) ? 4 : 2;
-    audioWalking.play();
+    if (this.isAudio) {audioWalking.play()};
     
     //если есть стена, то шаг = 0
     if (this.isWall(this.map[newPlayerY][newPlayerX])) {
       this.map[this.getY(playerCoords.y, direction, 0)][this.getX(playerCoords.x, direction, 0)] = 1;
       this.view.drawField(direction,this.map);
-      audioWalking.pause();
-      audioWall.play();
+      if (this.isAudio){audioWalking.pause();
+      audioWall.play()};
       console.log('рядом стена')
     }
        // если за игроком куб, то
@@ -75,7 +76,7 @@ class Model {
                 // если там ЦЕЛЬ, то кубик делаем зеленым( т.е успешным)
                 else{
                   this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] = 5;
-                  audioSuccess.play();
+                  if (this.isAudio){audioSuccess.play()};
                   this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
                 }
 	            } 
@@ -159,6 +160,11 @@ class Model {
   }
   };
 
+  setAudio = (arg) =>{
+    this.isAudio = arg;
+    this.view.changeMusicBtn();
+   
+  }
   //ф-я подсчета целей
   countTargets = (map)=>{
     let countT = [];
