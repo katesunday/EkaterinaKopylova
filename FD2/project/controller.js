@@ -18,7 +18,7 @@ class Controller{
       this.model.updateState(hashPageName,this.level); 
       if(!this.container.querySelector('canvas')){
         console.log('here')
-        document.removeEventListener('keydown',this.listenKeyboard(this.level)); 
+        document.removeEventListener('keydown',this.keyHandler); 
       }
          
     }
@@ -41,7 +41,8 @@ class Controller{
       let submitBtnEnt = document.querySelector('#submitEnt');
       let userName  = document.querySelector('#name');
       let userPW = document.querySelector('#password');
-      let userNameEnt  = document.querySelector('#nameEnt');
+      let userEmail = document.querySelector('#email');
+      let userEmailEnt  = document.querySelector('#emailEnt');
       let userPWEnt = document.querySelector('#passwordEnt');
       let enterBtn = document.querySelector('.enter');
       let registerBtn = document.querySelector('.register');
@@ -52,8 +53,9 @@ class Controller{
         let level = target.id;
         level = window[level];
         this.model.updateState('play',level,target);
-        document.addEventListener('keydown',this.listenKeyboard(level))
-        // this.listenKeyboard(level);// включить слушатели клавиатуры
+        this.listenKeyboard(level);// включить слушатели клавиатуры
+        this.level  = level;
+  
       };
       switch(target){
         case goBackbtn:
@@ -63,7 +65,7 @@ class Controller{
           this.model.updateState('levels');
         break;
         case submitBtnReg:
-          this.model.addUser(userName.value,userPW.value);
+          this.model.addUser(userName.value,userEmail.value,userPW.value);
         break;
         case registerBtn:
           this.model.showRegForm();
@@ -72,8 +74,7 @@ class Controller{
           this.model.showEntForm();
         break;
         case submitBtnEnt:
-          debugger;
-          this.model.loginUser(userNameEnt.value,userPWEnt.value);
+          this.model.loginUser(userEmailEnt.value,userPWEnt.value);
         case closeFormBtn:
           this.model.closeForm();
         break;
@@ -86,11 +87,13 @@ class Controller{
   }
   listenKeyboard = (level) => {
   if(this.container.querySelector('canvas')){
-     document.addEventListener('keydown', (e) =>{
+     document.addEventListener('keydown', this.keyHandler)}
+  };
+  keyHandler =(e) =>{
+      let level = this.level;
       let direction = null;
       switch (e.key){
         case "ArrowRight":
-          console.log('fuf');
           this.model.countMoves();
           direction = 'right';
           this.model.movePlayer(direction,level);// передача направления и уровня
@@ -111,8 +114,6 @@ class Controller{
           this.model.movePlayer(direction,level);
         break;
         
-      }
-     })
-  }
+    }
   }
 }

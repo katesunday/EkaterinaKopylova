@@ -13,6 +13,9 @@ class View {
              <label for="name">Name ( min 2  characters):</label>
              <input type="text" id="name" name="name" required
               minlength="2" size="10">
+              <label for="email">Email:</label>
+             <input type="text" id="email" name="email" required
+              minlength="2" size="10">
              <label for="name">Password(2 to 8 characters):</label>
              <input type="text" id="password" name="password" required
               minlength="2" maxlength="8" size="10">
@@ -20,8 +23,8 @@ class View {
              </div>
              <div class = "dataEnt">ENTER
              <button class = "closeForm2">&#10008;</button>
-             <label for="name">Name ( min 2 characters):</label>
-             <input type="text" id="nameEnt" name="name" required
+             <label for="email">Email :</label>
+             <input type="text" id="emailEnt" name="emailEnt" required
               minlength="2"  size="10">
              <label for="name">Password(2 to 8 characters):</label>
              <input type="text" id="passwordEnt" name="password" required

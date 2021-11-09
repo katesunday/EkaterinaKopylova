@@ -19,6 +19,7 @@ class Model {
     }
     else{
       this.view.renderContent(hashPageName);
+      this.countMove = 0;
       
     }
 
@@ -179,12 +180,13 @@ class Model {
     this.view.showMoves(this.countMove);
   }
 
-  addUser = (user,password) =>{
-    myDB.ref('users/' + `user_${user.replace(/\s/g, "").toLowerCase()}`).set({
-      username: `${user}`,
+  addUser = (userName,userEmail,password) =>{
+    myDB.ref('users/' + `user_${userName.replace(/\s/g, "").toLowerCase()}`).set({
+      username: `${userName}`,
+      email: `${userEmail}`,
       password: `${password}`
      })
-    .then(function (user) {
+    .then(function (userName) {
       console.log("Пользователь добавлен в коллецию users");
      })
      .catch(function (error) {
@@ -192,18 +194,23 @@ class Model {
      });
   }
 
-  loginUser = (user,password) =>{
-    if (user && password) {
-      debugger;
-      firebase.auth().signInWithEmailAndPassword(user, password)
-      .catch(function(error) {
-        console.log("Error: " + error.message);
-      }
-      )
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) 
-        {console.log(`Hi, ${user}!`)}
-      })
+  loginUser = (userEmail,password) =>{
+      if (userEmail && password) {
+        firebase.auth().signInWithEmailAndPassword(userEmail, password)
+        .catch(function(error) {
+          console.log("Error: " + error.message);
+          // myAppView.loginError("Неверный email или пароль. Введите корректные данные.");
+        });
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            console.log(`Hi, ${user}!`)
+          } else {
+            console.log('No user is signed in');
+            
+          }
+        });
     }
   }
   showRegForm = () => {
