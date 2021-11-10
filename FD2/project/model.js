@@ -34,13 +34,14 @@ class Model {
               var username = userData[userDataName].username;
               console.log(username);
               this.username = username;
-              this.view.sayHi(this.username);
+             
             }
            
         });
+        this.view.sayHi(username);
        } 
         else {
-          // this.view.askToLogin();
+          this.view.askToLogin();
           console.log('empty')
          }
       });

@@ -247,5 +247,8 @@ class View {
     sayHi(username){
        document.querySelector('.auth').innerHTML = `HI, ${username}!!`;
     }
+    asktoLogin(){
+        document.querySelector('.auth').innerHTML = `Please, log in!`;
+    }
 
 }
