@@ -4,7 +4,7 @@
     position: relative;
 }.menu{
     background-image: url(img/bgstart.png);
-    height: 700px;
+    height: 800px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,7 +13,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
+    /* padding-top: 10px; */
+    position: relative;
 
 }
 .menu a{
@@ -78,6 +79,7 @@
     padding: 5px;
     text-align: center;
 }
+
 .goBack img{
     width:80px;
 }
@@ -262,4 +264,19 @@ input{
 .music.disabled{
     background-image: url(img/musifOff.png);
     background-size: contain;
+}
+.logout{
+    width: 150px;
+    border-radius: 15px;
+    border: 4px solid white;
+    background:rgb(231 74 57);
+    margin: 5px;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+}
+.logout:hover{
+    transition-duration: 1s;
+    width: 200px;
+    background-color:rgb(231 74 57);
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }

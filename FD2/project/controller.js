@@ -4,9 +4,6 @@ class Controller{
     this.container =_container
     this.level = null;
     window.addEventListener("hashchange", this.updateState);
-    // window.onload = ()=>{
-    //   audioIntro.play();
-    // }
     this.updateState(); 
     this.listeners();
     
@@ -47,6 +44,7 @@ class Controller{
       let closeFormBtn = document.querySelector('.closeForm');
       let closeFormBtn2 = document.querySelector('.closeForm2');
       let musicBtn = document.querySelector('.music');
+      let logoutBtn = document.querySelector('.logout');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
@@ -86,8 +84,9 @@ class Controller{
           else if(musicBtn.className == 'music disabled'){
             this.model.setAudio(true);
           }
-           
-        // break;
+        break;
+        case logoutBtn:
+          this.model.logOut();
       }
  
     });

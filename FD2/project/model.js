@@ -6,7 +6,9 @@ class Model {
     this.level = null;
     this.countMove = 0;
     this.countT = 0;
+    this.scorePoint = 0;
     this.isAudio = true;
+    this.username = null;
    window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
@@ -17,6 +19,31 @@ class Model {
       this.view.showMoves(this.countMove);
       this.view.showLevel(targetLevel);
       this.map = this.deepCopy(level);//создать глубокую копию уровня, чтобы работать только с копией
+    }
+    else if(hashPageName === 'menu'){
+      this.view.renderContent(hashPageName);
+      this.countMove = 0;
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          var user = firebase.auth().currentUser;
+          var ref = firebase.database().ref();
+          ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
+            if (snapshot.exists()){
+              const userData = snapshot.val();
+              var userDataName = Object.keys(userData);
+              var username = userData[userDataName].username;
+              console.log(username);
+              this.username = username;
+              this.view.sayHi(this.username);
+            }
+           
+        });
+       } 
+        else {
+          // this.view.askToLogin();
+          console.log('empty')
+         }
+      });
     }
     else{
       this.view.renderContent(hashPageName);
@@ -178,6 +205,8 @@ class Model {
     })
     if(countT.length == 0){
         this.view.showModal();
+        this.scorePoint = (100-this.countMove);
+        this.saveScore();
         if (this.isAudio){audioSuccess.play()};
         
     }
@@ -189,17 +218,28 @@ class Model {
   }
 
   addUser = (userName,userEmail,password) =>{
+    firebase.auth().createUserWithEmailAndPassword(userEmail, password).then(function (userName) {
+        console.log(`Пользователь ${userName} добавлен в коллецию users`);
+       })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log("Eroor Msg"  + errorMessage);
+      // ...
+    });
     myDB.ref('users/' + `user_${userName.replace(/\s/g, "").toLowerCase()}`).set({
       username: `${userName}`,
       email: `${userEmail}`,
       password: `${password}`
      })
     .then(function (userName) {
-      console.log("Пользователь добавлен в коллецию users");
+      console.log(`Пользователь ${userName} добавлен в коллецию users`);
      })
      .catch(function (error) {
       console.error("Ошибка добавления пользователя: ", error);
      });
+     this.loginUser(userEmail,password);
   }
 
   loginUser = (userEmail,password) =>{
@@ -209,17 +249,47 @@ class Model {
           console.log("Error: " + error.message);
           // myAppView.loginError("Неверный email или пароль. Введите корректные данные.");
         });
-
-        firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-            // User is signed in.
-            console.log(`Hi, ${user}!`)
-          } else {
-            console.log('No user is signed in');
-            
+        var user = firebase.auth().currentUser;
+        var ref = firebase.database().ref();
+        ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
+          if (snapshot.exists()){
+            const userData = snapshot.val();
+            var userDataName = Object.keys(userData);
+            var username = userData[userDataName].username;
+            console.log("exists!", username);
           }
-        });
+      });
+        // firebase.auth().onAuthStateChanged(function(user) {
+        //   if (user) {
+        //     debugger;
+        //     // User is signed in.
+        //     console.log(`Hi, ${user}!`)
+        //   } else {
+        //     console.log('No user is signed in');
+            
+        //   }
+        // });
+        
     }
+  }
+  saveScore = () =>{
+    var user = firebase.auth().currentUser;
+    var ref = firebase.database().ref();
+    ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
+      if (snapshot.exists()){
+        const userData = snapshot.val();
+        var userDataName = Object.keys(userData);
+        var username = userData[userDataName].username;
+        myDB.ref('users/' + `user_${username}`).update({
+          score: `${this.scorePoint}`,
+        })
+        console.log("exists!", username);
+      }
+  });
+  }
+  logOut = function() {
+    firebase.auth().signOut();
+    console.log("Bye!");
   }
   showRegForm = () => {
     this.view.showRegForm();

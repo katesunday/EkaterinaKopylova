@@ -8,6 +8,8 @@ class View {
             <button class="scoreBtn" id="scoreBtn"><a href="#score">SCORE TABLE</a></button>
             <button class="enter" id="enter">ENTER</button>
             <button class="register" id="register">REGISTER</button>
+            <button class = "logout" id = "logout">LOG OUT</button>
+            <div class = "auth"></div>
              <div class = "dataReg">REGISTER
              <button class = "closeForm">&#10008;</button>
              <label for="name">Name ( min 2  characters):</label>
@@ -241,6 +243,9 @@ class View {
     closeForm(){
         document.querySelector('.dataEnt').style.display = 'none';
         document.querySelector('.dataReg').style.display = 'none';
+    }
+    sayHi(username){
+       document.querySelector('.auth').innerHTML = `HI, ${username}!!`;
     }
 
 }
