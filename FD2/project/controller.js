@@ -30,19 +30,21 @@ class Controller{
 
     document.addEventListener('click',(e)=>{
       let target = e.target;
+      const loginBtn = document.getElementById('login');
+      const signupBtn = document.getElementById('signup');
       let goBackbtn = document.getElementById('goBack');
       let btnBackToLevels =  document.querySelector('.backToLevels');
-      let submitBtnReg = document.querySelector('#submitReg');
-      let submitBtnEnt = document.querySelector('#submitEnt');
-      let userName  = document.querySelector('#name');
-      let userPW = document.querySelector('#password');
-      let userEmail = document.querySelector('#email');
-      let userEmailEnt  = document.querySelector('#emailEnt');
-      let userPWEnt = document.querySelector('#passwordEnt');
-      let enterBtn = document.querySelector('.enter');
-      let registerBtn = document.querySelector('.register');
-      let closeFormBtn = document.querySelector('.closeForm');
-      let closeFormBtn2 = document.querySelector('.closeForm2');
+      let signSubmit = document.querySelector('#signSubmit'); //кнопка регистрации
+      let signName  = document.querySelector('#signName'); // рег имя
+      let signPass = document.querySelector('#signPass'); // рег пароль
+      let signEmail = document.querySelector('#signEmail'); //рег имейл
+      let logSubmit = document.querySelector('#logSubmit'); // логин кнопка входа
+      let logEmail  = document.querySelector('#logEmail'); // лог имейл
+      let logPass = document.querySelector('#logPass'); // лог пароль
+      // let enterBtn = document.querySelector('.enter');
+      // let registerBtn = document.querySelector('.register');
+      // let closeFormBtn = document.querySelector('.closeForm');
+      // let closeFormBtn2 = document.querySelector('.closeForm2');
       let musicBtn = document.querySelector('.music');
       let logoutBtn = document.querySelector('.logout');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
@@ -54,29 +56,40 @@ class Controller{
   
       };
       switch(target){
+        case loginBtn:
+          let parent = target.parentNode.parentNode;
+          Array.from(target.parentNode.parentNode.classList).find((element) => {
+            if(element !== "slide-up") {
+              parent.classList.add('slide-up')
+            }else{
+              signupBtn.parentNode.classList.add('slide-up')
+              parent.classList.remove('slide-up')
+            }
+          });
+          break;
+        case signupBtn:
+          let parent2 = target.parentNode;
+	        Array.from(target.parentNode.classList).find((element) => {
+		      if(element !== "slide-up") {
+		       	parent2.classList.add('slide-up')
+		      }else{
+		    	loginBtn.parentNode.parentNode.classList.add('slide-up')
+			     parent2.classList.remove('slide-up')
+		       }
+	         });
+          break;
         case goBackbtn:
           this.model.goBack();
         break;
         case btnBackToLevels:
           this.model.updateState('levels');
         break;
-        case submitBtnReg:
-          this.model.addUser(userName.value,userEmail.value,userPW.value);
+        case signSubmit: // регистрация
+          this.model.addUser(signName.value,signEmail.value,signPass.value);
         break;
-        case registerBtn:
-          this.model.showRegForm();
-        break;
-        case enterBtn:
-          this.model.showEntForm();
-        break;
-        case submitBtnEnt:
-          this.model.loginUser(userEmailEnt.value,userPWEnt.value);
-        case closeFormBtn:
-          this.model.closeForm();
-        break;
-        case closeFormBtn2:
-          this.model.closeForm();
-        break;
+        case logSubmit: // вход
+          this.model.loginUser(logEmail.value,logPass.value);
+          break;
         case musicBtn:
           if(musicBtn.className == 'music'){
             this.model.setAudio(false);

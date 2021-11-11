@@ -9,7 +9,7 @@ class Model {
     this.scorePoint = 0;
     this.isAudio = true;
     this.username = null;
-   window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
+  //  window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
   updateState(hashPageName,level,targetLevel) { // SPA
@@ -23,28 +23,29 @@ class Model {
     else if(hashPageName === 'menu'){
       this.view.renderContent(hashPageName);
       this.countMove = 0;
-      firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          var user = firebase.auth().currentUser;
-          var ref = firebase.database().ref();
-          ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
-            if (snapshot.exists()){
-              const userData = snapshot.val();
-              var userDataName = Object.keys(userData);
-              var username = userData[userDataName].username;
-              console.log(username);
-              this.username = username;
-             
-            }
-           
+       firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            console.log(user)
+            var ref = firebase.database().ref();
+            ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
+              if (snapshot.exists()){
+                const userData = snapshot.val();
+                var userDataName = Object.keys(userData);
+                var username = userData[userDataName].username;
+                console.log(username);
+                debugger;
+                this.view.sayHi(username);
+              }
+            });
+          } else {
+            console.log('No user is signed in');
+            this.view.renderContent('registration');
+            console.log('empty')
+            
+          }
         });
-        this.view.sayHi(username);
-       } 
-        else {
-          this.view.askToLogin();
-          console.log('empty')
-         }
-      });
+          
     }
     else{
       this.view.renderContent(hashPageName);
@@ -53,6 +54,7 @@ class Model {
     }
 
   }
+
   goBack() { // возврат в меню
     this.view.renderContent('menu');
   }
@@ -248,7 +250,6 @@ class Model {
         firebase.auth().signInWithEmailAndPassword(userEmail, password)
         .catch(function(error) {
           console.log("Error: " + error.message);
-          // myAppView.loginError("Неверный email или пароль. Введите корректные данные.");
         });
         var user = firebase.auth().currentUser;
         var ref = firebase.database().ref();
@@ -258,6 +259,9 @@ class Model {
             var userDataName = Object.keys(userData);
             var username = userData[userDataName].username;
             console.log("exists!", username);
+            this.view.renderContent('menu');
+            // debugger;
+            // this.view.sayHi(username);
           }
       });
         // firebase.auth().onAuthStateChanged(function(user) {

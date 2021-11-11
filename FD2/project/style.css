@@ -2,9 +2,12 @@
     background-image: url(img/bglevels.png);
     background-size: contain;
     position: relative;
+    border-radius: 15px;
+    
 }.menu{
     background-image: url(img/bgstart.png);
     height: 800px;
+    width: 800px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -73,6 +76,7 @@
 .rules{
     background-image: url(img/bglevels.png);
     height: 700px;
+    width: 800px;
     background-repeat:repeat;
     margin: 0 auto;
     background-size: contain;
@@ -89,6 +93,7 @@
 .records{
     background-image: url(img/bglevels.png);
     height: 700px;
+    width: 800px;
     margin: 0 auto;
     background-size: contain;
     padding: 5px;

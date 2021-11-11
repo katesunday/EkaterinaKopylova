@@ -1,4 +1,31 @@
 class View {
+    Registration = {
+        render: () =>{
+            return `
+            <div class="form-structor">
+	        <div class="signup">
+		        <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+		    <div class="form-holder">
+			    <input type="text" class="input" id="signName" placeholder="Name" />
+			    <input type="email" class="input" id="signEmail" placeholder="Email" />
+			    <input type="password" class="input" id="signPass" placeholder="Password" />
+		    </div>
+		    <button class="submit-btn" id="signSubmit">Sign up</button>
+	        </div>
+	        <div class="login slide-up">
+		    <div class="center">
+			    <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+			<div class="form-holder">
+				<input type="email" class="input" id="logEmail" placeholder="Email" />
+				<input type="password" class="input" id="logPass" placeholder="Password" />
+			</div>
+			    <button class="submit-btn" id="logSubmit">Log in</button>
+		    </div>
+	        </div>
+            </div>
+            `
+        }
+    };
     GameMenu = { // стартовая страница игры
         render: () =>{
             return `
@@ -6,33 +33,8 @@ class View {
             <button class="playBtn" id="playBtn"><a href="#levels">PLAY</a></button>
             <button class="rulesBtn" id="rulesBtn"><a href="#rules">GAME RULES</a></button>
             <button class="scoreBtn" id="scoreBtn"><a href="#score">SCORE TABLE</a></button>
-            <button class="enter" id="enter">ENTER</button>
-            <button class="register" id="register">REGISTER</button>
             <button class = "logout" id = "logout">LOG OUT</button>
             <div class = "auth"></div>
-             <div class = "dataReg">REGISTER
-             <button class = "closeForm">&#10008;</button>
-             <label for="name">Name ( min 2  characters):</label>
-             <input type="text" id="name" name="name" required
-              minlength="2" size="10">
-              <label for="email">Email:</label>
-             <input type="text" id="email" name="email" required
-              minlength="2" size="10">
-             <label for="name">Password(2 to 8 characters):</label>
-             <input type="text" id="password" name="password" required
-              minlength="2" maxlength="8" size="10">
-              <button class = "submit" id = "submitReg" >Submit</button>
-             </div>
-             <div class = "dataEnt">ENTER
-             <button class = "closeForm2">&#10008;</button>
-             <label for="email">Email :</label>
-             <input type="text" id="emailEnt" name="emailEnt" required
-              minlength="2"  size="10">
-             <label for="name">Password(2 to 8 characters):</label>
-             <input type="text" id="passwordEnt" name="password" required
-              minlength="2" maxlength="8" size="10">
-              <button class = "submit" id = "submitEnt">Submit</button>
-             </div>
             </div>
             `
         }
@@ -109,6 +111,7 @@ class View {
         }
     };
     router = { 
+        registration: this.Registration,
         menu: this.GameMenu,
         play: this.Play,
         rules: this.Rules,
@@ -117,7 +120,6 @@ class View {
         moves: this.moves,
     };
     constructor(field) {
-        this.container = field;
         this.container = field;
 		this.direction = null;
         this.moves = 0;
@@ -138,7 +140,7 @@ class View {
        
     }
     renderContent(hashPageName,moves) {
-        let routeName = "menu";
+        let routeName = "registration";
         if (hashPageName.length > 0) {
             routeName = hashPageName in this.router ? hashPageName : "error";
         }
@@ -245,6 +247,7 @@ class View {
         document.querySelector('.dataReg').style.display = 'none';
     }
     sayHi(username){
+        debugger;
        document.querySelector('.auth').innerHTML = `HI, ${username}!!`;
     }
     asktoLogin(){
