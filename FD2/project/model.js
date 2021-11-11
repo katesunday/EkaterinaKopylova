@@ -34,7 +34,6 @@ class Model {
                 var userDataName = Object.keys(userData);
                 var username = userData[userDataName].username;
                 console.log(username);
-                debugger;
                 this.view.sayHi(username);
               }
             });
