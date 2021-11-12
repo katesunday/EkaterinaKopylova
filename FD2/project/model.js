@@ -13,12 +13,13 @@ class Model {
   }
 
   updateState(hashPageName,level,targetLevel) { // SPA
-    
+      let myView = this.view; //  чтобы не потерять this    
     if(hashPageName==='play'){
       this.view.renderContent(hashPageName,this.countMove);
       this.view.showMoves(this.countMove);
       this.view.showLevel(targetLevel);
       this.map = this.deepCopy(level);//создать глубокую копию уровня, чтобы работать только с копией
+      this.level = targetLevel.id;
     }
     else if(hashPageName === 'menu'){
       this.view.renderContent(hashPageName);
@@ -34,12 +35,12 @@ class Model {
                 var userDataName = Object.keys(userData);
                 var username = userData[userDataName].username;
                 console.log(username);
-                this.view.sayHi(username);
+                myView.sayHi(username.toUpperCase());
               }
             });
           } else {
             console.log('No user is signed in');
-            this.view.renderContent('registration');
+            myView.renderContent('registration');
             console.log('empty')
             
           }
@@ -233,7 +234,9 @@ class Model {
     myDB.ref('users/' + `user_${userName.replace(/\s/g, "").toLowerCase()}`).set({
       username: `${userName}`,
       email: `${userEmail}`,
-      password: `${password}`
+      password: `${password}`,
+      score: 0,
+      level: 1,
      })
     .then(function (userName) {
       console.log(`Пользователь ${userName} добавлен в коллецию users`);
@@ -250,6 +253,7 @@ class Model {
         .catch(function(error) {
           console.log("Error: " + error.message);
         });
+        
         var user = firebase.auth().currentUser;
         var ref = firebase.database().ref();
         ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
@@ -260,7 +264,7 @@ class Model {
             console.log("exists!", username);
             this.view.renderContent('menu');
             // debugger;
-            // this.view.sayHi(username);
+            // this.that.view.sayHi(username);
           }
       });
         // firebase.auth().onAuthStateChanged(function(user) {
@@ -284,8 +288,11 @@ class Model {
         const userData = snapshot.val();
         var userDataName = Object.keys(userData);
         var username = userData[userDataName].username;
+        debugger;
         myDB.ref('users/' + `user_${username}`).update({
           score: `${this.scorePoint}`,
+          level: `${this.level}`,
+
         })
         console.log("exists!", username);
       }
@@ -294,14 +301,33 @@ class Model {
   logOut = function() {
     firebase.auth().signOut();
     console.log("Bye!");
+    this.view.askToLogin();
+
   }
-  showRegForm = () => {
-    this.view.showRegForm();
-  }
-  showEntForm = () => {
-    this.view.showEntForm();
-  }
-  closeForm = () =>{
-    this.view.closeForm();
+  getScore() {
+    let arrScore = [];
+    let list = [];
+    let myView = this.view;
+
+    myDB.ref("users/").on("value", function(snapshot) {
+    arrScore = snapshot.val();
+    Object.keys(arrScore).forEach(function (key) {
+      var val = arrScore[key];
+      let username = val.username.toUpperCase();
+      let score = val.score;
+      list.push(
+        `${username}: ${score}`
+      );
+    })
+     list.sort((a, b) => a > b ? 1 : -1);
+      list.reverse();
+     myView.getRecords(list);
+      
+      }, function (error) {
+      console.log("Error: " + error.code);
+       });
+
+     
+
   }
 }

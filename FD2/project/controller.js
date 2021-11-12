@@ -10,26 +10,24 @@ class Controller{
   }
   updateState = ()=>{
     const hashPageName = window.location.hash.slice(1).toLowerCase();
-    if(hashPageName != 'play'){ //перерисовка плэй отдельно!
+    if(hashPageName != 'play' && hashPageName != 'score'){ //перерисовка плэй отдельно!
       this.model.updateState(hashPageName,this.level); 
       if(!this.container.querySelector('canvas')){
         document.removeEventListener('keydown',this.keyHandler); 
-      }
-         
+      } 
     }
-    // else{
-    //   window.onbeforeunload = function() {
-    
-    //     alert( "Есть несохранённые изменения. Всё равно уходим?");
-    //     return false;
-    //   };
-    // }
+    else if( hashPageName === 'score'){
+      this.model.updateState(hashPageName,this.level); 
+      this.model.getScore();
+    }
+
   }
 
   listeners = ()=>{
 
     document.addEventListener('click',(e)=>{
       let target = e.target;
+      // console.log(target);
       const loginBtn = document.getElementById('login');
       const signupBtn = document.getElementById('signup');
       let goBackbtn = document.getElementById('goBack');
@@ -41,10 +39,6 @@ class Controller{
       let logSubmit = document.querySelector('#logSubmit'); // логин кнопка входа
       let logEmail  = document.querySelector('#logEmail'); // лог имейл
       let logPass = document.querySelector('#logPass'); // лог пароль
-      // let enterBtn = document.querySelector('.enter');
-      // let registerBtn = document.querySelector('.register');
-      // let closeFormBtn = document.querySelector('.closeForm');
-      // let closeFormBtn2 = document.querySelector('.closeForm2');
       let musicBtn = document.querySelector('.music');
       let logoutBtn = document.querySelector('.logout');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
@@ -100,6 +94,8 @@ class Controller{
         break;
         case logoutBtn:
           this.model.logOut();
+        break;
+  
       }
  
     });

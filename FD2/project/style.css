@@ -87,6 +87,7 @@
 
 .goBack img{
     width:80px;
+    margin-left: 45%;
 }
 .goBack img:hover{
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
@@ -288,4 +289,54 @@ input{
     width: 200px;
     background-color:rgb(231 74 57);
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}
+.auth p{
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 25px;
+    padding-left: 10px;
+    background: white;
+    border-radius: 15px;
+    width: 240px;
+    text-align: center;
+    border: 1px solid;
+    box-shadow: 6px 7px 3px 0px rgb(0 0 0 / 60%);
+}
+.topTen{
+    padding-left: 20px;
+    font-family: monospace;
+    font-size: 25px;
+}
+.topTen p{
+    margin: 10px;
+    font-weight: 700;
+    font-size: 30px;
+}
+.topTen ol{
+    margin-top: 0px;
+}
+#loading{
+    background: url(img/loading.svg);
+    animation-name: rotate;
+    animation-duration:10s;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(360deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }

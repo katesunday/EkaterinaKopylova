@@ -101,7 +101,9 @@ class View {
             return `
             <div class="records" id="records">
                <div class="topTen" id="topTen">
-                   Top 10 players!
+                   <p>Top 10 players!</p>
+                   <svg id="loading"></svg>
+                   <ol id = "score"></ol>
                </div>
                <div class="goBack" >
                <img src="img/back.png" alt="go back" id="goBack">
@@ -123,6 +125,7 @@ class View {
         this.container = field;
 		this.direction = null;
         this.moves = 0;
+        this.username = null;
 
 		
 	   this.wall = new Image();
@@ -236,22 +239,23 @@ class View {
         document.querySelector('#music').classList.toggle('disabled');
     }
 
-    showRegForm(){
-        document.querySelector('.dataReg').style.display = 'flex';
-    };
-    showEntForm(){
-        document.querySelector('.dataEnt').style.display = 'flex';
-    }
-    closeForm(){
-        document.querySelector('.dataEnt').style.display = 'none';
-        document.querySelector('.dataReg').style.display = 'none';
-    }
     sayHi(username){
-        debugger;
-       document.querySelector('.auth').innerHTML = `HI, ${username}!!`;
+        this.username = username;
+       document.querySelector('.auth').innerHTML = `<p>HI, ${this.username}!!</p>`;
     }
-    asktoLogin(){
-        document.querySelector('.auth').innerHTML = `Please, log in!`;
+    askToLogin(){
+     this.renderContent('registration');
+    }
+    getRecords(list){
+        for (let [key, value] of Object.entries(list)) {
+            var userScore = `${value}`;
+            const olList = document.querySelector("#score");
+            const li = document.createElement('li');
+            const text = document.createTextNode(`${userScore} points`);
+            olList.appendChild(li);
+            li.appendChild(text);
+        }
+        document.getElementById('loading').style.display = 'none';
     }
 
 }
