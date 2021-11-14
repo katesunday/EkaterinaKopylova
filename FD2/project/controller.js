@@ -41,6 +41,10 @@ class Controller{
       let logPass = document.querySelector('#logPass'); // лог пароль
       let musicBtn = document.querySelector('.music');
       let logoutBtn = document.querySelector('.logout');
+      let showDelData = document.querySelector('#delData');
+      let closeDelData = document.querySelector('.closeForm');
+      let delData = document.querySelector('.confirmDel');
+      let delDataEmail = document.querySelector('#delDataEmail');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
@@ -95,7 +99,15 @@ class Controller{
         case logoutBtn:
           this.model.logOut();
         break;
-  
+        case showDelData:
+          this.model.showDelData();
+        break;
+        case closeDelData:
+          this.model.closeDelData();
+        break;
+        case delData:
+          this.model.delData(delDataEmail.value);
+        break;
       }
  
     });

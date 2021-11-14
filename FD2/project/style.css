@@ -85,9 +85,24 @@
     text-align: center;
 }
 
+#delData{
+    width: 220px;
+    border: 1px solid white;
+    background: #49c29a;
+    margin: 5px;
+    position: absolute;
+    bottom: 200px;
+    left: 30px;
+    height: 40px;
+    font-family: monospace;
+    font-size: 16px;
+}
+#delData:hover{
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}
+
 .goBack img{
     width:80px;
-    margin-left: 45%;
 }
 .goBack img:hover{
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
@@ -99,6 +114,8 @@
     margin: 0 auto;
     background-size: contain;
     padding: 5px;
+    text-align: center;
+    position: relative;
 }
 .levels{
     background-image: url(img/bglevels.png);
@@ -114,7 +131,7 @@
 .level{
     width: 80px;
     height: 80px;
-    background-color: lightgray;
+    background-color: #9fd6a1;
     color: white;
     font-size: 55px;
     display: inline-flex;
@@ -127,6 +144,11 @@
     color: white;
     padding: 30px;
 }
+.not-active {
+    background-color: lightgray;
+    pointer-events: none;
+    cursor: default;
+ }
 .level:hover{
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
@@ -306,6 +328,7 @@ input{
     padding-left: 20px;
     font-family: monospace;
     font-size: 25px;
+    text-align: left;
 }
 .topTen p{
     margin: 10px;
@@ -339,4 +362,32 @@ input{
     100% {
         transform: rotate(0deg);
     }
+}
+#modalDelData{
+    position: absolute;
+    background: #f44336a3;
+    border-radius: 15px;
+    font-family: monospace;
+    font-size: 15px;
+    height: 140px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+    left: 33%;
+    top: 40%;
+    display: none;
+}
+.confirmDel {
+    display: block;
+    margin-top: 15px;
+    border-radius: 15px;
+    border: 1px solid;
+    padding: 5px;
+}
+.confirmDel:hover{
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}
+.closeForm{
+    
+    position: absolute;
+    right: 5%;
 }

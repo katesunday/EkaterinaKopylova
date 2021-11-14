@@ -8,7 +8,10 @@ class View {
 		    <div class="form-holder">
 			    <input type="text" class="input" id="signName" placeholder="Name" />
 			    <input type="email" class="input" id="signEmail" placeholder="Email" />
-			    <input type="password" class="input" id="signPass" placeholder="Password" />
+			    <input type="password" class="input" id="signPass" placeholder="Password">
+                </input>
+          
+               
 		    </div>
 		    <button class="submit-btn" id="signSubmit">Sign up</button>
 	        </div>
@@ -58,16 +61,16 @@ class View {
             return `
             <div class="levels" id = "levels">
             <h3>SELECT LEVEL</h3>
-            <div class="level" ><a class="play" id="level1" href="#play">1</a></div>
-            <div class="level" ><a class="play" id="level2" href="#play">2</a></div>
-            <div class="level" ><a class="play" id="level3" href="#play">3</a></div>
-            <div class="level" ><a class="play" id="level4" href="#play">4</a></div>
-            <div class="level" ><a class="play" id="level5" href="#play">5</a></div>
-            <div class="level" ><a class="play" id="level6" href="#play">6</a></div>
-            <div class="level" ><a class="play" id="level7" href="#play">7</a></div>
-            <div class="level" ><a class="play" id="level8" href="#play">8</a></div>
-            <div class="level" ><a class="play" id="level9" href="#play">9</a></div>
-            <div class="level" ><a class="play" id="level10" href="#play">10</a></div>
+            <div class="level not-active " ><a class="play" id="level1" href="#play">1</a></div>
+            <div class="level not-active" ><a class="play" id="level2" href="#play">2</a></div>
+            <div class="level not-active" ><a class="play" id="level3" href="#play">3</a></div>
+            <div class="level not-active" ><a class="play" id="level4" href="#play">4</a></div>
+            <div class="level not-active" ><a class="play" id="level5" href="#play">5</a></div>
+            <div class="level not-active" ><a class="play" id="level6" href="#play">6</a></div>
+            <div class="level not-active" ><a class="play" id="level7" href="#play">7</a></div>
+            <div class="level not-active" ><a class="play" id="level8" href="#play">8</a></div>
+            <div class="level not-active" ><a class="play" id="level9" href="#play">9</a></div>
+            <div class="level not-active" ><a class="play" id="level10" href="#play">10</a></div>
             <div class="goBack" >
             <img src="img/back.png" alt="go back" id="goBack">
             </div>    
@@ -101,12 +104,19 @@ class View {
             return `
             <div class="records" id="records">
                <div class="topTen" id="topTen">
-                   <p>Top 10 players!</p>
+                   <p>Top players!</p>
                    <svg id="loading"></svg>
                    <ol id = "score"></ol>
                </div>
                <div class="goBack" >
                <img src="img/back.png" alt="go back" id="goBack">
+               <button id="delData">I want to delete my score record</button>
+               <div id = "modalDelData">
+               <button class = "closeForm">&#10008;</button>
+               <p>Confirm your email:</p>
+               <input type="email" class="input" id="delDataEmail" placeholder="Email" ></input>
+               <button class = "confirmDel">Yes, I really want to delete my record.</button>
+               </div>
                </div>  
             </div>
             `
@@ -247,6 +257,8 @@ class View {
      this.renderContent('registration');
     }
     getRecords(list){
+        list.reverse();
+        console.log(list);
         for (let [key, value] of Object.entries(list)) {
             var userScore = `${value}`;
             const olList = document.querySelector("#score");
@@ -256,6 +268,18 @@ class View {
             li.appendChild(text);
         }
         document.getElementById('loading').style.display = 'none';
+    }
+    letPlay(passedLevels){
+        let allLevels = document.querySelectorAll('.level');
+        for (let i = 0; i < allLevels.length-(allLevels.length-passedLevels-1); i++) { 
+            allLevels[i].classList.remove('not-active');
+             }
+    }
+    showDelData(){
+        document.querySelector('#modalDelData').style.display = 'block';
+    }
+    closeDelData(){
+        document.querySelector('#modalDelData').style.display = 'none'; 
     }
 
 }

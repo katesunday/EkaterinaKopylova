@@ -19,7 +19,8 @@ class Model {
       this.view.showMoves(this.countMove);
       this.view.showLevel(targetLevel);
       this.map = this.deepCopy(level);//создать глубокую копию уровня, чтобы работать только с копией
-      this.level = targetLevel.id;
+      this.level = targetLevel.innerText;
+      console.log(this.level);
     }
     else if(hashPageName === 'menu'){
       this.view.renderContent(hashPageName);
@@ -47,12 +48,38 @@ class Model {
         });
           
     }
+    else if(hashPageName==='levels'){
+      this.view.renderContent(hashPageName);
+      this.countMove = 0;
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          console.log(user)
+          var ref = firebase.database().ref();
+          ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
+            if (snapshot.exists()){
+              const userData = snapshot.val();
+              var userDataName = Object.keys(userData);
+              var username = userData[userDataName].username;
+              var passedLevels = Number(userData[userDataName].level); // пройденный уровни
+                myView.letPlay(passedLevels);
+              
+           
+            }
+          });
+        } else {
+          console.log('No user is signed in');
+          myView.renderContent('registration');
+          console.log('empty')
+          
+        }
+      });
+      
+    }
     else{
       this.view.renderContent(hashPageName);
       this.countMove = 0;
-      
     }
-
   }
 
   goBack() { // возврат в меню
@@ -235,8 +262,7 @@ class Model {
       username: `${userName}`,
       email: `${userEmail}`,
       password: `${password}`,
-      score: 0,
-      level: 1,
+      level: 0,
      })
     .then(function (userName) {
       console.log(`Пользователь ${userName} добавлен в коллецию users`);
@@ -263,21 +289,8 @@ class Model {
             var username = userData[userDataName].username;
             console.log("exists!", username);
             this.view.renderContent('menu');
-            // debugger;
-            // this.that.view.sayHi(username);
           }
       });
-        // firebase.auth().onAuthStateChanged(function(user) {
-        //   if (user) {
-        //     debugger;
-        //     // User is signed in.
-        //     console.log(`Hi, ${user}!`)
-        //   } else {
-        //     console.log('No user is signed in');
-            
-        //   }
-        // });
-        
     }
   }
   saveScore = () =>{
@@ -288,9 +301,9 @@ class Model {
         const userData = snapshot.val();
         var userDataName = Object.keys(userData);
         var username = userData[userDataName].username;
-        debugger;
+        var previousScore = userData[userDataName].score ? userData[userDataName].score : 0;
         myDB.ref('users/' + `user_${username}`).update({
-          score: `${this.scorePoint}`,
+          score: Number(previousScore)+Number(this.scorePoint),
           level: `${this.level}`,
 
         })
@@ -315,19 +328,44 @@ class Model {
       var val = arrScore[key];
       let username = val.username.toUpperCase();
       let score = val.score;
-      list.push(
-        `${username}: ${score}`
-      );
+      if(score){
+        list.push(
+          `${username}: ${score}`
+        );
+      }
+  
     })
-     list.sort((a, b) => a > b ? 1 : -1);
-      list.reverse();
+  
+    //  list.sort((a, b) => a > b ? 1 : -1);
+    //   list.reverse();
+      console.log(list);
      myView.getRecords(list);
       
       }, function (error) {
       console.log("Error: " + error.code);
        });
-
-     
-
+  }
+  showDelData(){
+     this.view.showDelData();
+  }
+  closeDelData(){
+    this.view.closeDelData();
+  }
+  delData(emailToDel){
+    let myView = this.view;
+    var user = firebase.auth().currentUser;
+    var ref = firebase.database().ref();
+    ref.child("users").orderByChild("email").equalTo(`${emailToDel}`).once("value",snapshot => {
+      if (snapshot.exists()){
+        const userData = snapshot.val();
+        var userDataName = Object.keys(userData);
+        var username = userData[userDataName].username;
+        myDB.ref('users/' + `user_${username}/`+'score').remove();
+        myView.closeDelData();
+        this.getScore();
+        this.updateState('score');
+        
+      }
+  });
   }
 }
