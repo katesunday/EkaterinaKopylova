@@ -9,18 +9,22 @@ class Model {
     this.scorePoint = 0;
     this.isAudio = true;
     this.username = null;
+    this.targetLevel = null;
+    this.restartLevel = null;
   //  window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
   }
 
   updateState(hashPageName,level,targetLevel) { // SPA
       let myView = this.view; //  чтобы не потерять this    
     if(hashPageName==='play'){
+      this.targetLevel = targetLevel;
+      this.restartLevel = level;
       this.view.renderContent(hashPageName,this.countMove);
       this.view.showMoves(this.countMove);
-      this.view.showLevel(targetLevel);
+      this.view.showLevel(this.targetLevel);
       this.map = this.deepCopy(level);//создать глубокую копию уровня, чтобы работать только с копией
       this.level = targetLevel.innerText;
-      console.log(this.level);
+
     }
     else if(hashPageName === 'menu'){
       this.view.renderContent(hashPageName);
@@ -124,7 +128,9 @@ class Model {
        else if(this.isBrick(this.map[newPlayerY][newPlayerX])){
 	        console.log('рядом куб');
           //если через 2 шага там НЕ стена и НЕ куб, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
-	           if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 0 && this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 3) {
+	           if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 0 
+             && this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 3 
+             && this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 5) {
                 // если через два шага НЕ цель, то двигает игрока и кубик
                 if(this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 4){
                   this.map[this.getY(playerCoords.y, direction, 1)][this.getX(playerCoords.x, direction, 1)] = 1;
@@ -298,16 +304,31 @@ class Model {
     var ref = firebase.database().ref();
     ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
       if (snapshot.exists()){
-        const userData = snapshot.val();
+        const userData = snapshot.val(); 
         var userDataName = Object.keys(userData);
-        var username = userData[userDataName].username;
+        var userName = userData[userDataName].username.toLowerCase();
         var previousScore = userData[userDataName].score ? userData[userDataName].score : 0;
-        myDB.ref('users/' + `user_${username}`).update({
-          score: Number(previousScore)+Number(this.scorePoint),
-          level: `${this.level}`,
-
-        })
-        console.log("exists!", username);
+        var level = userData[userDataName].level; //уровень в базе
+        if(level< this.level ) { // если уровень в базе меньш того, что проходит игрок 
+          myDB.ref('users/' + `user_${userName}`).update({
+            score: Number(previousScore)+Number(this.scorePoint),
+            level: `${this.level}`,
+          })
+        }
+        else if(level>this.level){
+          myDB.ref('users/' + `user_${userName}`).update({//sfs
+            score: Number(previousScore)+ Number(this.countMove),
+            level: `${level}`,
+          })
+        }
+        else{
+          myDB.ref('users/' + `user_${userName}`).update({
+            score: Number(previousScore)+Number(this.scorePoint),
+            level: `${this.level}`,
+          })
+        }
+    
+        console.log("exists!", userName);
       }
   });
   }
@@ -319,7 +340,7 @@ class Model {
   }
   getScore() {
     let arrScore = [];
-    let list = [];
+    let list = {};
     let myView = this.view;
 
     myDB.ref("users/").on("value", function(snapshot) {
@@ -329,17 +350,31 @@ class Model {
       let username = val.username.toUpperCase();
       let score = val.score;
       if(score){
-        list.push(
-          `${username}: ${score}`
-        );
+         list[username] = score;
       }
   
     })
+    let sortAssocObject = (list)=> {
+      var sortable = [];
+      for (var key in list) {
+          sortable.push([key, list[key]]);
+      }
   
-    //  list.sort((a, b) => a > b ? 1 : -1);
-    //   list.reverse();
+      sortable.sort(function(a, b) {
+          return (a[1] > b[1] ? -1 : (a[1] > b[1] ? 1 : 0));
+      });
+  
+      var orderedList = {};
+      for (var idx in sortable) {
+          orderedList[sortable[idx][0]] = sortable[idx][1];
+      }
+      myView.getRecords(orderedList);
+      return orderedList;
+      }
+  
+      sortAssocObject(list);
       console.log(list);
-     myView.getRecords(list);
+    
       
       }, function (error) {
       console.log("Error: " + error.code);
@@ -362,10 +397,23 @@ class Model {
         var username = userData[userDataName].username;
         myDB.ref('users/' + `user_${username}/`+'score').remove();
         myView.closeDelData();
-        this.getScore();
+        // this.getScore();
         this.updateState('score');
         
       }
   });
+  }
+  showModalRestat(){
+    this.view.showModalRestat();
+  }
+  closeShowModalRestart(){
+    this.view.closeShowModalRestart();
+  }
+  toRestartGame(){
+     let restartLevel = this.restartLevel;
+     let targetlevel = this.targetLevel;
+    this.updateState('play',restartLevel,targetlevel);
+    this.view.showMoves(this.countMove = 0);
+    this.view.closeShowModalRestart();
   }
 }

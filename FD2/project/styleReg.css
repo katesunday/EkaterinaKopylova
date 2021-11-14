@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 html, body {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: #9ed7a1;
   display: -webkit-box;
   display: -ms-flexbox;

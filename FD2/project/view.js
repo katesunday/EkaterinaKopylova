@@ -46,6 +46,12 @@ class View {
         render: (moves) =>{
             return  `
             <div class = "infoLevel"></div>
+            <div class = 'restartModal'>
+            <p>Are you sure that you want to restart the game?<br>
+            You will loose your current record.</p>
+            <button id = "toRestart">I'm sure</button>
+            <button id = "noRestart">No</button>
+            </div>
             <div class = "countMoves">Your moves: ${moves}</div>
             <div class = "canvas">
             <canvas id="sokoban" width="600px" height="500px"></canvas>
@@ -165,8 +171,10 @@ class View {
        let divCountMoves = document.querySelector('.countMoves');
        console.log(moves);
        divCountMoves.innerHTML = `Your moves: ${moves} 
-        <button class = "music" id = 'music'></button>`;
-    //    return this.moves;
+        <button class = "music" id = 'music'></button>
+        <button class = "backTolev" id = 'backTolev'></button>
+        <button class = "restart" id = 'restart'></button>`;
+        
     }
     showLevel(targetlevel){
       let divLevel = document.querySelector('.infoLevel');
@@ -257,13 +265,13 @@ class View {
      this.renderContent('registration');
     }
     getRecords(list){
-        list.reverse();
         console.log(list);
         for (let [key, value] of Object.entries(list)) {
+            var userName = `${key}`;
             var userScore = `${value}`;
             const olList = document.querySelector("#score");
             const li = document.createElement('li');
-            const text = document.createTextNode(`${userScore} points`);
+            const text = document.createTextNode(`${key}: ${userScore} points`);
             olList.appendChild(li);
             li.appendChild(text);
         }
@@ -280,6 +288,12 @@ class View {
     }
     closeDelData(){
         document.querySelector('#modalDelData').style.display = 'none'; 
+    }
+    showModalRestat(){
+        document.querySelector('.restartModal').style.display = 'block'; 
+    }
+    closeShowModalRestart(){
+        document.querySelector('.restartModal').style.display = 'none'; 
     }
 
 }

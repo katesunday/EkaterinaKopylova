@@ -27,7 +27,6 @@ class Controller{
 
     document.addEventListener('click',(e)=>{
       let target = e.target;
-      // console.log(target);
       const loginBtn = document.getElementById('login');
       const signupBtn = document.getElementById('signup');
       let goBackbtn = document.getElementById('goBack');
@@ -45,6 +44,10 @@ class Controller{
       let closeDelData = document.querySelector('.closeForm');
       let delData = document.querySelector('.confirmDel');
       let delDataEmail = document.querySelector('#delDataEmail');
+      let restart = document.querySelector('.restart');
+      let toRestart = document.querySelector('#toRestart');
+      let noRestart = document.querySelector('#noRestart');
+      let backTolev = document.querySelector('#backTolev');
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
@@ -107,6 +110,18 @@ class Controller{
         break;
         case delData:
           this.model.delData(delDataEmail.value);
+        break;
+        case restart:
+          this.model.showModalRestat();
+        break;
+        case noRestart:
+          this.model.closeShowModalRestart();
+        break;
+        case toRestart:
+          this.model.toRestartGame();
+        break;
+        case backTolev:
+          this.model.updateState('levels');
         break;
       }
  
