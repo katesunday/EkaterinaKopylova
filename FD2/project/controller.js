@@ -48,13 +48,14 @@ class Controller{
       let toRestart = document.querySelector('#toRestart');
       let noRestart = document.querySelector('#noRestart');
       let backTolev = document.querySelector('#backTolev');
+      let showPW = document.querySelector("#showPW");
+      let showPW2 = document.querySelector("#showPW2");
       if(target.hash == '#play'){ //отрисовка игры в зависимости от уровня
         let level = target.id;
         level = window[level];
         this.model.updateState('play',level,target);
         this.listenKeyboard(level);// включить слушатели клавиатуры
         this.level  = level;
-  
       };
       switch(target){
         case loginBtn:
@@ -123,6 +124,21 @@ class Controller{
         case backTolev:
           this.model.updateState('levels');
         break;
+        case showPW:         
+           if (signPass.type === "password") {
+           signPass.type = "text";
+           } else {
+           signPass.type = "password";
+           }
+        break;
+        case showPW2:
+          if (logPass.type === "password") {
+            logPass.type = "text";
+            } else {
+            logPass.type = "password";
+            }
+        break;
+
       }
  
     });

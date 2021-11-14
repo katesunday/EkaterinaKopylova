@@ -10,6 +10,8 @@ class View {
 			    <input type="email" class="input" id="signEmail" placeholder="Email" />
 			    <input type="password" class="input" id="signPass" placeholder="Password">
                 </input>
+                <input type="checkbox" id = "showPW"></input>
+                <p id = "showPWtext">Show password</p>
           
                
 		    </div>
@@ -21,6 +23,8 @@ class View {
 			<div class="form-holder">
 				<input type="email" class="input" id="logEmail" placeholder="Email" />
 				<input type="password" class="input" id="logPass" placeholder="Password" />
+                <input type="checkbox" id = "showPW2"></input>
+                <p id = "showPWtext">Show password</p>
 			</div>
 			    <button class="submit-btn" id="logSubmit">Log in</button>
 		    </div>

@@ -83,6 +83,12 @@ html, body {
       visibility: visible;
       -webkit-transition: all .3s ease;
       transition: all .3s ease; }
+      .form-structor .signup .form-holder #showPW {
+        width: 30px; }
+      .form-structor .signup .form-holder #showPWtext {
+        font-size: 12px;
+        display: inline-block;
+        color: #9f9f9f; }
       .form-structor .signup .form-holder .input {
         border: 0;
         outline: none;
@@ -173,6 +179,12 @@ html, body {
         visibility: visible;
         -webkit-transition: all .3s ease;
         transition: all .3s ease; }
+        .form-structor .login .center .form-holder #showPW2 {
+          width: 30px; }
+        .form-structor .login .center .form-holder #showPWtext {
+          font-size: 12px;
+          display: inline-block;
+          color: #9f9f9f; }
         .form-structor .login .center .form-holder .input {
           border: 0;
           outline: none;
