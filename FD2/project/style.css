@@ -8,7 +8,7 @@
 }.menu{
     background-image: url(img/bgstart.png);
     height: 800px;
-    width: 800px;
+    width: 1400px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -93,13 +93,13 @@
 }
 
 #delData{
-    width: 220px;
+    width: 290px;
     border: 1px solid white;
     background: #49c29a;
     margin: 5px;
     position: absolute;
     bottom: 200px;
-    left: 30px;
+    left: 37%;
     height: 40px;
     font-family: monospace;
     font-size: 16px;
@@ -117,12 +117,17 @@
 .records{
     background-image: url(img/bglevels.png);
     height: 700px;
-    width: 800px;
+    width: 1390px;
     margin: 0 auto;
     background-size: contain;
     padding: 5px;
-    text-align: center;
+    /* text-align: center; */
     position: relative;
+}
+.records .goBack{
+    margin-left: -60px;
+    text-align: center;
+    margin-top: 170px;
 }
 .levels{
     background-image: url(img/bglevels.png);
@@ -386,6 +391,8 @@ input{
     font-family: monospace;
     font-size: 25px;
     text-align: left;
+    width: 400px;
+    margin: 0 auto;
 }
 .topTen p{
     margin: 10px;
@@ -402,6 +409,7 @@ input{
     width: 80px;
     height: 80px;
     background-size: contain;
+    margin-left: 110px;
 }
 @keyframes rotate {
     0% {
@@ -422,15 +430,15 @@ input{
 }
 #modalDelData{
     position: absolute;
-    background: #f44336a3;
+    background: #f78e86;
     border-radius: 15px;
     font-family: monospace;
     font-size: 15px;
     height: 140px;
     padding: 15px;
     box-shadow: 0 0 10px rgb(0 0 0 / 50%);
-    left: 33%;
-    top: 40%;
+    left: 37%;
+    top: 27%;
     display: none;
 }
 .confirmDel {

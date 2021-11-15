@@ -1,0 +1,36 @@
+@media all and (max-width: 900px) {
+    .menu{
+        width: 800px;
+    }
+}
+@media all and (max-width: 700px){
+.countMoves{
+    display: flex;
+}
+.countMoves button{
+    position: initial;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+}
+@media all and (max-width: 600px){
+#app{
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+}
+#delData{
+    left: 10%;
+}
+.records .goBack {
+    margin-left: -90px;
+}
+#modalDelData{
+    left: 17%;
+}
+}
+@media all and (max-width: 550px) {
+    .menu{
+        width: 500px;
+    }
+}
