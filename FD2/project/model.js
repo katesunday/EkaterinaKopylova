@@ -253,50 +253,56 @@ class Model {
     this.view.showMoves(this.countMove);
   }
 
-  addUser = (userName,userEmail,password) =>{
-    firebase.auth().createUserWithEmailAndPassword(userEmail, password).then(function (userName) {
+  addUser = (signName,signEmail,signPass) =>{
+    let userName = signName;
+    let userEmail = signEmail;
+    let password = signPass;
+    let myModel = this;
+    firebase.auth().createUserWithEmailAndPassword(userEmail, password)
+    .then(function (user) {
+      myDB.ref('users/' + `user_${userName.replace(/\s/g, "").toLowerCase()}`).set({
+        username: `${userName}`,
+        email: `${userEmail}`,
+        password: `${password}`,
+        level: 0,
+       })
         console.log(`Пользователь ${userName} добавлен в коллецию users`);
+       })
+    .then(function (userName) {
+        console.log(`Пользователь ${userName} добавлен в коллецию users`);
+        myModel.loginUser(userEmail,password);
        })
     .catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log("Eroor Msg"  + errorMessage);
-      // ...
     });
-    myDB.ref('users/' + `user_${userName.replace(/\s/g, "").toLowerCase()}`).set({
-      username: `${userName}`,
-      email: `${userEmail}`,
-      password: `${password}`,
-      level: 0,
-     })
-    .then(function (userName) {
-      console.log(`Пользователь ${userName} добавлен в коллецию users`);
-     })
-     .catch(function (error) {
-      console.error("Ошибка добавления пользователя: ", error);
-     });
-     this.loginUser(userEmail,password);
+     
   }
 
-  loginUser = (userEmail,password) =>{
+  loginUser = (logEmail,logPass) =>{
+    let userEmail = logEmail;
+    let password = logPass;
+    let myView = this.view;
       if (userEmail && password) {
         firebase.auth().signInWithEmailAndPassword(userEmail, password)
+        .then(function(user){
+          var user = firebase.auth().currentUser;
+          var ref = firebase.database().ref();
+          ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
+            if (snapshot.exists()){
+              const userData = snapshot.val();
+              var userDataName = Object.keys(userData);
+              var username = userData[userDataName].username;
+              console.log("exists!", username);
+              myView.renderContent('menu');
+            }
+        });
+        })
         .catch(function(error) {
           console.log("Error: " + error.message);
         });
-        
-        var user = firebase.auth().currentUser;
-        var ref = firebase.database().ref();
-        ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
-          if (snapshot.exists()){
-            const userData = snapshot.val();
-            var userDataName = Object.keys(userData);
-            var username = userData[userDataName].username;
-            console.log("exists!", username);
-            this.view.renderContent('menu');
-          }
-      });
     }
   }
   saveScore = () =>{
@@ -397,11 +403,10 @@ class Model {
         var username = userData[userDataName].username;
         myDB.ref('users/' + `user_${username}/`+'score').remove();
         myView.closeDelData();
-        // this.getScore();
-        this.updateState('score');
-        
       }
-  });
+    });
+    this.updateState('score');
+    this.getScore();
   }
   showModalRestat(){
     this.view.showModalRestat();
