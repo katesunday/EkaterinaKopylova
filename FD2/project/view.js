@@ -93,15 +93,23 @@ class View {
         render: () =>{
             return`
             <div class="rules" id="rules">
-            <p class = 'howto'>How to play:</p>
-            <p>The player is confined to the board and may move horizontally
+            <div class = 'howto'>How to play:</div>
+            <div>The player is confined to the board and may move horizontally
                  or vertically onto empty squares (never through walls or boxes).
                   The player can move a box by walking up to it and push it to the 
                   square beyond. Boxes cannot be pulled, and they cannot be pushed 
                   to squares with walls or other boxes.
-            </p>
-            <p>Use keyboard...</p>
-            
+            </div>
+            <div>Use keyboard for moving the player.<br>&#8593; - to move up
+            <br> &#8595; - to move down
+            <br> &#8594; - to move right 
+            <br> &#8592; - to move left
+            </div>
+            <div>Try to place boxes on green targets in a minimum ammount of moves. Your points depends on the 
+            ammount of moves you have taken. If you play level second or more times, you will receive less 
+            points.</div>
+            <div><h5>So don't rush,think twice and enjoy the game!</h5></div>
+            <img src="img/soko.png" alt="soko" id="soko">
             <div class="goBack" >
             <img src="img/back.png" alt="go back" id="goBack">
             </div>    
