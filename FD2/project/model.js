@@ -11,7 +11,7 @@ class Model {
     this.username = null;
     this.targetLevel = null;
     this.restartLevel = null;
-  //  window.location.hash = "menu"; //ИСПРАВИТЬ!!!!!
+
   }
 
   updateState(hashPageName,level,targetLevel) { // SPA
@@ -32,22 +32,18 @@ class Model {
        firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
-            console.log(user)
             var ref = firebase.database().ref();
             ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
               if (snapshot.exists()){
                 const userData = snapshot.val();
                 var userDataName = Object.keys(userData);
                 var username = userData[userDataName].username;
-                console.log(username);
                 myView.sayHi(username.toUpperCase());
               }
             });
           } else {
-            console.log('No user is signed in');
+            // console.log('No user is signed in');
             myView.renderContent('registration');
-            console.log('empty')
-            
           }
         });
           
@@ -58,7 +54,6 @@ class Model {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          console.log(user)
           var ref = firebase.database().ref();
           ref.child("users").orderByChild("email").equalTo(`${user.email}`).once("value",snapshot => {
             if (snapshot.exists()){
@@ -67,15 +62,11 @@ class Model {
               var username = userData[userDataName].username;
               var passedLevels = Number(userData[userDataName].level); // пройденный уровни
                 myView.letPlay(passedLevels);
-              
-           
             }
           });
-        } else {
-          console.log('No user is signed in');
+          } 
+        else {
           myView.renderContent('registration');
-          console.log('empty')
-          
         }
       });
       
@@ -122,11 +113,9 @@ class Model {
       this.view.drawField(direction,this.map);
       if (this.isAudio){audioWalking.pause();
       audioWall.play()};
-      console.log('рядом стена')
     }
        // если за игроком куб, то
        else if(this.isBrick(this.map[newPlayerY][newPlayerX])){
-	        console.log('рядом куб');
           //если через 2 шага там НЕ стена и НЕ куб, то сдвигаем игрока на 1 шаг а кубик на 2 от игрока соотвественно 
 	           if (this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 0 
              && this.map[this.getY(playerCoords.y, direction, 2)][this.getX(playerCoords.x, direction, 2)] != 3 
@@ -297,7 +286,6 @@ class Model {
               const userData = snapshot.val();
               var userDataName = Object.keys(userData);
               var username = userData[userDataName].username;
-              console.log("exists!", username);
               myView.renderContent('menu');
             }
         });
@@ -343,9 +331,7 @@ class Model {
   }
   logOut = function() {
     firebase.auth().signOut();
-    console.log("Bye!");
     this.view.askToLogin();
-
   }
   getScore() {
     let arrScore = [];
@@ -363,28 +349,23 @@ class Model {
       }
   
     })
-    let sortAssocObject = (list)=> {
+    let sortAssocObject = (list)=> { // сортировка по возрастанию 
       var sortable = [];
       for (var key in list) {
           sortable.push([key, list[key]]);
-      }
-  
+        }
       sortable.sort(function(a, b) {
           return (a[1] > b[1] ? -1 : (a[1] > b[1] ? 1 : 0));
       });
-  
       var orderedList = {};
       for (var idx in sortable) {
           orderedList[sortable[idx][0]] = sortable[idx][1];
-      }
+          }
       myView.getRecords(orderedList);
       return orderedList;
       }
-  
       sortAssocObject(list);
-      console.log(list);
-    
-      
+
       }, function (error) {
       console.log("Error: " + error.code);
        });

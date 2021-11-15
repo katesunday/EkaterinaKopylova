@@ -181,7 +181,6 @@ class View {
     showMoves(moves){
        this.moves = moves;
        let divCountMoves = document.querySelector('.countMoves');
-       console.log(moves);
        divCountMoves.innerHTML = `Your moves: ${moves} 
         <button class = "music" id = 'music'></button>
         <button class = "backTolev" id = 'backTolev'></button>
@@ -277,7 +276,6 @@ class View {
      this.renderContent('registration');
     }
     getRecords(list){
-        console.log(list);
         for (let [key, value] of Object.entries(list)) {
             var userName = `${key}`;
             var userScore = `${value}`;
