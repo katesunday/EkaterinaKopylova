@@ -258,6 +258,7 @@ class Model {
     let userEmail = signEmail;
     let password = signPass;
     let myModel = this;
+    let myView = this.view; 
     firebase.auth().createUserWithEmailAndPassword(userEmail, password)
     .then(function (user) {
       myDB.ref('users/' + `user_${userName.replace(/\s/g, "").toLowerCase()}`).set({
@@ -277,6 +278,7 @@ class Model {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.log("Eroor Msg"  + errorMessage);
+      myView.showError(error.message);
     });
      
   }
@@ -302,6 +304,7 @@ class Model {
         })
         .catch(function(error) {
           console.log("Error: " + error.message);
+          myView.showError2(error.message);
         });
     }
   }

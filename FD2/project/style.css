@@ -441,3 +441,13 @@ input{
     position: absolute;
     right: 5%;
 }
+#errMsg{
+    color: red;
+    margin: -10px;
+    font-size: 15px;
+}
+#errMsg2{
+    color: red;
+    margin: -10px;
+    font-size: 15px;
+}

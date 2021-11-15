@@ -5,6 +5,7 @@ class View {
             <div class="form-structor">
 	        <div class="signup">
 		        <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+                <p id ="errMsg"></p>
 		    <div class="form-holder">
 			    <input type="text" class="input" id="signName" placeholder="Name" />
 			    <input type="email" class="input" id="signEmail" placeholder="Email" />
@@ -12,14 +13,13 @@ class View {
                 </input>
                 <input type="checkbox" id = "showPW"></input>
                 <p id = "showPWtext">Show password</p>
-          
-               
 		    </div>
 		    <button class="submit-btn" id="signSubmit">Sign up</button>
 	        </div>
 	        <div class="login slide-up">
 		    <div class="center">
 			    <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+                <p id ="errMsg2"></p>
 			<div class="form-holder">
 				<input type="email" class="input" id="logEmail" placeholder="Email" />
 				<input type="password" class="input" id="logPass" placeholder="Password" />
@@ -298,6 +298,12 @@ class View {
     }
     closeShowModalRestart(){
         document.querySelector('.restartModal').style.display = 'none'; 
+    }
+    showError(error){
+        document.querySelector('#errMsg').innerText = error;
+    }
+    showError2(error){
+        document.querySelector('#errMsg2').innerText = error;
     }
 
 }
