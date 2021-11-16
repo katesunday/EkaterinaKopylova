@@ -108,7 +108,7 @@ class View {
             <div>Try to place boxes on green targets in a minimum ammount of moves. Your points depends on the 
             ammount of moves you have taken. If you play level second or more times, you will receive less 
             points.</div>
-            <div><h5>So don't rush,think twice and enjoy the game!</h5></div>
+            <div><h5>So don't rush, think twice and enjoy the game!</h5></div>
             <img src="img/soko.png" alt="soko" id="soko">
             <div class="goBack" >
             <img src="img/back.png" alt="go back" id="goBack">
@@ -268,9 +268,11 @@ class View {
         document.querySelector('#music').classList.toggle('disabled');
     }
 
-    sayHi(username){
-        this.username = username;
-       document.querySelector('.auth').innerHTML = `<p>HI, ${this.username}!!</p>`;
+    sayHi(username){ 
+        if(username){
+            this.username = username;
+            document.querySelector('.auth').innerHTML = `<p>HI, ${this.username}!!</p>`;
+        }
     }
     askToLogin(){
      this.renderContent('registration');
@@ -289,9 +291,11 @@ class View {
     }
     letPlay(passedLevels){
         let allLevels = document.querySelectorAll('.level');
-        for (let i = 0; i < allLevels.length-(allLevels.length-passedLevels-1); i++) { 
-            allLevels[i].classList.remove('not-active');
-             }
+        if(allLevels){
+            for (let i = 0; i < allLevels.length-(allLevels.length-passedLevels-1); i++) { 
+                allLevels[i].classList.remove('not-active');
+            }
+        }
     }
     showDelData(){
         document.querySelector('#modalDelData').style.display = 'block';
