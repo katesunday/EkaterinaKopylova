@@ -6,6 +6,7 @@ class Controller{
     window.addEventListener("hashchange", this.updateState);
     this.updateState(); 
     this.listeners();
+    this.checkReload();
     
   }
   updateState = ()=>{
@@ -21,6 +22,16 @@ class Controller{
       this.model.getScore();
     }
 
+  }
+   checkReload = () =>{
+    let locHash = window.location.hash.slice(1).toLowerCase();
+    if(locHash === 'play'){
+      if(document.getElementById('sokoban')){  
+      }
+      else if(document.getElementById('sokoban')== null){
+        this.model.reload();
+      }
+    }
   }
 
   listeners = ()=>{

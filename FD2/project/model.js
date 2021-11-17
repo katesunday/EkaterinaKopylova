@@ -11,7 +11,6 @@ class Model {
     this.username = null;
     this.targetLevel = null;
     this.restartLevel = null;
-
   }
 
   updateState(hashPageName,level,targetLevel) { // SPA
@@ -80,7 +79,7 @@ class Model {
   goBack() { // возврат в меню
     this.view.renderContent('menu');
   }
- //ф-я глубокого копирования
+ //ф-я глубокого копирования для работы с картой уровня
  deepCopy = (arr) => {
   var out = [];
   for (var i = 0, len = arr.length; i < len; i++) {
@@ -95,13 +94,12 @@ class Model {
   return out;
   };
  
-
+ // ЛОГИКА ИГРОКА
   movePlayer(direction,level){
     const playerCoords = this.findPlayerCoords(this.map);// взять координаты из копии
     const newPlayerY = this.getY(playerCoords.y, direction, 1)
     const newPlayerX = this.getX(playerCoords.x, direction, 1)
     
-    // ЛОГИКА ИГРОКА
     //оставлять за собой фон и цели исходя из карты уровня (не копии)
     this.map[playerCoords.y][playerCoords.x] =
     this.isTarget(level[playerCoords.y][playerCoords.x]) ? 4 : 2;
@@ -166,8 +164,6 @@ class Model {
     
   };
 
-
-
  findPlayerCoords = (map)=> { //найти координаты игрока
    const y = map.findIndex(row => row.includes(1));// если в строке есть игрок дать его индекс
    const x = map[y].indexOf(1); //дать его индекс в строке 
@@ -188,6 +184,7 @@ class Model {
  isTarget = (cell) => [4].includes(cell);
  isSuccess = (cell) => [5].includes(cell);
 
+ // функции поиска координат игока
  getX = (x, direction, spaces = 1) => {
   if (direction === 'up' || direction === 'down') {
     return x
@@ -213,10 +210,10 @@ class Model {
   }
   };
 
+  // кнопка аудио
   setAudio = (arg) =>{
     this.isAudio = arg;
-    this.view.changeMusicBtn();
-   
+    this.view.changeMusicBtn(); 
   }
   //ф-я подсчета целей
   countTargets = (map)=>{
@@ -236,12 +233,12 @@ class Model {
         
     }
   };
-
+  // ф-я подсчета ходов
   countMoves = () =>{
     this.countMove++;
     this.view.showMoves(this.countMove);
   }
-
+  // добавление нового пользователя
   addUser = (signName,signEmail,signPass) =>{
     let userName = signName;
     let userEmail = signEmail;
@@ -271,7 +268,7 @@ class Model {
     });
      
   }
-
+ // логин уже существующего пользователя
   loginUser = (logEmail,logPass) =>{
     let userEmail = logEmail;
     let password = logPass;
@@ -376,6 +373,7 @@ class Model {
   closeDelData(){
     this.view.closeDelData();
   }
+  // удалить данные об очках игрока
   delData(emailToDel){
     let myView = this.view;
     var user = firebase.auth().currentUser;
@@ -398,11 +396,16 @@ class Model {
   closeShowModalRestart(){
     this.view.closeShowModalRestart();
   }
+  // кнопка перезапуска игры
   toRestartGame(){
-     let restartLevel = this.restartLevel;
-     let targetlevel = this.targetLevel;
+    let restartLevel = this.restartLevel;
+    let targetlevel = this.targetLevel;
     this.updateState('play',restartLevel,targetlevel);
     this.view.showMoves(this.countMove = 0);
     this.view.closeShowModalRestart();
+  }
+  // обновление страницы
+  reload(){
+   this.updateState('levels');
   }
 }

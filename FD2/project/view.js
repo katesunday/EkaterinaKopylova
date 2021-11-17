@@ -56,6 +56,7 @@ class View {
             <button id = "toRestart">I'm sure</button>
             <button id = "noRestart">No</button>
             </div>
+            <button class = "music" id = 'music'></button>
             <div class = "countMoves">Your moves: ${moves}</div>
             <div class = "canvas">
             <canvas id="sokoban" width="600px" height="500px"></canvas>
@@ -182,7 +183,7 @@ class View {
        this.moves = moves;
        let divCountMoves = document.querySelector('.countMoves');
        divCountMoves.innerHTML = `Your moves: ${moves} 
-        <button class = "music" id = 'music'></button>
+        
         <button class = "backTolev" id = 'backTolev'></button>
         <button class = "restart" id = 'restart'></button>`;
         
@@ -195,8 +196,6 @@ class View {
     //ф-я отрисовки карты
     drawField (direction,map){
         const cellSize = 70;// размер клетки
-        const gameHeight = 700;
-        const gameWidth = 900;
         const wall = this.wall;
 		const bg = this.bg;
 		const player = this.player;
@@ -267,7 +266,6 @@ class View {
     changeMusicBtn(){
         document.querySelector('#music').classList.toggle('disabled');
     }
-
     sayHi(username){ 
         if(username){
             this.username = username;

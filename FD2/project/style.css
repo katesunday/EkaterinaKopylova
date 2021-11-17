@@ -299,11 +299,11 @@ input{
     background-image: url(img/musicOn.png);
     background-size: contain;
     width: 45px;
-        height: 45px;
-        border: none;
-        position: absolute;
-        top: -25px;
-        right: 32%;
+    height: 45px;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 32%;
 }
 .music.disabled{
     background-image: url(img/musifOff.png);

@@ -7,6 +7,10 @@
 .countMoves{
     display: flex;
 }
+#music{
+    top: 35px;
+    right: 28%;
+}
 .countMoves button{
     position: initial;
     margin-left: 30px;
@@ -28,9 +32,17 @@
 #modalDelData{
     left: 17%;
 }
+#music{
+    top: 35px;
+    right: 9%;
+}
 }
 @media all and (max-width: 550px) {
     .menu{
         width: 500px;
+    }
+    #music{
+        top: 35px;
+        right: 9%;
     }
 }
