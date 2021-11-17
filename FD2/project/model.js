@@ -209,7 +209,6 @@ class Model {
     return y - spaces
   }
   };
-
   // кнопка аудио
   setAudio = (arg) =>{
     this.isAudio = arg;

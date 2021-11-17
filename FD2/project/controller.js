@@ -23,7 +23,7 @@ class Controller{
     }
 
   }
-   checkReload = () =>{
+  checkReload = () =>{
     let locHash = window.location.hash.slice(1).toLowerCase();
     if(locHash === 'play'){
       if(document.getElementById('sokoban')){  
@@ -33,9 +33,7 @@ class Controller{
       }
     }
   }
-
   listeners = ()=>{
-
     document.addEventListener('click',(e)=>{
       let target = e.target;
       const loginBtn = document.getElementById('login');
