@@ -338,7 +338,7 @@ class Model {
     arrScore = snapshot.val();
     Object.keys(arrScore).forEach(function (key) {
       var val = arrScore[key];
-      let username = val.username.toUpperCase();
+      let username = val.username.toUpperCase().replace(/\s/g, '');
       let score = val.score;
       if(score){
          list[username] = score;
