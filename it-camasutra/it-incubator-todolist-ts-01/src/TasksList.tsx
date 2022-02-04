@@ -23,7 +23,7 @@ const TasksList = (props: TasksListPropsType) => {
                 {/*<li><input type="checkbox" checked={props.tasks[2].isDone}/>*/}
                 {/*    <span>{props.tasks[2].title}</span></li>*/}
             </ul>
-            <ControlButtons />
+            <ControlButtons /> 
         </>
 
 );

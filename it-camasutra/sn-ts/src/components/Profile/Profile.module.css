@@ -1,0 +1,25 @@
+.content{
+    grid-area: c;
+    background-color: lightsteelblue;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.bgAva{
+    border-radius: 15px;
+    width: 1200px;
+    height: 150px;
+}
+.ava{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border-radius: 15px;
+}
+.desc{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    margin-left: 100px;
+}

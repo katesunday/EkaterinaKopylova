@@ -2,8 +2,6 @@ import React from 'react';
 import TodoListHeader from "./TodoListHeader";
 import Task from "./Task";
 import TasksList from "./TasksList";
-import ControlButtons from "./ControlButtons";
-import AddTaskForm from "./AddTaskForm";
 
 type ToDoListPropsType = {
     title: string

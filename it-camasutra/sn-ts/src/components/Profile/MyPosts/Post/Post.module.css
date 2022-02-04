@@ -1,0 +1,11 @@
+.item{
+    margin-left: 10px;
+    color: seagreen;
+    font-weight: bold;
+    display: inline-block;
+}
+.ava{
+    height: 40px;
+    width: 40px;
+    border-radius: 15px;
+}
