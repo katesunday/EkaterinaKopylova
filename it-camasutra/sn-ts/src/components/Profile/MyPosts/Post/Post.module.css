@@ -9,3 +9,9 @@
     width: 40px;
     border-radius: 15px;
 }
+.post{
+    border: 1px solid white;
+    margin: 15px;
+    border-radius: 15px;
+    width: 300px;
+}
