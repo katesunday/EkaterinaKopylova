@@ -1,0 +1,43 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialogsItems {
+    text-decoration: none;
+
+}
+.dialog{
+    padding: 10px 20px;
+    background: #E5E5EA;
+    margin-bottom: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+.messages{
+
+}
+
+.message {
+    background: #E5E5EA;
+    color: black;
+    align-self: flex-start;
+    max-width: 255px;
+    word-wrap: break-word;
+    margin-bottom: 12px;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 3px solid #E5E5EA;
+}
+.message::after{
+    content: '';
+    position: absolute;
+    left: -12px; bottom: -8px; /* Положение треугольника */
+    border: 9px solid transparent; /* Прозрачные границы */
+    border-top: 10px solid #E5E5EA;
+    transform: rotate(50deg);
+
+}
+.dialogsItems .active{
+    color: red;
+}

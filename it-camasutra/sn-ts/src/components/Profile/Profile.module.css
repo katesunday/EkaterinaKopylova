@@ -1,11 +1,4 @@
-.content{
-    grid-area: c;
-    background-color: lightsteelblue;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
+
 .bgAva{
     border-radius: 15px;
     width: 1200px;

@@ -2,15 +2,22 @@
     grid-area: n;
     background-color: lightblue;
     border-radius: 15px;
-    width: 150px;
+    width: auto;
 }
 .item {
-    color: dimgrey;
+
     text-decoration: none;
     font-weight: bold;
     height: 30px;
     padding-top: 8px;
     padding-left: 5px;
+}
+.item a{
+    color: dimgrey;
+    text-decoration: none;
+}
+.item a.active{
+    color: white;
 }
 .item:hover{
     background-color: white;
