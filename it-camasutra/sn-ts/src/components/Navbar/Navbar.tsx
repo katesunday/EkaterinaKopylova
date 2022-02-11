@@ -12,7 +12,7 @@ const Navbar = () => {
                                                   style={( {isActive} ) =>
                                                       isActive ? isActiveStyle : {}
                                                   }>Profile</NavLink></div>
-            <div className={styles.item}><NavLink to="/messages"
+            <div className={styles.item}><NavLink to="/dialogs"
                                                   style={( {isActive} ) =>
                                                       isActive ? isActiveStyle : {}
                                                   }>Messages</NavLink></div>

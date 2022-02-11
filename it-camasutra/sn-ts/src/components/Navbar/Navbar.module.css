@@ -2,7 +2,7 @@
     grid-area: n;
     background-color: lightblue;
     border-radius: 15px;
-    width: auto;
+    width: 150px;
 }
 .item {
 
@@ -15,6 +15,7 @@
 .item a{
     color: dimgrey;
     text-decoration: none;
+    padding: 10px 80px 10px 10px;
 }
 .item a.active{
     color: white;
