@@ -4,11 +4,14 @@ type ControlButtonsType = {
     changeFilter: (filter:FilterValuesType)  => void
 }
 const ControlButtons = (props:ControlButtonsType) => {
+    const onCLickSetFilter = (filter:FilterValuesType) => () => {
+        props.changeFilter(filter)
+    }
     return (
         <div>
-            <button onClick={() => {props.changeFilter("all")}}>All</button>
-            <button onClick={() => {props.changeFilter("active")}}>Active</button>
-            <button onClick={() => {props.changeFilter("completed")}}>Completed</button>
+            <button onClick={() => {onCLickSetFilter('all')}}>All</button>
+            <button onClick={() => {onCLickSetFilter('active')}}>Active</button>
+            <button onClick={() => {onCLickSetFilter('completed')}}>Completed</button>
         </div>
     );
 };
