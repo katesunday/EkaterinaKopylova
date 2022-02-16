@@ -8,9 +8,15 @@ import {BrowserRouter , Route, Routes} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import {DialogsDataPropsType , MessageDataPropsType , PostDataPropsType} from "./index";
 
+type AppPropsType = {
+    posts: Array<PostDataPropsType>
+    dialogs:Array<DialogsDataPropsType>
+    messages: Array<MessageDataPropsType>
+}
 
-const App = () => {
+const App = (props:AppPropsType) => {
     return (
       <BrowserRouter>
           <div className="app-wrapper">
@@ -18,10 +24,19 @@ const App = () => {
               <Navbar/>
               <div className='app-wrapper-content'>
                  <Routes>
-                     <Route path='/' element={<Profile />} />
-                     <Route path='/profile' element= {<Profile/>} />
-                     <Route path='/dialogs' element= {<Dialogs/>}>
-                         <Route path=':id' element={<Dialogs />} />
+                     <Route path='/' element={<Profile posts = {props.posts}
+                     />}
+                     />
+                     <Route path='/profile' element= {<Profile posts = {props.posts}/>} />
+                     <Route path='/dialogs' element= {<Dialogs  dialogs = {props.dialogs}
+                                                                messages = {props.messages}
+                     />
+                     }>
+                         <Route path=':id' element={<Dialogs
+                             dialogs = {props.dialogs}
+                             messages = {props.messages}
+                         />}
+                         />
                      </Route>
                      <Route path='/news' element= {<News/>}/>
                      <Route path='/music' element= {<Music/>}/>

@@ -1,8 +1,19 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {PostDataPropsType} from "../../../index";
 
-const MyPosts = () => {
+type MyPostsPropsType = {
+    posts: Array<PostDataPropsType>
+}
+
+const MyPosts = (props:MyPostsPropsType) => {
+
+  const postsElements = props.posts.map(message =>{
+      return(
+          <Post message={message.message} likeAmount={message.likeAmount}/>
+      )
+  })
     return (
         <div>
             <div className={styles.newPost}>
@@ -14,8 +25,7 @@ const MyPosts = () => {
                 My posts:
             </div>
             <div className={ styles.posts }>
-                <Post message="Hi,how are you?" likeAmount={15}/>
-                <Post message="It's my first post!" likeAmount={20}/>
+                {postsElements}
             </div>
         </div>
     );
