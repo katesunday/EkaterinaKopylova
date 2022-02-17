@@ -8,33 +8,32 @@ import {BrowserRouter , Route, Routes} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {DialogsDataPropsType , MessageDataPropsType , PostDataPropsType} from "./index";
+import {StatePropsType} from "./redux/state";
 
-type AppPropsType = {
-    posts: Array<PostDataPropsType>
-    dialogs:Array<DialogsDataPropsType>
-    messages: Array<MessageDataPropsType>
+type AppStatePropsType = {
+    state:StatePropsType
+
 }
 
-const App = (props:AppPropsType) => {
+
+const App = (props:AppStatePropsType) => {
     return (
-      <BrowserRouter>
           <div className="app-wrapper">
               <Header/>
               <Navbar/>
               <div className='app-wrapper-content'>
                  <Routes>
-                     <Route path='/' element={<Profile posts = {props.posts}
+                     <Route path='/' element={<Profile posts = {props.state.profilePage.posts}
                      />}
                      />
-                     <Route path='/profile' element= {<Profile posts = {props.posts}/>} />
-                     <Route path='/dialogs' element= {<Dialogs  dialogs = {props.dialogs}
-                                                                messages = {props.messages}
+                     <Route path='/profile' element= {<Profile posts = {props.state.profilePage.posts}/>} />
+                     <Route path='/dialogs' element= {<Dialogs  dialogs = {props.state.dialogsPage.dialogs}
+                                                                messages = {props.state.dialogsPage.messages}
                      />
                      }>
                          <Route path=':id' element={<Dialogs
-                             dialogs = {props.dialogs}
-                             messages = {props.messages}
+                             dialogs = {props.state.dialogsPage.dialogs}
+                             messages = {props.state.dialogsPage.messages}
                          />}
                          />
                      </Route>
@@ -46,7 +45,7 @@ const App = (props:AppPropsType) => {
                   {/*<Dialogs />*/}
               </div>
           </div>
-      </BrowserRouter>
+
   )
 }
 
