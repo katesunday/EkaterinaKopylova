@@ -6,6 +6,7 @@ import {v1} from "uuid";
 export type UserType = {
     _id: string // need to fix any
     name: string // need to fix any
+    
 }
 
 // уровень работы с глобальными данными
