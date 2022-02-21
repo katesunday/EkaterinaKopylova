@@ -7,6 +7,9 @@ export type StatePropsType = {
         messages: Array<MessageDataPropsType>,
         dialogs: Array<DialogsDataPropsType>
     }
+    sideFriendsBarPage:{
+        friendItems:Array<SideFriendsBarPropsType>
+    }
 }
 export type PostDataPropsType = {
     id:number
@@ -20,6 +23,10 @@ export type DialogsDataPropsType = {
 export type MessageDataPropsType = {
     id:number
     message:string
+}
+export type SideFriendsBarPropsType = {
+    name:string
+    img: string
 }
 const state:StatePropsType = {
     profilePage: {
@@ -44,6 +51,13 @@ const state:StatePropsType = {
             {id: 5 , message: 'How are you?'} ,
         ]
     },
+    sideFriendsBarPage: {
+        friendItems: [
+            {name: 'Sasha', img: 'https://media.istockphoto.com/vectors/cute-surprised-cat-round-icon-emoji-gray-cat-with-whiskers-mouth-open-vector-id1203518848'},
+            {name: 'Masha' , img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3x2D7eP09Im1N0At7wSKWnZQKWQIXOjJfRA&usqp=CAU'},
+            {name: 'Dasha', img: 'https://media.istockphoto.com/vectors/round-button-for-web-icon-gamer-girl-avatar-retro-button-banner-round-vector-id1247154889'},
+        ]
+    }
 }
 
 export default state

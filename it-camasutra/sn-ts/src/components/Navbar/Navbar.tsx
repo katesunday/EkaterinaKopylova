@@ -1,12 +1,18 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
+import SideFriendsBar from "../SideFrendsBar/SideFriendsBar";
+import {SideFriendsBarPropsType} from "../../redux/state";
 
-const Navbar = () => {
+type NamesPropsType = {
+    friendsItems: Array<SideFriendsBarPropsType>
+}
+const Navbar = (props:NamesPropsType) => {
     let isActiveStyle = {
         color:'#f5588d'
     };
     return (
+
         <nav className={styles.nav}>
             <div className={styles.item}><NavLink to="/profile"
                                                   style={( {isActive} ) =>
@@ -28,7 +34,10 @@ const Navbar = () => {
                                                   style={({isActive}) =>
                                                       isActive ? isActiveStyle : {}
                                                   }>Settings</NavLink></div>
+            <SideFriendsBar friendsItems = {props.friendsItems}/>
         </nav>
+
+
     );
 };
 
