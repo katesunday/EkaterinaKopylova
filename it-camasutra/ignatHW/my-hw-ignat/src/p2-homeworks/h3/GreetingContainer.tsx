@@ -5,7 +5,6 @@ import {UserType} from "./HW3";
 type GreetingContainerPropsType = {
     users: Array<UserType> // need to fix any
     addUserCallback: (name: string) => void // need to fix any
-    disabled: boolean
 }
 // type ButtonType = {
 //
@@ -16,13 +15,20 @@ type GreetingContainerPropsType = {
 
 // более современный и удобный для про :)
 // уровень локальной логики
-const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users , addUserCallback , disabled}) => { // деструктуризация пропсов
+const GreetingContainer: React.FC<GreetingContainerPropsType> = ({users , addUserCallback}) => { // деструктуризация пропсов
     const [name , setName] = useState<string>('') // need to fix any
     const [error , setError] = useState<string>('') // need to fix any
     const [btnState , unableBtn] = useState<boolean>(true)
     const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => { // need to fix any
-        setName(e.currentTarget.value) // need to fix
-        unableBtn(false)
+        if (e.currentTarget.value.trim()) {
+            setName(e.currentTarget.value) // need to fix
+            unableBtn(false)
+        } else {
+            setName(e.currentTarget.value)
+            unableBtn(true)
+        }
+
+
     }
     const addUser = () => {
         // need to fix
