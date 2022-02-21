@@ -33,16 +33,6 @@ function App() {
     }
 
     const FilteredTasksForRender = getFilteredTasksForRender()
-    // let task_2: Array<TaskType> = [
-    //     {id: 1 , title: "Arrays" , isDone: true} ,
-    //     {id: 2 , title: "Videos" , isDone: true} ,
-    //     {id: 3 , title: "Other" , isDone: false} ,
-    // ]
-    // let task_3: Array<TaskType> = [
-    //     {id: 1 , title: "Methods" , isDone: false} ,
-    //     {id: 2 , title: "Errors" , isDone: false} ,
-    //     {id: 3 , title: "Smth else" , isDone: false} ,
-    // ]
 
     const removeTask = (taskID: string) => {
         const filteredTasks = tasks.filter(task => task.id !== taskID)
@@ -60,6 +50,9 @@ function App() {
                    isDone: false
             },...tasks])
     }
+    const changeTaskStatus = (taskID: string, isDone:boolean) =>{
+        setTasks(tasks.map(task => task.id === taskID ? {...task, isDone: isDone}: task))
+    }
 
     return (
         <div className="App">
@@ -68,6 +61,8 @@ function App() {
                       removeTask={ removeTask }
                       changeFilter={changeFilter}
                       addTask = {addTask}
+                      filter={filter}
+                      changeTaskStatus={changeTaskStatus}
             />
             {/*<ToDoList title={"What to remember"} tasks={task_2} />*/ }
             {/*<ToDoList title={"What to ask"} tasks={task_3} />*/ }

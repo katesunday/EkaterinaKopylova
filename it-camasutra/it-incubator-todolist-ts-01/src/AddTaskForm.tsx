@@ -1,14 +1,25 @@
-import React , {useState,KeyboardEvent} from 'react';
+import React , {useState , KeyboardEvent , ChangeEvent , CSSProperties} from 'react';
 
 type AddTaskFormPropsType = {
     addTask: (title:string) =>void
 }
 const AddTaskForm = (props:AddTaskFormPropsType) => {
     const [title,setTitle] = useState<string>('')
-    console.log(title)
+    const [error,setError] = useState<boolean>(false)
     const onClickAddTask = () => {
-        props.addTask(title)
+
+        const trimmedTitle = title.trim()
+        if(trimmedTitle){
+            props.addTask(trimmedTitle)
+        }
+        else {
+            setError(true)
+        }
         setTitle('')
+    }
+    const onChangeSetTitle = (e:ChangeEvent<HTMLInputElement>) =>{
+        setTitle(e.currentTarget.value)
+        setError(false)
     }
     const onKeyPressSetTitle = (e:KeyboardEvent<HTMLInputElement>) => {
       if(e.key === 'Enter'){
@@ -16,13 +27,24 @@ const AddTaskForm = (props:AddTaskFormPropsType) => {
           setTitle('')
       }
     }
+    const errorMessageStyle: CSSProperties= {
+        color:'red',
+        fontSize: '14px',
+    }
+
+    const errorMessage = error
+          ? <div style={errorMessageStyle}>Title is required*</div>
+          : null
+    const errorInputClass = error ? 'error': ''
     return (
         <div>
             <input value={title}
-                onChange={(e)=> setTitle((e.currentTarget.value))}
+                   onChange={onChangeSetTitle}
                    onKeyPress={onKeyPressSetTitle}
+                   className={errorInputClass}
             />
             <button onClick={onClickAddTask}>+</button>
+            {errorMessage}
         </div>
     );
 };
