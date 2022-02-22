@@ -10,9 +10,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {StatePropsType} from "./redux/state";
 
+
 type AppStatePropsType = {
     state:StatePropsType
 
+}
+type addPostPropsType = {
+    addPost:(postMessage:string)=> void
 }
 
 

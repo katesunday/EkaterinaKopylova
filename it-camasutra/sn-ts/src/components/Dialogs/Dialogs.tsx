@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useRef} from 'react';
 import styles from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -20,6 +20,13 @@ const Dialogs = (props:DialogsPropsType) => {
     const messagesElements = props.messages.map(message => (
         <Message text={message.message}/>
     ))
+    let newMessageElement = useRef<HTMLTextAreaElement | null>(null);
+    const sendMessage = () => {
+        if(newMessageElement.current){
+            let text = newMessageElement.current.value
+            alert(text)
+        }
+    }
     return (
         <div className={styles.dialogs}>
          <div className={styles.dialogsItems}>
@@ -28,6 +35,8 @@ const Dialogs = (props:DialogsPropsType) => {
             <div className={styles.messages}>
                 {messagesElements}
             </div>
+            <textarea ref={newMessageElement}/>
+            <button onClick={sendMessage}>Send</button>
         </div>
     );
 };

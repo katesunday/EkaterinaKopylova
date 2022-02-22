@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useRef} from 'react';
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostDataPropsType} from "../../../redux/state";
@@ -14,12 +14,19 @@ const MyPosts = (props:MyPostsPropsType) => {
           <Post message={message.message} likeAmount={message.likeAmount}/>
       )
   })
+    let newPostElement = useRef<HTMLTextAreaElement | null>(null);
+    const addNewPost = () => {
+        if(newPostElement.current){
+            let text = newPostElement.current.value
+            alert(text)
+        }
+    }
     return (
         <div>
             <div className={styles.newPost}>
                 New post
-                <textarea/>
-                <button className={styles.addPostBtn}>Add</button>
+                <textarea ref={newPostElement}/>
+                <button onClick={addNewPost} className={styles.addPostBtn}>Add</button>
             </div>
             <div>
                 My posts:
