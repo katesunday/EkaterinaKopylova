@@ -2,13 +2,9 @@ import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {renderEntireTree} from "./render";
-import state , {StatePropsType} from "./redux/state";
+import state from "./redux/state";
 
-// type statePropsType = {
-//     state:StatePropsType
-//     addPost:(postMessage:string)=> void
-//
-// }
+
 renderEntireTree(state);
 
 // If you want to start measuring performance in your app, pass a function
