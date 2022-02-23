@@ -13,12 +13,9 @@ import {StatePropsType} from "./redux/state";
 
 type AppStatePropsType = {
     state:StatePropsType
-
-}
-type addPostPropsType = {
     addPost:(postMessage:string)=> void
-}
 
+}
 
 const App = (props:AppStatePropsType) => {
     return (
@@ -29,9 +26,12 @@ const App = (props:AppStatePropsType) => {
               <div className='app-wrapper-content'>
                  <Routes>
                      <Route path='/' element={<Profile posts = {props.state.profilePage.posts}
+                                                       addPost = {props.addPost}
                      />}
                      />
-                     <Route path='/profile' element= {<Profile posts = {props.state.profilePage.posts}/>} />
+                     <Route path='/profile' element= {<Profile posts = {props.state.profilePage.posts}
+                                                               addPost = {props.addPost}
+                     />} />
                      <Route path='/dialogs' element= {<Dialogs  dialogs = {props.state.dialogsPage.dialogs}
                                                                 messages = {props.state.dialogsPage.messages}
                      />

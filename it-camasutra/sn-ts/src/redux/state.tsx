@@ -1,3 +1,4 @@
+import {renderEntireTree} from "../render";
 
 export type StatePropsType = {
     profilePage: {
@@ -28,9 +29,6 @@ export type MessageDataPropsType = {
 export type SideFriendsBarPropsType = {
     name:string
     img: string
-}
-export type addPostPropsType = {
-    addPost:(postMessage:string)=> void
 }
 const state:StatePropsType = {
     profilePage: {
@@ -63,12 +61,13 @@ const state:StatePropsType = {
         ]
     }
 }
-export const addPost = (postMessage:string) =>{
+export const addPost = (postMessage:string) => {
     let newPost = {
         id:6,
         message:postMessage,
         likeAmount:0,
     }
     state.profilePage.posts.push(newPost)
+    renderEntireTree(state)
 }
 export default state
