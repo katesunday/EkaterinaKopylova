@@ -1,11 +1,11 @@
-import React, {ChangeEvent, useState} from 'react'
+import React , {ChangeEvent , useState} from 'react'
 import SuperInputText from './common/c1-SuperInputText/SuperInputText'
 import s from './HW4.module.css'
 import SuperButton from './common/c2-SuperButton/SuperButton'
 import SuperCheckbox from './common/c3-SuperCheckbox/SuperCheckbox'
 
 function HW4() {
-    const [text, setText] = useState<string>('')
+    const [text , setText] = useState<string>('')
     const error = text ? '' : 'error'
 
     const showAlert = () => {
@@ -16,7 +16,7 @@ function HW4() {
         }
     }
 
-    const [checked, setChecked] = useState<boolean>(false)
+    const [checked , setChecked] = useState<boolean>(false)
     const testOnChange = (e: ChangeEvent<HTMLInputElement>) => setChecked(e.currentTarget.checked)
 
     return (
@@ -30,7 +30,8 @@ function HW4() {
                     onChangeText={setText}
                     onEnter={showAlert}
                     error={error}
-                    // spanClassName={s.testSpanError}
+                    spanClassName={s.testSpanError}
+                    className={s.blue}
                 />
 
                 <SuperInputText
