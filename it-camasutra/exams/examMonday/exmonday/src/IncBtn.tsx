@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppPropsType} from "./App";
+
 
  type IncBtnPropsType = {
      number:number
