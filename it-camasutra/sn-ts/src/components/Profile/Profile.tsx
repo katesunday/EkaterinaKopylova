@@ -4,8 +4,10 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {PostDataPropsType} from "../../redux/state";
 
 type ProfilePropsType = {
+    newPostText:string
     posts: Array<PostDataPropsType>
-    addPost:(postMessage:string)=> void
+    addPost:()=> void
+    updateNewPostChange: (newText:string) => void
 }
 const Profile = (props:ProfilePropsType) => {
 
@@ -13,7 +15,9 @@ const Profile = (props:ProfilePropsType) => {
         <div>
             <ProfileInfo/>
             <MyPosts posts = {props.posts}
-                     addPost = {props.addPost}/>
+                     newPostText = {props.newPostText}
+                     addPost = {props.addPost}
+                     updateNewPostChange = {props.updateNewPostChange}/>
         </div>
     );
 };
