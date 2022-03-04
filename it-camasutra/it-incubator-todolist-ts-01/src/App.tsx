@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React , {useState} from 'react';
 import './App.css';
-import {TaskType , Todolist} from './Todolist';
-import {v1} from 'uuid';
+import ToDoList , {TaskType} from "./ToDoList";
+import {v1} from "uuid";
 
-export type FilterValuesType = "all" | "active" | "completed";
- type todolistsType = {
+export type FilterValuesType = 'all' | 'active' | 'completed';
+type todolistsType = {
     id:string
     title: string
     filter: FilterValuesType
@@ -36,39 +36,25 @@ function App() {
         ]
     });
 
-    // let [filter, setFilter] = useState<FilterValuesType>("all");
+    // const [filter , setFilter] = useState<FilterValuesType>('all')
 
-
-
-    function removeTask(todolistId:string,id: string) {
-        setTasks({...tasks,[todolistId]:tasks[todolistId].filter(el=>el.id!==id)})
-        // let filteredTasks = tasks.filter(t => t.id != id);
-        // setTasks(filteredTasks);
+    const changeFilter = (todolistID:string,value:FilterValuesType) => {
+        setTodolists(todolists.map((el)=> el.id ===todolistID ? {...el,filter:value} : el))
+        // берем объект идем мапом и если в нем у элемента айдишка равна айдишке
+        // из аргумента, то копируем остальной кусок объекта и даем туда новое
+        // значение фильта - вэлью(второй аргумент)
     }
 
-    function addTask(todolistId:string,title: string) {
-        // setTasks({...tasks,[todolistId]:tasks[todolistId].concat(newTask)})
-        setTasks({...tasks,[todolistId]:[{id: v1(), title: title, isDone: false},...tasks[todolistId]]})
-
-        // let newTasks = [task, ...tasks];
-        // setTasks(newTasks);
-    }
-
-    function changeStatus(todolistId:string,taskId: string, isDone: boolean) {
-        setTasks({...tasks,[todolistId]:tasks[todolistId].map(el=>el.id ===taskId? {...el,isDone:isDone}:el)})
-        // let task = tasks.find(t => t.id === taskId);
-        // if (task) {
-        //     task.isDone = isDone;
-        // }
-        //
-        // setTasks([...tasks]);
-    }
-    const removeToDoList = (todolistId:string) => {
-        setTodolists(todolists.filter(el=>el.id !==todolistId))
-        delete tasks[todolistId]
-    }
-
-
+    // const getFilteredTasksForRender = () => {
+    //     switch (filter) {
+    //         case "completed":
+    //             return tasks.filter(t => t.isDone === true)
+    //         case "active":
+    //             return tasks.filter(t => t.isDone === false)
+    //         default:
+    //             return tasks
+    //     }
+    // }
     // let tasksForTodolist = tasks;
     //
     // if (filter === "active") {
@@ -77,14 +63,30 @@ function App() {
     // if (filter === "completed") {
     //     tasksForTodolist = tasks.filter(t => t.isDone === true);
     // }
+    // // const FilteredTasksForRender = getFilteredTasksForRender()
 
-    function changeFilter(todolistId:string,value: FilterValuesType) {
-        setTodolists(todolists.map(el=>el.id===todolistId?{...el,filter:value}:el))
-        // берем объект идем мапом и если в нем у элемента айдишка равна айдишке
-        // из аргумента, то копируем остальной кусок объекта и даем туда новое
-        // значение фильта - вэлью(второй аргумент)
+    const removeTask = (todolistID:string,taskID: string) => {
+        setTasks({...tasks,[todolistID]:tasks[todolistID].filter(el=>el.id!==taskID)})
+        // const filteredTasks = tasks.filter(task => task.id !== taskID)
+        // setTasks(filteredTasks)
+        // console.log(tasks)
     }
 
+    const addTask = (todolistID:string,title:string) => {
+        setTasks({...tasks,[todolistID]:[{id: v1(),title: title,isDone: false},...tasks[todolistID]]})
+        //    const newTask: TaskType = {id: v1(),title: title,isDone: false
+        // }
+        // const updatedTasks = [newTask,...tasks]
+        // setTasks([ {
+        //            id: v1(),
+        //            title,
+        //            isDone: false
+        //     },...tasks])
+    }
+    const changeTaskStatus = (todolistID:string,taskID: string, isDone:boolean) =>{
+        setTasks({...tasks,[todolistID]:tasks[todolistID].map(el=>el.id===taskID?{...el,isDone:isDone}:el)})
+        // setTasks(tasks.map(task => task.id === taskID ? {...task, isDone: isDone}: task))
+    }
 
     return (
         <div className="App">
@@ -97,21 +99,22 @@ function App() {
                 if (el.filter === "completed") {
                     tasksForTodolist = tasks[el.id].filter(t => t.isDone === true);
                 }
-            return(
-                <Todolist
+                return(
+                <ToDoList
                     key = {el.id}
-                    todoListId = {el.id}
-                    title={el.title}
+                    todolistID = {el.id}
+                    title={ el.title}
                     tasks={tasksForTodolist}
-                    removeTask={removeTask}
+                    removeTask={ removeTask }
                     changeFilter={changeFilter}
-                    addTask={addTask}
-                    changeTaskStatus={changeStatus}
+                    addTask = {addTask}
                     filter={el.filter}
-                    removeToDoList = {removeToDoList}
+                    changeTaskStatus={changeTaskStatus}
                 />
-            )
-        })}
+                )})}
+
+            {/*<ToDoList title={"What to remember"} tasks={task_2} />*/ }
+            {/*<ToDoList title={"What to ask"} tasks={task_3} />*/ }
         </div>
     );
 }
