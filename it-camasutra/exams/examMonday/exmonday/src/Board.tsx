@@ -5,11 +5,13 @@ import {MyButton} from "./MyButton";
 
 type BoardPropsType = {
     number:number
+    maxNumber:number
+    minNumber:number
     changeNumber: () =>void
     resetNumber:() => void
 }
 const Board = (props:BoardPropsType) => {
-    const condition = props.number===5?"red":'';
+    const condition = props.number===props.maxNumber|| props.maxNumber<0?"red":'';
     return (
         <div className='board'>
          <div className={`numberBoard ${condition}`}>{props.number}</div>
@@ -22,13 +24,14 @@ const Board = (props:BoardPropsType) => {
                 {/*    resetNumber = {props.resetNumber}/>*/}
                 <MyButton
                     onClick = {props.changeNumber}
-                          disabled = {props.number===5}>
-                    inc
+                    disabled = {props.number===props.maxNumber}
+                >inc
                 </MyButton>
                 <MyButton
                     onClick = {props.resetNumber}
-                    disabled = {props.number===0}
-                >reset</MyButton>
+                    disabled = {props.number===props.minNumber}
+                >reset
+                </MyButton>
             </div>
 
         </div>
