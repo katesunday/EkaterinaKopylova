@@ -20,7 +20,8 @@ const changeNumberHandler = () => {
     localStorage.setItem('min',JSON.stringify(props.minNumber))
     localStorage.setItem('max',JSON.stringify(props.maxNumber))
 }
-const setCondition = props.minNumber<0||props.maxNumber<0?"belowZero":'warning';
+const p_setCondition = props.minNumber<0||props.maxNumber<0?"belowZero":'warning';
+const setBtnCondition = props.minNumber<0||props.maxNumber<0||props.minNumber===props.maxNumber||props.maxNumber<props.minNumber
     return (
         <div className='board'>
 
@@ -30,9 +31,9 @@ const setCondition = props.minNumber<0||props.maxNumber<0?"belowZero":'warning';
             <input type="number" id="setMin" onChange={chooseMinNumber} value={props.minNumber}/>
             <p className='desc-p'>set Min value for counter</p>
              <MyButton className='setBtn' onClick={changeNumberHandler}
-                       disabled={props.minNumber<0||props.maxNumber<0||props.minNumber===props.maxNumber}>
+                       disabled={setBtnCondition}>
                  Set</MyButton>
-            <p className={setCondition}> number can't be less than zero</p>
+            <p className={p_setCondition}> number can't be less than zero</p>
         </div>
     );
 };
